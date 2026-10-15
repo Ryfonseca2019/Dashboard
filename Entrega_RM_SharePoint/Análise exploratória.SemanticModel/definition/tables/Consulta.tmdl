@@ -1,0 +1,45 @@
+table Consulta
+	lineageTag: d4888454-5691-4436-8978-a29c4ebc79e3
+
+	column TABLE_SCHEMA
+		dataType: string
+		lineageTag: cd70bd1e-d554-4e29-80b0-ff5498d28173
+		summarizeBy: none
+		sourceColumn: TABLE_SCHEMA
+
+		annotation SummarizationSetBy = Automatic
+
+	column TABLE_NAME
+		dataType: string
+		lineageTag: 319f61c5-7d13-47e0-bcd1-2911ee678396
+		summarizeBy: none
+		sourceColumn: TABLE_NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column COLUMN_NAME
+		dataType: string
+		lineageTag: fbcaf6e8-98fc-450e-83f9-f00f6c740fe7
+		summarizeBy: none
+		sourceColumn: COLUMN_NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column DATA_TYPE
+		dataType: string
+		lineageTag: 2370bf91-b88a-4817-848c-ebb3c25d18f4
+		summarizeBy: none
+		sourceColumn: DATA_TYPE
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Consulta = m
+		mode: import
+		source =
+				let
+				  Origem = Sql.Database("SRVSEDE01621PRE", "CorporeRM", [Query = "#(lf)SELECT#(lf)    TABLE_SCHEMA,#(lf)    TABLE_NAME,#(lf)    COLUMN_NAME,#(lf)    DATA_TYPE#(lf)FROM INFORMATION_SCHEMA.COLUMNS#(lf)WHERE TABLE_NAME IN (#(lf)    'STURMA',#(lf)    'SPLETIVO',#(lf)    'SHABILITACAOFILIAL',#(lf)    'SCURSO',#(lf)    'SMATRICPL',#(lf)    'STURMADISC',#(lf)    'SPROFESSOR',#(lf)    'SPROFESSORTURMA',#(lf)    'GFILIAL'#(lf))#(lf)ORDER BY#(lf)    TABLE_NAME,#(lf)    ORDINAL_POSITION;#(lf)", EnableCrossDatabaseFolding = true])
+				in
+				  Origem
+
+	annotation PBI_ResultType = Table
+

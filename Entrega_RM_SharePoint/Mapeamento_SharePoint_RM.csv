@@ -1,0 +1,55 @@
+﻿Campo_CSV_SharePoint;Classificacao;Origem_RM_ou_Destino;Validacao_Necessaria
+Planejamento;"Manter planejamento; sem origem RM comprovada";Lista SharePoint / aplicativo;Preservar valor atual. Exige regra explícita antes de derivar ou sobrescrever pelo RM.
+Unidade;Correspondência pendente de validação;GFILIAL.NOME / GFILIAL.NOMEFANTASIA;Criar equivalência entre o nome no SharePoint e CODCOLIGADA/CODFILIAL.
+Periodo_Letivo;"Presente na consulta SQL fornecida; não executada";SPLETIVO.CODPERLET;"Alias existente; preservar como texto."
+Ano_Referencia;"Manter planejamento; sem origem RM comprovada";Lista SharePoint / aplicativo;Preservar valor atual. Exige regra explícita antes de derivar ou sobrescrever pelo RM.
+Identificador_Temporario;"Manter planejamento; sem origem RM comprovada";Lista SharePoint / aplicativo;Preservar valor atual. Exige regra explícita antes de derivar ou sobrescrever pelo RM.
+Codigo_Turma_SGE;"Presente na consulta SQL fornecida; não executada";STURMA.CODTURMA;"Alias existente na consulta; confirmar se o SGE usa este mesmo código."
+Matriz;Correspondência pendente de validação;SHABILITACAOFILIAL.CODGRADE;Não presumir equivalência entre código RM e código da matriz no SharePoint.
+Status_Turma;Correspondência pendente de validação;STURMA.TURMAENCERRADA + outras fontes a confirmar;Encerrada não equivale aos estados do planejamento, como Rascunho.
+Ativa;Correspondência pendente de validação;Fonte RM a confirmar;Não inferir ativa apenas de TURMAENCERRADA.
+Codigo_Matriz_Snapshot;Correspondência pendente de validação;SHABILITACAOFILIAL.CODGRADE;Validar equivalência e regra de snapshot.
+Nome_Curso_Snapshot;"Presente na consulta SQL fornecida; não executada";SCURSO.NOME;Definir quando capturar e se o snapshot pode ser atualizado.
+Area_Snapshot;Correspondência pendente de validação;Cadastro de curso ou campos complementares, a confirmar;Necessário identificar cadastro e domínio.
+Modalidade_Snapshot;Correspondência pendente de validação;SCURSO.CODMODALIDADECURSO / STURMA.MODALIDADE;Identificar tabela de descrição e significado de cada domínio.
+Tipo_Mediacao_Snapshot;Correspondência pendente de validação;Cadastro de oferta/curso, a confirmar;Necessário identificar domínio.
+Carga_Horaria_Snapshot;Correspondência pendente de validação;Metadados de curso/grade, a confirmar;"Definir carga total da matriz versus disciplinas ofertadas; evitar duplicação."
+Data_Snapshot_Matriz;"Manter planejamento; sem origem RM comprovada";Lista SharePoint / aplicativo;Preservar valor atual. Exige regra explícita antes de derivar ou sobrescrever pelo RM.
+Data_Inicio_Prevista;"Presente na consulta SQL fornecida; não executada";STURMA.DTINICIAL;Validar se a data RM deve substituir a previsão do planejamento.
+Data_Fim_Prevista;"Presente na consulta SQL fornecida; não executada";STURMA.DTFINAL;Validar se a data RM deve substituir a previsão do planejamento.
+Quantidade_Vagas;"Presente na consulta SQL fornecida; não executada";STURMA.MAXALUNOS;Confirmar que capacidade RM corresponde às vagas planejadas.
+Matriculas_Previstas;"Manter planejamento; sem origem RM comprovada";Lista SharePoint / aplicativo;Preservar valor atual. Exige regra explícita antes de derivar ou sobrescrever pelo RM.
+Campus_Polo;Correspondência pendente de validação;STURMA.CODCAMPUS;"Consulta retorna código; CSV contém categorias de local. Exige equivalência."
+Financiamento;Correspondência pendente de validação;Fonte RM a confirmar;Não inferir de modalidade ou curso.
+Tipo_Periodo;"Manter planejamento; sem origem RM comprovada";Lista SharePoint / aplicativo;Preservar valor atual. Exige regra explícita antes de derivar ou sobrescrever pelo RM.
+Pedagogo_Responsavel;Correspondência pendente de validação;Fonte RM a confirmar;Não equiparar ao instrutor.
+Mobilizacao;"Manter planejamento; sem origem RM comprovada";Lista SharePoint / aplicativo;Preservar valor atual. Exige regra explícita antes de derivar ou sobrescrever pelo RM.
+Empresa;Correspondência pendente de validação;Fonte RM a confirmar;Pode ser informação exclusiva do planejamento.
+Projeto;Correspondência pendente de validação;Fonte RM a confirmar;Pode ser informação exclusiva do planejamento.
+Sindicato;Correspondência pendente de validação;Fonte RM a confirmar;Pode ser informação exclusiva do planejamento.
+Classe_Valor;Correspondência pendente de validação;Fonte RM a confirmar;Necessário confirmar cadastro contábil e regra.
+Item_Contabil_Snapshot;Correspondência pendente de validação;STURMA.IDITEMCONTABILPROTHEUS;"Retorna identificador; confirmar correspondência com valor da lista."
+Centro_Custo_Snapshot;Correspondência pendente de validação;STURMA.CODCCUSTO;Confirmar código/descrição e política de snapshot.
+Observacoes;"Manter planejamento; sem origem RM comprovada";Lista SharePoint / aplicativo;Preservar valor atual. Exige regra explícita antes de derivar ou sobrescrever pelo RM.
+Motivo_Cancelamento;"Manter planejamento; sem origem RM comprovada";Lista SharePoint / aplicativo;Preservar valor atual. Exige regra explícita antes de derivar ou sobrescrever pelo RM.
+Data_Cancelamento;"Manter planejamento; sem origem RM comprovada";Lista SharePoint / aplicativo;Preservar valor atual. Exige regra explícita antes de derivar ou sobrescrever pelo RM.
+Cancelada_Por;"Manter planejamento; sem origem RM comprovada";Lista SharePoint / aplicativo;Preservar valor atual. Exige regra explícita antes de derivar ou sobrescrever pelo RM.
+Data_Conclusao;Correspondência pendente de validação;Fonte RM a confirmar;Data final prevista não comprova conclusão efetiva.
+Bloqueada_Para_Edicao;"Manter planejamento; sem origem RM comprovada";Lista SharePoint / aplicativo;Preservar valor atual. Exige regra explícita antes de derivar ou sobrescrever pelo RM.
+Versao_Planejamento;"Manter planejamento; sem origem RM comprovada";Lista SharePoint / aplicativo;Preservar valor atual. Exige regra explícita antes de derivar ou sobrescrever pelo RM.
+Origem_Registro;"Manter planejamento; sem origem RM comprovada";Lista SharePoint / aplicativo;Preservar valor atual. Exige regra explícita antes de derivar ou sobrescrever pelo RM.
+Data_Ultima_Revisao;"Manter planejamento; sem origem RM comprovada";Lista SharePoint / aplicativo;Preservar valor atual. Exige regra explícita antes de derivar ou sobrescrever pelo RM.
+Turno;Correspondência pendente de validação;Metadados de turno e vínculo com a oferta, a confirmar;Não assumir nome de tabela/coluna sem metadados.
+Tipo_Calculo_Evasao;"Manter planejamento; sem origem RM comprovada";Lista SharePoint / aplicativo;Preservar valor atual. Exige regra explícita antes de derivar ou sobrescrever pelo RM.
+Percentual_Evasao_Previsto;"Manter planejamento; sem origem RM comprovada";Lista SharePoint / aplicativo;Preservar valor atual. Exige regra explícita antes de derivar ou sobrescrever pelo RM.
+Quantidade_Evasao_Prevista;"Manter planejamento; sem origem RM comprovada";Lista SharePoint / aplicativo;Preservar valor atual. Exige regra explícita antes de derivar ou sobrescrever pelo RM.
+Matriculas_Consideradas;"Manter planejamento; sem origem RM comprovada";Lista SharePoint / aplicativo;Preservar valor atual. Exige regra explícita antes de derivar ou sobrescrever pelo RM.
+ID;Metadado SharePoint;SharePoint;Não importar identificador ou auditoria RM para este campo. ID identifica o item existente para atualização.
+Matriculas_Reais;Correspondência pendente de validação;SMATRICPL + cadastro de situação, vínculos a confirmar;"Definir alunos distintos, situação válida e data de referência; não contar linhas do join."
+Matriculas_Reais_Confirmadas;Correspondência pendente de validação;Regra de validação operacional a definir;Booleano de confirmação não é quantidade de matrículas.
+Código da turma SGE;Correspondência pendente de validação;STURMA.CODTURMA;"Coluna duplicada de negócio; definir qual é oficial antes de preencher."
+Local_realizacao;Correspondência pendente de validação;STURMA.CODCAMPUS/CODPREDIO/CODSALA + cadastros a confirmar;Esses códigos não provam equivalência ao local informado no planejamento.
+Instrutor;Correspondência pendente de validação;STURMADISC / SPROFESSORTURMA / SPROFESSOR, vínculos a confirmar;"Uma turma pode ter vários instrutores; agregar antes do cruzamento."
+Codigo_Matriz_Excel;Correspondência pendente de validação;SHABILITACAOFILIAL.CODGRADE;"Validar sistema de codificação; pode ser identificador externo."
+Criado;Metadado SharePoint;SharePoint;Não importar identificador ou auditoria RM para este campo. ID identifica o item existente para atualização.
+Criado por;Metadado SharePoint;SharePoint;Não importar identificador ou auditoria RM para este campo. ID identifica o item existente para atualização.

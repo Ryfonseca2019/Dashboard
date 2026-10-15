@@ -1,0 +1,29 @@
+model Model
+	culture: pt-BR
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: pt-BR
+	valueFilterBehavior: independent
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["Consulta","Consulta das turmas de 2026","RM_Integracao_SharePoint"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table Consulta
+ref table 'Consulta das turmas de 2026'
+ref table DateTableTemplate_df4eb46e-aaa5-4d7a-b99d-1aeb70c96f79
+ref table LocalDateTable_7802af77-70dc-405d-823b-59807b86a2df
+ref table LocalDateTable_890513f0-a999-457c-9fcb-b1a38a47d39f
+ref table LocalDateTable_868784b3-e596-4e0d-9d1c-5424b86ad667
+ref table LocalDateTable_386de2e3-bea1-4683-9c8b-81f4cf9ec153
+ref table LocalDateTable_ce2550b5-1c8b-4998-bf35-31bd30dea659
+ref table LocalDateTable_31be5c35-8201-407e-9db9-78c595dd154c
+
+ref cultureInfo pt-BR
+
+
+ref table 'RM_Integracao_SharePoint'

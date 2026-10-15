@@ -1,0 +1,338 @@
+table 'Consulta das turmas de 2026'
+	lineageTag: cc6c319b-b0fe-40f8-9acb-689434b50159
+
+
+	measure 'Total de Registros RM' = COUNTROWS('Consulta das turmas de 2026')
+		formatString: #,0
+
+	measure 'Turmas Distintas RM' =
+			COUNTROWS(
+			    SUMMARIZE(
+			        'Consulta das turmas de 2026',
+			        'Consulta das turmas de 2026'[CODCOLIGADA],
+			        'Consulta das turmas de 2026'[CODFILIAL],
+			        'Consulta das turmas de 2026'[IDPERLET],
+			        'Consulta das turmas de 2026'[Codigo_Turma_SGE]
+			    )
+			)
+		formatString: #,0
+
+	measure 'Registros Duplicados RM' = [Total de Registros RM] - [Turmas Distintas RM]
+		formatString: #,0
+
+	measure 'Vagas Previstas RM' = SUM('Consulta das turmas de 2026'[Quantidade_Vagas])
+		formatString: #,0
+
+	measure 'Turmas sem Curso RM' =
+			CALCULATE(
+			    [Total de Registros RM],
+			    ISBLANK('Consulta das turmas de 2026'[Nome_Curso_Snapshot])
+			        || 'Consulta das turmas de 2026'[Nome_Curso_Snapshot] = ""
+			)
+		formatString: #,0
+
+	measure 'Turmas sem Data Inicio RM' =
+			CALCULATE([Total de Registros RM], ISBLANK('Consulta das turmas de 2026'[Data_Inicio_Prevista]))
+		formatString: #,0
+
+	measure 'Turmas sem Data Fim RM' =
+			CALCULATE([Total de Registros RM], ISBLANK('Consulta das turmas de 2026'[Data_Fim_Prevista]))
+		formatString: #,0
+
+	measure 'Turmas com Datas Invertidas RM' =
+			COUNTROWS(
+			    FILTER(
+			        'Consulta das turmas de 2026',
+			        NOT(ISBLANK('Consulta das turmas de 2026'[Data_Inicio_Prevista]))
+			            && NOT(ISBLANK('Consulta das turmas de 2026'[Data_Fim_Prevista]))
+			            && 'Consulta das turmas de 2026'[Data_Fim_Prevista] < 'Consulta das turmas de 2026'[Data_Inicio_Prevista]
+			    )
+			)
+		formatString: #,0
+
+
+	column CODCOLIGADA
+		dataType: int64
+		formatString: 0
+		lineageTag: 26bff7fa-bdfe-4150-b6b7-2d618da9bceb
+		summarizeBy: sum
+		sourceColumn: CODCOLIGADA
+
+		annotation SummarizationSetBy = Automatic
+
+	column CODFILIAL
+		dataType: int64
+		formatString: 0
+		lineageTag: 4b0a8177-44e4-415b-9b06-25a6449b738c
+		summarizeBy: sum
+		sourceColumn: CODFILIAL
+
+		annotation SummarizationSetBy = Automatic
+
+	column Codigo_Turma_SGE
+		dataType: string
+		lineageTag: d3a4335e-7aaa-4293-a95e-c5244f21ab69
+		summarizeBy: none
+		sourceColumn: Codigo_Turma_SGE
+
+		annotation SummarizationSetBy = Automatic
+
+	column Nome_Turma
+		dataType: string
+		lineageTag: 640dbe3b-80ad-4bc1-a5bf-88d3bcbb3395
+		summarizeBy: none
+		sourceColumn: Nome_Turma
+
+		annotation SummarizationSetBy = Automatic
+
+	column IDPERLET
+		dataType: int64
+		formatString: 0
+		lineageTag: dd70a3a3-b4af-4d2a-88f4-75d85e6d7a86
+		summarizeBy: sum
+		sourceColumn: IDPERLET
+
+		annotation SummarizationSetBy = Automatic
+
+	column Periodo_Letivo
+		dataType: string
+		lineageTag: 61aa98ab-5dee-4f9c-baf8-0967dd07819f
+		summarizeBy: none
+		sourceColumn: Periodo_Letivo
+
+		annotation SummarizationSetBy = Automatic
+
+	column Descricao_Periodo
+		dataType: string
+		lineageTag: a6cc1e98-5cd3-4c3e-8ecb-beac843ec477
+		summarizeBy: none
+		sourceColumn: Descricao_Periodo
+
+		annotation SummarizationSetBy = Automatic
+
+	column Inicio_Periodo_Letivo
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: b514962c-6f81-41e9-a362-27944f26919a
+		summarizeBy: none
+		sourceColumn: Inicio_Periodo_Letivo
+
+		variation Variação
+			isDefault
+			relationship: d7eeef30-ec79-44f7-93ce-c362489d3cb4
+			defaultHierarchy: LocalDateTable_7802af77-70dc-405d-823b-59807b86a2df.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Fim_Periodo_Letivo
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: a76d2442-2116-46fc-8dd1-8b3d03ba2a37
+		summarizeBy: none
+		sourceColumn: Fim_Periodo_Letivo
+
+		variation Variação
+			isDefault
+			relationship: b72b2088-6ff9-481e-8f85-87286ec12b3b
+			defaultHierarchy: LocalDateTable_890513f0-a999-457c-9fcb-b1a38a47d39f.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Unidade_RM
+		dataType: string
+		lineageTag: a818599d-922f-4767-974a-bba29235d415
+		summarizeBy: none
+		sourceColumn: Unidade_RM
+
+		annotation SummarizationSetBy = Automatic
+
+	column Unidade_Fantasia
+		dataType: string
+		lineageTag: b126dccb-add3-4e5e-ba46-56ba90e03a90
+		summarizeBy: none
+		sourceColumn: Unidade_Fantasia
+
+		annotation SummarizationSetBy = Automatic
+
+	column Codigo_Curso
+		dataType: string
+		lineageTag: 7dd5bab8-8cc0-4d75-8e92-1023037bebef
+		summarizeBy: none
+		sourceColumn: Codigo_Curso
+
+		annotation SummarizationSetBy = Automatic
+
+	column Nome_Curso_Snapshot
+		dataType: string
+		lineageTag: 75405834-752f-488d-8086-286413f1da80
+		summarizeBy: none
+		sourceColumn: Nome_Curso_Snapshot
+
+		annotation SummarizationSetBy = Automatic
+
+	column Codigo_Matriz_RM
+		dataType: string
+		lineageTag: eb88c173-b7d2-4fe7-9534-a7a1ece2f439
+		summarizeBy: none
+		sourceColumn: Codigo_Matriz_RM
+
+		annotation SummarizationSetBy = Automatic
+
+	column CODHABILITACAO
+		dataType: string
+		lineageTag: e53a579e-4bf2-4dbb-b708-076de15a3cf6
+		summarizeBy: none
+		sourceColumn: CODHABILITACAO
+
+		annotation SummarizationSetBy = Automatic
+
+	column CODMODALIDADECURSO
+		dataType: string
+		lineageTag: e78f461c-9b78-485e-8148-5091e3803494
+		summarizeBy: none
+		sourceColumn: CODMODALIDADECURSO
+
+		annotation SummarizationSetBy = Automatic
+
+	column Modalidade_RM
+		dataType: int64
+		formatString: 0
+		lineageTag: 5b9da886-afe5-40a0-999d-a59bd30c1980
+		summarizeBy: sum
+		sourceColumn: Modalidade_RM
+
+		annotation SummarizationSetBy = Automatic
+
+	column Data_Inicio_Prevista
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: ab101765-4783-45e1-aa1d-b86d8da75652
+		summarizeBy: none
+		sourceColumn: Data_Inicio_Prevista
+
+		variation Variação
+			isDefault
+			relationship: 986776f1-3900-4c02-8b0a-547b51c3ec26
+			defaultHierarchy: LocalDateTable_868784b3-e596-4e0d-9d1c-5424b86ad667.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Data_Fim_Prevista
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 843b2d0b-f087-4b9a-9220-e09db761a2f9
+		summarizeBy: none
+		sourceColumn: Data_Fim_Prevista
+
+		variation Variação
+			isDefault
+			relationship: 302f75fe-373b-4cf7-9086-e77f15f20775
+			defaultHierarchy: LocalDateTable_386de2e3-bea1-4683-9c8b-81f4cf9ec153.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quantidade_Vagas
+		dataType: int64
+		formatString: 0
+		lineageTag: 987f32d4-e3a2-4093-84c8-bfbb78f94f71
+		summarizeBy: sum
+		sourceColumn: Quantidade_Vagas
+
+		annotation SummarizationSetBy = Automatic
+
+	column Campus_Polo
+		dataType: string
+		lineageTag: 4791571f-6ff7-4bed-ba9d-2fc89364ba58
+		summarizeBy: none
+		sourceColumn: Campus_Polo
+
+		annotation SummarizationSetBy = Automatic
+
+	column CODPREDIO
+		dataType: string
+		lineageTag: 1cf496cf-20e5-4784-8ddf-ce0dfb811e78
+		summarizeBy: none
+		sourceColumn: CODPREDIO
+
+		annotation SummarizationSetBy = Automatic
+
+	column CODSALA
+		dataType: string
+		lineageTag: 2b8810a5-3b1d-4f88-a323-142e9aef854f
+		summarizeBy: none
+		sourceColumn: CODSALA
+
+		annotation SummarizationSetBy = Automatic
+
+	column Centro_Custo_RM
+		dataType: string
+		lineageTag: 466b03a3-6811-4c66-adc4-e1b510f6d5f0
+		summarizeBy: none
+		sourceColumn: Centro_Custo_RM
+
+		annotation SummarizationSetBy = Automatic
+
+	column Item_Contabil_RM
+		dataType: int64
+		formatString: 0
+		lineageTag: 5000ef36-8864-4e56-bf7c-d87222175ed5
+		summarizeBy: sum
+		sourceColumn: Item_Contabil_RM
+
+		annotation SummarizationSetBy = Automatic
+
+	column TURMAENCERRADA
+		dataType: string
+		lineageTag: eb7dc8e9-96ce-485b-ba8e-aee40ce6761a
+		summarizeBy: none
+		sourceColumn: TURMAENCERRADA
+
+		annotation SummarizationSetBy = Automatic
+
+	column ORIGEMCRIACAO
+		dataType: int64
+		formatString: 0
+		lineageTag: e517d9b8-3b39-45ae-a5a5-d6ee0bfc3729
+		summarizeBy: sum
+		sourceColumn: ORIGEMCRIACAO
+
+		annotation SummarizationSetBy = Automatic
+
+	column Data_Criacao_RM
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 1b194428-6ed7-4ac7-83ce-35d374f48990
+		summarizeBy: none
+		sourceColumn: Data_Criacao_RM
+
+		variation Variação
+			isDefault
+			relationship: 5a514e71-6a82-4578-9258-cbf16ba4cfbe
+			defaultHierarchy: LocalDateTable_ce2550b5-1c8b-4998-bf35-31bd30dea659.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Data_Alteracao_RM
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 90eb409b-27f2-4b82-b10f-935df7e14afe
+		summarizeBy: none
+		sourceColumn: Data_Alteracao_RM
+
+		variation Variação
+			isDefault
+			relationship: 2858da97-bf4c-491c-87fb-185c0ca4b802
+			defaultHierarchy: LocalDateTable_31be5c35-8201-407e-9db9-78c595dd154c.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Consulta das turmas de 2026' = m
+		mode: import
+		source =
+				let
+				  Origem = Sql.Database("SRVSEDE01621PRE", "CorporeRM", [Query = "#(lf)SELECT TOP (200)#(lf)    -- Identificação da turma#(lf)    T.CODCOLIGADA,#(lf)    T.CODFILIAL,#(lf)    T.CODTURMA AS Codigo_Turma_SGE,#(lf)    T.NOME AS Nome_Turma,#(lf)    T.IDPERLET,#(lf)#(lf)    -- Planejamento e período letivo#(lf)    P.CODPERLET AS Periodo_Letivo,#(lf)    P.DESCRICAO AS Descricao_Periodo,#(lf)    P.DTINICIO AS Inicio_Periodo_Letivo,#(lf)    P.DTFIM AS Fim_Periodo_Letivo,#(lf)#(lf)    -- Unidade#(lf)    F.NOME AS Unidade_RM,#(lf)    F.NOMEFANTASIA AS Unidade_Fantasia,#(lf)#(lf)    -- Curso e matriz#(lf)    H.CODCURSO AS Codigo_Curso,#(lf)    C.NOME AS Nome_Curso_Snapshot,#(lf)    H.CODGRADE AS Codigo_Matriz_RM,#(lf)    H.CODHABILITACAO,#(lf)    C.CODMODALIDADECURSO,#(lf)#(lf)    -- Oferta da turma#(lf)    T.MODALIDADE AS Modalidade_RM,#(lf)    T.DTINICIAL AS Data_Inicio_Prevista,#(lf)    T.DTFINAL AS Data_Fim_Prevista,#(lf)    T.MAXALUNOS AS Quantidade_Vagas,#(lf)#(lf)    -- Localização#(lf)    T.CODCAMPUS AS Campus_Polo,#(lf)    T.CODPREDIO,#(lf)    T.CODSALA,#(lf)#(lf)    -- Informações complementares#(lf)    T.CODCCUSTO AS Centro_Custo_RM,#(lf)    T.IDITEMCONTABILPROTHEUS#(lf)        AS Item_Contabil_RM,#(lf)    T.TURMAENCERRADA,#(lf)    T.ORIGEMCRIACAO,#(lf)#(lf)    -- Controle de atualização#(lf)    T.RECCREATEDON AS Data_Criacao_RM,#(lf)    T.RECMODIFIEDON AS Data_Alteracao_RM#(lf)#(lf)FROM dbo.STURMA AS T#(lf)#(lf)INNER JOIN dbo.SPLETIVO AS P#(lf)    ON T.CODCOLIGADA = P.CODCOLIGADA#(lf)    AND T.IDPERLET = P.IDPERLET#(lf)#(lf)LEFT JOIN dbo.GFILIAL AS F#(lf)    ON T.CODCOLIGADA = F.CODCOLIGADA#(lf)    AND T.CODFILIAL = F.CODFILIAL#(lf)#(lf)LEFT JOIN dbo.SHABILITACAOFILIAL AS H#(lf)    ON T.CODCOLIGADA = H.CODCOLIGADA#(lf)    AND T.IDHABILITACAOFILIAL =#(lf)        H.IDHABILITACAOFILIAL#(lf)#(lf)LEFT JOIN dbo.SCURSO AS C#(lf)    ON H.CODCOLIGADA = C.CODCOLIGADA#(lf)    AND H.CODCURSO = C.CODCURSO#(lf)#(lf)WHERE#(lf)    (#(lf)        -- Período letivo de 2026#(lf)        (#(lf)            P.DTINICIO >= '20260101'#(lf)            AND P.DTINICIO < '20270101'#(lf)        )#(lf)#(lf)        OR#(lf)        (#(lf)            P.CODPERLET LIKE '%2026%'#(lf)        )#(lf)#(lf)        OR#(lf)        (#(lf)            P.DESCRICAO LIKE '%2026%'#(lf)        )#(lf)#(lf)        -- Turma com execução em 2026#(lf)        OR#(lf)        (#(lf)            T.DTINICIAL < '20270101'#(lf)            AND T.DTFINAL >= '20260101'#(lf)        )#(lf)    )#(lf)#(lf)ORDER BY#(lf)    F.NOME,#(lf)    P.CODPERLET,#(lf)    T.CODTURMA;#(lf)", EnableCrossDatabaseFolding = true])
+				in
+				  Origem
+
+	annotation PBI_ResultType = Table
+

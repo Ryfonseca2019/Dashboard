@@ -1,0 +1,30 @@
+relationship d7eeef30-ec79-44f7-93ce-c362489d3cb4
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Consulta das turmas de 2026'.Inicio_Periodo_Letivo
+	toColumn: LocalDateTable_7802af77-70dc-405d-823b-59807b86a2df.Date
+
+relationship b72b2088-6ff9-481e-8f85-87286ec12b3b
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Consulta das turmas de 2026'.Fim_Periodo_Letivo
+	toColumn: LocalDateTable_890513f0-a999-457c-9fcb-b1a38a47d39f.Date
+
+relationship 986776f1-3900-4c02-8b0a-547b51c3ec26
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Consulta das turmas de 2026'.Data_Inicio_Prevista
+	toColumn: LocalDateTable_868784b3-e596-4e0d-9d1c-5424b86ad667.Date
+
+relationship 302f75fe-373b-4cf7-9086-e77f15f20775
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Consulta das turmas de 2026'.Data_Fim_Prevista
+	toColumn: LocalDateTable_386de2e3-bea1-4683-9c8b-81f4cf9ec153.Date
+
+relationship 5a514e71-6a82-4578-9258-cbf16ba4cfbe
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Consulta das turmas de 2026'.Data_Criacao_RM
+	toColumn: LocalDateTable_ce2550b5-1c8b-4998-bf35-31bd30dea659.Date
+
+relationship 2858da97-bf4c-491c-87fb-185c0ca4b802
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Consulta das turmas de 2026'.Data_Alteracao_RM
+	toColumn: LocalDateTable_31be5c35-8201-407e-9db9-78c595dd154c.Date
+

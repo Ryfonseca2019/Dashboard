@@ -1,0 +1,18 @@
+PROJETO POWER BI COM TABELA RM → SHAREPOINT
+
+1. Extraia este ZIP inteiro em uma pasta no Windows.
+2. Abra Análise exploratória.pbip no Power BI Desktop atualizado.
+3. Use a rede/VPN corporativa e autentique a fonte SQL Server SRVSEDE01621PRE, banco CorporeRM, quando solicitado. Nenhuma senha foi incluída.
+4. No Power Query, a nova consulta é RM_Integracao_SharePoint. Em sua etapa Fonte, a consulta SQL contém @Ano = 2026 e @LimiteDiagnostico = 200; revise o ano se necessário.
+5. Execute Atualizar / Fechar e Aplicar para carregar os dados e abra a página RM → SharePoint | Amostra 200.
+6. A tabela contém os 54 campos solicitados mais identificadores RM e nome da unidade. Use a rolagem horizontal para consultar as demais colunas.
+
+ESCOPO
+A fonte SQL foi configurada no arquivo; a conexão efetiva e a renderização NÃO foram testadas no Power BI Desktop, indisponível neste ambiente Linux. O servidor corporativo não resolveu por DNS neste ambiente.
+Os campos Codigo_Turma_SGE, Periodo_Letivo, Nome_Curso_Snapshot, Data_Inicio_Prevista, Data_Fim_Prevista e Quantidade_Vagas têm expressões de origem no SQL recebido. Todos os demais 48 campos de destino permanecem nulos até confirmação de origem/regra. Os códigos técnicos e candidatos aparecem no modelo como RM_*.
+O visual tem limite diagnóstico de 200 linhas. Não é uma carga completa nem comprova uma turma por linha: a chave e cardinalidade dos joins dependem de validação no banco.
+Nenhuma escrita no SharePoint foi implementada. Não use os nulos como comandos para apagar dados da lista.
+O relatório e consultas originais foram preservados; foi adicionada uma tabela de importação independente sem relacionamentos automáticos.
+O ZIP omite caches e configurações locais .pbi. O Desktop deverá carregar o modelo a partir das fontes e das definições TMDL; não espere dados novos sem Atualizar.
+
+Diagnostico_Estrutura_RM.sql e Mapeamento_SharePoint_RM.csv acompanham esta entrega para completar os campos pendentes.

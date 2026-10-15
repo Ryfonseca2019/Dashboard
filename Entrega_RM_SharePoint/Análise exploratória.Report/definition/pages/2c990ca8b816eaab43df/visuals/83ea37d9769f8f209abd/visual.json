@@ -1,0 +1,139 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "83ea37d9769f8f209abd",
+  "position": {
+    "x": 181.13268228948559,
+    "y": 74.099733663880471,
+    "z": 0,
+    "height": 887.13847803145779,
+    "width": 722.47240322283449
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Consulta"
+                    }
+                  },
+                  "Property": "COLUMN_NAME"
+                }
+              },
+              "queryRef": "Consulta.COLUMN_NAME",
+              "nativeQueryRef": "COLUMN_NAME"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Consulta"
+                    }
+                  },
+                  "Property": "DATA_TYPE"
+                }
+              },
+              "queryRef": "Consulta.DATA_TYPE",
+              "nativeQueryRef": "DATA_TYPE"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Consulta"
+                    }
+                  },
+                  "Property": "TABLE_NAME"
+                }
+              },
+              "queryRef": "Consulta.TABLE_NAME",
+              "nativeQueryRef": "TABLE_NAME"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Consulta"
+                    }
+                  },
+                  "Property": "TABLE_SCHEMA"
+                }
+              },
+              "queryRef": "Consulta.TABLE_SCHEMA",
+              "nativeQueryRef": "TABLE_SCHEMA"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "0dfe543526b87ae4905d",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Consulta"
+              }
+            },
+            "Property": "COLUMN_NAME"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "51a296a0fbae521fcfc4",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Consulta"
+              }
+            },
+            "Property": "DATA_TYPE"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "817d083342f812395ace",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Consulta"
+              }
+            },
+            "Property": "TABLE_NAME"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "6845fadfc117d6ae06fd",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Consulta"
+              }
+            },
+            "Property": "TABLE_SCHEMA"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
+}
