@@ -1,14 +1,13 @@
-﻿-- RASCUNHO DE INTEGRAÇÃO: somente leitura, não é carga de produção.
+﻿-- CONSULTA DE INTEGRAÇÃO: somente leitura; mapeamento de campos ainda parcial.
 -- Mantém os 54 nomes do CSV como contrato provisório de saída.
 -- NULL identifica campo ainda não mapeado; não significa apagar a lista.
 -- Tipos dos campos pendentes são provisórios, não são tipos SharePoint confirmados.
 -- Este SQL reutiliza origens do PBIP, mas ainda NÃO foi executado no RM.
 DECLARE @Ano int = 2026; -- ajustar ao período de extração desejado
-DECLARE @LimiteDiagnostico int = 200; -- amostra; não representa carga completa
 DECLARE @Inicio date = DATEFROMPARTS(@Ano, 1, 1);
 DECLARE @Fim date = DATEADD(year, 1, @Inicio);
 
-SELECT TOP (@LimiteDiagnostico)
+SELECT
     CAST(NULL AS nvarchar(4000)) AS [Planejamento], -- PENDENTE: não enviar NULL para sobrescrever valores existentes
     CAST(NULL AS nvarchar(4000)) AS [Unidade], -- PENDENTE: não enviar NULL para sobrescrever valores existentes
     P.CODPERLET AS [Periodo_Letivo], -- origem presente no SQL fornecido; validar semântica
@@ -88,13 +87,9 @@ LEFT JOIN dbo.SHABILITACAOFILIAL AS H
     AND H.IDHABILITACAOFILIAL = T.IDHABILITACAOFILIAL
 LEFT JOIN dbo.SCURSO AS C
     ON C.CODCOLIGADA = H.CODCOLIGADA AND C.CODCURSO = H.CODCURSO
-WHERE
-    (P.DTINICIO >= @Inicio AND P.DTINICIO < @Fim)
-    OR P.CODPERLET LIKE '%' + CONVERT(varchar(4), @Ano) + '%'
-    OR P.DESCRICAO LIKE '%' + CONVERT(varchar(4), @Ano) + '%'
-    OR (T.DTINICIAL < @Fim AND T.DTFINAL >= @Inicio)
+WHERE T.DTINICIAL >= @Inicio AND T.DTINICIAL < @Fim
 ORDER BY T.CODCOLIGADA, T.CODFILIAL, T.IDPERLET, T.CODTURMA;
 
 -- A chave de turma e a cardinalidade dos joins são provisórias.
 -- Resolver descrições/domínios e agregar matrículas e instrutores antes de adicioná-los.
--- Não usar esta amostra para totais de produção ou para inferir ausência de turmas.
+-- Sem limite de linhas. Somente turmas com início no ano indicado; datas nulas ficam de fora.

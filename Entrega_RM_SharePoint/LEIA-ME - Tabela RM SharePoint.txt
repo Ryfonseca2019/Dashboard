@@ -1,20 +1,14 @@
-PROJETO POWER BI COM TABELA RM → SHAREPOINT
+PROJETO POWER BI — V3 — TURMAS COM INÍCIO EM 2026
 
-1. Extraia este ZIP inteiro em uma pasta no Windows.
-2. Abra Análise exploratória.pbip no Power BI Desktop atualizado.
-3. Use a rede/VPN corporativa e autentique a fonte SQL Server SRVSEDE01621PRE, banco CorporeRM, quando solicitado. Nenhuma senha foi incluída.
-4. No Power Query, a nova consulta é RM_Integracao_SharePoint. Em sua etapa Fonte, a consulta SQL contém @Ano = 2026 e @LimiteDiagnostico = 200; revise o ano se necessário.
-5. Execute Atualizar / Fechar e Aplicar para carregar os dados e abra a página RM → SharePoint | Amostra 200.
-6. A tabela contém os 54 campos solicitados mais identificadores RM e nome da unidade. Use a rolagem horizontal para consultar as demais colunas.
+Extraia o ZIP inteiro em uma pasta nova no Windows e abra Análise exploratória.pbip no Power BI Desktop.
+Conecte-se à rede/VPN corporativa e execute Atualizar. A nova página é RM → SharePoint | Início 2026.
 
-ESCOPO
-A fonte SQL foi configurada no arquivo; a conexão efetiva e a renderização NÃO foram testadas no Power BI Desktop, indisponível neste ambiente Linux. O servidor corporativo não resolveu por DNS neste ambiente.
-Os campos Codigo_Turma_SGE, Periodo_Letivo, Nome_Curso_Snapshot, Data_Inicio_Prevista, Data_Fim_Prevista e Quantidade_Vagas têm expressões de origem no SQL recebido. Todos os demais 48 campos de destino permanecem nulos até confirmação de origem/regra. Os códigos técnicos e candidatos aparecem no modelo como RM_*.
-O visual tem limite diagnóstico de 200 linhas. Não é uma carga completa nem comprova uma turma por linha: a chave e cardinalidade dos joins dependem de validação no banco.
-Nenhuma escrita no SharePoint foi implementada. Não use os nulos como comandos para apagar dados da lista.
-O relatório e consultas originais foram preservados; foi adicionada uma tabela de importação independente sem relacionamentos automáticos.
-O ZIP omite caches e configurações locais .pbi. O Desktop deverá carregar o modelo a partir das fontes e das definições TMDL; não espere dados novos sem Atualizar.
+A consulta RM_Integracao_SharePoint retorna todas as linhas com STURMA.DTINICIAL >= 01/01/2026 e < 01/01/2027, sem TOP ou outro limite de linhas. Não seleciona por data final, código ou descrição do período letivo. Datas iniciais nulas ficam de fora.
+O campo Data_Inicio_Prevista vem de STURMA.DTINICIAL, conforme o SQL original. A equivalência de negócio ainda depende de confirmação no RM.
+A antiga Consulta das turmas de 2026 foi preservada e continua com sua regra e limite originais; use a nova tabela RM_Integracao_SharePoint para a extração solicitada.
 
-Diagnostico_Estrutura_RM.sql e Mapeamento_SharePoint_RM.csv acompanham esta entrega para completar os campos pendentes.
+Mantidos os 54 campos de destino e identificadores técnicos. Seis campos de destino possuem origem identificada; os demais 48 permanecem nulos até concluir o mapeamento. Não há escrita no SharePoint.
+Preservados os joins do SQL recebido. Confirmar no banco a integridade dos vínculos e a unicidade por turma antes de usar totais: remover TOP não elimina duplicações ou eventuais exclusões por joins.
 
-CORREÇÃO V2: removida a propriedade description: inválida na definição TMDL da tabela RM_Integracao_SharePoint. Revisão estrutural realizada; abertura e execução ainda dependem de validação no Desktop.
+A conexão efetiva, os resultados e a renderização precisam ser validados no Desktop com acesso ao RM. O ambiente de edição não possui acesso ao servidor corporativo. Caches e configurações locais .pbi não estão incluídos.
+V3 também mantém a correção da propriedade description: inválida removida na V2.
