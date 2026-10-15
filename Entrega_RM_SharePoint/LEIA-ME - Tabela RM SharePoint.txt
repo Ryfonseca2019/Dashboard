@@ -16,3 +16,5 @@ O relatório e consultas originais foram preservados; foi adicionada uma tabela 
 O ZIP omite caches e configurações locais .pbi. O Desktop deverá carregar o modelo a partir das fontes e das definições TMDL; não espere dados novos sem Atualizar.
 
 Diagnostico_Estrutura_RM.sql e Mapeamento_SharePoint_RM.csv acompanham esta entrega para completar os campos pendentes.
+
+CORREÇÃO V2: removida a propriedade description: inválida na definição TMDL da tabela RM_Integracao_SharePoint. Revisão estrutural realizada; abertura e execução ainda dependem de validação no Desktop.

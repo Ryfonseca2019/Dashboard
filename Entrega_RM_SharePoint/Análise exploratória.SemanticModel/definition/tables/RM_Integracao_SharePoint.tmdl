@@ -1,5 +1,4 @@
 table 'RM_Integracao_SharePoint'
-	description: Saída provisória de integração RM para SharePoint. Amostra de 200 linhas; campos sem origem confirmada permanecem nulos.
 
 	column 'Planejamento'
 		dataType: string
