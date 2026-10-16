@@ -1,24 +1,19 @@
-# Power BI — Campus/Polo preenchido pelo de/para confirmado
+# Power BI — Matrizes, turnos e investigação de financiamento
 
-Baixe **Planejamento_Turmas_SENAI_Campus_Preenchido_v14.zip**.
+Baixe **Planejamento_Turmas_SENAI_Matrizes_Turnos_v15.zip**.
 
-V14 — CAMPUS/POLO CONFIRMADO E PREENCHIDO NA EXPORTAÇÃO
+V15 — MATRIZES EXATAS E DIAGNÓSTICO DE OFERTA
 
-Correspondência validada nas exportações recebidas:
-RM 1 → Matriz da Escola - Senai → ID SharePoint 3.
-RM 2 → Unidades Móveis - Senai → ID SharePoint 4.
-RM 3 → Agência / Extensão - Senai → ID SharePoint 1.
-RM 4 → Unidades Remotas - Senai → ID SharePoint 5.
-RM 5 → Ambiente da Empresa - Senai → ID SharePoint 2.
+A exportação de candidatas contém 2.209 linhas, que representam 999 chaves distintas de curso/grade RM. Foram identificadas 776 correspondências com código de grade exato e um único ID candidato no app; 87 têm somente nomes coincidentes com códigos/versões diferentes e 136 não têm candidata pelo nome exato.
+A V15 aplica somente os 776 vínculos exatos. DP_Matrizes_Auditoria valida ID, código e atividade no cadastro atualizado; se mudarem, a correspondência sai de DP_Matrizes_Validadas e fica pendente. Nome igual não aprova as outras 223 matrizes. Esses números se referem a matrizes, não a turmas.
+Exportacao_App_Enriquecida passa a usar os vínculos aprovados para código, nome, modalidade, mediação, carga e datas de snapshot conforme Cad_Matrizes. Isso não significa que todos os dados curriculares RM tenham sido comparados.
 
-A tabela DP_Campus_Confirmado valida a descrição e atividade atuais no RM e no app em cada atualização. O ID real vem do catálogo SharePoint atualizado; a coluna Codigo_SGE vazia nesse catálogo não impede a associação já confirmada por descrição e código RM. Nenhuma alteração no cadastro SharePoint foi realizada.
-RM_Integracao_SharePoint agora preenche Campus_Polo usando esse de/para. As páginas Colagem | sem metadados, Exportação | 54 campos e Exportação enriquecida herdam o resultado. Foram adicionados ID_Campus_SharePoint e Status_Campus no modelo para diagnóstico, sem alterar a ordem das 54 colunas do visual de exportação.
-Códigos sem correspondência, vazios, inativos, duplicados ou com descrição alterada ficam sem preenchimento e com status de pendência; não são convertidos em Matriz da Escola por padrão.
+A estrutura recebida confirmou SGRADE.CARGAHORARIA e os campos usados para turno em SHABILITACAOFILIAL/STURNO. RM_Oferta_Diagnostico consulta carga, modalidade, mediação e turno, com contagem de ocorrências para não escolher registros ambíguos por MAX. Campos complementares são somente pistas de investigação; não são financiamento comprovado.
 
-A exportação recebida contém 7.077 turmas SENAI: 7.031 com código e descrição correspondentes, 46 sem código. Niterói possui 510 turmas e todas têm correspondência. Esses números descrevem os arquivos recebidos, não uma nova execução desta versão.
+EXTRAÇÕES PARA VALIDAR
+1. Página Matrizes - carga e pendências: exportar tabela superior Matrizes_Comparar_Carga e, se possível, inferior DP_Matrizes_Pendentes.
+2. Página Turnos e financiamento: exportar superior esquerda Turnos_Validar e superior direita APP_Cad_Turnos. Exportar inferior esquerda Financiamento_Investigar e inferior direita APP_Cad_Financiamentos.
+Os dados complementares OFERTAP/PLANO/CLASSIFICACAO/PROGTURMA/MOBILIZACAO ainda não foram interpretados. Não há atribuição de financiamento por tentativa nem tradução de códigos de mediação sem validação.
 
-COMO USAR
-Extraia em pasta nova, abra o PBIP e clique em Atualizar. A página De-para Campus confirmado mostra as cinco correspondências e o status atual. Para exportar, use Colagem | sem metadados ou a saída enriquecida conforme o layout e os demais campos já validados.
-Outros campos obrigatórios e de/para ainda pendentes não são resolvidos por esta versão. Não é confirmação de carga completa. Preserve os identificadores do lote e os dados ajustados manualmente em sua planilha.
-Somente SENAI, término no ano atual em diante, matrículas previstas iguais às vagas e pedagogo vazio permanecem mantidos. Os demais ajustes de negócio discutidos ainda devem ser conferidos separadamente.
-Conexão, SQL, M e renderização da V14 precisam ser executados no Desktop corporativo. Estrutura, referências, correspondências dos arquivos e ZIP foram verificados.
+Somente SENAI; término no ano atual em diante; matrículas previstas iguais às vagas; pedagogo vazio; campus confirmado continuam mantidos. Os demais campos e decisões de negócio devem ser conferidos antes de migrar. As visões anteriores não mudam automaticamente para Exportacao_App_Enriquecida: use essa tabela para ver os snapshots de matriz preenchidos.
+Nenhuma escrita no SharePoint ou RM foi realizada. Referências SQL verificadas contra o XLSX recebido, JSON/TMDL/ZIP conferidos estruturalmente; execução SQL/M, credenciais e renderização continuam dependendo do Desktop corporativo.

@@ -1,0 +1,90 @@
+table 'Matrizes_Comparar_Carga'
+
+	column 'RM_CODCOLIGADA'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: RM_CODCOLIGADA
+
+	column 'RM_Codigo_Curso'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: RM_Codigo_Curso
+
+	column 'RM_Codigo_Grade'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: RM_Codigo_Grade
+
+	column 'RM_Codigo_Habilitacao'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: RM_Codigo_Habilitacao
+
+	column 'Ocorrencias_Grade'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Ocorrencias_Grade
+
+	column 'RM_Carga_Horaria'
+		dataType: double
+		summarizeBy: none
+		sourceColumn: RM_Carga_Horaria
+
+	column 'RM_Tipo_Mediacao'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: RM_Tipo_Mediacao
+
+	column 'RM_Codigo_Modalidade'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: RM_Codigo_Modalidade
+
+	column 'RM_Descricao_Modalidade'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: RM_Descricao_Modalidade
+
+	column 'ID_Matriz_SharePoint'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: ID_Matriz_SharePoint
+
+	column 'Codigo_Matriz_App'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Codigo_Matriz_App
+
+	column 'Carga_Horaria_App'
+		dataType: double
+		summarizeBy: none
+		sourceColumn: Carga_Horaria_App
+
+	column 'Modalidade_App'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Modalidade_App
+
+	column 'Mediacao_App'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Mediacao_App
+
+	column 'Status_Carga'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Status_Carga
+
+	partition 'Matrizes_Comparar_Carga' = m
+		mode: import
+		source =
+				let
+				    Fonte=Table.Distinct(Table.SelectColumns(RM_Oferta_Diagnostico,{"RM_CODCOLIGADA","RM_Codigo_Curso","RM_Codigo_Grade","RM_Codigo_Habilitacao","Ocorrencias_Grade","RM_Carga_Horaria","RM_Tipo_Mediacao","RM_Codigo_Modalidade","RM_Descricao_Modalidade"})),
+				    J=Table.NestedJoin(Fonte,{"RM_CODCOLIGADA","RM_Codigo_Curso","RM_Codigo_Grade"},DP_Matrizes_Validadas,{"RM_CODCOLIGADA","RM_Codigo_Curso","RM_Codigo_Grade"},"Mapa",JoinKind.LeftOuter),
+				    E=Table.ExpandTableColumn(J,"Mapa",{"ID_Matriz_SharePoint"}),
+				    K=Table.NestedJoin(E,{"ID_Matriz_SharePoint"},APP_Cad_Matrizes,{"ID"},"Cad",JoinKind.LeftOuter),
+				    C=Table.ExpandTableColumn(K,"Cad",{"Codigo_Matriz","Carga_Horaria","Modalidade","Tipo_Mediacao"},{"Codigo_Matriz_App","Carga_Horaria_App","Modalidade_App","Mediacao_App"}),
+				    Status=Table.AddColumn(C,"Status_Carga",each if [ID_Matriz_SharePoint]=null then "Matriz pendente" else if [Ocorrencias_Grade]<>1 then "Grade RM ausente ou ambígua" else if [RM_Carga_Horaria]=null or [Carga_Horaria_App]=null then "Carga não informada" else if [RM_Carga_Horaria]<>[Carga_Horaria_App] then "Carga RM diferente do app: revisar" else "Carga horária coincidente",type text)
+				in Status
+
+	annotation PBI_ResultType = Table

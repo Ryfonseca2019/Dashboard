@@ -77,3 +77,15 @@ ref table 'Campus_Estrutura_RM'
 ref table 'Campus_SENAI_Validar'
 
 ref table 'DP_Campus_Confirmado'
+
+ref table 'DP_Matrizes_Auditoria'
+
+ref table 'DP_Matrizes_Pendentes'
+
+ref table 'RM_Oferta_Diagnostico'
+
+ref table 'Matrizes_Comparar_Carga'
+
+ref table 'Turnos_Validar'
+
+ref table 'Financiamento_Investigar'

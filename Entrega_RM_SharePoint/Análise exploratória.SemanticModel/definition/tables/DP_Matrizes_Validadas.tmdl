@@ -24,11 +24,9 @@ table 'DP_Matrizes_Validadas'
 		mode: import
 		source =
 				let
-				    // Preencher linhas aprovadas: {coligada, "codigo curso RM", "grade RM", ID matriz SharePoint}.
-				    // IDs reais devem vir de APP_Cad_Matrizes. Não usar códigos ou IDs fictícios.
-				    Fonte=#table(type table [RM_CODCOLIGADA=Int64.Type, RM_Codigo_Curso=text, RM_Codigo_Grade=text, ID_Matriz_SharePoint=Int64.Type], {}),
-				    Duplicadas=Table.SelectRows(Table.Group(Fonte, {"RM_CODCOLIGADA","RM_Codigo_Curso","RM_Codigo_Grade"}, {{"N",each Table.RowCount(_),Int64.Type}}),each [N]>1),
-				    Validado=if Table.RowCount(Duplicadas)>0 then error "Mais de uma matriz aprovada para a mesma chave RM" else Fonte
-				in Validado
+				    Fonte=Table.SelectRows(DP_Matrizes_Auditoria,each [Status_Validacao]="Código exato e ID conferidos"),
+				    Resultado=Table.SelectColumns(Fonte,{"RM_CODCOLIGADA","RM_Codigo_Curso","RM_Codigo_Grade","ID_Matriz_SharePoint"}),
+				    Repetidos=Table.SelectRows(Table.Group(Resultado,{"RM_CODCOLIGADA","RM_Codigo_Curso","RM_Codigo_Grade"},{{"N",each Table.RowCount(_),Int64.Type}}),each [N]>1)
+				in if Table.RowCount(Repetidos)>0 then error "De/para de matrizes repetido" else Resultado
 
 	annotation PBI_ResultType = Table

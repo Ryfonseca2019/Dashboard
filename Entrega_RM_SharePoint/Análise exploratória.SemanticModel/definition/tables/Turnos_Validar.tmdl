@@ -1,0 +1,48 @@
+table 'Turnos_Validar'
+
+	column 'RM_CODCOLIGADA'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: RM_CODCOLIGADA
+
+	column 'RM_CODFILIAL'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: RM_CODFILIAL
+
+	column 'RM_Codigo_Turno'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: RM_Codigo_Turno
+
+	column 'RM_Tipo_Curso'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: RM_Tipo_Curso
+
+	column 'Ocorrencias_Turno'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Ocorrencias_Turno
+
+	column 'RM_Nome_Turno'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: RM_Nome_Turno
+
+	column 'RM_Turno_Complemento'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: RM_Turno_Complemento
+
+	column 'Quantidade_Turmas'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Quantidade_Turmas
+
+	partition 'Turnos_Validar' = m
+		mode: import
+		source =
+				let Fonte=RM_Oferta_Diagnostico, Resultado=Table.Group(Fonte,{"RM_CODCOLIGADA","RM_CODFILIAL","RM_Codigo_Turno","RM_Tipo_Curso","Ocorrencias_Turno","RM_Nome_Turno","RM_Turno_Complemento"},{{"Quantidade_Turmas",each Table.RowCount(Table.Distinct(Table.SelectColumns(_,{"RM_CODCOLIGADA","RM_CODFILIAL","RM_IDPERLET","RM_CODTURMA"}))),Int64.Type}}) in Resultado
+
+	annotation PBI_ResultType = Table

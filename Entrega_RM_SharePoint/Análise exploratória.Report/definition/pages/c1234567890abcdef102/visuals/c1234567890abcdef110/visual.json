@@ -1,0 +1,135 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "c1234567890abcdef110",
+  "position": {
+    "x": 20,
+    "y": 20,
+    "z": 0,
+    "width": 920,
+    "height": 490
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Turnos_Validar"
+                    }
+                  },
+                  "Property": "RM_CODCOLIGADA"
+                }
+              },
+              "queryRef": "Turnos_Validar.RM_CODCOLIGADA",
+              "nativeQueryRef": "RM_CODCOLIGADA"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Turnos_Validar"
+                    }
+                  },
+                  "Property": "RM_CODFILIAL"
+                }
+              },
+              "queryRef": "Turnos_Validar.RM_CODFILIAL",
+              "nativeQueryRef": "RM_CODFILIAL"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Turnos_Validar"
+                    }
+                  },
+                  "Property": "RM_Codigo_Turno"
+                }
+              },
+              "queryRef": "Turnos_Validar.RM_Codigo_Turno",
+              "nativeQueryRef": "RM_Codigo_Turno"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Turnos_Validar"
+                    }
+                  },
+                  "Property": "RM_Tipo_Curso"
+                }
+              },
+              "queryRef": "Turnos_Validar.RM_Tipo_Curso",
+              "nativeQueryRef": "RM_Tipo_Curso"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Turnos_Validar"
+                    }
+                  },
+                  "Property": "Ocorrencias_Turno"
+                }
+              },
+              "queryRef": "Turnos_Validar.Ocorrencias_Turno",
+              "nativeQueryRef": "Ocorrencias_Turno"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Turnos_Validar"
+                    }
+                  },
+                  "Property": "RM_Nome_Turno"
+                }
+              },
+              "queryRef": "Turnos_Validar.RM_Nome_Turno",
+              "nativeQueryRef": "RM_Nome_Turno"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Turnos_Validar"
+                    }
+                  },
+                  "Property": "RM_Turno_Complemento"
+                }
+              },
+              "queryRef": "Turnos_Validar.RM_Turno_Complemento",
+              "nativeQueryRef": "RM_Turno_Complemento"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Turnos_Validar"
+                    }
+                  },
+                  "Property": "Quantidade_Turmas"
+                }
+              },
+              "queryRef": "Turnos_Validar.Quantidade_Turmas",
+              "nativeQueryRef": "Quantidade_Turmas"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

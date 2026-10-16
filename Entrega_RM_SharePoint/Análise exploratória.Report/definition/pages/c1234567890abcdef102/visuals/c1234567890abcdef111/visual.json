@@ -1,0 +1,79 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "c1234567890abcdef111",
+  "position": {
+    "x": 960,
+    "y": 20,
+    "z": 1,
+    "width": 940,
+    "height": 490
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "APP_Cad_Turnos"
+                    }
+                  },
+                  "Property": "ID"
+                }
+              },
+              "queryRef": "APP_Cad_Turnos.ID",
+              "nativeQueryRef": "ID"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "APP_Cad_Turnos"
+                    }
+                  },
+                  "Property": "Nome_Turno"
+                }
+              },
+              "queryRef": "APP_Cad_Turnos.Nome_Turno",
+              "nativeQueryRef": "Nome_Turno"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "APP_Cad_Turnos"
+                    }
+                  },
+                  "Property": "Codigo_Turno_SGE"
+                }
+              },
+              "queryRef": "APP_Cad_Turnos.Codigo_Turno_SGE",
+              "nativeQueryRef": "Codigo_Turno_SGE"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "APP_Cad_Turnos"
+                    }
+                  },
+                  "Property": "Ativa"
+                }
+              },
+              "queryRef": "APP_Cad_Turnos.Ativa",
+              "nativeQueryRef": "Ativa"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

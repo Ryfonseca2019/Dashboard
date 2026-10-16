@@ -1,0 +1,121 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "c1234567890abcdef112",
+  "position": {
+    "x": 20,
+    "y": 530,
+    "z": 2,
+    "width": 920,
+    "height": 530
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Financiamento_Investigar"
+                    }
+                  },
+                  "Property": "RM_OFERTAP"
+                }
+              },
+              "queryRef": "Financiamento_Investigar.RM_OFERTAP",
+              "nativeQueryRef": "RM_OFERTAP"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Financiamento_Investigar"
+                    }
+                  },
+                  "Property": "RM_PLANO"
+                }
+              },
+              "queryRef": "Financiamento_Investigar.RM_PLANO",
+              "nativeQueryRef": "RM_PLANO"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Financiamento_Investigar"
+                    }
+                  },
+                  "Property": "RM_CLASSIFICACAO"
+                }
+              },
+              "queryRef": "Financiamento_Investigar.RM_CLASSIFICACAO",
+              "nativeQueryRef": "RM_CLASSIFICACAO"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Financiamento_Investigar"
+                    }
+                  },
+                  "Property": "RM_PROGTURMA"
+                }
+              },
+              "queryRef": "Financiamento_Investigar.RM_PROGTURMA",
+              "nativeQueryRef": "RM_PROGTURMA"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Financiamento_Investigar"
+                    }
+                  },
+                  "Property": "RM_MOBILIZACAO"
+                }
+              },
+              "queryRef": "Financiamento_Investigar.RM_MOBILIZACAO",
+              "nativeQueryRef": "RM_MOBILIZACAO"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Financiamento_Investigar"
+                    }
+                  },
+                  "Property": "Ocorrencias_Complemento"
+                }
+              },
+              "queryRef": "Financiamento_Investigar.Ocorrencias_Complemento",
+              "nativeQueryRef": "Ocorrencias_Complemento"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Financiamento_Investigar"
+                    }
+                  },
+                  "Property": "Quantidade_Turmas"
+                }
+              },
+              "queryRef": "Financiamento_Investigar.Quantidade_Turmas",
+              "nativeQueryRef": "Quantidade_Turmas"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

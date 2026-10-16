@@ -1,0 +1,43 @@
+table 'Financiamento_Investigar'
+
+	column 'RM_OFERTAP'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: RM_OFERTAP
+
+	column 'RM_PLANO'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: RM_PLANO
+
+	column 'RM_CLASSIFICACAO'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: RM_CLASSIFICACAO
+
+	column 'RM_PROGTURMA'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: RM_PROGTURMA
+
+	column 'RM_MOBILIZACAO'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: RM_MOBILIZACAO
+
+	column 'Ocorrencias_Complemento'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Ocorrencias_Complemento
+
+	column 'Quantidade_Turmas'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Quantidade_Turmas
+
+	partition 'Financiamento_Investigar' = m
+		mode: import
+		source =
+				let Fonte=RM_Oferta_Diagnostico, Resultado=Table.Group(Fonte,{"RM_OFERTAP","RM_PLANO","RM_CLASSIFICACAO","RM_PROGTURMA","RM_MOBILIZACAO","Ocorrencias_Complemento"},{{"Quantidade_Turmas",each Table.RowCount(Table.Distinct(Table.SelectColumns(_,{"RM_CODCOLIGADA","RM_CODFILIAL","RM_IDPERLET","RM_CODTURMA"}))),Int64.Type}}) in Resultado
+
+	annotation PBI_ResultType = Table

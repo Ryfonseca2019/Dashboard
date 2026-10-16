@@ -1,0 +1,79 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "c1234567890abcdef113",
+  "position": {
+    "x": 960,
+    "y": 530,
+    "z": 3,
+    "width": 940,
+    "height": 530
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "APP_Cad_Financiamentos"
+                    }
+                  },
+                  "Property": "ID"
+                }
+              },
+              "queryRef": "APP_Cad_Financiamentos.ID",
+              "nativeQueryRef": "ID"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "APP_Cad_Financiamentos"
+                    }
+                  },
+                  "Property": "Nome_Financiamento"
+                }
+              },
+              "queryRef": "APP_Cad_Financiamentos.Nome_Financiamento",
+              "nativeQueryRef": "Nome_Financiamento"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "APP_Cad_Financiamentos"
+                    }
+                  },
+                  "Property": "Codigo_Financiamento_SGE"
+                }
+              },
+              "queryRef": "APP_Cad_Financiamentos.Codigo_Financiamento_SGE",
+              "nativeQueryRef": "Codigo_Financiamento_SGE"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "APP_Cad_Financiamentos"
+                    }
+                  },
+                  "Property": "Ativa"
+                }
+              },
+              "queryRef": "APP_Cad_Financiamentos.Ativa",
+              "nativeQueryRef": "Ativa"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

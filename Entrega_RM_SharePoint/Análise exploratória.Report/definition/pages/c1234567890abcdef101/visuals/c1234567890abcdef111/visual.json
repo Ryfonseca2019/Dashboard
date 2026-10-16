@@ -1,0 +1,79 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "c1234567890abcdef111",
+  "position": {
+    "x": 20,
+    "y": 690,
+    "z": 1,
+    "width": 1880,
+    "height": 350
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DP_Matrizes_Pendentes"
+                    }
+                  },
+                  "Property": "RM_CODCOLIGADA"
+                }
+              },
+              "queryRef": "DP_Matrizes_Pendentes.RM_CODCOLIGADA",
+              "nativeQueryRef": "RM_CODCOLIGADA"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DP_Matrizes_Pendentes"
+                    }
+                  },
+                  "Property": "RM_Codigo_Curso"
+                }
+              },
+              "queryRef": "DP_Matrizes_Pendentes.RM_Codigo_Curso",
+              "nativeQueryRef": "RM_Codigo_Curso"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DP_Matrizes_Pendentes"
+                    }
+                  },
+                  "Property": "RM_Codigo_Grade"
+                }
+              },
+              "queryRef": "DP_Matrizes_Pendentes.RM_Codigo_Grade",
+              "nativeQueryRef": "RM_Codigo_Grade"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DP_Matrizes_Pendentes"
+                    }
+                  },
+                  "Property": "Motivo"
+                }
+              },
+              "queryRef": "DP_Matrizes_Pendentes.Motivo",
+              "nativeQueryRef": "Motivo"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

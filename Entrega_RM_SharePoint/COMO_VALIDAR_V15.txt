@@ -1,0 +1,15 @@
+V15 — MATRIZES EXATAS E DIAGNÓSTICO DE OFERTA
+
+A exportação de candidatas contém 2.209 linhas, que representam 999 chaves distintas de curso/grade RM. Foram identificadas 776 correspondências com código de grade exato e um único ID candidato no app; 87 têm somente nomes coincidentes com códigos/versões diferentes e 136 não têm candidata pelo nome exato.
+A V15 aplica somente os 776 vínculos exatos. DP_Matrizes_Auditoria valida ID, código e atividade no cadastro atualizado; se mudarem, a correspondência sai de DP_Matrizes_Validadas e fica pendente. Nome igual não aprova as outras 223 matrizes. Esses números se referem a matrizes, não a turmas.
+Exportacao_App_Enriquecida passa a usar os vínculos aprovados para código, nome, modalidade, mediação, carga e datas de snapshot conforme Cad_Matrizes. Isso não significa que todos os dados curriculares RM tenham sido comparados.
+
+A estrutura recebida confirmou SGRADE.CARGAHORARIA e os campos usados para turno em SHABILITACAOFILIAL/STURNO. RM_Oferta_Diagnostico consulta carga, modalidade, mediação e turno, com contagem de ocorrências para não escolher registros ambíguos por MAX. Campos complementares são somente pistas de investigação; não são financiamento comprovado.
+
+EXTRAÇÕES PARA VALIDAR
+1. Página Matrizes - carga e pendências: exportar tabela superior Matrizes_Comparar_Carga e, se possível, inferior DP_Matrizes_Pendentes.
+2. Página Turnos e financiamento: exportar superior esquerda Turnos_Validar e superior direita APP_Cad_Turnos. Exportar inferior esquerda Financiamento_Investigar e inferior direita APP_Cad_Financiamentos.
+Os dados complementares OFERTAP/PLANO/CLASSIFICACAO/PROGTURMA/MOBILIZACAO ainda não foram interpretados. Não há atribuição de financiamento por tentativa nem tradução de códigos de mediação sem validação.
+
+Somente SENAI; término no ano atual em diante; matrículas previstas iguais às vagas; pedagogo vazio; campus confirmado continuam mantidos. Os demais campos e decisões de negócio devem ser conferidos antes de migrar. As visões anteriores não mudam automaticamente para Exportacao_App_Enriquecida: use essa tabela para ver os snapshots de matriz preenchidos.
+Nenhuma escrita no SharePoint ou RM foi realizada. Referências SQL verificadas contra o XLSX recebido, JSON/TMDL/ZIP conferidos estruturalmente; execução SQL/M, credenciais e renderização continuam dependendo do Desktop corporativo.

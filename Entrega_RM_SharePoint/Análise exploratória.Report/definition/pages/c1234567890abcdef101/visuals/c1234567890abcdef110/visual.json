@@ -1,0 +1,233 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "c1234567890abcdef110",
+  "position": {
+    "x": 20,
+    "y": 20,
+    "z": 0,
+    "width": 1880,
+    "height": 650
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Matrizes_Comparar_Carga"
+                    }
+                  },
+                  "Property": "RM_CODCOLIGADA"
+                }
+              },
+              "queryRef": "Matrizes_Comparar_Carga.RM_CODCOLIGADA",
+              "nativeQueryRef": "RM_CODCOLIGADA"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Matrizes_Comparar_Carga"
+                    }
+                  },
+                  "Property": "RM_Codigo_Curso"
+                }
+              },
+              "queryRef": "Matrizes_Comparar_Carga.RM_Codigo_Curso",
+              "nativeQueryRef": "RM_Codigo_Curso"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Matrizes_Comparar_Carga"
+                    }
+                  },
+                  "Property": "RM_Codigo_Grade"
+                }
+              },
+              "queryRef": "Matrizes_Comparar_Carga.RM_Codigo_Grade",
+              "nativeQueryRef": "RM_Codigo_Grade"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Matrizes_Comparar_Carga"
+                    }
+                  },
+                  "Property": "RM_Codigo_Habilitacao"
+                }
+              },
+              "queryRef": "Matrizes_Comparar_Carga.RM_Codigo_Habilitacao",
+              "nativeQueryRef": "RM_Codigo_Habilitacao"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Matrizes_Comparar_Carga"
+                    }
+                  },
+                  "Property": "Ocorrencias_Grade"
+                }
+              },
+              "queryRef": "Matrizes_Comparar_Carga.Ocorrencias_Grade",
+              "nativeQueryRef": "Ocorrencias_Grade"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Matrizes_Comparar_Carga"
+                    }
+                  },
+                  "Property": "RM_Carga_Horaria"
+                }
+              },
+              "queryRef": "Matrizes_Comparar_Carga.RM_Carga_Horaria",
+              "nativeQueryRef": "RM_Carga_Horaria"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Matrizes_Comparar_Carga"
+                    }
+                  },
+                  "Property": "RM_Tipo_Mediacao"
+                }
+              },
+              "queryRef": "Matrizes_Comparar_Carga.RM_Tipo_Mediacao",
+              "nativeQueryRef": "RM_Tipo_Mediacao"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Matrizes_Comparar_Carga"
+                    }
+                  },
+                  "Property": "RM_Codigo_Modalidade"
+                }
+              },
+              "queryRef": "Matrizes_Comparar_Carga.RM_Codigo_Modalidade",
+              "nativeQueryRef": "RM_Codigo_Modalidade"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Matrizes_Comparar_Carga"
+                    }
+                  },
+                  "Property": "RM_Descricao_Modalidade"
+                }
+              },
+              "queryRef": "Matrizes_Comparar_Carga.RM_Descricao_Modalidade",
+              "nativeQueryRef": "RM_Descricao_Modalidade"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Matrizes_Comparar_Carga"
+                    }
+                  },
+                  "Property": "ID_Matriz_SharePoint"
+                }
+              },
+              "queryRef": "Matrizes_Comparar_Carga.ID_Matriz_SharePoint",
+              "nativeQueryRef": "ID_Matriz_SharePoint"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Matrizes_Comparar_Carga"
+                    }
+                  },
+                  "Property": "Codigo_Matriz_App"
+                }
+              },
+              "queryRef": "Matrizes_Comparar_Carga.Codigo_Matriz_App",
+              "nativeQueryRef": "Codigo_Matriz_App"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Matrizes_Comparar_Carga"
+                    }
+                  },
+                  "Property": "Carga_Horaria_App"
+                }
+              },
+              "queryRef": "Matrizes_Comparar_Carga.Carga_Horaria_App",
+              "nativeQueryRef": "Carga_Horaria_App"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Matrizes_Comparar_Carga"
+                    }
+                  },
+                  "Property": "Modalidade_App"
+                }
+              },
+              "queryRef": "Matrizes_Comparar_Carga.Modalidade_App",
+              "nativeQueryRef": "Modalidade_App"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Matrizes_Comparar_Carga"
+                    }
+                  },
+                  "Property": "Mediacao_App"
+                }
+              },
+              "queryRef": "Matrizes_Comparar_Carga.Mediacao_App",
+              "nativeQueryRef": "Mediacao_App"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Matrizes_Comparar_Carga"
+                    }
+                  },
+                  "Property": "Status_Carga"
+                }
+              },
+              "queryRef": "Matrizes_Comparar_Carga.Status_Carga",
+              "nativeQueryRef": "Status_Carga"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

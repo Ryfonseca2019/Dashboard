@@ -1,0 +1,138 @@
+table 'RM_Oferta_Diagnostico'
+
+	column 'RM_CODCOLIGADA'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: RM_CODCOLIGADA
+
+	column 'RM_CODFILIAL'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: RM_CODFILIAL
+
+	column 'RM_IDPERLET'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: RM_IDPERLET
+
+	column 'RM_CODTURMA'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: RM_CODTURMA
+
+	column 'RM_Codigo_Curso'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: RM_Codigo_Curso
+
+	column 'RM_Codigo_Grade'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: RM_Codigo_Grade
+
+	column 'RM_Codigo_Habilitacao'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: RM_Codigo_Habilitacao
+
+	column 'RM_Codigo_Turno'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: RM_Codigo_Turno
+
+	column 'RM_Tipo_Curso'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: RM_Tipo_Curso
+
+	column 'Ocorrencias_Grade'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Ocorrencias_Grade
+
+	column 'RM_Carga_Horaria'
+		dataType: double
+		summarizeBy: none
+		sourceColumn: RM_Carga_Horaria
+
+	column 'RM_Descricao_Grade'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: RM_Descricao_Grade
+
+	column 'Ocorrencias_Turno'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Ocorrencias_Turno
+
+	column 'RM_Nome_Turno'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: RM_Nome_Turno
+
+	column 'RM_Tipo_Mediacao'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: RM_Tipo_Mediacao
+
+	column 'RM_Modalidade_Turma'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: RM_Modalidade_Turma
+
+	column 'RM_Codigo_Modalidade'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: RM_Codigo_Modalidade
+
+	column 'Ocorrencias_Modalidade'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Ocorrencias_Modalidade
+
+	column 'RM_Descricao_Modalidade'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: RM_Descricao_Modalidade
+
+	column 'Ocorrencias_Complemento'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Ocorrencias_Complemento
+
+	column 'RM_Turno_Complemento'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: RM_Turno_Complemento
+
+	column 'RM_OFERTAP'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: RM_OFERTAP
+
+	column 'RM_PLANO'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: RM_PLANO
+
+	column 'RM_CLASSIFICACAO'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: RM_CLASSIFICACAO
+
+	column 'RM_PROGTURMA'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: RM_PROGTURMA
+
+	column 'RM_MOBILIZACAO'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: RM_MOBILIZACAO
+
+	partition 'RM_Oferta_Diagnostico' = m
+		mode: import
+		source =
+				let Fonte=Sql.Database("SRVSEDE01621PRE","CorporeRM",[Query="-- Somente SENAI, término no ano atual em diante. Diagnóstico, sem tradução presumida de códigos.#(lf)SELECT T.CODCOLIGADA AS RM_CODCOLIGADA, T.CODFILIAL AS RM_CODFILIAL,#(lf)    T.IDPERLET AS RM_IDPERLET, T.CODTURMA AS RM_CODTURMA,#(lf)    H.CODCURSO AS RM_Codigo_Curso, H.CODGRADE AS RM_Codigo_Grade,#(lf)    H.CODHABILITACAO AS RM_Codigo_Habilitacao,#(lf)    H.CODTURNO AS RM_Codigo_Turno, H.CODTIPOCURSO AS RM_Tipo_Curso,#(lf)    G.N AS Ocorrencias_Grade, G.Carga AS RM_Carga_Horaria,#(lf)    G.Descricao AS RM_Descricao_Grade,#(lf)    U.N AS Ocorrencias_Turno, U.Nome AS RM_Nome_Turno,#(lf)    T.TIPOMEDIACAO AS RM_Tipo_Mediacao,#(lf)    T.MODALIDADE AS RM_Modalidade_Turma,#(lf)    C.CODMODALIDADECURSO AS RM_Codigo_Modalidade,#(lf)    M.N AS Ocorrencias_Modalidade, M.Descricao AS RM_Descricao_Modalidade,#(lf)    X.N AS Ocorrencias_Complemento, X.Turno AS RM_Turno_Complemento,#(lf)    X.Oferta AS RM_OFERTAP, X.Plano AS RM_PLANO,#(lf)    X.Classificacao AS RM_CLASSIFICACAO, X.Programa AS RM_PROGTURMA,#(lf)    X.Mobilizacao AS RM_MOBILIZACAO#(lf)FROM dbo.STURMA T#(lf)LEFT JOIN dbo.SHABILITACAOFILIAL H#(lf)    ON H.CODCOLIGADA=T.CODCOLIGADA AND H.IDHABILITACAOFILIAL=T.IDHABILITACAOFILIAL#(lf)LEFT JOIN dbo.SCURSO C ON C.CODCOLIGADA=H.CODCOLIGADA AND C.CODCURSO=H.CODCURSO#(lf)OUTER APPLY (#(lf)    SELECT COUNT(*) N,#(lf)        CASE WHEN COUNT(*)=1 THEN MAX(GR.CARGAHORARIA) END Carga,#(lf)        CASE WHEN COUNT(*)=1 THEN MAX(GR.DESCRICAO) END Descricao#(lf)    FROM dbo.SGRADE GR#(lf)    WHERE GR.CODCOLIGADA=H.CODCOLIGADA AND GR.CODCURSO=H.CODCURSO#(lf)        AND GR.CODHABILITACAO=H.CODHABILITACAO AND GR.CODGRADE=H.CODGRADE#(lf)) G#(lf)OUTER APPLY (#(lf)    SELECT COUNT(*) N, CASE WHEN COUNT(*)=1 THEN MAX(TU.NOME) END Nome#(lf)    FROM dbo.STURNO TU#(lf)    WHERE TU.CODCOLIGADA=H.CODCOLIGADA AND TU.CODFILIAL=H.CODFILIAL#(lf)        AND TU.CODTIPOCURSO=H.CODTIPOCURSO AND TU.CODTURNO=H.CODTURNO#(lf)) U#(lf)OUTER APPLY (#(lf)    SELECT COUNT(*) N, CASE WHEN COUNT(*)=1 THEN MAX(MO.DESCRICAO) END Descricao#(lf)    FROM dbo.SMODALIDADECURSO MO#(lf)    WHERE MO.CODCOLIGADA=C.CODCOLIGADA AND MO.CODMODALIDADECURSO=C.CODMODALIDADECURSO#(lf)) M#(lf)OUTER APPLY (#(lf)    SELECT COUNT(*) N,#(lf)        CASE WHEN COUNT(*)=1 THEN MAX(TC.TURNO) END Turno,#(lf)        CASE WHEN COUNT(*)=1 THEN MAX(TC.OFERTAP) END Oferta,#(lf)        CASE WHEN COUNT(*)=1 THEN MAX(TC.PLANO) END Plano,#(lf)        CASE WHEN COUNT(*)=1 THEN MAX(TC.CLASSIFICACAO) END Classificacao,#(lf)        CASE WHEN COUNT(*)=1 THEN MAX(TC.PROGTURMA) END Programa,#(lf)        CASE WHEN COUNT(*)=1 THEN MAX(TC.MOBILIZACAO) END Mobilizacao#(lf)    FROM dbo.STURMACOMPL TC#(lf)    WHERE TC.CODCOLIGADA=T.CODCOLIGADA AND TC.CODFILIAL=T.CODFILIAL#(lf)        AND TC.IDPERLET=T.IDPERLET AND TC.CODTURMA=T.CODTURMA#(lf)) X#(lf)WHERE T.CODCOLIGADA=3 AND T.DTFINAL>=DATEFROMPARTS(YEAR(GETDATE()),1,1);#(lf)"]) in Fonte
+
+	annotation PBI_ResultType = Table
