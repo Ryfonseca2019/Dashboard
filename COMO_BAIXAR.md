@@ -1,22 +1,21 @@
-# Power BI — Comparação de Campus/Polo
+# Power BI — Cadastro Campus RM e somente SENAI
 
-Baixe **Planejamento_Turmas_RM_Comparacao_Campus_v11.zip**.
+Baixe **Planejamento_Turmas_SENAI_Cadastro_Campus_v12.zip**.
 
-V11 — VISÃO PARA COMPARAR CAMPUS/POLO
+V12 — SOMENTE SENAI E DESCRIÇÕES DO CAMPUS RM
 
-Extraia o ZIP em uma pasta nova, abra Análise exploratória.pbip no Desktop e execute Atualizar com acesso corporativo ao RM e conta organizacional do SharePoint.
-Abra a página Comparar Campus-Polo, selecionada ao abrir.
+Extraia em pasta nova, abra o PBIP e execute Atualizar com acesso ao RM e SharePoint. A página inicial é Campus SENAI - descrições.
 
-Há três visuais independentes:
-- Superior esquerdo, Campus_RM_Exportar: coligada, filial, unidade, código de campus, quantidade de turmas distintas e quantidade de linhas da fonte.
-- Superior direito, Campus_App_Exportar: ID real do cadastro, código SGE, rótulo do app, Ativa, contagem de ocorrências do código e status de cadastro. Inclui opções inativas e sem código para diagnóstico.
-- Inferior, Campus_Comparacao: candidatos por igualdade do código e diagnóstico. Códigos iguais não comprovam equivalência de negócio; este visual não aprova nem preenche o de/para automaticamente.
+Exporte pelo menu ... > Exportar dados:
+1. Tabela superior: Campus_SENAI_Validar — códigos usados, descrições encontradas no RM e status do cruzamento.
+2. Tabela inferior direita: Campus_App_Exportar — nomes e IDs do cadastro do app.
+Se não houver descrições, envie também a tabela inferior esquerda, Campus_Cadastro_RM, e a página Estrutura Campus RM.
 
-Em cada visual, clique em ... > Exportar dados e envie os arquivos. Os dois superiores são suficientes; se possível, envie também o inferior.
-Os arquivos não incluem nomes de professores ou alunos. Não acrescente dados pessoais.
-RM agrupa as turmas da seleção atual: término previsto no ano corrente ou posterior, sem filtro de início. Não usa apenas Niterói: identifica cada unidade encontrada na fonte. Turmas sem código de campus são incluídas em grupo vazio.
-O código é comparado como texto, retirando apenas espaços externos; zeros à esquerda são preservados. Não há associação automática por nome.
-As tabelas superiores não dependem da comparação nem do de/para de matrizes. Contudo, a atualização do projeto completo continua dependendo das demais fontes e credenciais.
+A consulta de integração agora filtra CODCOLIGADA=3, identificada como SENAI nas exportações fornecidas. Coligada 2/SESI fica excluída. Isso se aplica às tabelas e exportações baseadas em RM_Integracao_SharePoint; a consulta original de diagnóstico preservada não foi alterada.
+Mantidos término no ano atual em diante, ausência de filtro de início, sem limite de registros, matrículas previstas iguais às vagas e pedagogo em branco.
 
-Nenhuma opção foi inventada e nenhuma correspondência foi aprovada. As regras SQL e os dados de cadastro não foram alterados. As decisões anteriores de matrículas previstas iguais às vagas e pedagogo em branco foram preservadas.
-A estrutura, campos de visuais e ZIP foram verificados; conexão RM/SharePoint, Power Query e renderização precisam ser validados no seu Desktop.
+Campus_Cadastro_RM consulta dbo.SCAMPUS somente se encontrar CODCOLIGADA, CODCAMPUS e NOME ou DESCRICAO. CODFILIAL é usada quando existir. Se a estrutura for diferente ou os metadados não forem visíveis, retorna diagnóstico, sem inventar descrições. Campus_Estrutura_RM lista os metadados de tabelas/colunas que contêm CAMPUS para concluir o vínculo.
+O cruzamento usa coligada/código e considera filial quando presente no cadastro, mas a semântica dessas chaves ainda precisa ser validada no RM. Múltiplas linhas candidatas são sinalizadas, sem escolher uma à força. Agrega os nomes no resultado sem multiplicar as linhas do resumo de turmas.
+As categorias do app não são aprovadas automaticamente: o cadastro enviado estava sem Codigo_SGE nas cinco opções. As descrições reais permitirão decidir o de/para correto. Nada é gravado no RM ou SharePoint.
+
+Código/ZIP e referências foram verificados; SQL, M, conexão e renderização ainda precisam ser executados no Desktop corporativo. Não é uma exportação pronta para carga em massa. Preserve medidas e visuais criados apenas na sua cópia local.

@@ -59,7 +59,7 @@ BEGIN
             SELECT 1 FROM dbo.STURMA AS T
             WHERE T.CODCOLIGADA = D.CODCOLIGADA AND T.CODFILIAL = D.CODFILIAL
                 AND T.IDPERLET = D.IDPERLET AND T.CODTURMA = D.CODTURMA
-                AND T.DTFINAL >= @DataMinima
+                AND T.CODCOLIGADA = 3 AND T.DTFINAL >= @DataMinima
         );';
     EXEC sys.sp_executesql @SQLProfessores,
         N'@DataMinima date', @DataMinima = @FimAPartirDe;
@@ -165,7 +165,7 @@ OUTER APPLY (
         FOR XML PATH(''), TYPE
     ).value('.', 'nvarchar(max)'), 1, 2, N'') AS Instrutor
 ) AS PROFESSORES
-WHERE T.DTFINAL >= @FimAPartirDe
+WHERE T.CODCOLIGADA = 3 AND T.DTFINAL >= @FimAPartirDe
 ORDER BY T.CODCOLIGADA, T.CODFILIAL, T.IDPERLET, T.CODTURMA;
 
 -- A chave de turma e a cardinalidade dos joins são provisórias.

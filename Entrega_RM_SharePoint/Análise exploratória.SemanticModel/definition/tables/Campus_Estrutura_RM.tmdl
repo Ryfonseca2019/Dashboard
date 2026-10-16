@@ -1,0 +1,33 @@
+table 'Campus_Estrutura_RM'
+
+	column 'TABLE_SCHEMA'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: TABLE_SCHEMA
+
+	column 'TABLE_NAME'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: TABLE_NAME
+
+	column 'COLUMN_NAME'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: COLUMN_NAME
+
+	column 'DATA_TYPE'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: DATA_TYPE
+
+	column 'ORDINAL_POSITION'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: ORDINAL_POSITION
+
+	partition 'Campus_Estrutura_RM' = m
+		mode: import
+		source =
+				let Fonte=Sql.Database("SRVSEDE01621PRE","CorporeRM",[Query="SELECT TABLE_SCHEMA, TABLE_NAME, COLUMN_NAME, DATA_TYPE, ORDINAL_POSITION#(lf)FROM INFORMATION_SCHEMA.COLUMNS#(lf)WHERE UPPER(TABLE_NAME) LIKE '%CAMPUS%' OR UPPER(COLUMN_NAME) LIKE '%CAMPUS%'#(lf)ORDER BY TABLE_SCHEMA,TABLE_NAME,ORDINAL_POSITION;"]) in Fonte
+
+	annotation PBI_ResultType = Table

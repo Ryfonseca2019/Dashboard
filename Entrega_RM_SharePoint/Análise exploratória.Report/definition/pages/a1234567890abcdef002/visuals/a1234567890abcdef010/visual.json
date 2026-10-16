@@ -1,0 +1,93 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "a1234567890abcdef010",
+  "position": {
+    "x": 20,
+    "y": 20,
+    "width": 1880,
+    "height": 1040,
+    "z": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Campus_Estrutura_RM"
+                    }
+                  },
+                  "Property": "TABLE_SCHEMA"
+                }
+              },
+              "queryRef": "Campus_Estrutura_RM.TABLE_SCHEMA",
+              "nativeQueryRef": "TABLE_SCHEMA"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Campus_Estrutura_RM"
+                    }
+                  },
+                  "Property": "TABLE_NAME"
+                }
+              },
+              "queryRef": "Campus_Estrutura_RM.TABLE_NAME",
+              "nativeQueryRef": "TABLE_NAME"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Campus_Estrutura_RM"
+                    }
+                  },
+                  "Property": "COLUMN_NAME"
+                }
+              },
+              "queryRef": "Campus_Estrutura_RM.COLUMN_NAME",
+              "nativeQueryRef": "COLUMN_NAME"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Campus_Estrutura_RM"
+                    }
+                  },
+                  "Property": "DATA_TYPE"
+                }
+              },
+              "queryRef": "Campus_Estrutura_RM.DATA_TYPE",
+              "nativeQueryRef": "DATA_TYPE"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Campus_Estrutura_RM"
+                    }
+                  },
+                  "Property": "ORDINAL_POSITION"
+                }
+              },
+              "queryRef": "Campus_Estrutura_RM.ORDINAL_POSITION",
+              "nativeQueryRef": "ORDINAL_POSITION"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -1,0 +1,100 @@
+table 'Campus_SENAI_Validar'
+
+	column 'RM_CODCOLIGADA'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: RM_CODCOLIGADA
+
+	column 'RM_CODFILIAL'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: RM_CODFILIAL
+
+	column 'RM_Unidade_Nome'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: RM_Unidade_Nome
+
+	column 'RM_Codigo_Campus'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: RM_Codigo_Campus
+
+	column 'Quantidade_Turmas'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Quantidade_Turmas
+
+	column 'Quantidade_Linhas_Fonte'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Quantidade_Linhas_Fonte
+
+	column 'Ocorrencias_Cadastro_RM'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Ocorrencias_Cadastro_RM
+
+	column 'RM_Nomes_Campus'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: RM_Nomes_Campus
+
+	column 'RM_Descricoes_Campus'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: RM_Descricoes_Campus
+
+	column 'Escopo_Cadastro'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Escopo_Cadastro
+
+	column 'Status_Vinculo_RM'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Status_Vinculo_RM
+
+	column 'Quantidade_Opcoes_App'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Quantidade_Opcoes_App
+
+	column 'IDs_Candidatos_App'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: IDs_Candidatos_App
+
+	column 'Opcoes_Candidatas_App'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Opcoes_Candidatas_App
+
+	column 'Status_DePara'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Status_DePara
+
+	partition 'Campus_SENAI_Validar' = m
+		mode: import
+		source =
+				let
+				    RM=Table.SelectRows(Campus_RM_Exportar,each [RM_CODCOLIGADA]=3),
+				    Cad=Table.TransformColumns(Table.SelectRows(Campus_Cadastro_RM,each [RM_Codigo_Campus]<>null),{{"RM_Codigo_Campus",each let T=Text.Trim(_) in if T="" then null else T,type nullable text}}),
+				    J=Table.NestedJoin(RM,{"RM_CODCOLIGADA","RM_Codigo_Campus"},Cad,{"RM_CODCOLIGADA","RM_Codigo_Campus"},"PorCodigo",JoinKind.LeftOuter),
+				    FiltraFilial=Table.AddColumn(J,"Cadastro",each let Filial=[RM_CODFILIAL] in Table.SelectRows([PorCodigo],each [RM_CODFILIAL_Cadastro]=null or [RM_CODFILIAL_Cadastro]=Filial)),
+				    N=Table.AddColumn(FiltraFilial,"Ocorrencias_Cadastro_RM",each Table.RowCount([Cadastro]),Int64.Type),
+				    Nome=Table.AddColumn(N,"RM_Nomes_Campus",each Text.Combine(List.Distinct(List.RemoveNulls([Cadastro][RM_Nome_Campus])),"; "),type text),
+				    Descricao=Table.AddColumn(Nome,"RM_Descricoes_Campus",each Text.Combine(List.Distinct(List.RemoveNulls([Cadastro][RM_Descricao_Campus])),"; "),type text),
+				    Escopo=Table.AddColumn(Descricao,"Escopo_Cadastro",each Text.Combine(List.Distinct(List.RemoveNulls([Cadastro][Escopo_Cadastro])),"; "),type text),
+				    EstadoRM=Table.AddColumn(Escopo,"Status_Vinculo_RM",each if [RM_Codigo_Campus]=null then "Turma sem código de campus" else if [Ocorrencias_Cadastro_RM]=0 then "Cadastro não encontrado; conferir Campus_Cadastro_RM e Campus_Estrutura_RM" else if [Ocorrencias_Cadastro_RM]>1 then "Mais de um cadastro candidato; revisar chave" else "Descrição encontrada; validar categoria do app",type text),
+				    App=Table.SelectRows(Campus_App_Exportar,each [Codigo_SGE]<>null),
+				    JA=Table.NestedJoin(EstadoRM,{"RM_Codigo_Campus"},App,{"Codigo_SGE"},"OpcoesApp",JoinKind.LeftOuter),
+				    Q=Table.AddColumn(JA,"Quantidade_Opcoes_App",each Table.RowCount([OpcoesApp]),Int64.Type),
+				    IDs=Table.AddColumn(Q,"IDs_Candidatos_App",each Text.Combine(List.Transform([OpcoesApp][ID_SharePoint],each Text.From(_)),"; "),type text),
+				    Valores=Table.AddColumn(IDs,"Opcoes_Candidatas_App",each Text.Combine(List.RemoveNulls([OpcoesApp][Valor_App]),"; "),type text),
+				    Status=Table.AddColumn(Valores,"Status_DePara",each if [Ocorrencias_Cadastro_RM]<>1 then "Pendente: identificar cadastro RM" else if [Quantidade_Opcoes_App]=0 then "Pendente: associar descrição RM à categoria do app; sem código SGE correspondente" else if [Quantidade_Opcoes_App]>1 then "Pendente: código duplicado no app" else if [OpcoesApp]{0}[Ativa]<>true then "Pendente: opção do app não ativa" else "Candidata por código; confirmar significado antes de aplicar",type text),
+				    Resultado=Table.RemoveColumns(Status,{"PorCodigo","Cadastro","OpcoesApp"})
+				in Resultado
+
+	annotation PBI_ResultType = Table

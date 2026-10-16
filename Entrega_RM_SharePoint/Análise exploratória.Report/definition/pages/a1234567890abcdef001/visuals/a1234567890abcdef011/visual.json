@@ -1,0 +1,135 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "a1234567890abcdef011",
+  "position": {
+    "x": 20,
+    "y": 680,
+    "width": 1150,
+    "height": 380,
+    "z": 1
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Campus_Cadastro_RM"
+                    }
+                  },
+                  "Property": "RM_CODCOLIGADA"
+                }
+              },
+              "queryRef": "Campus_Cadastro_RM.RM_CODCOLIGADA",
+              "nativeQueryRef": "RM_CODCOLIGADA"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Campus_Cadastro_RM"
+                    }
+                  },
+                  "Property": "RM_CODFILIAL_Cadastro"
+                }
+              },
+              "queryRef": "Campus_Cadastro_RM.RM_CODFILIAL_Cadastro",
+              "nativeQueryRef": "RM_CODFILIAL_Cadastro"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Campus_Cadastro_RM"
+                    }
+                  },
+                  "Property": "RM_Codigo_Campus"
+                }
+              },
+              "queryRef": "Campus_Cadastro_RM.RM_Codigo_Campus",
+              "nativeQueryRef": "RM_Codigo_Campus"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Campus_Cadastro_RM"
+                    }
+                  },
+                  "Property": "RM_Nome_Campus"
+                }
+              },
+              "queryRef": "Campus_Cadastro_RM.RM_Nome_Campus",
+              "nativeQueryRef": "RM_Nome_Campus"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Campus_Cadastro_RM"
+                    }
+                  },
+                  "Property": "RM_Descricao_Campus"
+                }
+              },
+              "queryRef": "Campus_Cadastro_RM.RM_Descricao_Campus",
+              "nativeQueryRef": "RM_Descricao_Campus"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Campus_Cadastro_RM"
+                    }
+                  },
+                  "Property": "Escopo_Cadastro"
+                }
+              },
+              "queryRef": "Campus_Cadastro_RM.Escopo_Cadastro",
+              "nativeQueryRef": "Escopo_Cadastro"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Campus_Cadastro_RM"
+                    }
+                  },
+                  "Property": "Origem_Cadastro"
+                }
+              },
+              "queryRef": "Campus_Cadastro_RM.Origem_Cadastro",
+              "nativeQueryRef": "Origem_Cadastro"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Campus_Cadastro_RM"
+                    }
+                  },
+                  "Property": "Status_Cadastro_RM"
+                }
+              },
+              "queryRef": "Campus_Cadastro_RM.Status_Cadastro_RM",
+              "nativeQueryRef": "Status_Cadastro_RM"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -1,0 +1,48 @@
+table 'Campus_Cadastro_RM'
+
+	column 'RM_CODCOLIGADA'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: RM_CODCOLIGADA
+
+	column 'RM_CODFILIAL_Cadastro'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: RM_CODFILIAL_Cadastro
+
+	column 'RM_Codigo_Campus'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: RM_Codigo_Campus
+
+	column 'RM_Nome_Campus'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: RM_Nome_Campus
+
+	column 'RM_Descricao_Campus'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: RM_Descricao_Campus
+
+	column 'Escopo_Cadastro'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Escopo_Cadastro
+
+	column 'Origem_Cadastro'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Origem_Cadastro
+
+	column 'Status_Cadastro_RM'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Status_Cadastro_RM
+
+	partition 'Campus_Cadastro_RM' = m
+		mode: import
+		source =
+				let Fonte=Sql.Database("SRVSEDE01621PRE","CorporeRM",[Query="SET NOCOUNT ON;#(lf)-- Somente leitura. Coligada 3 = SENAI conforme exportações recebidas.#(lf)-- Detecta colunas antes de compilar a consulta ao cadastro.#(lf)IF COL_LENGTH(N'dbo.SCAMPUS', N'CODCOLIGADA') IS NOT NULL#(lf)    AND COL_LENGTH(N'dbo.SCAMPUS', N'CODCAMPUS') IS NOT NULL#(lf)    AND (COL_LENGTH(N'dbo.SCAMPUS', N'NOME') IS NOT NULL#(lf)         OR COL_LENGTH(N'dbo.SCAMPUS', N'DESCRICAO') IS NOT NULL)#(lf)BEGIN#(lf)    DECLARE @Filial nvarchar(150) = N'CAST(NULL AS int)';#(lf)    DECLARE @Nome nvarchar(150) = N'CAST(NULL AS nvarchar(4000))';#(lf)    DECLARE @Descricao nvarchar(150) = N'CAST(NULL AS nvarchar(4000))';#(lf)    DECLARE @Escopo nvarchar(100) = N'Coligada e código; sem coluna CODFILIAL';#(lf)    IF COL_LENGTH(N'dbo.SCAMPUS', N'CODFILIAL') IS NOT NULL#(lf)    BEGIN#(lf)        SET @Filial = N'CONVERT(int, C.CODFILIAL)';#(lf)        SET @Escopo = N'Coligada, filial e código';#(lf)    END;#(lf)    IF COL_LENGTH(N'dbo.SCAMPUS', N'NOME') IS NOT NULL#(lf)        SET @Nome = N'CONVERT(nvarchar(4000), C.NOME)';#(lf)    IF COL_LENGTH(N'dbo.SCAMPUS', N'DESCRICAO') IS NOT NULL#(lf)        SET @Descricao = N'CONVERT(nvarchar(4000), C.DESCRICAO)';#(lf)    DECLARE @SQL nvarchar(max) =#(lf)        N'SELECT CONVERT(int,C.CODCOLIGADA) AS RM_CODCOLIGADA, '#(lf)        + @Filial + N' AS RM_CODFILIAL_Cadastro,#(lf)        CONVERT(nvarchar(4000),C.CODCAMPUS) AS RM_Codigo_Campus, '#(lf)        + @Nome + N' AS RM_Nome_Campus, '#(lf)        + @Descricao + N' AS RM_Descricao_Campus,#(lf)        @Escopo AS Escopo_Cadastro,#(lf)        N''dbo.SCAMPUS'' AS Origem_Cadastro,#(lf)        N''Cadastro encontrado; validar vínculo e significado'' AS Status_Cadastro_RM#(lf)        FROM dbo.SCAMPUS AS C WHERE C.CODCOLIGADA = 3;';#(lf)    EXEC sys.sp_executesql @SQL, N'@Escopo nvarchar(100)', @Escopo=@Escopo;#(lf)END#(lf)ELSE#(lf)BEGIN#(lf)    SELECT CONVERT(int,3) AS RM_CODCOLIGADA,#(lf)        CAST(NULL AS int) AS RM_CODFILIAL_Cadastro,#(lf)        CAST(NULL AS nvarchar(4000)) AS RM_Codigo_Campus,#(lf)        CAST(NULL AS nvarchar(4000)) AS RM_Nome_Campus,#(lf)        CAST(NULL AS nvarchar(4000)) AS RM_Descricao_Campus,#(lf)        N'Não identificado' AS Escopo_Cadastro,#(lf)        N'dbo.SCAMPUS não validado' AS Origem_Cadastro,#(lf)        N'Colunas/cadastro não encontrados ou metadados sem permissão; exportar Campus_Estrutura_RM' AS Status_Cadastro_RM;#(lf)END;#(lf)"]) in Fonte
+
+	annotation PBI_ResultType = Table

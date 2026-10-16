@@ -69,3 +69,9 @@ ref table 'Campus_RM_Exportar'
 ref table 'Campus_App_Exportar'
 
 ref table 'Campus_Comparacao'
+
+ref table 'Campus_Cadastro_RM'
+
+ref table 'Campus_Estrutura_RM'
+
+ref table 'Campus_SENAI_Validar'
