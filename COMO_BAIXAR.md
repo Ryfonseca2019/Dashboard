@@ -1,27 +1,22 @@
-# Power BI — Regras aplicadas e opções obrigatórias
+# Power BI — Modalidade de oferta e identificadores fixos
 
-Baixe **Planejamento_Turmas_SENAI_Regras_PreCarga_v21.zip**.
+Baixe **Planejamento_Turmas_SENAI_Modalidade_Identificadores_v22.zip**.
 
-V21 — REGRAS DE NEGÓCIO APLICADAS E OPÇÕES REAIS A VALIDAR
+V22 — MODALIDADE DE OFERTA, ORIGEM E IDENTIFICADORES FIXOS
 
-A pré-carga recebida tem 510 turmas Niterói: financiamento confirmado em 509 (385 Gratuidade, 124 Negócio), uma sem classificação; campus preenchido em todas. Matriz: 37 sem vínculo aprovado, 356 com cadastro marcado incompleto, 117 barradas pelas opções de Modalidade. Modalidade obrigatória adicional está vazia nas 510.
+O CSV de opções reais confirmou Modalidade = Presencial ou À distância. Esse campo é diferente de Modalidade_Snapshot, que contém Qualificação Profissional/Habilitação Técnica/etc. A comparação incorreta entre esses conceitos foi corrigida.
+Modalidade agora é preenchida pela descrição de mediação da matriz: PRESENCIAL → Presencial; A DISTÂNCIA e os rótulos EAD explícitos observados → À distância. EAD semipresencial é tratado como À distância pelo rótulo explícito EAD. Híbrido, mediação vazia ou desconhecida ficam pendentes; não há conversão automática de códigos numéricos do RM. Modalidade_Snapshot permanece com o tipo de formação.
+Origem_Registro = Importação, opção real confirmada no CSV; não é rotulado como Aplicativo ou SGE automaticamente. O destino é revalidado contra as opções atuais a cada atualização.
 
-REGRAS APLICADAS NA EXPORTAÇÃO ENRIQUECIDA
-- Unidade é buscada no cadastro ativo do app; Niterói usa o nome aprovado Niterói para coligada 3/filial 266. Para demais unidades o código de filial deve corresponder de forma única ao Codigo_Filial do app.
-- Planejamento é resolvido como Planejamento + nome da unidade, validando que existe exatamente um planejamento ativo e que pertence à mesma unidade. Não cria o planejamento nem inventa ID se ausente.
-- Ano_Referencia = ano de Data_Inicio_Prevista; início nulo mantém ano nulo.
-- Status_Turma=Rascunho; Ativa=true.
-- Bloqueada_Para_Edicao=false e Versao_Planejamento=1 como inicialização de NOVOS itens, conforme o app recebido. Esta é saída de inclusão, não atualização de itens já existentes.
-- Origem_Registro continua pendente: precisamos escolher uma opção real que identifique a importação. Não foi rotulada como Aplicativo automaticamente.
-- A mediação vazia continua vazia e sinalizada para revisão se necessário, mas não bloqueia o status de matriz apenas por isso: Tipo_Mediacao_Snapshot não consta como obrigatório no esquema recebido. Não há tradução dos códigos 1/2/3 por suposição.
+IDENTIFICADORES
+A pré-carga contém 510 chaves de turma distintas. Dos identificadores gerados para o lote anterior, 84 foram vinculados de forma única por curso/período/datas/vagas e pela chave RM do arquivo original. Para 19 turmas do lote anterior a correspondência não foi inequívoca: o identificador continua vazio, sem substituir o antigo por tentativa. Para as outras 407 chaves foram gerados identificadores NIT-yyyymmddhhmmss, distintos e fixos na tabela DP_Identificadores_Niteroi. Total preenchido = 491; pendentes de reconciliação = 19.
+Os IDs não são recalculados com Now em cada refresh. Turmas novas fora dessas 510 chaves ficam pendentes, sem atribuição por posição. Não reutilize o arquivo anterior por posição nem insira uma turma já existente sem verificar a lista atual. Não houve leitura/gravação ao vivo dos itens da lista para verificar duplicatas de importações já realizadas.
+As tabelas de IDs publicadas contêm somente chaves técnicas e identificadores, sem dados de professores.
 
-COMO VALIDAR
-Abra em pasta nova, atualize, vá à página Obrigatórios e opções reais e exporte as três tabelas:
-1. Superior esquerda APP_Opcoes_Escolha: opções atuais, incluindo modalidade, origem e status. Exporta todas para evitar perder campos com nomes internos diferentes.
-2. Superior direita DP_Unidade_Planejamento: resultado dos vínculos de unidade/planejamento, com IDs e status.
-3. Inferior Niteroi_PreCarga: pendências depois das regras aplicadas.
-
-Identificadores: os valores gerados anteriormente foram para um lote de 103 linhas, enquanto o atual tem 510. Não colar os 103 por posição sobre 510 nem regenerar a cada refresh. Ainda precisamos transportar os IDs por correspondência inequívoca de turma e gerar IDs persistentes para as demais. A V21 não atribui identificadores por uma posição presumida nem remove os anteriores da sua planilha.
-Pedagogo e tipo de cálculo permanecem vazios por decisão do usuário, mas o esquema do app recebido ainda os marca obrigatórios: confirmar a alteração na lista e validação do app.
-Não é lote pronto para colar: faltam modalidades aceitas, origem, IDs e exceções de matriz/financiamento. Nenhuma lista/cadastro foi alterada.
-A V20 de classificação independente e as otimizações anteriores permanecem. Referências/ZIP foram verificados; refresh e dados finais precisam ser confirmados no Desktop.
+VALIDAÇÃO
+Atualize e abra a página Niterói - identificação e oferta. Envie a tabela superior (Niteroi_PreCarga atualizada), para conferir as pendências depois dos ajustes; a inferior mostra o de/para de mediação.
+O diagnóstico inclui identificação e modalidade, sem campos novos na ordem das 54/51 colunas de colagem.
+As últimas opções enviadas confirmaram unidade e planejamento encontrados nas 510 turmas; os arquivos superior direito e inferior eram idênticos, mas o status já confirmou esse vínculo e não foi necessário pedir reenvio.
+Permanecem 37 turmas sem matriz vinculada e uma sem classificação de financiamento no arquivo recebido. Há mediação vazia em outras matrizes, divergências de modalidade de formação e configurações de obrigatoriedade a tratar. As pendências reais após esta versão dependem da nova exportação.
+Pedagogo e tipo de cálculo ficam vazios por decisão; o esquema recebido ainda os considera obrigatórios. Alterar a lista e o app antes de tentar salvá-los vazios.
+Cargas horárias continuam sendo as do cadastro do app. Nenhuma lista foi alterada. ZIP, referências e IDs únicos foram verificados; execução de M/SQL e renderização dependem do Desktop corporativo.

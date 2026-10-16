@@ -1,0 +1,18 @@
+V22 — MODALIDADE DE OFERTA, ORIGEM E IDENTIFICADORES FIXOS
+
+O CSV de opções reais confirmou Modalidade = Presencial ou À distância. Esse campo é diferente de Modalidade_Snapshot, que contém Qualificação Profissional/Habilitação Técnica/etc. A comparação incorreta entre esses conceitos foi corrigida.
+Modalidade agora é preenchida pela descrição de mediação da matriz: PRESENCIAL → Presencial; A DISTÂNCIA e os rótulos EAD explícitos observados → À distância. EAD semipresencial é tratado como À distância pelo rótulo explícito EAD. Híbrido, mediação vazia ou desconhecida ficam pendentes; não há conversão automática de códigos numéricos do RM. Modalidade_Snapshot permanece com o tipo de formação.
+Origem_Registro = Importação, opção real confirmada no CSV; não é rotulado como Aplicativo ou SGE automaticamente. O destino é revalidado contra as opções atuais a cada atualização.
+
+IDENTIFICADORES
+A pré-carga contém 510 chaves de turma distintas. Dos identificadores gerados para o lote anterior, 84 foram vinculados de forma única por curso/período/datas/vagas e pela chave RM do arquivo original. Para 19 turmas do lote anterior a correspondência não foi inequívoca: o identificador continua vazio, sem substituir o antigo por tentativa. Para as outras 407 chaves foram gerados identificadores NIT-yyyymmddhhmmss, distintos e fixos na tabela DP_Identificadores_Niteroi. Total preenchido = 491; pendentes de reconciliação = 19.
+Os IDs não são recalculados com Now em cada refresh. Turmas novas fora dessas 510 chaves ficam pendentes, sem atribuição por posição. Não reutilize o arquivo anterior por posição nem insira uma turma já existente sem verificar a lista atual. Não houve leitura/gravação ao vivo dos itens da lista para verificar duplicatas de importações já realizadas.
+As tabelas de IDs publicadas contêm somente chaves técnicas e identificadores, sem dados de professores.
+
+VALIDAÇÃO
+Atualize e abra a página Niterói - identificação e oferta. Envie a tabela superior (Niteroi_PreCarga atualizada), para conferir as pendências depois dos ajustes; a inferior mostra o de/para de mediação.
+O diagnóstico inclui identificação e modalidade, sem campos novos na ordem das 54/51 colunas de colagem.
+As últimas opções enviadas confirmaram unidade e planejamento encontrados nas 510 turmas; os arquivos superior direito e inferior eram idênticos, mas o status já confirmou esse vínculo e não foi necessário pedir reenvio.
+Permanecem 37 turmas sem matriz vinculada e uma sem classificação de financiamento no arquivo recebido. Há mediação vazia em outras matrizes, divergências de modalidade de formação e configurações de obrigatoriedade a tratar. As pendências reais após esta versão dependem da nova exportação.
+Pedagogo e tipo de cálculo ficam vazios por decisão; o esquema recebido ainda os considera obrigatórios. Alterar a lista e o app antes de tentar salvá-los vazios.
+Cargas horárias continuam sendo as do cadastro do app. Nenhuma lista foi alterada. ZIP, referências e IDs únicos foram verificados; execução de M/SQL e renderização dependem do Desktop corporativo.

@@ -1,0 +1,79 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "11234567890abcdef111",
+  "position": {
+    "x": 20,
+    "y": 770,
+    "width": 1880,
+    "height": 290,
+    "z": 1
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DP_Modalidade_Oferta"
+                    }
+                  },
+                  "Property": "Mediacao_Origem"
+                }
+              },
+              "queryRef": "DP_Modalidade_Oferta.Mediacao_Origem",
+              "nativeQueryRef": "Mediacao_Origem"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DP_Modalidade_Oferta"
+                    }
+                  },
+                  "Property": "Modalidade_Destino"
+                }
+              },
+              "queryRef": "DP_Modalidade_Oferta.Modalidade_Destino",
+              "nativeQueryRef": "Modalidade_Destino"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DP_Modalidade_Oferta"
+                    }
+                  },
+                  "Property": "Status"
+                }
+              },
+              "queryRef": "DP_Modalidade_Oferta.Status",
+              "nativeQueryRef": "Status"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DP_Modalidade_Oferta"
+                    }
+                  },
+                  "Property": "Valor_App"
+                }
+              },
+              "queryRef": "DP_Modalidade_Oferta.Valor_App",
+              "nativeQueryRef": "Valor_App"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

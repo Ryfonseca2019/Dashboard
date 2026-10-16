@@ -111,3 +111,7 @@ ref table 'Financiamento_Por_Turma'
 ref table 'Niteroi_PreCarga'
 
 ref table 'DP_Unidade_Planejamento'
+
+ref table 'DP_Modalidade_Oferta'
+
+ref table 'DP_Identificadores_Niteroi'
