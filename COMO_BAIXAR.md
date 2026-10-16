@@ -1,6 +1,6 @@
 # Power BI — Catálogos e de/para do app
 
-Baixe **Planejamento_Turmas_RM_Catalogos_App_v9.zip**.
+Baixe **Planejamento_Turmas_RM_Regras_Matriculas_v10.zip**.
 
 V8 — CATÁLOGOS DO APP E DE/PARA DE MATRIZES
 
@@ -20,3 +20,11 @@ Lookup/Pessoa exigem entidades válidas; texto igual não garante que a colagem 
 Nenhuma linha de dados do app ou dos usuários foi publicada no GitHub; somente consultas, esquema e instruções. Preservar sua cópia local se já criou medidas/visuais.
 
 V9 corrige a opção ApiVersion incompatível com o conector SharePoint 2.0, removendo-a das nove conexões de catálogos.
+
+
+REGRAS APROVADAS — V10
+Matriculas_Previstas = Quantidade_Vagas, ambas vindas de STURMA.MAXALUNOS. A regra vale para RM_Integracao_SharePoint e suas exportações, inclusive Exportacao_App_Enriquecida.
+Pedagogo_Responsavel permanece vazio. Não substituir pelo instrutor.
+Para aceitar esse vazio, no SharePoint alterar a coluna Pedagogo_Responsavel para não obrigatória. No Power Apps, o controle Pedagogo_Responsavel_DataCard1 tem Required=true: alterar para false e publicar o app se as turmas forem posteriormente editadas/salvas sem pedagogo. Atualizar a fonte de dados no Studio após a alteração da lista.
+Essas configurações da lista e do app NÃO foram alteradas nesta entrega. O esquema APP_Contrato_Campos permanece como evidência do msapp recebido, onde o campo ainda é obrigatório.
+A mudança não resolve os demais cruzamentos e campos obrigatórios pendentes. Refazer Atualizar no PBIP; não usar exportações antigas.

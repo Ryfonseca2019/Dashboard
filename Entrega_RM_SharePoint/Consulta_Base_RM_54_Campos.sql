@@ -86,7 +86,7 @@ SELECT
     T.DTINICIAL AS [Data_Inicio_Prevista], -- origem presente no SQL fornecido; validar semântica
     T.DTFINAL AS [Data_Fim_Prevista], -- origem presente no SQL fornecido; validar semântica
     T.MAXALUNOS AS [Quantidade_Vagas], -- origem presente no SQL fornecido; validar semântica
-    CAST(NULL AS int) AS [Matriculas_Previstas], -- PENDENTE: não enviar NULL para sobrescrever valores existentes
+    T.MAXALUNOS AS [Matriculas_Previstas], -- regra aprovada: previsão de matrículas igual à quantidade de vagas
     CAST(NULL AS nvarchar(4000)) AS [Campus_Polo], -- PENDENTE: não enviar NULL para sobrescrever valores existentes
     CAST(NULL AS nvarchar(4000)) AS [Financiamento], -- PENDENTE: não enviar NULL para sobrescrever valores existentes
     CAST(NULL AS nvarchar(4000)) AS [Tipo_Periodo], -- PENDENTE: não enviar NULL para sobrescrever valores existentes
