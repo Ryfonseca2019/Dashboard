@@ -115,3 +115,11 @@ ref table 'DP_Unidade_Planejamento'
 ref table 'DP_Modalidade_Oferta'
 
 ref table 'DP_Identificadores_Niteroi'
+
+ref table 'RM_Mobilizacao_Dicionario'
+
+ref table 'DP_Mobilizacoes_Candidatas'
+
+ref table 'Mobilizacoes_Niteroi_Comparar'
+
+ref table 'Mobilizacoes_Niteroi_Resumo'

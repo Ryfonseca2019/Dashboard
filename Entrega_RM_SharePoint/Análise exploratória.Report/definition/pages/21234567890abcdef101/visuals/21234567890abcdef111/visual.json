@@ -1,0 +1,135 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "21234567890abcdef111",
+  "position": {
+    "x": 20,
+    "y": 320,
+    "width": 1880,
+    "height": 740,
+    "z": 1
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Mobilizacoes_Niteroi_Comparar"
+                    }
+                  },
+                  "Property": "RM_MOBILIZACAO"
+                }
+              },
+              "queryRef": "Mobilizacoes_Niteroi_Comparar.RM_MOBILIZACAO",
+              "nativeQueryRef": "RM_MOBILIZACAO"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Mobilizacoes_Niteroi_Comparar"
+                    }
+                  },
+                  "Property": "Quantidade_Turmas"
+                }
+              },
+              "queryRef": "Mobilizacoes_Niteroi_Comparar.Quantidade_Turmas",
+              "nativeQueryRef": "Quantidade_Turmas"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Mobilizacoes_Niteroi_Comparar"
+                    }
+                  },
+                  "Property": "Ocorrencias_Dicionario"
+                }
+              },
+              "queryRef": "Mobilizacoes_Niteroi_Comparar.Ocorrencias_Dicionario",
+              "nativeQueryRef": "Ocorrencias_Dicionario"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Mobilizacoes_Niteroi_Comparar"
+                    }
+                  },
+                  "Property": "Descricao_RM"
+                }
+              },
+              "queryRef": "Mobilizacoes_Niteroi_Comparar.Descricao_RM",
+              "nativeQueryRef": "Descricao_RM"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Mobilizacoes_Niteroi_Comparar"
+                    }
+                  },
+                  "Property": "Aplicacao_Dominio"
+                }
+              },
+              "queryRef": "Mobilizacoes_Niteroi_Comparar.Aplicacao_Dominio",
+              "nativeQueryRef": "Aplicacao_Dominio"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Mobilizacoes_Niteroi_Comparar"
+                    }
+                  },
+                  "Property": "Opcao_Exata_App"
+                }
+              },
+              "queryRef": "Mobilizacoes_Niteroi_Comparar.Opcao_Exata_App",
+              "nativeQueryRef": "Opcao_Exata_App"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Mobilizacoes_Niteroi_Comparar"
+                    }
+                  },
+                  "Property": "Opcao_Candidata_App"
+                }
+              },
+              "queryRef": "Mobilizacoes_Niteroi_Comparar.Opcao_Candidata_App",
+              "nativeQueryRef": "Opcao_Candidata_App"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Mobilizacoes_Niteroi_Comparar"
+                    }
+                  },
+                  "Property": "Resultado_Comparacao"
+                }
+              },
+              "queryRef": "Mobilizacoes_Niteroi_Comparar.Resultado_Comparacao",
+              "nativeQueryRef": "Resultado_Comparacao"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "21234567890abcdef110",
+  "position": {
+    "x": 20,
+    "y": 20,
+    "width": 1880,
+    "height": 280,
+    "z": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Mobilizacoes_Niteroi_Resumo"
+                    }
+                  },
+                  "Property": "Resultado_Comparacao"
+                }
+              },
+              "queryRef": "Mobilizacoes_Niteroi_Resumo.Resultado_Comparacao",
+              "nativeQueryRef": "Resultado_Comparacao"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Mobilizacoes_Niteroi_Resumo"
+                    }
+                  },
+                  "Property": "Quantidade_Codigos"
+                }
+              },
+              "queryRef": "Mobilizacoes_Niteroi_Resumo.Quantidade_Codigos",
+              "nativeQueryRef": "Quantidade_Codigos"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Mobilizacoes_Niteroi_Resumo"
+                    }
+                  },
+                  "Property": "Quantidade_Turmas"
+                }
+              },
+              "queryRef": "Mobilizacoes_Niteroi_Resumo.Quantidade_Turmas",
+              "nativeQueryRef": "Quantidade_Turmas"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

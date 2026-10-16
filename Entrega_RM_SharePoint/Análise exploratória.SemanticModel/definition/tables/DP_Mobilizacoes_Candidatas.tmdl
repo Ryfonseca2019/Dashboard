@@ -1,0 +1,56 @@
+table 'DP_Mobilizacoes_Candidatas'
+
+	column 'Codigo_Mobilizacao'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Codigo_Mobilizacao
+
+	column 'Ocorrencias_Dicionario'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Ocorrencias_Dicionario
+
+	column 'Descricao_RM'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Descricao_RM
+
+	column 'Aplicacao_Dominio'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Aplicacao_Dominio
+
+	column 'Opcao_Exata_App'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Opcao_Exata_App
+
+	column 'Opcao_Candidata_App'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Opcao_Candidata_App
+
+	column 'Status_Catalogo'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Status_Catalogo
+
+	partition 'DP_Mobilizacoes_Candidatas' = m
+		mode: import
+		source =
+				let
+				    Normaliza=(s as nullable text) as nullable text => if s=null then null else Text.Remove(Text.Upper(Text.Trim(s)),{" ","-","–","—","/","_",".",",",":",";","(",")"}),
+				    Dom=Table.TransformColumns(RM_Mobilizacao_Dicionario,{{"Codigo_Mobilizacao",each if _=null then null else Text.Trim(_),type nullable text}}),
+				    G=Table.Group(Dom,{"Codigo_Mobilizacao"},{{"Cad",each _,type table}}),
+				    N=Table.AddColumn(G,"Ocorrencias_Dicionario",each Table.RowCount([Cad]),Int64.Type),
+				    D=Table.AddColumn(N,"Descricao_RM",each if [Ocorrencias_Dicionario]=1 then [Cad]{0}[Descricao_RM] else null,type text),
+				    Apl=Table.AddColumn(D,"Aplicacao_Dominio",each Text.Combine(List.Distinct(List.RemoveNulls([Cad][APLICACAO])),"; "),type text),
+				    Opcoes=List.Buffer(Table.SelectRows(APP_Opcoes_Escolha,each [Campo_Interno]="Mobilizacao")[Opcao]),
+				    Exata=Table.AddColumn(Apl,"Opcao_Exata_App",each if [Descricao_RM]<>null and List.Contains(Opcoes,[Descricao_RM]) then [Descricao_RM] else null,type text),
+				    Candidatas=Table.AddColumn(Exata,"Candidatas",each let Desc=[Descricao_RM] in if Desc=null then {} else List.Select(Opcoes,each Normaliza(_)=Normaliza(Desc))),
+				    Sugestao=Table.AddColumn(Candidatas,"Opcao_Candidata_App",each if [Opcao_Exata_App]<>null then [Opcao_Exata_App] else if List.Count([Candidatas])=1 then [Candidatas]{0} else if [Descricao_RM]="Guardião Cibernético" and List.Contains(Opcoes,"Guardião Cibemético") then "Guardião Cibemético" else null,type text),
+				    Status=Table.AddColumn(Sugestao,"Status_Catalogo",each if [Ocorrencias_Dicionario]<>1 then "Dicionário ambíguo" else if [Opcao_Exata_App]<>null then "Encontrada exatamente no app" else if List.Count([Candidatas])=1 then "Grafia diferente: candidata por espaços/pontuação" else if [Opcao_Candidata_App]<>null then "Possível erro de grafia: revisar" else "Sem correspondência no app",type text),
+				    Resultado=Table.RemoveColumns(Status,{"Cad","Candidatas"})
+				in Resultado
+
+	annotation PBI_ResultType = Table

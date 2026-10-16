@@ -1,0 +1,56 @@
+table 'Mobilizacoes_Niteroi_Comparar'
+
+	column 'RM_MOBILIZACAO'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: RM_MOBILIZACAO
+
+	column 'Quantidade_Turmas'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Quantidade_Turmas
+
+	column 'Ocorrencias_Dicionario'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Ocorrencias_Dicionario
+
+	column 'Descricao_RM'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Descricao_RM
+
+	column 'Aplicacao_Dominio'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Aplicacao_Dominio
+
+	column 'Opcao_Exata_App'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Opcao_Exata_App
+
+	column 'Opcao_Candidata_App'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Opcao_Candidata_App
+
+	column 'Resultado_Comparacao'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Resultado_Comparacao
+
+	partition 'Mobilizacoes_Niteroi_Comparar' = m
+		mode: import
+		source =
+				let
+				    Fonte=Table.SelectRows(RM_Oferta_Diagnostico,each [RM_CODCOLIGADA]=3 and [RM_CODFILIAL]=266),
+				    Codigo=Table.TransformColumns(Fonte,{{"RM_MOBILIZACAO",each if _=null then null else let T=Text.Trim(_) in if T="" then null else T,type nullable text}}),
+				    G=Table.Group(Codigo,{"RM_MOBILIZACAO"},{{"Quantidade_Turmas",each Table.RowCount(Table.Distinct(Table.SelectColumns(_,{"RM_CODCOLIGADA","RM_CODFILIAL","RM_IDPERLET","RM_CODTURMA"}))),Int64.Type}}),
+				    J=Table.NestedJoin(G,{"RM_MOBILIZACAO"},Table.Buffer(DP_Mobilizacoes_Candidatas),{"Codigo_Mobilizacao"},"Mapa",JoinKind.LeftOuter),
+				    E=Table.ExpandTableColumn(J,"Mapa",{"Ocorrencias_Dicionario","Descricao_RM","Aplicacao_Dominio","Opcao_Exata_App","Opcao_Candidata_App","Status_Catalogo"}),
+				    Status=Table.AddColumn(E,"Resultado_Comparacao",each if [RM_MOBILIZACAO]=null then "Turma sem mobilização no RM" else if [Status_Catalogo]=null then "Código usado na turma não encontrado em POMOBILIZA" else [Status_Catalogo],type text),
+				    Resultado=Table.RemoveColumns(Status,{"Status_Catalogo"})
+				in Resultado
+
+	annotation PBI_ResultType = Table

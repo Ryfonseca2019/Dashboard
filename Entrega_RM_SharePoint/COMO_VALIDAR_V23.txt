@@ -1,0 +1,12 @@
+V23 — MOBILIZAÇÕES DE NITERÓI
+
+Os arquivos anteriores permitem comparar o catálogo geral (64 mobilizações RM com 49 rótulos exatos, 14 candidatas por espaços/pontuação e 1 possível erro de grafia), mas não contam quais dessas mobilizações estão efetivamente usadas em Niterói. Os totais de 49/15 são de catálogo, não de turmas de Niterói.
+A V23 cria esse recorte: RM_Oferta_Diagnostico → coligada 3/filial 266 → código STURMACOMPL.MOBILIZACAO → dicionário POMOBILIZA → opções reais de Mobilizacao da lista.
+O vínculo de MOBILIZACAO a POMOBILIZA é tratado como candidato; a exportação permite conferir os rótulos e códigos. Código sem descrição, repetido ou sem correspondência é sinalizado. Candidatas por pontuação/grafia não são aplicadas automaticamente no upload.
+
+Abra em pasta nova e atualize. Na página Mobilizações - Niterói, exporte:
+1. Superior: Mobilizacoes_Niteroi_Resumo, com quantidade de códigos e de turmas por situação.
+2. Inferior: Mobilizacoes_Niteroi_Comparar, com a relação encontrada/não encontrada e nomes candidatos.
+Envie os dois para obter a contagem definitiva de Niterói. Turmas sem código são contadas separadamente e não são tratadas como uma mobilização encontrada.
+A planilha Catalogo_Geral_Mobilizacoes_Comparado.csv é uma comparação das exportações anteriores, não uma consulta viva nem a lista de uso de Niterói.
+Nenhum campo Mobilizacao foi preenchido por suposição ou gravado no SharePoint. Mantidas regras e dados de upload da V22. Referências/JSON/ZIP conferidos; a consulta e contagem reais dependem da atualização no Desktop.

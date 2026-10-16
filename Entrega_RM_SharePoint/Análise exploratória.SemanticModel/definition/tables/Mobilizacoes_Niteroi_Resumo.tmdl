@@ -1,0 +1,26 @@
+table 'Mobilizacoes_Niteroi_Resumo'
+
+	column 'Resultado_Comparacao'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Resultado_Comparacao
+
+	column 'Quantidade_Codigos'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Quantidade_Codigos
+
+	column 'Quantidade_Turmas'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Quantidade_Turmas
+
+	partition 'Mobilizacoes_Niteroi_Resumo' = m
+		mode: import
+		source =
+				let
+				    Fonte=Mobilizacoes_Niteroi_Comparar,
+				    G=Table.Group(Fonte,{"Resultado_Comparacao"},{{"Quantidade_Codigos",each Table.RowCount(Table.SelectRows(_,each [RM_MOBILIZACAO]<>null)),Int64.Type},{"Quantidade_Turmas",each List.Sum([Quantidade_Turmas]),Int64.Type}})
+				in G
+
+	annotation PBI_ResultType = Table

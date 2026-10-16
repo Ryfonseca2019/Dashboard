@@ -1,22 +1,16 @@
-# Power BI — Modalidade de oferta e identificadores fixos
+# Power BI — Mobilizações usadas em Niterói
 
-Baixe **Planejamento_Turmas_SENAI_Modalidade_Identificadores_v22.zip**.
+Baixe **Planejamento_Turmas_SENAI_Mobilizacoes_Niteroi_v23.zip**.
 
-V22 — MODALIDADE DE OFERTA, ORIGEM E IDENTIFICADORES FIXOS
+V23 — MOBILIZAÇÕES DE NITERÓI
 
-O CSV de opções reais confirmou Modalidade = Presencial ou À distância. Esse campo é diferente de Modalidade_Snapshot, que contém Qualificação Profissional/Habilitação Técnica/etc. A comparação incorreta entre esses conceitos foi corrigida.
-Modalidade agora é preenchida pela descrição de mediação da matriz: PRESENCIAL → Presencial; A DISTÂNCIA e os rótulos EAD explícitos observados → À distância. EAD semipresencial é tratado como À distância pelo rótulo explícito EAD. Híbrido, mediação vazia ou desconhecida ficam pendentes; não há conversão automática de códigos numéricos do RM. Modalidade_Snapshot permanece com o tipo de formação.
-Origem_Registro = Importação, opção real confirmada no CSV; não é rotulado como Aplicativo ou SGE automaticamente. O destino é revalidado contra as opções atuais a cada atualização.
+Os arquivos anteriores permitem comparar o catálogo geral (64 mobilizações RM com 49 rótulos exatos, 14 candidatas por espaços/pontuação e 1 possível erro de grafia), mas não contam quais dessas mobilizações estão efetivamente usadas em Niterói. Os totais de 49/15 são de catálogo, não de turmas de Niterói.
+A V23 cria esse recorte: RM_Oferta_Diagnostico → coligada 3/filial 266 → código STURMACOMPL.MOBILIZACAO → dicionário POMOBILIZA → opções reais de Mobilizacao da lista.
+O vínculo de MOBILIZACAO a POMOBILIZA é tratado como candidato; a exportação permite conferir os rótulos e códigos. Código sem descrição, repetido ou sem correspondência é sinalizado. Candidatas por pontuação/grafia não são aplicadas automaticamente no upload.
 
-IDENTIFICADORES
-A pré-carga contém 510 chaves de turma distintas. Dos identificadores gerados para o lote anterior, 84 foram vinculados de forma única por curso/período/datas/vagas e pela chave RM do arquivo original. Para 19 turmas do lote anterior a correspondência não foi inequívoca: o identificador continua vazio, sem substituir o antigo por tentativa. Para as outras 407 chaves foram gerados identificadores NIT-yyyymmddhhmmss, distintos e fixos na tabela DP_Identificadores_Niteroi. Total preenchido = 491; pendentes de reconciliação = 19.
-Os IDs não são recalculados com Now em cada refresh. Turmas novas fora dessas 510 chaves ficam pendentes, sem atribuição por posição. Não reutilize o arquivo anterior por posição nem insira uma turma já existente sem verificar a lista atual. Não houve leitura/gravação ao vivo dos itens da lista para verificar duplicatas de importações já realizadas.
-As tabelas de IDs publicadas contêm somente chaves técnicas e identificadores, sem dados de professores.
-
-VALIDAÇÃO
-Atualize e abra a página Niterói - identificação e oferta. Envie a tabela superior (Niteroi_PreCarga atualizada), para conferir as pendências depois dos ajustes; a inferior mostra o de/para de mediação.
-O diagnóstico inclui identificação e modalidade, sem campos novos na ordem das 54/51 colunas de colagem.
-As últimas opções enviadas confirmaram unidade e planejamento encontrados nas 510 turmas; os arquivos superior direito e inferior eram idênticos, mas o status já confirmou esse vínculo e não foi necessário pedir reenvio.
-Permanecem 37 turmas sem matriz vinculada e uma sem classificação de financiamento no arquivo recebido. Há mediação vazia em outras matrizes, divergências de modalidade de formação e configurações de obrigatoriedade a tratar. As pendências reais após esta versão dependem da nova exportação.
-Pedagogo e tipo de cálculo ficam vazios por decisão; o esquema recebido ainda os considera obrigatórios. Alterar a lista e o app antes de tentar salvá-los vazios.
-Cargas horárias continuam sendo as do cadastro do app. Nenhuma lista foi alterada. ZIP, referências e IDs únicos foram verificados; execução de M/SQL e renderização dependem do Desktop corporativo.
+Abra em pasta nova e atualize. Na página Mobilizações - Niterói, exporte:
+1. Superior: Mobilizacoes_Niteroi_Resumo, com quantidade de códigos e de turmas por situação.
+2. Inferior: Mobilizacoes_Niteroi_Comparar, com a relação encontrada/não encontrada e nomes candidatos.
+Envie os dois para obter a contagem definitiva de Niterói. Turmas sem código são contadas separadamente e não são tratadas como uma mobilização encontrada.
+A planilha Catalogo_Geral_Mobilizacoes_Comparado.csv é uma comparação das exportações anteriores, não uma consulta viva nem a lista de uso de Niterói.
+Nenhum campo Mobilizacao foi preenchido por suposição ou gravado no SharePoint. Mantidas regras e dados de upload da V22. Referências/JSON/ZIP conferidos; a consulta e contagem reais dependem da atualização no Desktop.

@@ -1,0 +1,28 @@
+table 'RM_Mobilizacao_Dicionario'
+
+	column 'CODCOLIGADA'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: CODCOLIGADA
+
+	column 'APLICACAO'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: APLICACAO
+
+	column 'Codigo_Mobilizacao'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Codigo_Mobilizacao
+
+	column 'Descricao_RM'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Descricao_RM
+
+	partition 'RM_Mobilizacao_Dicionario' = m
+		mode: import
+		source =
+				let Fonte=Sql.Database("SRVSEDE01621PRE","CorporeRM",[Query="SELECT CODCOLIGADA,APLICACAO,#(lf) CONVERT(nvarchar(4000),CODCLIENTE) AS Codigo_Mobilizacao,#(lf) CONVERT(nvarchar(4000),DESCRICAO) AS Descricao_RM#(lf)FROM dbo.GCONSIST WHERE CODCOLIGADA=3 AND CODTABELA='POMOBILIZA';"]) in Fonte
+
+	annotation PBI_ResultType = Table
