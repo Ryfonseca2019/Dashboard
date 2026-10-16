@@ -100,12 +100,12 @@ table 'Campus_SENAI_Validar'
 				    Ativos=Table.AddColumn(Tipos,"RM_Ativos_Campus",each Text.Combine(List.Distinct(List.RemoveNulls([Cadastro][RM_Campus_Ativo])),"; "),type text),
 				    Escopo=Table.AddColumn(Ativos,"Escopo_Cadastro",each Text.Combine(List.Distinct(List.RemoveNulls([Cadastro][Escopo_Cadastro])),"; "),type text),
 				    EstadoRM=Table.AddColumn(Escopo,"Status_Vinculo_RM",each if [RM_Codigo_Campus]=null then "Turma sem código de campus" else if [Ocorrencias_Cadastro_RM]=0 then "Cadastro não encontrado; conferir Campus_Cadastro_RM e Campus_Estrutura_RM" else if [Ocorrencias_Cadastro_RM]>1 then "Mais de um cadastro candidato; revisar chave" else "Descrição encontrada; validar categoria do app",type text),
-				    App=Table.SelectRows(Campus_App_Exportar,each [Codigo_SGE]<>null),
+				    App=Table.AddColumn(Table.RenameColumns(Table.SelectRows(DP_Campus_Confirmado,each [Status_DePara]="Confirmado"),{{"Codigo_RM","Codigo_SGE"}}),"Ativa",each true,type logical),
 				    JA=Table.NestedJoin(EstadoRM,{"RM_Codigo_Campus"},App,{"Codigo_SGE"},"OpcoesApp",JoinKind.LeftOuter),
 				    Q=Table.AddColumn(JA,"Quantidade_Opcoes_App",each Table.RowCount([OpcoesApp]),Int64.Type),
 				    IDs=Table.AddColumn(Q,"IDs_Candidatos_App",each Text.Combine(List.Transform([OpcoesApp][ID_SharePoint],each Text.From(_)),"; "),type text),
 				    Valores=Table.AddColumn(IDs,"Opcoes_Candidatas_App",each Text.Combine(List.RemoveNulls([OpcoesApp][Valor_App]),"; "),type text),
-				    Status=Table.AddColumn(Valores,"Status_DePara",each if [Ocorrencias_Cadastro_RM]<>1 then "Pendente: identificar cadastro RM" else if [Quantidade_Opcoes_App]=0 then "Pendente: associar descrição RM à categoria do app; sem código SGE correspondente" else if [Quantidade_Opcoes_App]>1 then "Pendente: código duplicado no app" else if [OpcoesApp]{0}[Ativa]<>true then "Pendente: opção do app não ativa" else "Candidata por código; confirmar significado antes de aplicar",type text),
+				    Status=Table.AddColumn(Valores,"Status_DePara",each if [Ocorrencias_Cadastro_RM]<>1 then "Pendente: identificar cadastro RM" else if [Quantidade_Opcoes_App]=0 then "Pendente: associar descrição RM à categoria do app; sem código SGE correspondente" else if [Quantidade_Opcoes_App]>1 then "Pendente: código duplicado no app" else if [OpcoesApp]{0}[Ativa]<>true then "Pendente: opção do app não ativa" else "Confirmado pelo código RM e descrição idêntica ao app",type text),
 				    Resultado=Table.RemoveColumns(Status,{"PorCodigo","Cadastro","OpcoesApp"})
 				in Resultado
 

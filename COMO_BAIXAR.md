@@ -1,16 +1,24 @@
-# Power BI — Campus RM com estrutura confirmada
+# Power BI — Campus/Polo preenchido pelo de/para confirmado
 
-Baixe **Planejamento_Turmas_SENAI_Campus_Corrigido_v13.zip**.
+Baixe **Planejamento_Turmas_SENAI_Campus_Preenchido_v14.zip**.
 
-V13 — CAMPUS RM: ESTRUTURA REAL CONFIRMADA
+V14 — CAMPUS/POLO CONFIRMADO E PREENCHIDO NA EXPORTAÇÃO
 
-A exportação Campus.csv confirmou que dbo.SCAMPUS tem CODCAMPUS, DESCRICAO, TIPOCAMPUS e ATIVO, mas não tem CODCOLIGADA nem CODFILIAL. A condição da V12 foi removida: ela exigia uma coluna inexistente.
-Campus_Cadastro_RM agora consulta diretamente esses campos. Coligada e filial desse cadastro são nulas por não existirem; isso não significa turma sem unidade. A seleção de turmas continua restrita à coligada 3 (SENAI), com término no ano atual em diante.
-O cruzamento usa CODCAMPUS textual e mantém contagem de candidatos. Se o cadastro tiver códigos repetidos, o resultado será marcado como ambíguo sem multiplicar as linhas do resumo. Zeros à esquerda não são removidos. A equivalência com as categorias do app continua pendente de validação das descrições.
-RM_Tipo_Campus e RM_Campus_Ativo são valores brutos, sem assumir a tradução de seus códigos. O campo descritivo desta instalação é RM_Descricao_Campus; RM_Nome_Campus permanece nulo porque SCAMPUS não tem NOME.
+Correspondência validada nas exportações recebidas:
+RM 1 → Matriz da Escola - Senai → ID SharePoint 3.
+RM 2 → Unidades Móveis - Senai → ID SharePoint 4.
+RM 3 → Agência / Extensão - Senai → ID SharePoint 1.
+RM 4 → Unidades Remotas - Senai → ID SharePoint 5.
+RM 5 → Ambiente da Empresa - Senai → ID SharePoint 2.
 
-PARA EXPORTAR
-Extraia em pasta nova, abra o PBIP e clique em Atualizar. Na página Campus SENAI - descrições, envie a tabela superior (Campus_SENAI_Validar) e a inferior esquerda (Campus_Cadastro_RM). A tabela inferior direita contém as opções do app e não precisa ser reenviada se o cadastro não mudou.
+A tabela DP_Campus_Confirmado valida a descrição e atividade atuais no RM e no app em cada atualização. O ID real vem do catálogo SharePoint atualizado; a coluna Codigo_SGE vazia nesse catálogo não impede a associação já confirmada por descrição e código RM. Nenhuma alteração no cadastro SharePoint foi realizada.
+RM_Integracao_SharePoint agora preenche Campus_Polo usando esse de/para. As páginas Colagem | sem metadados, Exportação | 54 campos e Exportação enriquecida herdam o resultado. Foram adicionados ID_Campus_SharePoint e Status_Campus no modelo para diagnóstico, sem alterar a ordem das 54 colunas do visual de exportação.
+Códigos sem correspondência, vazios, inativos, duplicados ou com descrição alterada ficam sem preenchimento e com status de pendência; não são convertidos em Matriz da Escola por padrão.
 
-Mantidas matrículas previstas iguais às vagas, pedagogo vazio e demais regras anteriores. Não há preenchimento automático de Campus_Polo nem alteração do cadastro SharePoint nesta versão: a validação das descrições permitirá fazê-lo corretamente.
-Estrutura dos arquivos, campos dos visuais, SQL/M e integridade do ZIP foram conferidos. Execução no RM e renderização precisam ser confirmadas no Desktop.
+A exportação recebida contém 7.077 turmas SENAI: 7.031 com código e descrição correspondentes, 46 sem código. Niterói possui 510 turmas e todas têm correspondência. Esses números descrevem os arquivos recebidos, não uma nova execução desta versão.
+
+COMO USAR
+Extraia em pasta nova, abra o PBIP e clique em Atualizar. A página De-para Campus confirmado mostra as cinco correspondências e o status atual. Para exportar, use Colagem | sem metadados ou a saída enriquecida conforme o layout e os demais campos já validados.
+Outros campos obrigatórios e de/para ainda pendentes não são resolvidos por esta versão. Não é confirmação de carga completa. Preserve os identificadores do lote e os dados ajustados manualmente em sua planilha.
+Somente SENAI, término no ano atual em diante, matrículas previstas iguais às vagas e pedagogo vazio permanecem mantidos. Os demais ajustes de negócio discutidos ainda devem ser conferidos separadamente.
+Conexão, SQL, M e renderização da V14 precisam ser executados no Desktop corporativo. Estrutura, referências, correspondências dos arquivos e ZIP foram verificados.

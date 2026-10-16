@@ -1,0 +1,64 @@
+table 'DP_Campus_Confirmado'
+
+	column 'Codigo_RM'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Codigo_RM
+
+	column 'Rotulo_Confirmado'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Rotulo_Confirmado
+
+	column 'Descricao_RM'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Descricao_RM
+
+	column 'ID_SharePoint'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: ID_SharePoint
+
+	column 'Valor_App'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Valor_App
+
+	column 'Status_DePara'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Status_DePara
+
+	partition 'DP_Campus_Confirmado' = m
+		mode: import
+		source =
+				let
+				    // Correspondências confirmadas pelas exportações RM e app recebidas.
+				    Esperado=#table(type table [Codigo_RM=text, Rotulo_Confirmado=text], {
+				        {"1","Matriz da Escola - Senai"},
+				        {"2","Unidades Móveis - Senai"},
+				        {"3","Agência / Extensão - Senai"},
+				        {"4","Unidades Remotas - Senai"},
+				        {"5","Ambiente da Empresa - Senai"}}),
+				    RM=Table.TransformColumns(Campus_Cadastro_RM,{{"RM_Codigo_Campus",each if _=null then null else Text.Trim(_),type nullable text}}),
+				    App=APP_Cad_Campus_Polo,
+				    J=Table.NestedJoin(Esperado,{"Codigo_RM"},RM,{"RM_Codigo_Campus"},"CadastroRM",JoinKind.LeftOuter),
+				    NR=Table.AddColumn(J,"Ocorrencias_RM",each Table.RowCount([CadastroRM]),Int64.Type),
+				    Descricao=Table.AddColumn(NR,"Descricao_RM",each if [Ocorrencias_RM]=1 then [CadastroRM]{0}[RM_Descricao_Campus] else null,type text),
+				    Situacao=Table.AddColumn(Descricao,"Ativo_RM",each if [Ocorrencias_RM]=1 then [CadastroRM]{0}[RM_Campus_Ativo] else null,type text),
+				    JA=Table.NestedJoin(Situacao,{"Rotulo_Confirmado"},App,{"Nome_Campus_Polo"},"CadastroApp",JoinKind.LeftOuter),
+				    NA=Table.AddColumn(JA,"Ocorrencias_App",each Table.RowCount([CadastroApp]),Int64.Type),
+				    Status=Table.AddColumn(NA,"Status_DePara",each
+				        if [Ocorrencias_RM]<>1 then "Pendente: cadastro RM ausente ou duplicado"
+				        else if [Descricao_RM]<>[Rotulo_Confirmado] then "Pendente: descrição RM mudou"
+				        else if [Ativo_RM]<>"S" then "Pendente: campus RM não ativo"
+				        else if [Ocorrencias_App]<>1 then "Pendente: opção do app ausente ou duplicada"
+				        else if [CadastroApp]{0}[Ativa]<>true then "Pendente: opção do app não ativa"
+				        else "Confirmado",type text),
+				    ID=Table.AddColumn(Status,"ID_SharePoint",each if [Status_DePara]="Confirmado" then [CadastroApp]{0}[ID] else null,Int64.Type),
+				    Valor=Table.AddColumn(ID,"Valor_App",each if [Status_DePara]="Confirmado" then [CadastroApp]{0}[Nome_Campus_Polo] else null,type text),
+				    Resultado=Table.SelectColumns(Valor,{"Codigo_RM","Rotulo_Confirmado","Descricao_RM","ID_SharePoint","Valor_App","Status_DePara"})
+				in Resultado
+
+	annotation PBI_ResultType = Table

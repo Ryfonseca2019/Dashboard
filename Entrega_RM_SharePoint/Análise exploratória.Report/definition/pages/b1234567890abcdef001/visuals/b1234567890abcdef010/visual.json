@@ -1,0 +1,107 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "b1234567890abcdef010",
+  "position": {
+    "x": 20,
+    "y": 20,
+    "z": 0,
+    "width": 1880,
+    "height": 1040
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DP_Campus_Confirmado"
+                    }
+                  },
+                  "Property": "Codigo_RM"
+                }
+              },
+              "queryRef": "DP_Campus_Confirmado.Codigo_RM",
+              "nativeQueryRef": "Codigo_RM"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DP_Campus_Confirmado"
+                    }
+                  },
+                  "Property": "Rotulo_Confirmado"
+                }
+              },
+              "queryRef": "DP_Campus_Confirmado.Rotulo_Confirmado",
+              "nativeQueryRef": "Rotulo_Confirmado"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DP_Campus_Confirmado"
+                    }
+                  },
+                  "Property": "Descricao_RM"
+                }
+              },
+              "queryRef": "DP_Campus_Confirmado.Descricao_RM",
+              "nativeQueryRef": "Descricao_RM"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DP_Campus_Confirmado"
+                    }
+                  },
+                  "Property": "ID_SharePoint"
+                }
+              },
+              "queryRef": "DP_Campus_Confirmado.ID_SharePoint",
+              "nativeQueryRef": "ID_SharePoint"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DP_Campus_Confirmado"
+                    }
+                  },
+                  "Property": "Valor_App"
+                }
+              },
+              "queryRef": "DP_Campus_Confirmado.Valor_App",
+              "nativeQueryRef": "Valor_App"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DP_Campus_Confirmado"
+                    }
+                  },
+                  "Property": "Status_DePara"
+                }
+              },
+              "queryRef": "DP_Campus_Confirmado.Status_DePara",
+              "nativeQueryRef": "Status_DePara"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

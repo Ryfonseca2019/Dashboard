@@ -75,3 +75,5 @@ ref table 'Campus_Cadastro_RM'
 ref table 'Campus_Estrutura_RM'
 
 ref table 'Campus_SENAI_Validar'
+
+ref table 'DP_Campus_Confirmado'
