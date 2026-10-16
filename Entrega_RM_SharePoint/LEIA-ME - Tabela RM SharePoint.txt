@@ -1,15 +1,16 @@
-PROJETO POWER BI — V4 — TÉRMINO APÓS 2026
+PROJETO POWER BI — V5 — TÉRMINO NO ANO ATUAL EM DIANTE
 
-Extraia o ZIP em uma pasta nova e abra Análise exploratória.pbip no Power BI Desktop. Conecte-se à rede corporativa e execute Atualizar.
-Use a página RM → SharePoint | Fim após 2026 e a consulta RM_Integracao_SharePoint.
+Extraia o ZIP em uma pasta nova, abra Análise exploratória.pbip no Power BI Desktop, conecte-se à rede corporativa e execute Atualizar.
+Use a página RM → SharePoint | Fim ano atual+ e a consulta RM_Integracao_SharePoint.
 
 REGRA
-STURMA.DTFINAL >= 01/01/2027. Inclui turmas que terminam em 2027 ou depois, independentemente de quando começaram, inclusive com início nulo. Exclui términos em 2026 ou anteriores e términos nulos. Sem TOP ou limite de quantidade.
-O período letivo agora é ligado por LEFT JOIN para não excluir uma turma apenas por não encontrar o cadastro de período.
-A data prevista de fim continua sendo a coluna DTFINAL do SQL fornecido; confirmar a semântica no RM.
+STURMA.DTFINAL >= DATEFROMPARTS(YEAR(GETDATE()), 1, 1).
+Inclui turmas com término previsto em qualquer dia do ano atual ou dos próximos anos, independentemente da data de início. Não significa somente as turmas que terminam a partir de hoje.
+O ano é determinado pela data do servidor SQL Server RM no momento da atualização. Em 2026, inclui término a partir de 01/01/2026; em 2027, a partir de 01/01/2027. Como o modelo é Import, deve ser atualizado para refletir a mudança de ano.
+Não há limite de linhas. Términos nulos ficam de fora. Datas de início não são filtradas.
+Mantido LEFT JOIN do período letivo para não excluir turmas sem correspondência nesse cadastro. Unicidade e demais vínculos precisam ser confirmados no banco.
 
-LIMITES
-Seis campos de destino possuem origem identificada; 48 permanecem nulos. Não há escrita no SharePoint. Os demais joins e a unicidade ainda precisam ser validados no banco.
-Consultas originais foram preservadas e têm suas regras antigas; o filtro novo está na consulta RM_Integracao_SharePoint.
-Conexão, resultados e renderização ainda precisam ser validados no Desktop com acesso ao RM. Arquivos .pbi não estão incluídos.
-Se você criou medidas ou visuais na sua cópia local, preserve-a antes de substituir por este projeto: alterações locais não estão neste ZIP.
+LIMITAÇÕES
+Seis campos de destino têm origem identificada e 48 permanecem nulos até completar o mapeamento. Não há escrita no SharePoint.
+As consultas originais foram preservadas, com suas regras antigas; use RM_Integracao_SharePoint para a regra nova.
+A fonte está configurada, mas conexão, resultados, DAX e renderização ainda precisam de validação no Power BI Desktop com acesso ao RM. Este ZIP não inclui caches .pbi nem alterações que você tenha feito apenas em sua cópia local.

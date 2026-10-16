@@ -3,7 +3,7 @@
 -- NULL identifica campo ainda não mapeado; não significa apagar a lista.
 -- Tipos dos campos pendentes são provisórios, não são tipos SharePoint confirmados.
 -- Este SQL reutiliza origens do PBIP, mas ainda NÃO foi executado no RM.
-DECLARE @FimAPartirDe date = DATEFROMPARTS(2027, 1, 1); -- após o ano de 2026
+DECLARE @FimAPartirDe date = DATEFROMPARTS(YEAR(GETDATE()), 1, 1); -- início do ano atual no servidor RM
 
 SELECT
     CAST(NULL AS nvarchar(4000)) AS [Planejamento], -- PENDENTE: não enviar NULL para sobrescrever valores existentes
@@ -90,4 +90,4 @@ ORDER BY T.CODCOLIGADA, T.CODFILIAL, T.IDPERLET, T.CODTURMA;
 
 -- A chave de turma e a cardinalidade dos joins são provisórias.
 -- Resolver descrições/domínios e agregar matrículas e instrutores antes de adicioná-los.
--- Sem limite de linhas e sem filtro de início. Término a partir de 01/01/2027; términos nulos ficam de fora.
+-- Sem limite de linhas e sem filtro de início. Término no ano atual ou posterior; términos nulos ficam de fora.
