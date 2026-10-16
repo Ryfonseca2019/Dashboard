@@ -1,0 +1,737 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "f1234567890abcdef012",
+  "position": {
+    "x": 20,
+    "y": 20,
+    "z": 0,
+    "height": 1040,
+    "width": 1880
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Integracao_SharePoint"
+                    }
+                  },
+                  "Property": "Planejamento"
+                }
+              },
+              "queryRef": "RM_Integracao_SharePoint.Planejamento",
+              "nativeQueryRef": "Planejamento"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Integracao_SharePoint"
+                    }
+                  },
+                  "Property": "Unidade"
+                }
+              },
+              "queryRef": "RM_Integracao_SharePoint.Unidade",
+              "nativeQueryRef": "Unidade"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Integracao_SharePoint"
+                    }
+                  },
+                  "Property": "Periodo_Letivo"
+                }
+              },
+              "queryRef": "RM_Integracao_SharePoint.Periodo_Letivo",
+              "nativeQueryRef": "Periodo_Letivo"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Integracao_SharePoint"
+                    }
+                  },
+                  "Property": "Ano_Referencia"
+                }
+              },
+              "queryRef": "RM_Integracao_SharePoint.Ano_Referencia",
+              "nativeQueryRef": "Ano_Referencia"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Integracao_SharePoint"
+                    }
+                  },
+                  "Property": "Identificador_Temporario"
+                }
+              },
+              "queryRef": "RM_Integracao_SharePoint.Identificador_Temporario",
+              "nativeQueryRef": "Identificador_Temporario"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Integracao_SharePoint"
+                    }
+                  },
+                  "Property": "Codigo_Turma_SGE"
+                }
+              },
+              "queryRef": "RM_Integracao_SharePoint.Codigo_Turma_SGE",
+              "nativeQueryRef": "Codigo_Turma_SGE"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Integracao_SharePoint"
+                    }
+                  },
+                  "Property": "Matriz"
+                }
+              },
+              "queryRef": "RM_Integracao_SharePoint.Matriz",
+              "nativeQueryRef": "Matriz"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Integracao_SharePoint"
+                    }
+                  },
+                  "Property": "Status_Turma"
+                }
+              },
+              "queryRef": "RM_Integracao_SharePoint.Status_Turma",
+              "nativeQueryRef": "Status_Turma"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Integracao_SharePoint"
+                    }
+                  },
+                  "Property": "Ativa"
+                }
+              },
+              "queryRef": "RM_Integracao_SharePoint.Ativa",
+              "nativeQueryRef": "Ativa"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Integracao_SharePoint"
+                    }
+                  },
+                  "Property": "Codigo_Matriz_Snapshot"
+                }
+              },
+              "queryRef": "RM_Integracao_SharePoint.Codigo_Matriz_Snapshot",
+              "nativeQueryRef": "Codigo_Matriz_Snapshot"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Integracao_SharePoint"
+                    }
+                  },
+                  "Property": "Nome_Curso_Snapshot"
+                }
+              },
+              "queryRef": "RM_Integracao_SharePoint.Nome_Curso_Snapshot",
+              "nativeQueryRef": "Nome_Curso_Snapshot"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Integracao_SharePoint"
+                    }
+                  },
+                  "Property": "Area_Snapshot"
+                }
+              },
+              "queryRef": "RM_Integracao_SharePoint.Area_Snapshot",
+              "nativeQueryRef": "Area_Snapshot"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Integracao_SharePoint"
+                    }
+                  },
+                  "Property": "Modalidade_Snapshot"
+                }
+              },
+              "queryRef": "RM_Integracao_SharePoint.Modalidade_Snapshot",
+              "nativeQueryRef": "Modalidade_Snapshot"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Integracao_SharePoint"
+                    }
+                  },
+                  "Property": "Tipo_Mediacao_Snapshot"
+                }
+              },
+              "queryRef": "RM_Integracao_SharePoint.Tipo_Mediacao_Snapshot",
+              "nativeQueryRef": "Tipo_Mediacao_Snapshot"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Integracao_SharePoint"
+                    }
+                  },
+                  "Property": "Carga_Horaria_Snapshot"
+                }
+              },
+              "queryRef": "RM_Integracao_SharePoint.Carga_Horaria_Snapshot",
+              "nativeQueryRef": "Carga_Horaria_Snapshot"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Integracao_SharePoint"
+                    }
+                  },
+                  "Property": "Data_Snapshot_Matriz"
+                }
+              },
+              "queryRef": "RM_Integracao_SharePoint.Data_Snapshot_Matriz",
+              "nativeQueryRef": "Data_Snapshot_Matriz"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Integracao_SharePoint"
+                    }
+                  },
+                  "Property": "Data_Inicio_Prevista"
+                }
+              },
+              "queryRef": "RM_Integracao_SharePoint.Data_Inicio_Prevista",
+              "nativeQueryRef": "Data_Inicio_Prevista"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Integracao_SharePoint"
+                    }
+                  },
+                  "Property": "Data_Fim_Prevista"
+                }
+              },
+              "queryRef": "RM_Integracao_SharePoint.Data_Fim_Prevista",
+              "nativeQueryRef": "Data_Fim_Prevista"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Integracao_SharePoint"
+                    }
+                  },
+                  "Property": "Quantidade_Vagas"
+                }
+              },
+              "queryRef": "RM_Integracao_SharePoint.Quantidade_Vagas",
+              "nativeQueryRef": "Quantidade_Vagas"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Integracao_SharePoint"
+                    }
+                  },
+                  "Property": "Matriculas_Previstas"
+                }
+              },
+              "queryRef": "RM_Integracao_SharePoint.Matriculas_Previstas",
+              "nativeQueryRef": "Matriculas_Previstas"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Integracao_SharePoint"
+                    }
+                  },
+                  "Property": "Campus_Polo"
+                }
+              },
+              "queryRef": "RM_Integracao_SharePoint.Campus_Polo",
+              "nativeQueryRef": "Campus_Polo"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Integracao_SharePoint"
+                    }
+                  },
+                  "Property": "Financiamento"
+                }
+              },
+              "queryRef": "RM_Integracao_SharePoint.Financiamento",
+              "nativeQueryRef": "Financiamento"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Integracao_SharePoint"
+                    }
+                  },
+                  "Property": "Tipo_Periodo"
+                }
+              },
+              "queryRef": "RM_Integracao_SharePoint.Tipo_Periodo",
+              "nativeQueryRef": "Tipo_Periodo"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Integracao_SharePoint"
+                    }
+                  },
+                  "Property": "Pedagogo_Responsavel"
+                }
+              },
+              "queryRef": "RM_Integracao_SharePoint.Pedagogo_Responsavel",
+              "nativeQueryRef": "Pedagogo_Responsavel"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Integracao_SharePoint"
+                    }
+                  },
+                  "Property": "Mobilizacao"
+                }
+              },
+              "queryRef": "RM_Integracao_SharePoint.Mobilizacao",
+              "nativeQueryRef": "Mobilizacao"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Integracao_SharePoint"
+                    }
+                  },
+                  "Property": "Empresa"
+                }
+              },
+              "queryRef": "RM_Integracao_SharePoint.Empresa",
+              "nativeQueryRef": "Empresa"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Integracao_SharePoint"
+                    }
+                  },
+                  "Property": "Projeto"
+                }
+              },
+              "queryRef": "RM_Integracao_SharePoint.Projeto",
+              "nativeQueryRef": "Projeto"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Integracao_SharePoint"
+                    }
+                  },
+                  "Property": "Sindicato"
+                }
+              },
+              "queryRef": "RM_Integracao_SharePoint.Sindicato",
+              "nativeQueryRef": "Sindicato"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Integracao_SharePoint"
+                    }
+                  },
+                  "Property": "Classe_Valor"
+                }
+              },
+              "queryRef": "RM_Integracao_SharePoint.Classe_Valor",
+              "nativeQueryRef": "Classe_Valor"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Integracao_SharePoint"
+                    }
+                  },
+                  "Property": "Item_Contabil_Snapshot"
+                }
+              },
+              "queryRef": "RM_Integracao_SharePoint.Item_Contabil_Snapshot",
+              "nativeQueryRef": "Item_Contabil_Snapshot"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Integracao_SharePoint"
+                    }
+                  },
+                  "Property": "Centro_Custo_Snapshot"
+                }
+              },
+              "queryRef": "RM_Integracao_SharePoint.Centro_Custo_Snapshot",
+              "nativeQueryRef": "Centro_Custo_Snapshot"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Integracao_SharePoint"
+                    }
+                  },
+                  "Property": "Observacoes"
+                }
+              },
+              "queryRef": "RM_Integracao_SharePoint.Observacoes",
+              "nativeQueryRef": "Observacoes"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Integracao_SharePoint"
+                    }
+                  },
+                  "Property": "Motivo_Cancelamento"
+                }
+              },
+              "queryRef": "RM_Integracao_SharePoint.Motivo_Cancelamento",
+              "nativeQueryRef": "Motivo_Cancelamento"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Integracao_SharePoint"
+                    }
+                  },
+                  "Property": "Data_Cancelamento"
+                }
+              },
+              "queryRef": "RM_Integracao_SharePoint.Data_Cancelamento",
+              "nativeQueryRef": "Data_Cancelamento"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Integracao_SharePoint"
+                    }
+                  },
+                  "Property": "Cancelada_Por"
+                }
+              },
+              "queryRef": "RM_Integracao_SharePoint.Cancelada_Por",
+              "nativeQueryRef": "Cancelada_Por"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Integracao_SharePoint"
+                    }
+                  },
+                  "Property": "Data_Conclusao"
+                }
+              },
+              "queryRef": "RM_Integracao_SharePoint.Data_Conclusao",
+              "nativeQueryRef": "Data_Conclusao"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Integracao_SharePoint"
+                    }
+                  },
+                  "Property": "Bloqueada_Para_Edicao"
+                }
+              },
+              "queryRef": "RM_Integracao_SharePoint.Bloqueada_Para_Edicao",
+              "nativeQueryRef": "Bloqueada_Para_Edicao"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Integracao_SharePoint"
+                    }
+                  },
+                  "Property": "Versao_Planejamento"
+                }
+              },
+              "queryRef": "RM_Integracao_SharePoint.Versao_Planejamento",
+              "nativeQueryRef": "Versao_Planejamento"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Integracao_SharePoint"
+                    }
+                  },
+                  "Property": "Origem_Registro"
+                }
+              },
+              "queryRef": "RM_Integracao_SharePoint.Origem_Registro",
+              "nativeQueryRef": "Origem_Registro"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Integracao_SharePoint"
+                    }
+                  },
+                  "Property": "Data_Ultima_Revisao"
+                }
+              },
+              "queryRef": "RM_Integracao_SharePoint.Data_Ultima_Revisao",
+              "nativeQueryRef": "Data_Ultima_Revisao"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Integracao_SharePoint"
+                    }
+                  },
+                  "Property": "Turno"
+                }
+              },
+              "queryRef": "RM_Integracao_SharePoint.Turno",
+              "nativeQueryRef": "Turno"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Integracao_SharePoint"
+                    }
+                  },
+                  "Property": "Tipo_Calculo_Evasao"
+                }
+              },
+              "queryRef": "RM_Integracao_SharePoint.Tipo_Calculo_Evasao",
+              "nativeQueryRef": "Tipo_Calculo_Evasao"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Integracao_SharePoint"
+                    }
+                  },
+                  "Property": "Percentual_Evasao_Previsto"
+                }
+              },
+              "queryRef": "RM_Integracao_SharePoint.Percentual_Evasao_Previsto",
+              "nativeQueryRef": "Percentual_Evasao_Previsto"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Integracao_SharePoint"
+                    }
+                  },
+                  "Property": "Quantidade_Evasao_Prevista"
+                }
+              },
+              "queryRef": "RM_Integracao_SharePoint.Quantidade_Evasao_Prevista",
+              "nativeQueryRef": "Quantidade_Evasao_Prevista"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Integracao_SharePoint"
+                    }
+                  },
+                  "Property": "Matriculas_Consideradas"
+                }
+              },
+              "queryRef": "RM_Integracao_SharePoint.Matriculas_Consideradas",
+              "nativeQueryRef": "Matriculas_Consideradas"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Integracao_SharePoint"
+                    }
+                  },
+                  "Property": "Matriculas_Reais"
+                }
+              },
+              "queryRef": "RM_Integracao_SharePoint.Matriculas_Reais",
+              "nativeQueryRef": "Matriculas_Reais"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Integracao_SharePoint"
+                    }
+                  },
+                  "Property": "Matriculas_Reais_Confirmadas"
+                }
+              },
+              "queryRef": "RM_Integracao_SharePoint.Matriculas_Reais_Confirmadas",
+              "nativeQueryRef": "Matriculas_Reais_Confirmadas"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Integracao_SharePoint"
+                    }
+                  },
+                  "Property": "Código da turma SGE"
+                }
+              },
+              "queryRef": "RM_Integracao_SharePoint.Código da turma SGE",
+              "nativeQueryRef": "Código da turma SGE"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Integracao_SharePoint"
+                    }
+                  },
+                  "Property": "Local_realizacao"
+                }
+              },
+              "queryRef": "RM_Integracao_SharePoint.Local_realizacao",
+              "nativeQueryRef": "Local_realizacao"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Integracao_SharePoint"
+                    }
+                  },
+                  "Property": "Instrutor"
+                }
+              },
+              "queryRef": "RM_Integracao_SharePoint.Instrutor",
+              "nativeQueryRef": "Instrutor"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Integracao_SharePoint"
+                    }
+                  },
+                  "Property": "Codigo_Matriz_Excel"
+                }
+              },
+              "queryRef": "RM_Integracao_SharePoint.Codigo_Matriz_Excel",
+              "nativeQueryRef": "Codigo_Matriz_Excel"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

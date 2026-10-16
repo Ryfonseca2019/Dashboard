@@ -1,21 +1,28 @@
-# Power BI — Instrutores por turma
+# Power BI — Exportação na ordem do SharePoint
 
-Baixe **Planejamento_Turmas_RM_Instrutores_v6.zip**.
+Baixe **Planejamento_Turmas_RM_Exportacao_SharePoint_v7.zip**.
 
-PROJETO POWER BI — V6 — INSTRUTORES POR TURMA
+V7 — TABELAS NA ORDEM DO SHAREPOINT
 
-Extraia em uma pasta nova, abra o PBIP no Desktop, conecte-se à rede corporativa e execute Atualizar.
-Página: RM → SharePoint | Fim ano atual+. Consulta: RM_Integracao_SharePoint.
+Extraia em uma pasta nova e abra Análise exploratória.pbip. Conecte-se à rede corporativa e execute Atualizar.
 
-INSTRUTOR
-Consulta candidata: STURMADISC → SPROFESSORTURMA → SPROFESSOR → PPESSOA. Verifica existência das colunas por metadados. Prefere PPESSOA.NOME por CODPESSOA; usa SPROFESSOR.NOME se disponível como alternativa. A existência das colunas não comprova a semântica dos vínculos: comparar nomes com o RM.
-Instrutor reúne nomes distintos em ordem alfabética, separados por ponto e vírgula, por coligada + filial + período + turma. A agregação não adiciona linhas ao resultado de turmas; os joins preexistentes ainda precisam de validação de unicidade.
-RM_Status_Instrutor diferencia estrutura não reconhecida, ausência de nome e vínculo encontrado a validar. Falta de permissão pode impedir a leitura ou a visibilidade dos metadados. Nenhum erro SQL de permissão é ocultado.
-Não há filtro de papel, período de atuação ou professor ativo: reúne os nomes dos vínculos disponíveis. Não representa necessariamente um único professor responsável ou atual. Se a estrutura for diferente, enviar resultado de Diagnostico_Estrutura_RM.sql para completar o vínculo.
+PÁGINAS
+1. Exportação | 54 campos: mesmos 54 nomes e mesma sequência do CSV Turmas_Planejadas (1).csv, sem colunas técnicas. Serve como espelho da exportação, não para colar todos os campos na lista.
+2. Colagem | sem metadados: mesma ordem relativa, removendo ID, Criado e Criado por (51 colunas). São candidatas à edição: a definição dos tipos pode apontar outros campos calculados/somente leitura.
+3. Diagnóstico RM: visual anterior, com chaves técnicas, Instrutor e RM_Status_Instrutor.
 
-ESCOPO
-Mantido término previsto no ano atual em diante, sem filtro de início nem limite de registros. O ano é o do servidor RM no momento da atualização.
-A consulta usa tabela temporária e SQL dinâmico somente para SELECT de dados e preparação temporária; não modifica tabelas persistentes. SQL nativo pode exigir aprovação no Desktop e não é destinado a DirectQuery.
-A nova coluna é uma tentativa de extração condicionada à estrutura; não foi executada no banco corporativo. Conexão, SQL, nomes e visual precisam ser validados no Desktop. Os demais campos pendentes continuam vazios. Não há escrita no SharePoint.
-O texto com vários nomes precisa ser tratado antes de gravar em coluna SharePoint Pessoa: ela exige identidades válidas, não nomes concatenados.
-Preserve sua cópia local se já criou medidas ou visuais; alterações locais não estão neste ZIP.
+COMO EXPORTAR E COLAR
+No visual da página Colagem | sem metadados, use ... > Exportar dados, preferencialmente Dados com layout atual se a opção estiver disponível; caso contrário, Dados resumidos. Confira os cabeçalhos antes de copiar. Abra o arquivo no Excel e copie apenas as linhas de dados, sem cabeçalhos ou totais.
+No SharePoint, crie/ajuste uma exibição com exatamente os mesmos campos editáveis, na mesma ordem do arquivo Ordem_Colagem_SharePoint.csv, respeitando os tipos reais das colunas. Entre em Editar no modo de exibição de grade e teste primeiro uma linha, a partir da célula Planejamento. Depois confirme a gravação e a exibição no app.
+Se remover/adicionar uma coluna da exibição SharePoint, faça a mesma alteração na tabela de exportação antes de colar.
+
+LIMITAÇÕES DA COLAGEM
+Ordem igual não garante importação direta. Campos Lookup, Pessoa, Escolha, calculados ou obrigatórios precisam de valores aceitos pelo SharePoint e dos vínculos exigidos pelo app. O PBIP não contém o esquema real dessas colunas.
+Instrutor contém nomes separados por ponto e vírgula. Se for campo Pessoa, é necessário resolver as identidades; texto pode não colar.
+Não cole ID, Criado ou Criado por. Ao inserir, o SharePoint gera esses valores. A colagem não faz atualização por chave nem evita duplicados automaticamente.
+Planejamento e outros campos ainda estão vazios porque não têm origem confirmada; devem ser preenchidos/validados antes da carga. Não cole vazios sobre itens existentes para evitar apagar dados.
+A coluna Codigo_Turma_SGE e a coluna Código da turma SGE são distintas no CSV. Mantidas ambas na sequência solicitada; confirmar qual o app utiliza.
+Nenhum dado foi migrado e a colagem não foi testada na lista real.
+
+Mantidas a conexão RM, a consulta condicional de professores e a regra de término no ano atual em diante, sem filtro de início e sem limite SQL de linhas. Exportações podem ter limites do próprio Power BI: confira a quantidade exportada.
+Atualização no RM e renderização no Desktop continuam dependentes da validação no computador corporativo. Preserve medidas/visuais criados apenas na sua cópia local.

@@ -22,174 +22,6 @@
                       "Entity": "RM_Integracao_SharePoint"
                     }
                   },
-                  "Property": "RM_CODCOLIGADA"
-                }
-              },
-              "queryRef": "RM_Integracao_SharePoint.RM_CODCOLIGADA",
-              "nativeQueryRef": "RM_CODCOLIGADA"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "RM_Integracao_SharePoint"
-                    }
-                  },
-                  "Property": "RM_CODFILIAL"
-                }
-              },
-              "queryRef": "RM_Integracao_SharePoint.RM_CODFILIAL",
-              "nativeQueryRef": "RM_CODFILIAL"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "RM_Integracao_SharePoint"
-                    }
-                  },
-                  "Property": "RM_IDPERLET"
-                }
-              },
-              "queryRef": "RM_Integracao_SharePoint.RM_IDPERLET",
-              "nativeQueryRef": "RM_IDPERLET"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "RM_Integracao_SharePoint"
-                    }
-                  },
-                  "Property": "RM_Unidade_Nome"
-                }
-              },
-              "queryRef": "RM_Integracao_SharePoint.RM_Unidade_Nome",
-              "nativeQueryRef": "RM_Unidade_Nome"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "RM_Integracao_SharePoint"
-                    }
-                  },
-                  "Property": "Codigo_Turma_SGE"
-                }
-              },
-              "queryRef": "RM_Integracao_SharePoint.Codigo_Turma_SGE",
-              "nativeQueryRef": "Codigo_Turma_SGE"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "RM_Integracao_SharePoint"
-                    }
-                  },
-                  "Property": "Periodo_Letivo"
-                }
-              },
-              "queryRef": "RM_Integracao_SharePoint.Periodo_Letivo",
-              "nativeQueryRef": "Periodo_Letivo"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "RM_Integracao_SharePoint"
-                    }
-                  },
-                  "Property": "Nome_Curso_Snapshot"
-                }
-              },
-              "queryRef": "RM_Integracao_SharePoint.Nome_Curso_Snapshot",
-              "nativeQueryRef": "Nome_Curso_Snapshot"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "RM_Integracao_SharePoint"
-                    }
-                  },
-                  "Property": "Instrutor"
-                }
-              },
-              "queryRef": "RM_Integracao_SharePoint.Instrutor",
-              "nativeQueryRef": "Instrutor"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "RM_Integracao_SharePoint"
-                    }
-                  },
-                  "Property": "RM_Status_Instrutor"
-                }
-              },
-              "queryRef": "RM_Integracao_SharePoint.RM_Status_Instrutor",
-              "nativeQueryRef": "RM_Status_Instrutor"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "RM_Integracao_SharePoint"
-                    }
-                  },
-                  "Property": "Data_Inicio_Prevista"
-                }
-              },
-              "queryRef": "RM_Integracao_SharePoint.Data_Inicio_Prevista",
-              "nativeQueryRef": "Data_Inicio_Prevista"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "RM_Integracao_SharePoint"
-                    }
-                  },
-                  "Property": "Data_Fim_Prevista"
-                }
-              },
-              "queryRef": "RM_Integracao_SharePoint.Data_Fim_Prevista",
-              "nativeQueryRef": "Data_Fim_Prevista"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "RM_Integracao_SharePoint"
-                    }
-                  },
-                  "Property": "Quantidade_Vagas"
-                }
-              },
-              "queryRef": "RM_Integracao_SharePoint.Quantidade_Vagas",
-              "nativeQueryRef": "Quantidade_Vagas"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "RM_Integracao_SharePoint"
-                    }
-                  },
                   "Property": "Planejamento"
                 }
               },
@@ -218,6 +50,20 @@
                       "Entity": "RM_Integracao_SharePoint"
                     }
                   },
+                  "Property": "Periodo_Letivo"
+                }
+              },
+              "queryRef": "RM_Integracao_SharePoint.Periodo_Letivo",
+              "nativeQueryRef": "Periodo_Letivo"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Integracao_SharePoint"
+                    }
+                  },
                   "Property": "Ano_Referencia"
                 }
               },
@@ -237,6 +83,20 @@
               },
               "queryRef": "RM_Integracao_SharePoint.Identificador_Temporario",
               "nativeQueryRef": "Identificador_Temporario"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Integracao_SharePoint"
+                    }
+                  },
+                  "Property": "Codigo_Turma_SGE"
+                }
+              },
+              "queryRef": "RM_Integracao_SharePoint.Codigo_Turma_SGE",
+              "nativeQueryRef": "Codigo_Turma_SGE"
             },
             {
               "field": {
@@ -293,6 +153,20 @@
               },
               "queryRef": "RM_Integracao_SharePoint.Codigo_Matriz_Snapshot",
               "nativeQueryRef": "Codigo_Matriz_Snapshot"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Integracao_SharePoint"
+                    }
+                  },
+                  "Property": "Nome_Curso_Snapshot"
+                }
+              },
+              "queryRef": "RM_Integracao_SharePoint.Nome_Curso_Snapshot",
+              "nativeQueryRef": "Nome_Curso_Snapshot"
             },
             {
               "field": {
@@ -363,6 +237,48 @@
               },
               "queryRef": "RM_Integracao_SharePoint.Data_Snapshot_Matriz",
               "nativeQueryRef": "Data_Snapshot_Matriz"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Integracao_SharePoint"
+                    }
+                  },
+                  "Property": "Data_Inicio_Prevista"
+                }
+              },
+              "queryRef": "RM_Integracao_SharePoint.Data_Inicio_Prevista",
+              "nativeQueryRef": "Data_Inicio_Prevista"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Integracao_SharePoint"
+                    }
+                  },
+                  "Property": "Data_Fim_Prevista"
+                }
+              },
+              "queryRef": "RM_Integracao_SharePoint.Data_Fim_Prevista",
+              "nativeQueryRef": "Data_Fim_Prevista"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Integracao_SharePoint"
+                    }
+                  },
+                  "Property": "Quantidade_Vagas"
+                }
+              },
+              "queryRef": "RM_Integracao_SharePoint.Quantidade_Vagas",
+              "nativeQueryRef": "Quantidade_Vagas"
             },
             {
               "field": {
@@ -797,6 +713,20 @@
               },
               "queryRef": "RM_Integracao_SharePoint.Local_realizacao",
               "nativeQueryRef": "Local_realizacao"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Integracao_SharePoint"
+                    }
+                  },
+                  "Property": "Instrutor"
+                }
+              },
+              "queryRef": "RM_Integracao_SharePoint.Instrutor",
+              "nativeQueryRef": "Instrutor"
             },
             {
               "field": {
