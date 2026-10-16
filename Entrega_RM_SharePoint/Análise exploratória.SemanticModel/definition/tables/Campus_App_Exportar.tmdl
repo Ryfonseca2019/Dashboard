@@ -1,0 +1,47 @@
+table 'Campus_App_Exportar'
+
+	column 'ID_SharePoint'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: ID_SharePoint
+
+	column 'Codigo_SGE'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Codigo_SGE
+
+	column 'Valor_App'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Valor_App
+
+	column 'Ativa'
+		dataType: boolean
+		summarizeBy: none
+		sourceColumn: Ativa
+
+	column 'Ocorrencias_Codigo'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Ocorrencias_Codigo
+
+	column 'Status_Cadastro'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Status_Cadastro
+
+	partition 'Campus_App_Exportar' = m
+		mode: import
+		source =
+				let
+				    Fonte=Table.SelectColumns(APP_Cad_Campus_Polo,{"ID","Codigo_Campus_Polo_SGE","Nome_Campus_Polo","Ativa"}),
+				    Renomeado=Table.RenameColumns(Fonte,{{"ID","ID_SharePoint"},{"Codigo_Campus_Polo_SGE","Codigo_SGE"},{"Nome_Campus_Polo","Valor_App"}}),
+				    Codigos=Table.TransformColumns(Renomeado,{{"Codigo_SGE",each if _=null then null else let T=Text.Trim(Text.From(_)) in if T="" then null else T,type nullable text}}),
+				    Contagens=Table.Group(Table.SelectRows(Codigos,each [Codigo_SGE]<>null),{"Codigo_SGE"},{{"N",each Table.RowCount(_),Int64.Type}}),
+				    J=Table.NestedJoin(Codigos,{"Codigo_SGE"},Contagens,{"Codigo_SGE"},"Contagem",JoinKind.LeftOuter),
+				    E=Table.ExpandTableColumn(J,"Contagem",{"N"},{"Ocorrencias_Codigo"}),
+				    Status=Table.AddColumn(E,"Status_Cadastro",each if [Codigo_SGE]=null then "Sem código SGE" else if [Ocorrencias_Codigo]>1 then "Código repetido no cadastro" else if [Ativa]<>true then "Opção não ativa" else "Código único e opção ativa; validar significado",type text),
+				    Resultado=Table.Sort(Status,{{"ID_SharePoint",Order.Ascending}})
+				in Resultado
+
+	annotation PBI_ResultType = Table

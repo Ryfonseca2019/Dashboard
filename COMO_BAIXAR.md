@@ -1,30 +1,22 @@
-# Power BI — Catálogos e de/para do app
+# Power BI — Comparação de Campus/Polo
 
-Baixe **Planejamento_Turmas_RM_Regras_Matriculas_v10.zip**.
+Baixe **Planejamento_Turmas_RM_Comparacao_Campus_v11.zip**.
 
-V8 — CATÁLOGOS DO APP E DE/PARA DE MATRIZES
+V11 — VISÃO PARA COMPARAR CAMPUS/POLO
 
-1. Extraia em pasta nova e abra o PBIP no Desktop atualizado.
-2. Atualize usando acesso corporativo ao RM e Conta organizacional no SharePoint (mesmo site do app). A fonte Web das opções de escolha pode solicitar autenticação adicional. Nenhuma senha ou token foi salvo.
-3. As tabelas APP_* consultam os cadastros reais do app, não exemplos nem uma lista inventada de opções. APP_Opcoes_Escolha lê as opções atuais de Choice via API; APP_Contrato_Campos registra o esquema do msapp recebido, que pode divergir da lista atual.
-4. Confira as páginas Catálogos do app, Opções e contrato, De-para de matrizes e Exportação enriquecida.
-5. DP_Matrizes_Candidatas sugere apenas nomes exatamente iguais. Nomes iguais não comprovam a mesma matriz: valide versão/currículo/carga/código antes de copiar a chave RM e o ID real para DP_Matrizes_Validadas, no Editor Avançado. Essa tabela começa vazia de propósito. Há detecção de chaves duplicadas.
-6. Exportacao_App_Enriquecida usa somente matrizes aprovadas e copia código, nome, área, modalidade, mediação e carga diretamente de Cad_Matrizes, como o app. Captura as duas datas de snapshot e inclui Modalidade (campo adicional obrigatório). Se não houver de/para, os campos de matriz ficam vazios e o status indica a pendência. O status de matriz cruzada não significa migração completa.
-7. DP_Turnos, DP_Financiamentos e DP_Campus_Polo expõem os IDs, rótulos e códigos SGE reais do app; são opções para validar, não associações RM já comprovadas. RM_Estrutura_Integracao deve ser exportada para confirmar as colunas RM de origem antes de automatizar esses campos.
-8. Não foram derivados previsão de matrículas, pedagogo ou método de evasão do professor, das vagas ou de códigos sem comprovação. Esses dados dependem da origem/regra real. Parametros_Evasao_Unidade é carregado para validação das taxas por unidade/ano/modalidade; nenhuma taxa foi assumida.
-9. Conferir Unidade e Planejamento por ID, cadastro de períodos, responsável Pessoa e todos os obrigatórios antes de colar. A V8 não preenche de forma automática Identificador_Temporario: use os identificadores já gerados e preservados na planilha do lote.
+Extraia o ZIP em uma pasta nova, abra Análise exploratória.pbip no Desktop e execute Atualizar com acesso corporativo ao RM e conta organizacional do SharePoint.
+Abra a página Comparar Campus-Polo, selecionada ao abrir.
 
-IMPORTANTE
-Não é uma entrega pronta para migrar todas as linhas: faltam correspondências validadas RM ↔ app, autenticação e validação no Desktop. A consulta original de RM e seus professores foi preservada; o filtro segue término no ano atual em diante. Abertura, M, SQL, opções ao vivo e renderização não foram executados neste ambiente.
-Lookup/Pessoa exigem entidades válidas; texto igual não garante que a colagem de grade resolverá o ID. Exportacao_App_Enriquecida inclui campos adicionais fora das 54 colunas; preparar uma exibição correspondente antes de colar. Não colar a coluna de status nem IDs técnicos como dados da lista.
-Nenhuma linha de dados do app ou dos usuários foi publicada no GitHub; somente consultas, esquema e instruções. Preservar sua cópia local se já criou medidas/visuais.
+Há três visuais independentes:
+- Superior esquerdo, Campus_RM_Exportar: coligada, filial, unidade, código de campus, quantidade de turmas distintas e quantidade de linhas da fonte.
+- Superior direito, Campus_App_Exportar: ID real do cadastro, código SGE, rótulo do app, Ativa, contagem de ocorrências do código e status de cadastro. Inclui opções inativas e sem código para diagnóstico.
+- Inferior, Campus_Comparacao: candidatos por igualdade do código e diagnóstico. Códigos iguais não comprovam equivalência de negócio; este visual não aprova nem preenche o de/para automaticamente.
 
-V9 corrige a opção ApiVersion incompatível com o conector SharePoint 2.0, removendo-a das nove conexões de catálogos.
+Em cada visual, clique em ... > Exportar dados e envie os arquivos. Os dois superiores são suficientes; se possível, envie também o inferior.
+Os arquivos não incluem nomes de professores ou alunos. Não acrescente dados pessoais.
+RM agrupa as turmas da seleção atual: término previsto no ano corrente ou posterior, sem filtro de início. Não usa apenas Niterói: identifica cada unidade encontrada na fonte. Turmas sem código de campus são incluídas em grupo vazio.
+O código é comparado como texto, retirando apenas espaços externos; zeros à esquerda são preservados. Não há associação automática por nome.
+As tabelas superiores não dependem da comparação nem do de/para de matrizes. Contudo, a atualização do projeto completo continua dependendo das demais fontes e credenciais.
 
-
-REGRAS APROVADAS — V10
-Matriculas_Previstas = Quantidade_Vagas, ambas vindas de STURMA.MAXALUNOS. A regra vale para RM_Integracao_SharePoint e suas exportações, inclusive Exportacao_App_Enriquecida.
-Pedagogo_Responsavel permanece vazio. Não substituir pelo instrutor.
-Para aceitar esse vazio, no SharePoint alterar a coluna Pedagogo_Responsavel para não obrigatória. No Power Apps, o controle Pedagogo_Responsavel_DataCard1 tem Required=true: alterar para false e publicar o app se as turmas forem posteriormente editadas/salvas sem pedagogo. Atualizar a fonte de dados no Studio após a alteração da lista.
-Essas configurações da lista e do app NÃO foram alteradas nesta entrega. O esquema APP_Contrato_Campos permanece como evidência do msapp recebido, onde o campo ainda é obrigatório.
-A mudança não resolve os demais cruzamentos e campos obrigatórios pendentes. Refazer Atualizar no PBIP; não usar exportações antigas.
+Nenhuma opção foi inventada e nenhuma correspondência foi aprovada. As regras SQL e os dados de cadastro não foram alterados. As decisões anteriores de matrículas previstas iguais às vagas e pedagogo em branco foram preservadas.
+A estrutura, campos de visuais e ZIP foram verificados; conexão RM/SharePoint, Power Query e renderização precisam ser validados no seu Desktop.

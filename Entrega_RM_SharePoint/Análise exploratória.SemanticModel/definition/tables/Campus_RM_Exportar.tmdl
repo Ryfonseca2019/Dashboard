@@ -1,0 +1,45 @@
+table 'Campus_RM_Exportar'
+
+	column 'RM_CODCOLIGADA'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: RM_CODCOLIGADA
+
+	column 'RM_CODFILIAL'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: RM_CODFILIAL
+
+	column 'RM_Unidade_Nome'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: RM_Unidade_Nome
+
+	column 'RM_Codigo_Campus'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: RM_Codigo_Campus
+
+	column 'Quantidade_Turmas'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Quantidade_Turmas
+
+	column 'Quantidade_Linhas_Fonte'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Quantidade_Linhas_Fonte
+
+	partition 'Campus_RM_Exportar' = m
+		mode: import
+		source =
+				let
+				    Fonte=Table.SelectColumns(RM_Integracao_SharePoint,{"RM_CODCOLIGADA","RM_CODFILIAL","RM_IDPERLET","RM_CODTURMA","RM_Unidade_Nome","RM_Codigo_Campus"}),
+				    Codigos=Table.TransformColumns(Fonte,{{"RM_Codigo_Campus",each if _=null then null else let T=Text.Trim(Text.From(_)) in if T="" then null else T,type nullable text}}),
+				    Agrupado=Table.Group(Codigos,{"RM_CODCOLIGADA","RM_CODFILIAL","RM_Unidade_Nome","RM_Codigo_Campus"},{
+				        {"Quantidade_Turmas",each Table.RowCount(Table.Distinct(Table.SelectColumns(_,{"RM_CODCOLIGADA","RM_CODFILIAL","RM_IDPERLET","RM_CODTURMA"}))),Int64.Type},
+				        {"Quantidade_Linhas_Fonte",each Table.RowCount(_),Int64.Type}}),
+				    Resultado=Table.Sort(Agrupado,{{"RM_CODCOLIGADA",Order.Ascending},{"RM_CODFILIAL",Order.Ascending},{"RM_Codigo_Campus",Order.Ascending}})
+				in Resultado
+
+	annotation PBI_ResultType = Table

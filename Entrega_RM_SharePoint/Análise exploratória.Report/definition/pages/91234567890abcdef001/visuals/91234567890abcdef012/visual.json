@@ -1,0 +1,177 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "91234567890abcdef012",
+  "position": {
+    "x": 20,
+    "y": 530,
+    "width": 1880,
+    "height": 530,
+    "z": 2
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Campus_Comparacao"
+                    }
+                  },
+                  "Property": "RM_CODCOLIGADA"
+                }
+              },
+              "queryRef": "Campus_Comparacao.RM_CODCOLIGADA",
+              "nativeQueryRef": "RM_CODCOLIGADA"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Campus_Comparacao"
+                    }
+                  },
+                  "Property": "RM_CODFILIAL"
+                }
+              },
+              "queryRef": "Campus_Comparacao.RM_CODFILIAL",
+              "nativeQueryRef": "RM_CODFILIAL"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Campus_Comparacao"
+                    }
+                  },
+                  "Property": "RM_Unidade_Nome"
+                }
+              },
+              "queryRef": "Campus_Comparacao.RM_Unidade_Nome",
+              "nativeQueryRef": "RM_Unidade_Nome"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Campus_Comparacao"
+                    }
+                  },
+                  "Property": "RM_Codigo_Campus"
+                }
+              },
+              "queryRef": "Campus_Comparacao.RM_Codigo_Campus",
+              "nativeQueryRef": "RM_Codigo_Campus"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Campus_Comparacao"
+                    }
+                  },
+                  "Property": "Quantidade_Turmas"
+                }
+              },
+              "queryRef": "Campus_Comparacao.Quantidade_Turmas",
+              "nativeQueryRef": "Quantidade_Turmas"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Campus_Comparacao"
+                    }
+                  },
+                  "Property": "Quantidade_Linhas_Fonte"
+                }
+              },
+              "queryRef": "Campus_Comparacao.Quantidade_Linhas_Fonte",
+              "nativeQueryRef": "Quantidade_Linhas_Fonte"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Campus_Comparacao"
+                    }
+                  },
+                  "Property": "Quantidade_Opcoes_App"
+                }
+              },
+              "queryRef": "Campus_Comparacao.Quantidade_Opcoes_App",
+              "nativeQueryRef": "Quantidade_Opcoes_App"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Campus_Comparacao"
+                    }
+                  },
+                  "Property": "Quantidade_Opcoes_Ativas"
+                }
+              },
+              "queryRef": "Campus_Comparacao.Quantidade_Opcoes_Ativas",
+              "nativeQueryRef": "Quantidade_Opcoes_Ativas"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Campus_Comparacao"
+                    }
+                  },
+                  "Property": "IDs_Candidatos"
+                }
+              },
+              "queryRef": "Campus_Comparacao.IDs_Candidatos",
+              "nativeQueryRef": "IDs_Candidatos"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Campus_Comparacao"
+                    }
+                  },
+                  "Property": "Opcoes_Candidatas"
+                }
+              },
+              "queryRef": "Campus_Comparacao.Opcoes_Candidatas",
+              "nativeQueryRef": "Opcoes_Candidatas"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Campus_Comparacao"
+                    }
+                  },
+                  "Property": "Resultado_Comparacao"
+                }
+              },
+              "queryRef": "Campus_Comparacao.Resultado_Comparacao",
+              "nativeQueryRef": "Resultado_Comparacao"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

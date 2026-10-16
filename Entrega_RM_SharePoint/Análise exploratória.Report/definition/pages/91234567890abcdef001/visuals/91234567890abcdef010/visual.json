@@ -1,0 +1,107 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "91234567890abcdef010",
+  "position": {
+    "x": 20,
+    "y": 20,
+    "width": 920,
+    "height": 490,
+    "z": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Campus_RM_Exportar"
+                    }
+                  },
+                  "Property": "RM_CODCOLIGADA"
+                }
+              },
+              "queryRef": "Campus_RM_Exportar.RM_CODCOLIGADA",
+              "nativeQueryRef": "RM_CODCOLIGADA"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Campus_RM_Exportar"
+                    }
+                  },
+                  "Property": "RM_CODFILIAL"
+                }
+              },
+              "queryRef": "Campus_RM_Exportar.RM_CODFILIAL",
+              "nativeQueryRef": "RM_CODFILIAL"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Campus_RM_Exportar"
+                    }
+                  },
+                  "Property": "RM_Unidade_Nome"
+                }
+              },
+              "queryRef": "Campus_RM_Exportar.RM_Unidade_Nome",
+              "nativeQueryRef": "RM_Unidade_Nome"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Campus_RM_Exportar"
+                    }
+                  },
+                  "Property": "RM_Codigo_Campus"
+                }
+              },
+              "queryRef": "Campus_RM_Exportar.RM_Codigo_Campus",
+              "nativeQueryRef": "RM_Codigo_Campus"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Campus_RM_Exportar"
+                    }
+                  },
+                  "Property": "Quantidade_Turmas"
+                }
+              },
+              "queryRef": "Campus_RM_Exportar.Quantidade_Turmas",
+              "nativeQueryRef": "Quantidade_Turmas"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Campus_RM_Exportar"
+                    }
+                  },
+                  "Property": "Quantidade_Linhas_Fonte"
+                }
+              },
+              "queryRef": "Campus_RM_Exportar.Quantidade_Linhas_Fonte",
+              "nativeQueryRef": "Quantidade_Linhas_Fonte"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

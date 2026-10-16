@@ -63,3 +63,9 @@ ref table 'DP_Matrizes_Candidatas'
 ref table 'Exportacao_App_Enriquecida'
 
 ref table 'RM_Estrutura_Integracao'
+
+ref table 'Campus_RM_Exportar'
+
+ref table 'Campus_App_Exportar'
+
+ref table 'Campus_Comparacao'

@@ -1,0 +1,73 @@
+table 'Campus_Comparacao'
+
+	column 'RM_CODCOLIGADA'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: RM_CODCOLIGADA
+
+	column 'RM_CODFILIAL'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: RM_CODFILIAL
+
+	column 'RM_Unidade_Nome'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: RM_Unidade_Nome
+
+	column 'RM_Codigo_Campus'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: RM_Codigo_Campus
+
+	column 'Quantidade_Turmas'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Quantidade_Turmas
+
+	column 'Quantidade_Linhas_Fonte'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Quantidade_Linhas_Fonte
+
+	column 'Quantidade_Opcoes_App'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Quantidade_Opcoes_App
+
+	column 'Quantidade_Opcoes_Ativas'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Quantidade_Opcoes_Ativas
+
+	column 'IDs_Candidatos'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: IDs_Candidatos
+
+	column 'Opcoes_Candidatas'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Opcoes_Candidatas
+
+	column 'Resultado_Comparacao'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Resultado_Comparacao
+
+	partition 'Campus_Comparacao' = m
+		mode: import
+		source =
+				let
+				    RM=Campus_RM_Exportar,
+				    App=Table.SelectRows(Campus_App_Exportar,each [Codigo_SGE]<>null),
+				    J=Table.NestedJoin(RM,{"RM_Codigo_Campus"},App,{"Codigo_SGE"},"Opcoes",JoinKind.LeftOuter),
+				    N=Table.AddColumn(J,"Quantidade_Opcoes_App",each Table.RowCount([Opcoes]),Int64.Type),
+				    NA=Table.AddColumn(N,"Quantidade_Opcoes_Ativas",each Table.RowCount(Table.SelectRows([Opcoes],each [Ativa]=true)),Int64.Type),
+				    IDs=Table.AddColumn(NA,"IDs_Candidatos",each Text.Combine(List.Transform([Opcoes][ID_SharePoint],each Text.From(_)),"; "),type text),
+				    Nomes=Table.AddColumn(IDs,"Opcoes_Candidatas",each Text.Combine(List.RemoveNulls([Opcoes][Valor_App]),"; "),type text),
+				    Status=Table.AddColumn(Nomes,"Resultado_Comparacao",each if [RM_Codigo_Campus]=null then "RM sem código de campus" else if [Quantidade_Opcoes_App]=0 then "Código RM sem correspondência no app" else if [Quantidade_Opcoes_App]>1 then "Ambíguo: código repetido no app" else if [Quantidade_Opcoes_Ativas]<>1 then "Correspondência apenas com opção não ativa" else "Código igual e opção ativa: confirmar equivalência de negócio",type text),
+				    Resultado=Table.RemoveColumns(Status,{"Opcoes"})
+				in Resultado
+
+	annotation PBI_ResultType = Table

@@ -1,0 +1,107 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "91234567890abcdef011",
+  "position": {
+    "x": 960,
+    "y": 20,
+    "width": 940,
+    "height": 490,
+    "z": 1
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Campus_App_Exportar"
+                    }
+                  },
+                  "Property": "ID_SharePoint"
+                }
+              },
+              "queryRef": "Campus_App_Exportar.ID_SharePoint",
+              "nativeQueryRef": "ID_SharePoint"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Campus_App_Exportar"
+                    }
+                  },
+                  "Property": "Codigo_SGE"
+                }
+              },
+              "queryRef": "Campus_App_Exportar.Codigo_SGE",
+              "nativeQueryRef": "Codigo_SGE"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Campus_App_Exportar"
+                    }
+                  },
+                  "Property": "Valor_App"
+                }
+              },
+              "queryRef": "Campus_App_Exportar.Valor_App",
+              "nativeQueryRef": "Valor_App"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Campus_App_Exportar"
+                    }
+                  },
+                  "Property": "Ativa"
+                }
+              },
+              "queryRef": "Campus_App_Exportar.Ativa",
+              "nativeQueryRef": "Ativa"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Campus_App_Exportar"
+                    }
+                  },
+                  "Property": "Ocorrencias_Codigo"
+                }
+              },
+              "queryRef": "Campus_App_Exportar.Ocorrencias_Codigo",
+              "nativeQueryRef": "Ocorrencias_Codigo"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Campus_App_Exportar"
+                    }
+                  },
+                  "Property": "Status_Cadastro"
+                }
+              },
+              "queryRef": "Campus_App_Exportar.Status_Cadastro",
+              "nativeQueryRef": "Status_Cadastro"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}
