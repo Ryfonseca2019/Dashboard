@@ -1,0 +1,107 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "81234567890abcdef011",
+  "position": {
+    "x": 950,
+    "y": 20,
+    "z": 0,
+    "width": 950,
+    "height": 1020
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "APP_Contrato_Campos"
+                    }
+                  },
+                  "Property": "Campo_Interno"
+                }
+              },
+              "queryRef": "APP_Contrato_Campos.Campo_Interno",
+              "nativeQueryRef": "Campo_Interno"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "APP_Contrato_Campos"
+                    }
+                  },
+                  "Property": "Rotulo"
+                }
+              },
+              "queryRef": "APP_Contrato_Campos.Rotulo",
+              "nativeQueryRef": "Rotulo"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "APP_Contrato_Campos"
+                    }
+                  },
+                  "Property": "Tipo"
+                }
+              },
+              "queryRef": "APP_Contrato_Campos.Tipo",
+              "nativeQueryRef": "Tipo"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "APP_Contrato_Campos"
+                    }
+                  },
+                  "Property": "Obrigatorio"
+                }
+              },
+              "queryRef": "APP_Contrato_Campos.Obrigatorio",
+              "nativeQueryRef": "Obrigatorio"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "APP_Contrato_Campos"
+                    }
+                  },
+                  "Property": "Permissao"
+                }
+              },
+              "queryRef": "APP_Contrato_Campos.Permissao",
+              "nativeQueryRef": "Permissao"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "APP_Contrato_Campos"
+                    }
+                  },
+                  "Property": "Vinculo"
+                }
+              },
+              "queryRef": "APP_Contrato_Campos.Vinculo",
+              "nativeQueryRef": "Vinculo"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

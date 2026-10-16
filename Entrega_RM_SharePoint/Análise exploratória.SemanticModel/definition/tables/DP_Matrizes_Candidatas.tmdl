@@ -1,0 +1,54 @@
+table 'DP_Matrizes_Candidatas'
+
+	column 'RM_CODCOLIGADA'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: RM_CODCOLIGADA
+
+	column 'RM_Codigo_Curso'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: RM_Codigo_Curso
+
+	column 'RM_Codigo_Grade'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: RM_Codigo_Grade
+
+	column 'Curso_RM'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Curso_RM
+
+	column 'ID_Matriz_SharePoint'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: ID_Matriz_SharePoint
+
+	column 'Codigo_Matriz_App'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Codigo_Matriz_App
+
+	column 'Curso_App'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Curso_App
+
+	column 'Status'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Status
+
+	partition 'DP_Matrizes_Candidatas' = m
+		mode: import
+		source =
+				let
+				    RM=Table.Distinct(Table.RenameColumns(Table.SelectColumns(RM_Integracao_SharePoint,{"RM_CODCOLIGADA","RM_Codigo_Curso","RM_Codigo_Grade","Nome_Curso_Snapshot"}),{{"Nome_Curso_Snapshot","Curso_RM"}})),
+				    Cad=Table.SelectRows(APP_Cad_Matrizes, each [Ativa]=true),
+				    Junta=Table.NestedJoin(RM,{"Curso_RM"},Cad,{"Nome_Curso"},"Candidatas",JoinKind.LeftOuter),
+				    Abre=Table.ExpandTableColumn(Junta,"Candidatas",{"ID","Codigo_Matriz","Nome_Curso"},{"ID_Matriz_SharePoint","Codigo_Matriz_App","Curso_App"}),
+				    Status=Table.AddColumn(Abre,"Status",each if [ID_Matriz_SharePoint]=null then "Sem candidata pelo nome exato" else "Candidata por nome; confirmar currículo/versão/carga antes de aprovar",type text)
+				in Status
+
+	annotation PBI_ResultType = Table

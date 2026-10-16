@@ -1,0 +1,835 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "81234567890abcdef010",
+  "position": {
+    "x": 20,
+    "y": 20,
+    "z": 0,
+    "width": 1880,
+    "height": 1020
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Exportacao_App_Enriquecida"
+                    }
+                  },
+                  "Property": "Planejamento"
+                }
+              },
+              "queryRef": "Exportacao_App_Enriquecida.Planejamento",
+              "nativeQueryRef": "Planejamento"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Exportacao_App_Enriquecida"
+                    }
+                  },
+                  "Property": "Unidade"
+                }
+              },
+              "queryRef": "Exportacao_App_Enriquecida.Unidade",
+              "nativeQueryRef": "Unidade"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Exportacao_App_Enriquecida"
+                    }
+                  },
+                  "Property": "Periodo_Letivo"
+                }
+              },
+              "queryRef": "Exportacao_App_Enriquecida.Periodo_Letivo",
+              "nativeQueryRef": "Periodo_Letivo"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Exportacao_App_Enriquecida"
+                    }
+                  },
+                  "Property": "Ano_Referencia"
+                }
+              },
+              "queryRef": "Exportacao_App_Enriquecida.Ano_Referencia",
+              "nativeQueryRef": "Ano_Referencia"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Exportacao_App_Enriquecida"
+                    }
+                  },
+                  "Property": "Identificador_Temporario"
+                }
+              },
+              "queryRef": "Exportacao_App_Enriquecida.Identificador_Temporario",
+              "nativeQueryRef": "Identificador_Temporario"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Exportacao_App_Enriquecida"
+                    }
+                  },
+                  "Property": "Codigo_Turma_SGE"
+                }
+              },
+              "queryRef": "Exportacao_App_Enriquecida.Codigo_Turma_SGE",
+              "nativeQueryRef": "Codigo_Turma_SGE"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Exportacao_App_Enriquecida"
+                    }
+                  },
+                  "Property": "Matriz"
+                }
+              },
+              "queryRef": "Exportacao_App_Enriquecida.Matriz",
+              "nativeQueryRef": "Matriz"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Exportacao_App_Enriquecida"
+                    }
+                  },
+                  "Property": "Status_Turma"
+                }
+              },
+              "queryRef": "Exportacao_App_Enriquecida.Status_Turma",
+              "nativeQueryRef": "Status_Turma"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Exportacao_App_Enriquecida"
+                    }
+                  },
+                  "Property": "Ativa"
+                }
+              },
+              "queryRef": "Exportacao_App_Enriquecida.Ativa",
+              "nativeQueryRef": "Ativa"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Exportacao_App_Enriquecida"
+                    }
+                  },
+                  "Property": "Codigo_Matriz_Snapshot"
+                }
+              },
+              "queryRef": "Exportacao_App_Enriquecida.Codigo_Matriz_Snapshot",
+              "nativeQueryRef": "Codigo_Matriz_Snapshot"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Exportacao_App_Enriquecida"
+                    }
+                  },
+                  "Property": "Nome_Curso_Snapshot"
+                }
+              },
+              "queryRef": "Exportacao_App_Enriquecida.Nome_Curso_Snapshot",
+              "nativeQueryRef": "Nome_Curso_Snapshot"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Exportacao_App_Enriquecida"
+                    }
+                  },
+                  "Property": "Area_Snapshot"
+                }
+              },
+              "queryRef": "Exportacao_App_Enriquecida.Area_Snapshot",
+              "nativeQueryRef": "Area_Snapshot"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Exportacao_App_Enriquecida"
+                    }
+                  },
+                  "Property": "Modalidade_Snapshot"
+                }
+              },
+              "queryRef": "Exportacao_App_Enriquecida.Modalidade_Snapshot",
+              "nativeQueryRef": "Modalidade_Snapshot"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Exportacao_App_Enriquecida"
+                    }
+                  },
+                  "Property": "Tipo_Mediacao_Snapshot"
+                }
+              },
+              "queryRef": "Exportacao_App_Enriquecida.Tipo_Mediacao_Snapshot",
+              "nativeQueryRef": "Tipo_Mediacao_Snapshot"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Exportacao_App_Enriquecida"
+                    }
+                  },
+                  "Property": "Carga_Horaria_Snapshot"
+                }
+              },
+              "queryRef": "Exportacao_App_Enriquecida.Carga_Horaria_Snapshot",
+              "nativeQueryRef": "Carga_Horaria_Snapshot"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Exportacao_App_Enriquecida"
+                    }
+                  },
+                  "Property": "Data_Snapshot_Matriz"
+                }
+              },
+              "queryRef": "Exportacao_App_Enriquecida.Data_Snapshot_Matriz",
+              "nativeQueryRef": "Data_Snapshot_Matriz"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Exportacao_App_Enriquecida"
+                    }
+                  },
+                  "Property": "Data_Inicio_Prevista"
+                }
+              },
+              "queryRef": "Exportacao_App_Enriquecida.Data_Inicio_Prevista",
+              "nativeQueryRef": "Data_Inicio_Prevista"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Exportacao_App_Enriquecida"
+                    }
+                  },
+                  "Property": "Data_Fim_Prevista"
+                }
+              },
+              "queryRef": "Exportacao_App_Enriquecida.Data_Fim_Prevista",
+              "nativeQueryRef": "Data_Fim_Prevista"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Exportacao_App_Enriquecida"
+                    }
+                  },
+                  "Property": "Quantidade_Vagas"
+                }
+              },
+              "queryRef": "Exportacao_App_Enriquecida.Quantidade_Vagas",
+              "nativeQueryRef": "Quantidade_Vagas"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Exportacao_App_Enriquecida"
+                    }
+                  },
+                  "Property": "Matriculas_Previstas"
+                }
+              },
+              "queryRef": "Exportacao_App_Enriquecida.Matriculas_Previstas",
+              "nativeQueryRef": "Matriculas_Previstas"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Exportacao_App_Enriquecida"
+                    }
+                  },
+                  "Property": "Campus_Polo"
+                }
+              },
+              "queryRef": "Exportacao_App_Enriquecida.Campus_Polo",
+              "nativeQueryRef": "Campus_Polo"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Exportacao_App_Enriquecida"
+                    }
+                  },
+                  "Property": "Financiamento"
+                }
+              },
+              "queryRef": "Exportacao_App_Enriquecida.Financiamento",
+              "nativeQueryRef": "Financiamento"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Exportacao_App_Enriquecida"
+                    }
+                  },
+                  "Property": "Tipo_Periodo"
+                }
+              },
+              "queryRef": "Exportacao_App_Enriquecida.Tipo_Periodo",
+              "nativeQueryRef": "Tipo_Periodo"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Exportacao_App_Enriquecida"
+                    }
+                  },
+                  "Property": "Pedagogo_Responsavel"
+                }
+              },
+              "queryRef": "Exportacao_App_Enriquecida.Pedagogo_Responsavel",
+              "nativeQueryRef": "Pedagogo_Responsavel"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Exportacao_App_Enriquecida"
+                    }
+                  },
+                  "Property": "Mobilizacao"
+                }
+              },
+              "queryRef": "Exportacao_App_Enriquecida.Mobilizacao",
+              "nativeQueryRef": "Mobilizacao"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Exportacao_App_Enriquecida"
+                    }
+                  },
+                  "Property": "Empresa"
+                }
+              },
+              "queryRef": "Exportacao_App_Enriquecida.Empresa",
+              "nativeQueryRef": "Empresa"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Exportacao_App_Enriquecida"
+                    }
+                  },
+                  "Property": "Projeto"
+                }
+              },
+              "queryRef": "Exportacao_App_Enriquecida.Projeto",
+              "nativeQueryRef": "Projeto"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Exportacao_App_Enriquecida"
+                    }
+                  },
+                  "Property": "Sindicato"
+                }
+              },
+              "queryRef": "Exportacao_App_Enriquecida.Sindicato",
+              "nativeQueryRef": "Sindicato"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Exportacao_App_Enriquecida"
+                    }
+                  },
+                  "Property": "Classe_Valor"
+                }
+              },
+              "queryRef": "Exportacao_App_Enriquecida.Classe_Valor",
+              "nativeQueryRef": "Classe_Valor"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Exportacao_App_Enriquecida"
+                    }
+                  },
+                  "Property": "Item_Contabil_Snapshot"
+                }
+              },
+              "queryRef": "Exportacao_App_Enriquecida.Item_Contabil_Snapshot",
+              "nativeQueryRef": "Item_Contabil_Snapshot"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Exportacao_App_Enriquecida"
+                    }
+                  },
+                  "Property": "Centro_Custo_Snapshot"
+                }
+              },
+              "queryRef": "Exportacao_App_Enriquecida.Centro_Custo_Snapshot",
+              "nativeQueryRef": "Centro_Custo_Snapshot"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Exportacao_App_Enriquecida"
+                    }
+                  },
+                  "Property": "Observacoes"
+                }
+              },
+              "queryRef": "Exportacao_App_Enriquecida.Observacoes",
+              "nativeQueryRef": "Observacoes"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Exportacao_App_Enriquecida"
+                    }
+                  },
+                  "Property": "Motivo_Cancelamento"
+                }
+              },
+              "queryRef": "Exportacao_App_Enriquecida.Motivo_Cancelamento",
+              "nativeQueryRef": "Motivo_Cancelamento"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Exportacao_App_Enriquecida"
+                    }
+                  },
+                  "Property": "Data_Cancelamento"
+                }
+              },
+              "queryRef": "Exportacao_App_Enriquecida.Data_Cancelamento",
+              "nativeQueryRef": "Data_Cancelamento"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Exportacao_App_Enriquecida"
+                    }
+                  },
+                  "Property": "Cancelada_Por"
+                }
+              },
+              "queryRef": "Exportacao_App_Enriquecida.Cancelada_Por",
+              "nativeQueryRef": "Cancelada_Por"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Exportacao_App_Enriquecida"
+                    }
+                  },
+                  "Property": "Data_Conclusao"
+                }
+              },
+              "queryRef": "Exportacao_App_Enriquecida.Data_Conclusao",
+              "nativeQueryRef": "Data_Conclusao"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Exportacao_App_Enriquecida"
+                    }
+                  },
+                  "Property": "Bloqueada_Para_Edicao"
+                }
+              },
+              "queryRef": "Exportacao_App_Enriquecida.Bloqueada_Para_Edicao",
+              "nativeQueryRef": "Bloqueada_Para_Edicao"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Exportacao_App_Enriquecida"
+                    }
+                  },
+                  "Property": "Versao_Planejamento"
+                }
+              },
+              "queryRef": "Exportacao_App_Enriquecida.Versao_Planejamento",
+              "nativeQueryRef": "Versao_Planejamento"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Exportacao_App_Enriquecida"
+                    }
+                  },
+                  "Property": "Origem_Registro"
+                }
+              },
+              "queryRef": "Exportacao_App_Enriquecida.Origem_Registro",
+              "nativeQueryRef": "Origem_Registro"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Exportacao_App_Enriquecida"
+                    }
+                  },
+                  "Property": "Data_Ultima_Revisao"
+                }
+              },
+              "queryRef": "Exportacao_App_Enriquecida.Data_Ultima_Revisao",
+              "nativeQueryRef": "Data_Ultima_Revisao"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Exportacao_App_Enriquecida"
+                    }
+                  },
+                  "Property": "Turno"
+                }
+              },
+              "queryRef": "Exportacao_App_Enriquecida.Turno",
+              "nativeQueryRef": "Turno"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Exportacao_App_Enriquecida"
+                    }
+                  },
+                  "Property": "Tipo_Calculo_Evasao"
+                }
+              },
+              "queryRef": "Exportacao_App_Enriquecida.Tipo_Calculo_Evasao",
+              "nativeQueryRef": "Tipo_Calculo_Evasao"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Exportacao_App_Enriquecida"
+                    }
+                  },
+                  "Property": "Percentual_Evasao_Previsto"
+                }
+              },
+              "queryRef": "Exportacao_App_Enriquecida.Percentual_Evasao_Previsto",
+              "nativeQueryRef": "Percentual_Evasao_Previsto"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Exportacao_App_Enriquecida"
+                    }
+                  },
+                  "Property": "Quantidade_Evasao_Prevista"
+                }
+              },
+              "queryRef": "Exportacao_App_Enriquecida.Quantidade_Evasao_Prevista",
+              "nativeQueryRef": "Quantidade_Evasao_Prevista"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Exportacao_App_Enriquecida"
+                    }
+                  },
+                  "Property": "Matriculas_Consideradas"
+                }
+              },
+              "queryRef": "Exportacao_App_Enriquecida.Matriculas_Consideradas",
+              "nativeQueryRef": "Matriculas_Consideradas"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Exportacao_App_Enriquecida"
+                    }
+                  },
+                  "Property": "ID"
+                }
+              },
+              "queryRef": "Exportacao_App_Enriquecida.ID",
+              "nativeQueryRef": "ID"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Exportacao_App_Enriquecida"
+                    }
+                  },
+                  "Property": "Matriculas_Reais"
+                }
+              },
+              "queryRef": "Exportacao_App_Enriquecida.Matriculas_Reais",
+              "nativeQueryRef": "Matriculas_Reais"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Exportacao_App_Enriquecida"
+                    }
+                  },
+                  "Property": "Matriculas_Reais_Confirmadas"
+                }
+              },
+              "queryRef": "Exportacao_App_Enriquecida.Matriculas_Reais_Confirmadas",
+              "nativeQueryRef": "Matriculas_Reais_Confirmadas"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Exportacao_App_Enriquecida"
+                    }
+                  },
+                  "Property": "Código da turma SGE"
+                }
+              },
+              "queryRef": "Exportacao_App_Enriquecida.Código da turma SGE",
+              "nativeQueryRef": "Código da turma SGE"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Exportacao_App_Enriquecida"
+                    }
+                  },
+                  "Property": "Local_realizacao"
+                }
+              },
+              "queryRef": "Exportacao_App_Enriquecida.Local_realizacao",
+              "nativeQueryRef": "Local_realizacao"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Exportacao_App_Enriquecida"
+                    }
+                  },
+                  "Property": "Instrutor"
+                }
+              },
+              "queryRef": "Exportacao_App_Enriquecida.Instrutor",
+              "nativeQueryRef": "Instrutor"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Exportacao_App_Enriquecida"
+                    }
+                  },
+                  "Property": "Codigo_Matriz_Excel"
+                }
+              },
+              "queryRef": "Exportacao_App_Enriquecida.Codigo_Matriz_Excel",
+              "nativeQueryRef": "Codigo_Matriz_Excel"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Exportacao_App_Enriquecida"
+                    }
+                  },
+                  "Property": "Criado"
+                }
+              },
+              "queryRef": "Exportacao_App_Enriquecida.Criado",
+              "nativeQueryRef": "Criado"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Exportacao_App_Enriquecida"
+                    }
+                  },
+                  "Property": "Criado por"
+                }
+              },
+              "queryRef": "Exportacao_App_Enriquecida.Criado por",
+              "nativeQueryRef": "Criado por"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Exportacao_App_Enriquecida"
+                    }
+                  },
+                  "Property": "Modalidade"
+                }
+              },
+              "queryRef": "Exportacao_App_Enriquecida.Modalidade",
+              "nativeQueryRef": "Modalidade"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Exportacao_App_Enriquecida"
+                    }
+                  },
+                  "Property": "Data_Snapshot_Matriz0"
+                }
+              },
+              "queryRef": "Exportacao_App_Enriquecida.Data_Snapshot_Matriz0",
+              "nativeQueryRef": "Data_Snapshot_Matriz0"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Exportacao_App_Enriquecida"
+                    }
+                  },
+                  "Property": "ID_Matriz_SharePoint"
+                }
+              },
+              "queryRef": "Exportacao_App_Enriquecida.ID_Matriz_SharePoint",
+              "nativeQueryRef": "ID_Matriz_SharePoint"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Exportacao_App_Enriquecida"
+                    }
+                  },
+                  "Property": "Status_Cruzamento_Matriz"
+                }
+              },
+              "queryRef": "Exportacao_App_Enriquecida.Status_Cruzamento_Matriz",
+              "nativeQueryRef": "Status_Cruzamento_Matriz"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

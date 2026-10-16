@@ -1,0 +1,63 @@
+table 'APP_Matriz_Unidade_Configuracao'
+
+	column 'ID'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: ID
+
+	column 'Unidade'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Unidade
+
+	column 'Matriz'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Matriz
+
+	column 'Ano_Referencia'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Ano_Referencia
+
+	column 'Financiamento'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Financiamento
+
+	column 'Centro_Custo'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Centro_Custo
+
+	column 'Item_Contabil'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Item_Contabil
+
+	column 'Ativa'
+		dataType: boolean
+		summarizeBy: none
+		sourceColumn: Ativa
+
+	partition 'APP_Matriz_Unidade_Configuracao' = m
+		mode: import
+		source =
+				let
+				    Texto = (v as any) as nullable text =>
+				        if v = null then null
+				        else if Value.Is(v, type record) then
+				            let chaves = {"Value", "lookupValue", "LookupValue", "Title", "Email", "DisplayName"},
+				                chave = List.First(List.Select(chaves, each Record.HasFields(v, _)), null)
+				            in if chave = null then error "Objeto de cadastro sem rótulo reconhecido" else @Texto(Record.Field(v, chave))
+				        else if Value.Is(v, type list) then Text.Combine(List.RemoveNulls(List.Transform(v, each @Texto(_))), "; ")
+				        else Text.From(v, "pt-BR"),
+				    Fonte = SharePoint.Tables("https://sfirjan.sharepoint.com/sites/PlanejamentodeOfertasparaProduo-EP", [ApiVersion = 15, Implementation = "2.0", ViewMode = "All"]),
+				    Itens = Fonte{[Id = "0b4a4034-077f-4287-8f6b-ca76f1307fa4"]}[Items],
+				    Campos = Table.SelectColumns(Itens, {"ID", "Unidade", "Matriz", "Ano_Referencia", "Financiamento", "Centro_Custo", "Item_Contabil", "Ativa"}),
+				    Rotulos = Table.TransformColumns(Campos, {{"Unidade", Texto, type text}, {"Matriz", Texto, type text}, {"Financiamento", Texto, type text}, {"Centro_Custo", Texto, type text}, {"Item_Contabil", Texto, type text}}),
+				    Tipos = Table.TransformColumnTypes(Rotulos, {{"ID", Int64.Type}, {"Ano_Referencia", Int64.Type}, {"Ativa", type logical}}, "pt-BR")
+				in
+				    Tipos
+
+	annotation PBI_ResultType = Table

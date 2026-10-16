@@ -1,0 +1,333 @@
+table 'Exportacao_App_Enriquecida'
+
+	column 'Planejamento'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Planejamento
+
+	column 'Unidade'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Unidade
+
+	column 'Periodo_Letivo'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Periodo_Letivo
+
+	column 'Ano_Referencia'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Ano_Referencia
+
+	column 'Identificador_Temporario'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Identificador_Temporario
+
+	column 'Codigo_Turma_SGE'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Codigo_Turma_SGE
+
+	column 'Matriz'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Matriz
+
+	column 'Status_Turma'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Status_Turma
+
+	column 'Ativa'
+		dataType: boolean
+		summarizeBy: none
+		sourceColumn: Ativa
+
+	column 'Codigo_Matriz_Snapshot'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Codigo_Matriz_Snapshot
+
+	column 'Nome_Curso_Snapshot'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Nome_Curso_Snapshot
+
+	column 'Area_Snapshot'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Area_Snapshot
+
+	column 'Modalidade_Snapshot'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Modalidade_Snapshot
+
+	column 'Tipo_Mediacao_Snapshot'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Tipo_Mediacao_Snapshot
+
+	column 'Carga_Horaria_Snapshot'
+		dataType: double
+		summarizeBy: none
+		sourceColumn: Carga_Horaria_Snapshot
+		formatString: #,0.00
+
+	column 'Data_Snapshot_Matriz'
+		dataType: dateTime
+		summarizeBy: none
+		sourceColumn: Data_Snapshot_Matriz
+		formatString: dd/MM/yyyy
+
+	column 'Data_Inicio_Prevista'
+		dataType: dateTime
+		summarizeBy: none
+		sourceColumn: Data_Inicio_Prevista
+		formatString: dd/MM/yyyy
+
+	column 'Data_Fim_Prevista'
+		dataType: dateTime
+		summarizeBy: none
+		sourceColumn: Data_Fim_Prevista
+		formatString: dd/MM/yyyy
+
+	column 'Quantidade_Vagas'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Quantidade_Vagas
+
+	column 'Matriculas_Previstas'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Matriculas_Previstas
+
+	column 'Campus_Polo'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Campus_Polo
+
+	column 'Financiamento'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Financiamento
+
+	column 'Tipo_Periodo'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Tipo_Periodo
+
+	column 'Pedagogo_Responsavel'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Pedagogo_Responsavel
+
+	column 'Mobilizacao'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Mobilizacao
+
+	column 'Empresa'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Empresa
+
+	column 'Projeto'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Projeto
+
+	column 'Sindicato'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Sindicato
+
+	column 'Classe_Valor'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Classe_Valor
+
+	column 'Item_Contabil_Snapshot'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Item_Contabil_Snapshot
+
+	column 'Centro_Custo_Snapshot'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Centro_Custo_Snapshot
+
+	column 'Observacoes'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Observacoes
+
+	column 'Motivo_Cancelamento'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Motivo_Cancelamento
+
+	column 'Data_Cancelamento'
+		dataType: dateTime
+		summarizeBy: none
+		sourceColumn: Data_Cancelamento
+		formatString: dd/MM/yyyy
+
+	column 'Cancelada_Por'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Cancelada_Por
+
+	column 'Data_Conclusao'
+		dataType: dateTime
+		summarizeBy: none
+		sourceColumn: Data_Conclusao
+		formatString: dd/MM/yyyy
+
+	column 'Bloqueada_Para_Edicao'
+		dataType: boolean
+		summarizeBy: none
+		sourceColumn: Bloqueada_Para_Edicao
+
+	column 'Versao_Planejamento'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Versao_Planejamento
+
+	column 'Origem_Registro'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Origem_Registro
+
+	column 'Data_Ultima_Revisao'
+		dataType: dateTime
+		summarizeBy: none
+		sourceColumn: Data_Ultima_Revisao
+		formatString: dd/MM/yyyy
+
+	column 'Turno'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Turno
+
+	column 'Tipo_Calculo_Evasao'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Tipo_Calculo_Evasao
+
+	column 'Percentual_Evasao_Previsto'
+		dataType: double
+		summarizeBy: none
+		sourceColumn: Percentual_Evasao_Previsto
+		formatString: #,0.00
+
+	column 'Quantidade_Evasao_Prevista'
+		dataType: double
+		summarizeBy: none
+		sourceColumn: Quantidade_Evasao_Prevista
+		formatString: #,0.00
+
+	column 'Matriculas_Consideradas'
+		dataType: double
+		summarizeBy: none
+		sourceColumn: Matriculas_Consideradas
+		formatString: #,0.00
+
+	column 'ID'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: ID
+
+	column 'Matriculas_Reais'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Matriculas_Reais
+
+	column 'Matriculas_Reais_Confirmadas'
+		dataType: boolean
+		summarizeBy: none
+		sourceColumn: Matriculas_Reais_Confirmadas
+
+	column 'Código da turma SGE'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Código da turma SGE
+
+	column 'Local_realizacao'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Local_realizacao
+
+	column 'Instrutor'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Instrutor
+
+	column 'Codigo_Matriz_Excel'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Codigo_Matriz_Excel
+
+	column 'Criado'
+		dataType: dateTime
+		summarizeBy: none
+		sourceColumn: Criado
+		formatString: dd/MM/yyyy
+
+	column 'Criado por'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Criado por
+
+	column 'Modalidade'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Modalidade
+
+	column 'Data_Snapshot_Matriz0'
+		dataType: dateTime
+		summarizeBy: none
+		sourceColumn: Data_Snapshot_Matriz0
+		formatString: dd/MM/yyyy
+
+	column 'ID_Matriz_SharePoint'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: ID_Matriz_SharePoint
+
+	column 'Status_Cruzamento_Matriz'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Status_Cruzamento_Matriz
+
+	partition 'Exportacao_App_Enriquecida' = m
+		mode: import
+		source =
+				let
+				    RM=RM_Integracao_SharePoint,
+				    ModalidadesPermitidas=List.Buffer(Table.SelectRows(APP_Opcoes_Escolha,each [Campo_Interno]="Modalidade")[Opcao]),
+				    DP=DP_Matrizes_Validadas,
+				    Cad=Table.SelectRows(APP_Cad_Matrizes,each [Ativa]=true),
+				    J=Table.NestedJoin(RM,{"RM_CODCOLIGADA","RM_Codigo_Curso","RM_Codigo_Grade"},DP,{"RM_CODCOLIGADA","RM_Codigo_Curso","RM_Codigo_Grade"},"DP",JoinKind.LeftOuter),
+				    D=Table.ExpandTableColumn(J,"DP",{"ID_Matriz_SharePoint"},{"ID_Matriz_SharePoint"}),
+				    K=Table.NestedJoin(D,{"ID_Matriz_SharePoint"},Cad,{"ID"},"Cadastro",JoinKind.LeftOuter),
+				    E=Table.ExpandTableColumn(K,"Cadastro",{"ID","Codigo_Matriz","Nome_Curso","Area","Modalidade","Tipo_Mediacao","Carga_Horaria"},{"Cad_ID","Cad_Codigo","Cad_Nome","Cad_Area","Cad_Modalidade","Cad_Mediacao","Cad_Carga"}),
+				    SemAntigas=Table.RemoveColumns(E,{"Matriz", "Codigo_Matriz_Snapshot", "Codigo_Matriz_Excel", "Nome_Curso_Snapshot", "Area_Snapshot", "Modalidade_Snapshot", "Tipo_Mediacao_Snapshot", "Carga_Horaria_Snapshot", "Data_Snapshot_Matriz"}),
+				    Matriz=Table.AddColumn(SemAntigas,"Matriz",each [Cad_Codigo],type text),
+				    Codigo=Table.AddColumn(Matriz,"Codigo_Matriz_Snapshot",each [Cad_Codigo],type text),
+				    Excel=Table.AddColumn(Codigo,"Codigo_Matriz_Excel",each [Cad_Codigo],type text),
+				    Curso=Table.AddColumn(Excel,"Nome_Curso_Snapshot",each [Cad_Nome],type text),
+				    Area=Table.AddColumn(Curso,"Area_Snapshot",each [Cad_Area],type text),
+				    Modalidade=Table.AddColumn(Area,"Modalidade_Snapshot",each [Cad_Modalidade],type text),
+				    Mediacao=Table.AddColumn(Modalidade,"Tipo_Mediacao_Snapshot",each [Cad_Mediacao],type text),
+				    Carga=Table.AddColumn(Mediacao,"Carga_Horaria_Snapshot",each [Cad_Carga],type number),
+				    Captura=Table.AddColumn(Carga,"Data_Snapshot_Matriz",each if [Cad_ID]=null then null else DateTime.FixedLocalNow(),type datetime),
+				    ModalidadeObrigatoria=Table.AddColumn(Captura,"Modalidade",each if List.Contains(ModalidadesPermitidas,[Cad_Modalidade]) then [Cad_Modalidade] else null,type text),
+				    SegundaData=Table.AddColumn(ModalidadeObrigatoria,"Data_Snapshot_Matriz0",each [Data_Snapshot_Matriz],type datetime),
+				    Status=Table.AddColumn(SegundaData,"Status_Cruzamento_Matriz",each if [ID_Matriz_SharePoint]=null then "Pendente: aprovar de/para de matriz" else if [Cad_ID]=null then "Pendente: ID não encontrado em matrizes ativas" else if [Cad_Modalidade]=null or [Cad_Mediacao]=null or [Cad_Carga]=null then "Pendente: cadastro da matriz incompleto" else if not List.Contains(ModalidadesPermitidas,[Cad_Modalidade]) then "Pendente: modalidade da matriz não existe nas opções atuais da lista" else "Matriz cruzada; validar demais campos antes da carga",type text),
+				    Resultado=Table.SelectColumns(Status,{"Planejamento", "Unidade", "Periodo_Letivo", "Ano_Referencia", "Identificador_Temporario", "Codigo_Turma_SGE", "Matriz", "Status_Turma", "Ativa", "Codigo_Matriz_Snapshot", "Nome_Curso_Snapshot", "Area_Snapshot", "Modalidade_Snapshot", "Tipo_Mediacao_Snapshot", "Carga_Horaria_Snapshot", "Data_Snapshot_Matriz", "Data_Inicio_Prevista", "Data_Fim_Prevista", "Quantidade_Vagas", "Matriculas_Previstas", "Campus_Polo", "Financiamento", "Tipo_Periodo", "Pedagogo_Responsavel", "Mobilizacao", "Empresa", "Projeto", "Sindicato", "Classe_Valor", "Item_Contabil_Snapshot", "Centro_Custo_Snapshot", "Observacoes", "Motivo_Cancelamento", "Data_Cancelamento", "Cancelada_Por", "Data_Conclusao", "Bloqueada_Para_Edicao", "Versao_Planejamento", "Origem_Registro", "Data_Ultima_Revisao", "Turno", "Tipo_Calculo_Evasao", "Percentual_Evasao_Previsto", "Quantidade_Evasao_Prevista", "Matriculas_Consideradas", "ID", "Matriculas_Reais", "Matriculas_Reais_Confirmadas", "Código da turma SGE", "Local_realizacao", "Instrutor", "Codigo_Matriz_Excel", "Criado", "Criado por", "Modalidade", "Data_Snapshot_Matriz0", "ID_Matriz_SharePoint", "Status_Cruzamento_Matriz"})
+				in Resultado
+
+	annotation PBI_ResultType = Table

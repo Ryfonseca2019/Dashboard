@@ -1,0 +1,99 @@
+table 'APP_Contrato_Campos'
+
+	column 'Campo_Interno'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Campo_Interno
+
+	column 'Rotulo'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Rotulo
+
+	column 'Tipo'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Tipo
+
+	column 'Obrigatorio'
+		dataType: boolean
+		summarizeBy: none
+		sourceColumn: Obrigatorio
+
+	column 'Permissao'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Permissao
+
+	column 'Vinculo'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Vinculo
+
+	partition 'APP_Contrato_Campos' = m
+		mode: import
+		source =
+				let Fonte = #table(type table [Campo_Interno=text, Rotulo=text, Tipo=text, Obrigatorio=logical, Permissao=text, Vinculo=text], {{"ID", "ID", "integer", false, "read-only", ""},
+				{"Title", "Título", "string", false, "read-write", ""},
+				{"Planejamento", "Planejamento", "Lookup", true, "read-write", "Planejamento/Nome_Planejamento"},
+				{"Unidade", "Unidade", "Lookup", true, "read-write", "Unidade/Nome_Unidade"},
+				{"Periodo_Letivo", "Periodo_Letivo", "Lookup", true, "read-write", "Periodo_Letivo/Periodo_Letivo"},
+				{"Ano_Referencia", "Ano_Referencia", "number", true, "read-write", ""},
+				{"Identificador_Temporario", "Identificador_Temporario", "string", true, "read-write", ""},
+				{"Codigo_Turma_SGE", "Codigo_Turma_SGE", "string", false, "read-write", ""},
+				{"Matriz", "Matriz", "Lookup", false, "read-write", "Matriz/Codigo_Matriz"},
+				{"Status_Turma", "Status_Turma", "Escolha", true, "read-write", ""},
+				{"Ativa", "Ativa", "boolean", true, "read-write", ""},
+				{"Codigo_Matriz_Snapshot", "Codigo_Matriz_Snapshot", "string", true, "read-write", ""},
+				{"Nome_Curso_Snapshot", "Nome_Curso_Snapshot", "string", true, "read-write", ""},
+				{"Area_Snapshot", "Area_Snapshot", "string", false, "read-write", ""},
+				{"Modalidade_Snapshot", "Modalidade_Snapshot", "string", true, "read-write", ""},
+				{"Tipo_Mediacao_Snapshot", "Tipo_Mediacao_Snapshot", "string", false, "read-write", ""},
+				{"Carga_Horaria_Snapshot", "Carga_Horaria_Snapshot", "number", true, "read-write", ""},
+				{"Data_Snapshot_Matriz0", "Data_Snapshot_Matriz", "string", true, "read-write", ""},
+				{"Data_Inicio_Prevista", "Data_Inicio_Prevista", "string", true, "read-write", ""},
+				{"Data_Fim_Prevista", "Data_Fim_Prevista", "string", true, "read-write", ""},
+				{"Quantidade_Vagas", "Quantidade_Vagas", "number", true, "read-write", ""},
+				{"Matriculas_Previstas", "Matriculas_Previstas", "number", true, "read-write", ""},
+				{"Campus_Polo", "Campus_Polo", "Lookup", false, "read-write", "Campus_Polo/Nome_Campus_Polo"},
+				{"Financiamento", "Financiamento", "Lookup", true, "read-write", "Financiamento/Nome_Financiamento"},
+				{"Tipo_Periodo", "Tipo_Periodo", "string", false, "read-write", ""},
+				{"Pedagogo_Responsavel", "Pedagogo_Responsavel", "Pessoa", true, "read-write", ""},
+				{"Mobilizacao", "Mobilizacao", "Escolha", false, "read-write", ""},
+				{"Empresa", "Empresa", "string", false, "read-write", ""},
+				{"Projeto", "Projeto", "string", false, "read-write", ""},
+				{"Sindicato", "Sindicato", "string", false, "read-write", ""},
+				{"Classe_Valor", "Classe_Valor", "string", false, "read-write", ""},
+				{"Item_Contabil_Snapshot", "Item_Contabil_Snapshot", "string", false, "read-write", ""},
+				{"Centro_Custo_Snapshot", "Centro_Custo_Snapshot", "string", false, "read-write", ""},
+				{"Observacoes", "Observacoes", "string", false, "read-write", ""},
+				{"Motivo_Cancelamento", "Motivo_Cancelamento", "string", false, "read-write", ""},
+				{"Data_Cancelamento", "Data_Cancelamento", "string", false, "read-write", ""},
+				{"Cancelada_Por", "Cancelada_Por", "Pessoa", false, "read-write", ""},
+				{"Data_Conclusao", "Data_Conclusao", "string", false, "read-write", ""},
+				{"Bloqueada_Para_Edicao", "Bloqueada_Para_Edicao", "boolean", true, "read-write", ""},
+				{"Versao_Planejamento", "Versao_Planejamento", "number", true, "read-write", ""},
+				{"Origem_Registro", "Origem_Registro", "Escolha", true, "read-write", ""},
+				{"Data_Ultima_Revisao", "Data_Ultima_Revisao", "string", false, "read-write", ""},
+				{"Turno", "Turno", "Lookup", false, "read-write", "Turno/Nome_Turno"},
+				{"Tipo_Calculo_Evasao", "Tipo_Calculo_Evasao", "Escolha", true, "read-write", ""},
+				{"Percentual_Evasao_Previsto", "Percentual_Evasao_Previsto", "number", false, "read-write", ""},
+				{"Quantidade_Evasao_Prevista", "Quantidade_Evasao_Prevista", "number", false, "read-write", ""},
+				{"Matriculas_Consideradas", "Matriculas_Consideradas", "number", false, "read-write", ""},
+				{"Matriculas_Reais", "Matriculas_Reais", "number", false, "read-write", ""},
+				{"Matriculas_Reais_Confirmadas", "Matriculas_Reais_Confirmadas", "boolean", false, "read-write", ""},
+				{"C_x00f3_digodaturmaSGE", "Código da turma SGE", "string", false, "read-write", ""},
+				{"Local_realizacao", "Local_realizacao", "string", false, "read-write", ""},
+				{"Instrutor", "Instrutor", "string", false, "read-write", ""},
+				{"Codigo_Matriz_Excel", "Codigo_Matriz_Excel", "string", false, "read-write", ""},
+				{"Created", "Criado", "string", false, "read-only", ""},
+				{"Author", "Criado por", "Pessoa", false, "read-only", ""},
+				{"Data_Snapshot_Matriz", "Data_Snapshot_Matriz", "string", true, "read-write", ""},
+				{"Modalidade", "Modalidade", "Escolha", true, "read-write", ""},
+				{"OData__ColorTag", "Pressione Delete para excluir o ícone.", "string", false, "read-only", ""},
+				{"ComplianceAssetId", "ID de Ativo de Conformidade", "string", false, "read-only", ""},
+				{"Mobilizacao_", "Mobilizacao_", "Escolha", false, "read-write", ""},
+				{"Modified", "Modificado", "string", false, "read-only", ""},
+				{"Editor", "Modificado por", "Pessoa", false, "read-only", ""}}) in Fonte
+
+	annotation PBI_ResultType = Table

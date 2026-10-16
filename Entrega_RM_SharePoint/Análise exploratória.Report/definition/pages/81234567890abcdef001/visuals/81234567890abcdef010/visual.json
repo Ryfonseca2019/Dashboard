@@ -1,0 +1,149 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "81234567890abcdef010",
+  "position": {
+    "x": 20,
+    "y": 20,
+    "z": 0,
+    "width": 1880,
+    "height": 500
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "APP_Cad_Matrizes"
+                    }
+                  },
+                  "Property": "ID"
+                }
+              },
+              "queryRef": "APP_Cad_Matrizes.ID",
+              "nativeQueryRef": "ID"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "APP_Cad_Matrizes"
+                    }
+                  },
+                  "Property": "Codigo_Matriz"
+                }
+              },
+              "queryRef": "APP_Cad_Matrizes.Codigo_Matriz",
+              "nativeQueryRef": "Codigo_Matriz"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "APP_Cad_Matrizes"
+                    }
+                  },
+                  "Property": "Nome_Curso"
+                }
+              },
+              "queryRef": "APP_Cad_Matrizes.Nome_Curso",
+              "nativeQueryRef": "Nome_Curso"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "APP_Cad_Matrizes"
+                    }
+                  },
+                  "Property": "Area"
+                }
+              },
+              "queryRef": "APP_Cad_Matrizes.Area",
+              "nativeQueryRef": "Area"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "APP_Cad_Matrizes"
+                    }
+                  },
+                  "Property": "Modalidade"
+                }
+              },
+              "queryRef": "APP_Cad_Matrizes.Modalidade",
+              "nativeQueryRef": "Modalidade"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "APP_Cad_Matrizes"
+                    }
+                  },
+                  "Property": "Tipo_Mediacao"
+                }
+              },
+              "queryRef": "APP_Cad_Matrizes.Tipo_Mediacao",
+              "nativeQueryRef": "Tipo_Mediacao"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "APP_Cad_Matrizes"
+                    }
+                  },
+                  "Property": "Carga_Horaria"
+                }
+              },
+              "queryRef": "APP_Cad_Matrizes.Carga_Horaria",
+              "nativeQueryRef": "Carga_Horaria"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "APP_Cad_Matrizes"
+                    }
+                  },
+                  "Property": "Item_Contabil"
+                }
+              },
+              "queryRef": "APP_Cad_Matrizes.Item_Contabil",
+              "nativeQueryRef": "Item_Contabil"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "APP_Cad_Matrizes"
+                    }
+                  },
+                  "Property": "Ativa"
+                }
+              },
+              "queryRef": "APP_Cad_Matrizes.Ativa",
+              "nativeQueryRef": "Ativa"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "81234567890abcdef010",
+  "position": {
+    "x": 20,
+    "y": 20,
+    "z": 0,
+    "width": 900,
+    "height": 1020
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "APP_Opcoes_Escolha"
+                    }
+                  },
+                  "Property": "Campo_Interno"
+                }
+              },
+              "queryRef": "APP_Opcoes_Escolha.Campo_Interno",
+              "nativeQueryRef": "Campo_Interno"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "APP_Opcoes_Escolha"
+                    }
+                  },
+                  "Property": "Rotulo"
+                }
+              },
+              "queryRef": "APP_Opcoes_Escolha.Rotulo",
+              "nativeQueryRef": "Rotulo"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "APP_Opcoes_Escolha"
+                    }
+                  },
+                  "Property": "Opcao"
+                }
+              },
+              "queryRef": "APP_Opcoes_Escolha.Opcao",
+              "nativeQueryRef": "Opcao"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "APP_Opcoes_Escolha"
+                    }
+                  },
+                  "Property": "Obrigatorio"
+                }
+              },
+              "queryRef": "APP_Opcoes_Escolha.Obrigatorio",
+              "nativeQueryRef": "Obrigatorio"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

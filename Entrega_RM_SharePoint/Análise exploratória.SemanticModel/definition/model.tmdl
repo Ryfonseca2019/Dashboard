@@ -27,3 +27,39 @@ ref cultureInfo pt-BR
 
 
 ref table 'RM_Integracao_SharePoint'
+
+ref table 'APP_Cad_Unidades'
+
+ref table 'APP_Cad_Matrizes'
+
+ref table 'APP_Cad_Turnos'
+
+ref table 'APP_Cad_Financiamentos'
+
+ref table 'APP_Cad_Campus_Polo'
+
+ref table 'APP_Cad_Periodos_Letivos'
+
+ref table 'APP_Planejamentos'
+
+ref table 'APP_Matriz_Unidade_Configuracao'
+
+ref table 'APP_Parametros_Evasao_Unidade'
+
+ref table 'APP_Contrato_Campos'
+
+ref table 'APP_Opcoes_Escolha'
+
+ref table 'DP_Turnos'
+
+ref table 'DP_Financiamentos'
+
+ref table 'DP_Campus_Polo'
+
+ref table 'DP_Matrizes_Validadas'
+
+ref table 'DP_Matrizes_Candidatas'
+
+ref table 'Exportacao_App_Enriquecida'
+
+ref table 'RM_Estrutura_Integracao'

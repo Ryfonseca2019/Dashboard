@@ -1,0 +1,79 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "81234567890abcdef012",
+  "position": {
+    "x": 950,
+    "y": 540,
+    "z": 0,
+    "width": 950,
+    "height": 500
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "APP_Cad_Campus_Polo"
+                    }
+                  },
+                  "Property": "ID"
+                }
+              },
+              "queryRef": "APP_Cad_Campus_Polo.ID",
+              "nativeQueryRef": "ID"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "APP_Cad_Campus_Polo"
+                    }
+                  },
+                  "Property": "Codigo_Campus_Polo_SGE"
+                }
+              },
+              "queryRef": "APP_Cad_Campus_Polo.Codigo_Campus_Polo_SGE",
+              "nativeQueryRef": "Codigo_Campus_Polo_SGE"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "APP_Cad_Campus_Polo"
+                    }
+                  },
+                  "Property": "Nome_Campus_Polo"
+                }
+              },
+              "queryRef": "APP_Cad_Campus_Polo.Nome_Campus_Polo",
+              "nativeQueryRef": "Nome_Campus_Polo"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "APP_Cad_Campus_Polo"
+                    }
+                  },
+                  "Property": "Ativa"
+                }
+              },
+              "queryRef": "APP_Cad_Campus_Polo.Ativa",
+              "nativeQueryRef": "Ativa"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

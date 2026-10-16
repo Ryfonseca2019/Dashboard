@@ -1,0 +1,54 @@
+table 'APP_Parametros_Evasao_Unidade'
+
+	column 'ID'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: ID
+
+	column 'Unidade_ID'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Unidade_ID
+
+	column 'Ano_Referencia'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Ano_Referencia
+
+	column 'Modalidade'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Modalidade
+
+	column 'Percentual_Evasao'
+		dataType: double
+		summarizeBy: none
+		sourceColumn: Percentual_Evasao
+		formatString: #,0.00
+
+	column 'Ativo'
+		dataType: boolean
+		summarizeBy: none
+		sourceColumn: Ativo
+
+	partition 'APP_Parametros_Evasao_Unidade' = m
+		mode: import
+		source =
+				let
+				    Texto = (v as any) as nullable text =>
+				        if v = null then null
+				        else if Value.Is(v, type record) then
+				            let chaves = {"Value", "lookupValue", "LookupValue", "Title", "Email", "DisplayName"},
+				                chave = List.First(List.Select(chaves, each Record.HasFields(v, _)), null)
+				            in if chave = null then error "Objeto de cadastro sem rótulo reconhecido" else @Texto(Record.Field(v, chave))
+				        else if Value.Is(v, type list) then Text.Combine(List.RemoveNulls(List.Transform(v, each @Texto(_))), "; ")
+				        else Text.From(v, "pt-BR"),
+				    Fonte = SharePoint.Tables("https://sfirjan.sharepoint.com/sites/PlanejamentodeOfertasparaProduo-EP", [ApiVersion = 15, Implementation = "2.0", ViewMode = "All"]),
+				    Itens = Fonte{[Id = "795d6a29-5282-4ae6-a4af-f047a78cf143"]}[Items],
+				    Campos = Table.SelectColumns(Itens, {"ID", "Unidade_ID", "Ano_Referencia", "Modalidade", "Percentual_Evasao", "Ativo"}),
+				    Rotulos = Table.TransformColumns(Campos, {{"Modalidade", Texto, type text}}),
+				    Tipos = Table.TransformColumnTypes(Rotulos, {{"ID", Int64.Type}, {"Unidade_ID", Int64.Type}, {"Ano_Referencia", Int64.Type}, {"Percentual_Evasao", type number}, {"Ativo", type logical}}, "pt-BR")
+				in
+				    Tipos
+
+	annotation PBI_ResultType = Table

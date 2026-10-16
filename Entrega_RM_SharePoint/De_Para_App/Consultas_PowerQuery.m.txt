@@ -1,0 +1,316 @@
+// CONSULTA: APP_Cad_Unidades
+let
+    Texto = (v as any) as nullable text =>
+        if v = null then null
+        else if Value.Is(v, type record) then
+            let chaves = {"Value", "lookupValue", "LookupValue", "Title", "Email", "DisplayName"},
+                chave = List.First(List.Select(chaves, each Record.HasFields(v, _)), null)
+            in if chave = null then error "Objeto de cadastro sem rótulo reconhecido" else @Texto(Record.Field(v, chave))
+        else if Value.Is(v, type list) then Text.Combine(List.RemoveNulls(List.Transform(v, each @Texto(_))), "; ")
+        else Text.From(v, "pt-BR"),
+    Fonte = SharePoint.Tables("https://sfirjan.sharepoint.com/sites/PlanejamentodeOfertasparaProduo-EP", [ApiVersion = 15, Implementation = "2.0", ViewMode = "All"]),
+    Itens = Fonte{[Id = "c3eaa254-c72b-4b34-8fe5-3bea9a84c91e"]}[Items],
+    Campos = Table.SelectColumns(Itens, {"ID", "Nome_Unidade", "Codigo_Filial", "Sigla_UNOP", "Ativa"}),
+    Rotulos = Table.TransformColumns(Campos, {{"Nome_Unidade", Texto, type text}, {"Codigo_Filial", Texto, type text}, {"Sigla_UNOP", Texto, type text}}),
+    Tipos = Table.TransformColumnTypes(Rotulos, {{"ID", Int64.Type}, {"Ativa", type logical}}, "pt-BR")
+in
+    Tipos
+
+// CONSULTA: APP_Cad_Matrizes
+let
+    Texto = (v as any) as nullable text =>
+        if v = null then null
+        else if Value.Is(v, type record) then
+            let chaves = {"Value", "lookupValue", "LookupValue", "Title", "Email", "DisplayName"},
+                chave = List.First(List.Select(chaves, each Record.HasFields(v, _)), null)
+            in if chave = null then error "Objeto de cadastro sem rótulo reconhecido" else @Texto(Record.Field(v, chave))
+        else if Value.Is(v, type list) then Text.Combine(List.RemoveNulls(List.Transform(v, each @Texto(_))), "; ")
+        else Text.From(v, "pt-BR"),
+    Fonte = SharePoint.Tables("https://sfirjan.sharepoint.com/sites/PlanejamentodeOfertasparaProduo-EP", [ApiVersion = 15, Implementation = "2.0", ViewMode = "All"]),
+    Itens = Fonte{[Id = "4d2d7c69-1a70-4d3a-9e96-12dbe4030ade"]}[Items],
+    Campos = Table.SelectColumns(Itens, {"ID", "Codigo_Matriz", "Nome_Curso", "Area", "Modalidade", "Tipo_Mediacao", "Carga_Horaria", "Item_Contabil", "Ativa"}),
+    Rotulos = Table.TransformColumns(Campos, {{"Codigo_Matriz", Texto, type text}, {"Nome_Curso", Texto, type text}, {"Area", Texto, type text}, {"Modalidade", Texto, type text}, {"Tipo_Mediacao", Texto, type text}, {"Item_Contabil", Texto, type text}}),
+    Tipos = Table.TransformColumnTypes(Rotulos, {{"ID", Int64.Type}, {"Carga_Horaria", type number}, {"Ativa", type logical}}, "pt-BR")
+in
+    Tipos
+
+// CONSULTA: APP_Cad_Turnos
+let
+    Texto = (v as any) as nullable text =>
+        if v = null then null
+        else if Value.Is(v, type record) then
+            let chaves = {"Value", "lookupValue", "LookupValue", "Title", "Email", "DisplayName"},
+                chave = List.First(List.Select(chaves, each Record.HasFields(v, _)), null)
+            in if chave = null then error "Objeto de cadastro sem rótulo reconhecido" else @Texto(Record.Field(v, chave))
+        else if Value.Is(v, type list) then Text.Combine(List.RemoveNulls(List.Transform(v, each @Texto(_))), "; ")
+        else Text.From(v, "pt-BR"),
+    Fonte = SharePoint.Tables("https://sfirjan.sharepoint.com/sites/PlanejamentodeOfertasparaProduo-EP", [ApiVersion = 15, Implementation = "2.0", ViewMode = "All"]),
+    Itens = Fonte{[Id = "b6a922a4-6fab-446f-aa7e-8b9082c03734"]}[Items],
+    Campos = Table.SelectColumns(Itens, {"ID", "Nome_Turno", "Codigo_Turno_SGE", "Ativa"}),
+    Rotulos = Table.TransformColumns(Campos, {{"Nome_Turno", Texto, type text}, {"Codigo_Turno_SGE", Texto, type text}}),
+    Tipos = Table.TransformColumnTypes(Rotulos, {{"ID", Int64.Type}, {"Ativa", type logical}}, "pt-BR")
+in
+    Tipos
+
+// CONSULTA: APP_Cad_Financiamentos
+let
+    Texto = (v as any) as nullable text =>
+        if v = null then null
+        else if Value.Is(v, type record) then
+            let chaves = {"Value", "lookupValue", "LookupValue", "Title", "Email", "DisplayName"},
+                chave = List.First(List.Select(chaves, each Record.HasFields(v, _)), null)
+            in if chave = null then error "Objeto de cadastro sem rótulo reconhecido" else @Texto(Record.Field(v, chave))
+        else if Value.Is(v, type list) then Text.Combine(List.RemoveNulls(List.Transform(v, each @Texto(_))), "; ")
+        else Text.From(v, "pt-BR"),
+    Fonte = SharePoint.Tables("https://sfirjan.sharepoint.com/sites/PlanejamentodeOfertasparaProduo-EP", [ApiVersion = 15, Implementation = "2.0", ViewMode = "All"]),
+    Itens = Fonte{[Id = "d6b72180-f358-4a46-a33c-c3d0b55a3812"]}[Items],
+    Campos = Table.SelectColumns(Itens, {"ID", "Nome_Financiamento", "Codigo_Financiamento_SGE", "Ativa"}),
+    Rotulos = Table.TransformColumns(Campos, {{"Nome_Financiamento", Texto, type text}, {"Codigo_Financiamento_SGE", Texto, type text}}),
+    Tipos = Table.TransformColumnTypes(Rotulos, {{"ID", Int64.Type}, {"Ativa", type logical}}, "pt-BR")
+in
+    Tipos
+
+// CONSULTA: APP_Cad_Campus_Polo
+let
+    Texto = (v as any) as nullable text =>
+        if v = null then null
+        else if Value.Is(v, type record) then
+            let chaves = {"Value", "lookupValue", "LookupValue", "Title", "Email", "DisplayName"},
+                chave = List.First(List.Select(chaves, each Record.HasFields(v, _)), null)
+            in if chave = null then error "Objeto de cadastro sem rótulo reconhecido" else @Texto(Record.Field(v, chave))
+        else if Value.Is(v, type list) then Text.Combine(List.RemoveNulls(List.Transform(v, each @Texto(_))), "; ")
+        else Text.From(v, "pt-BR"),
+    Fonte = SharePoint.Tables("https://sfirjan.sharepoint.com/sites/PlanejamentodeOfertasparaProduo-EP", [ApiVersion = 15, Implementation = "2.0", ViewMode = "All"]),
+    Itens = Fonte{[Id = "6b268d10-9767-49ab-a7bb-41846ec0705c"]}[Items],
+    Campos = Table.SelectColumns(Itens, {"ID", "Nome_Campus_Polo", "Codigo_Campus_Polo_SGE", "Ativa"}),
+    Rotulos = Table.TransformColumns(Campos, {{"Nome_Campus_Polo", Texto, type text}, {"Codigo_Campus_Polo_SGE", Texto, type text}}),
+    Tipos = Table.TransformColumnTypes(Rotulos, {{"ID", Int64.Type}, {"Ativa", type logical}}, "pt-BR")
+in
+    Tipos
+
+// CONSULTA: APP_Cad_Periodos_Letivos
+let
+    Texto = (v as any) as nullable text =>
+        if v = null then null
+        else if Value.Is(v, type record) then
+            let chaves = {"Value", "lookupValue", "LookupValue", "Title", "Email", "DisplayName"},
+                chave = List.First(List.Select(chaves, each Record.HasFields(v, _)), null)
+            in if chave = null then error "Objeto de cadastro sem rótulo reconhecido" else @Texto(Record.Field(v, chave))
+        else if Value.Is(v, type list) then Text.Combine(List.RemoveNulls(List.Transform(v, each @Texto(_))), "; ")
+        else Text.From(v, "pt-BR"),
+    Fonte = SharePoint.Tables("https://sfirjan.sharepoint.com/sites/PlanejamentodeOfertasparaProduo-EP", [ApiVersion = 15, Implementation = "2.0", ViewMode = "All"]),
+    Itens = Fonte{[Id = "4598afdd-6877-4325-81ce-cc50c2d00921"]}[Items],
+    Campos = Table.SelectColumns(Itens, {"ID", "Periodo_Letivo", "Unidade", "Ativo"}),
+    Rotulos = Table.TransformColumns(Campos, {{"Periodo_Letivo", Texto, type text}, {"Unidade", Texto, type text}}),
+    Tipos = Table.TransformColumnTypes(Rotulos, {{"ID", Int64.Type}, {"Ativo", type logical}}, "pt-BR")
+in
+    Tipos
+
+// CONSULTA: APP_Planejamentos
+let
+    Texto = (v as any) as nullable text =>
+        if v = null then null
+        else if Value.Is(v, type record) then
+            let chaves = {"Value", "lookupValue", "LookupValue", "Title", "Email", "DisplayName"},
+                chave = List.First(List.Select(chaves, each Record.HasFields(v, _)), null)
+            in if chave = null then error "Objeto de cadastro sem rótulo reconhecido" else @Texto(Record.Field(v, chave))
+        else if Value.Is(v, type list) then Text.Combine(List.RemoveNulls(List.Transform(v, each @Texto(_))), "; ")
+        else Text.From(v, "pt-BR"),
+    Fonte = SharePoint.Tables("https://sfirjan.sharepoint.com/sites/PlanejamentodeOfertasparaProduo-EP", [ApiVersion = 15, Implementation = "2.0", ViewMode = "All"]),
+    Itens = Fonte{[Id = "0c0f17eb-53c5-47af-a58b-ce9f98816012"]}[Items],
+    Campos = Table.SelectColumns(Itens, {"ID", "Nome_Planejamento", "Unidade", "Ano_Planejamento", "Ativo"}),
+    Rotulos = Table.TransformColumns(Campos, {{"Nome_Planejamento", Texto, type text}, {"Unidade", Texto, type text}}),
+    Tipos = Table.TransformColumnTypes(Rotulos, {{"ID", Int64.Type}, {"Ano_Planejamento", Int64.Type}, {"Ativo", type logical}}, "pt-BR")
+in
+    Tipos
+
+// CONSULTA: APP_Matriz_Unidade_Configuracao
+let
+    Texto = (v as any) as nullable text =>
+        if v = null then null
+        else if Value.Is(v, type record) then
+            let chaves = {"Value", "lookupValue", "LookupValue", "Title", "Email", "DisplayName"},
+                chave = List.First(List.Select(chaves, each Record.HasFields(v, _)), null)
+            in if chave = null then error "Objeto de cadastro sem rótulo reconhecido" else @Texto(Record.Field(v, chave))
+        else if Value.Is(v, type list) then Text.Combine(List.RemoveNulls(List.Transform(v, each @Texto(_))), "; ")
+        else Text.From(v, "pt-BR"),
+    Fonte = SharePoint.Tables("https://sfirjan.sharepoint.com/sites/PlanejamentodeOfertasparaProduo-EP", [ApiVersion = 15, Implementation = "2.0", ViewMode = "All"]),
+    Itens = Fonte{[Id = "0b4a4034-077f-4287-8f6b-ca76f1307fa4"]}[Items],
+    Campos = Table.SelectColumns(Itens, {"ID", "Unidade", "Matriz", "Ano_Referencia", "Financiamento", "Centro_Custo", "Item_Contabil", "Ativa"}),
+    Rotulos = Table.TransformColumns(Campos, {{"Unidade", Texto, type text}, {"Matriz", Texto, type text}, {"Financiamento", Texto, type text}, {"Centro_Custo", Texto, type text}, {"Item_Contabil", Texto, type text}}),
+    Tipos = Table.TransformColumnTypes(Rotulos, {{"ID", Int64.Type}, {"Ano_Referencia", Int64.Type}, {"Ativa", type logical}}, "pt-BR")
+in
+    Tipos
+
+// CONSULTA: APP_Parametros_Evasao_Unidade
+let
+    Texto = (v as any) as nullable text =>
+        if v = null then null
+        else if Value.Is(v, type record) then
+            let chaves = {"Value", "lookupValue", "LookupValue", "Title", "Email", "DisplayName"},
+                chave = List.First(List.Select(chaves, each Record.HasFields(v, _)), null)
+            in if chave = null then error "Objeto de cadastro sem rótulo reconhecido" else @Texto(Record.Field(v, chave))
+        else if Value.Is(v, type list) then Text.Combine(List.RemoveNulls(List.Transform(v, each @Texto(_))), "; ")
+        else Text.From(v, "pt-BR"),
+    Fonte = SharePoint.Tables("https://sfirjan.sharepoint.com/sites/PlanejamentodeOfertasparaProduo-EP", [ApiVersion = 15, Implementation = "2.0", ViewMode = "All"]),
+    Itens = Fonte{[Id = "795d6a29-5282-4ae6-a4af-f047a78cf143"]}[Items],
+    Campos = Table.SelectColumns(Itens, {"ID", "Unidade_ID", "Ano_Referencia", "Modalidade", "Percentual_Evasao", "Ativo"}),
+    Rotulos = Table.TransformColumns(Campos, {{"Modalidade", Texto, type text}}),
+    Tipos = Table.TransformColumnTypes(Rotulos, {{"ID", Int64.Type}, {"Unidade_ID", Int64.Type}, {"Ano_Referencia", Int64.Type}, {"Percentual_Evasao", type number}, {"Ativo", type logical}}, "pt-BR")
+in
+    Tipos
+
+// CONSULTA: APP_Contrato_Campos
+let Fonte = #table(type table [Campo_Interno=text, Rotulo=text, Tipo=text, Obrigatorio=logical, Permissao=text, Vinculo=text], {{"ID", "ID", "integer", false, "read-only", ""},
+{"Title", "Título", "string", false, "read-write", ""},
+{"Planejamento", "Planejamento", "Lookup", true, "read-write", "Planejamento/Nome_Planejamento"},
+{"Unidade", "Unidade", "Lookup", true, "read-write", "Unidade/Nome_Unidade"},
+{"Periodo_Letivo", "Periodo_Letivo", "Lookup", true, "read-write", "Periodo_Letivo/Periodo_Letivo"},
+{"Ano_Referencia", "Ano_Referencia", "number", true, "read-write", ""},
+{"Identificador_Temporario", "Identificador_Temporario", "string", true, "read-write", ""},
+{"Codigo_Turma_SGE", "Codigo_Turma_SGE", "string", false, "read-write", ""},
+{"Matriz", "Matriz", "Lookup", false, "read-write", "Matriz/Codigo_Matriz"},
+{"Status_Turma", "Status_Turma", "Escolha", true, "read-write", ""},
+{"Ativa", "Ativa", "boolean", true, "read-write", ""},
+{"Codigo_Matriz_Snapshot", "Codigo_Matriz_Snapshot", "string", true, "read-write", ""},
+{"Nome_Curso_Snapshot", "Nome_Curso_Snapshot", "string", true, "read-write", ""},
+{"Area_Snapshot", "Area_Snapshot", "string", false, "read-write", ""},
+{"Modalidade_Snapshot", "Modalidade_Snapshot", "string", true, "read-write", ""},
+{"Tipo_Mediacao_Snapshot", "Tipo_Mediacao_Snapshot", "string", false, "read-write", ""},
+{"Carga_Horaria_Snapshot", "Carga_Horaria_Snapshot", "number", true, "read-write", ""},
+{"Data_Snapshot_Matriz0", "Data_Snapshot_Matriz", "string", true, "read-write", ""},
+{"Data_Inicio_Prevista", "Data_Inicio_Prevista", "string", true, "read-write", ""},
+{"Data_Fim_Prevista", "Data_Fim_Prevista", "string", true, "read-write", ""},
+{"Quantidade_Vagas", "Quantidade_Vagas", "number", true, "read-write", ""},
+{"Matriculas_Previstas", "Matriculas_Previstas", "number", true, "read-write", ""},
+{"Campus_Polo", "Campus_Polo", "Lookup", false, "read-write", "Campus_Polo/Nome_Campus_Polo"},
+{"Financiamento", "Financiamento", "Lookup", true, "read-write", "Financiamento/Nome_Financiamento"},
+{"Tipo_Periodo", "Tipo_Periodo", "string", false, "read-write", ""},
+{"Pedagogo_Responsavel", "Pedagogo_Responsavel", "Pessoa", true, "read-write", ""},
+{"Mobilizacao", "Mobilizacao", "Escolha", false, "read-write", ""},
+{"Empresa", "Empresa", "string", false, "read-write", ""},
+{"Projeto", "Projeto", "string", false, "read-write", ""},
+{"Sindicato", "Sindicato", "string", false, "read-write", ""},
+{"Classe_Valor", "Classe_Valor", "string", false, "read-write", ""},
+{"Item_Contabil_Snapshot", "Item_Contabil_Snapshot", "string", false, "read-write", ""},
+{"Centro_Custo_Snapshot", "Centro_Custo_Snapshot", "string", false, "read-write", ""},
+{"Observacoes", "Observacoes", "string", false, "read-write", ""},
+{"Motivo_Cancelamento", "Motivo_Cancelamento", "string", false, "read-write", ""},
+{"Data_Cancelamento", "Data_Cancelamento", "string", false, "read-write", ""},
+{"Cancelada_Por", "Cancelada_Por", "Pessoa", false, "read-write", ""},
+{"Data_Conclusao", "Data_Conclusao", "string", false, "read-write", ""},
+{"Bloqueada_Para_Edicao", "Bloqueada_Para_Edicao", "boolean", true, "read-write", ""},
+{"Versao_Planejamento", "Versao_Planejamento", "number", true, "read-write", ""},
+{"Origem_Registro", "Origem_Registro", "Escolha", true, "read-write", ""},
+{"Data_Ultima_Revisao", "Data_Ultima_Revisao", "string", false, "read-write", ""},
+{"Turno", "Turno", "Lookup", false, "read-write", "Turno/Nome_Turno"},
+{"Tipo_Calculo_Evasao", "Tipo_Calculo_Evasao", "Escolha", true, "read-write", ""},
+{"Percentual_Evasao_Previsto", "Percentual_Evasao_Previsto", "number", false, "read-write", ""},
+{"Quantidade_Evasao_Prevista", "Quantidade_Evasao_Prevista", "number", false, "read-write", ""},
+{"Matriculas_Consideradas", "Matriculas_Consideradas", "number", false, "read-write", ""},
+{"Matriculas_Reais", "Matriculas_Reais", "number", false, "read-write", ""},
+{"Matriculas_Reais_Confirmadas", "Matriculas_Reais_Confirmadas", "boolean", false, "read-write", ""},
+{"C_x00f3_digodaturmaSGE", "Código da turma SGE", "string", false, "read-write", ""},
+{"Local_realizacao", "Local_realizacao", "string", false, "read-write", ""},
+{"Instrutor", "Instrutor", "string", false, "read-write", ""},
+{"Codigo_Matriz_Excel", "Codigo_Matriz_Excel", "string", false, "read-write", ""},
+{"Created", "Criado", "string", false, "read-only", ""},
+{"Author", "Criado por", "Pessoa", false, "read-only", ""},
+{"Data_Snapshot_Matriz", "Data_Snapshot_Matriz", "string", true, "read-write", ""},
+{"Modalidade", "Modalidade", "Escolha", true, "read-write", ""},
+{"OData__ColorTag", "Pressione Delete para excluir o ícone.", "string", false, "read-only", ""},
+{"ComplianceAssetId", "ID de Ativo de Conformidade", "string", false, "read-only", ""},
+{"Mobilizacao_", "Mobilizacao_", "Escolha", false, "read-write", ""},
+{"Modified", "Modificado", "string", false, "read-only", ""},
+{"Editor", "Modificado por", "Pessoa", false, "read-only", ""}}) in Fonte
+
+// CONSULTA: APP_Opcoes_Escolha
+let
+    Site = "https://sfirjan.sharepoint.com/sites/PlanejamentodeOfertasparaProduo-EP",
+    Pagina = (relativa as text) as record =>
+        let J = Json.Document(Web.Contents(Site, [RelativePath=relativa, Headers=[Accept="application/json;odata=nometadata"]])),
+            D = Record.FieldOrDefault(J, "d", J),
+            Linhas = Record.FieldOrDefault(D, "value", Record.FieldOrDefault(D, "results", {})),
+            Proxima = Record.FieldOrDefault(D, "@odata.nextLink", Record.FieldOrDefault(D, "odata.nextLink", Record.FieldOrDefault(D, "__next", null)))
+        in [Linhas=Linhas, Proxima=Proxima],
+    Inicial = Pagina("_api/web/lists(guid'ec87b29f-d485-465c-9706-384693de3275')/fields?$top=5000"),
+    Paginas = List.Generate(()=>[P=Inicial], each [P] <> null,
+        each [P=if [P][Proxima] = null then null else
+            if Text.StartsWith([P][Proxima], Site & "/") then Pagina(Text.AfterDelimiter([P][Proxima], Site & "/"))
+            else error "Link de paginação fora do site esperado"], each [P][Linhas]),
+    Registros = List.Combine(Paginas),
+    Escolhas = List.Select(Registros, each Record.FieldOrDefault(_, "TypeAsString", "") = "Choice" or Record.FieldOrDefault(_, "TypeAsString", "") = "MultiChoice"),
+    Linhas = List.Combine(List.Transform(Escolhas, (campo) =>
+        let Op = Record.FieldOrDefault(campo, "Choices", null),
+            Lista = if Value.Is(Op, type list) then Op else if Value.Is(Op, type record) then Record.FieldOrDefault(Op, "results", {}) else error "API não retornou Choices; verificar permissões e esquema"
+        in List.Transform(Lista, each {campo[InternalName], campo[Title], Text.From(_), campo[Required]}))),
+    Resultado = #table(type table [Campo_Interno=text, Rotulo=text, Opcao=text, Obrigatorio=logical], Linhas)
+in Resultado
+
+// CONSULTA: DP_Turnos
+let
+    Fonte=Table.SelectColumns(APP_Cad_Turnos, {"ID", "Codigo_Turno_SGE", "Nome_Turno", "Ativa"}),
+    Renomeado=Table.RenameColumns(Fonte, {{"ID","ID_SharePoint"}, {"Codigo_Turno_SGE","Codigo_SGE"}, {"Nome_Turno","Valor_App"}}),
+    Status=Table.AddColumn(Renomeado, "Status", each "Confirmar equivalência do código SGE com a coluna RM antes de aplicar", type text)
+in Status
+
+// CONSULTA: DP_Financiamentos
+let
+    Fonte=Table.SelectColumns(APP_Cad_Financiamentos, {"ID", "Codigo_Financiamento_SGE", "Nome_Financiamento", "Ativa"}),
+    Renomeado=Table.RenameColumns(Fonte, {{"ID","ID_SharePoint"}, {"Codigo_Financiamento_SGE","Codigo_SGE"}, {"Nome_Financiamento","Valor_App"}}),
+    Status=Table.AddColumn(Renomeado, "Status", each "Confirmar equivalência do código SGE com a coluna RM antes de aplicar", type text)
+in Status
+
+// CONSULTA: DP_Campus_Polo
+let
+    Fonte=Table.SelectColumns(APP_Cad_Campus_Polo, {"ID", "Codigo_Campus_Polo_SGE", "Nome_Campus_Polo", "Ativa"}),
+    Renomeado=Table.RenameColumns(Fonte, {{"ID","ID_SharePoint"}, {"Codigo_Campus_Polo_SGE","Codigo_SGE"}, {"Nome_Campus_Polo","Valor_App"}}),
+    Status=Table.AddColumn(Renomeado, "Status", each "Confirmar equivalência do código SGE com a coluna RM antes de aplicar", type text)
+in Status
+
+// CONSULTA: DP_Matrizes_Validadas
+let
+    // Preencher linhas aprovadas: {coligada, "codigo curso RM", "grade RM", ID matriz SharePoint}.
+    // IDs reais devem vir de APP_Cad_Matrizes. Não usar códigos ou IDs fictícios.
+    Fonte=#table(type table [RM_CODCOLIGADA=Int64.Type, RM_Codigo_Curso=text, RM_Codigo_Grade=text, ID_Matriz_SharePoint=Int64.Type], {}),
+    Duplicadas=Table.SelectRows(Table.Group(Fonte, {"RM_CODCOLIGADA","RM_Codigo_Curso","RM_Codigo_Grade"}, {{"N",each Table.RowCount(_),Int64.Type}}),each [N]>1),
+    Validado=if Table.RowCount(Duplicadas)>0 then error "Mais de uma matriz aprovada para a mesma chave RM" else Fonte
+in Validado
+
+// CONSULTA: DP_Matrizes_Candidatas
+let
+    RM=Table.Distinct(Table.RenameColumns(Table.SelectColumns(RM_Integracao_SharePoint,{"RM_CODCOLIGADA","RM_Codigo_Curso","RM_Codigo_Grade","Nome_Curso_Snapshot"}),{{"Nome_Curso_Snapshot","Curso_RM"}})),
+    Cad=Table.SelectRows(APP_Cad_Matrizes, each [Ativa]=true),
+    Junta=Table.NestedJoin(RM,{"Curso_RM"},Cad,{"Nome_Curso"},"Candidatas",JoinKind.LeftOuter),
+    Abre=Table.ExpandTableColumn(Junta,"Candidatas",{"ID","Codigo_Matriz","Nome_Curso"},{"ID_Matriz_SharePoint","Codigo_Matriz_App","Curso_App"}),
+    Status=Table.AddColumn(Abre,"Status",each if [ID_Matriz_SharePoint]=null then "Sem candidata pelo nome exato" else "Candidata por nome; confirmar currículo/versão/carga antes de aprovar",type text)
+in Status
+
+// CONSULTA: Exportacao_App_Enriquecida
+let
+    RM=RM_Integracao_SharePoint,
+    ModalidadesPermitidas=List.Buffer(Table.SelectRows(APP_Opcoes_Escolha,each [Campo_Interno]="Modalidade")[Opcao]),
+    DP=DP_Matrizes_Validadas,
+    Cad=Table.SelectRows(APP_Cad_Matrizes,each [Ativa]=true),
+    J=Table.NestedJoin(RM,{"RM_CODCOLIGADA","RM_Codigo_Curso","RM_Codigo_Grade"},DP,{"RM_CODCOLIGADA","RM_Codigo_Curso","RM_Codigo_Grade"},"DP",JoinKind.LeftOuter),
+    D=Table.ExpandTableColumn(J,"DP",{"ID_Matriz_SharePoint"},{"ID_Matriz_SharePoint"}),
+    K=Table.NestedJoin(D,{"ID_Matriz_SharePoint"},Cad,{"ID"},"Cadastro",JoinKind.LeftOuter),
+    E=Table.ExpandTableColumn(K,"Cadastro",{"ID","Codigo_Matriz","Nome_Curso","Area","Modalidade","Tipo_Mediacao","Carga_Horaria"},{"Cad_ID","Cad_Codigo","Cad_Nome","Cad_Area","Cad_Modalidade","Cad_Mediacao","Cad_Carga"}),
+    SemAntigas=Table.RemoveColumns(E,{"Matriz", "Codigo_Matriz_Snapshot", "Codigo_Matriz_Excel", "Nome_Curso_Snapshot", "Area_Snapshot", "Modalidade_Snapshot", "Tipo_Mediacao_Snapshot", "Carga_Horaria_Snapshot", "Data_Snapshot_Matriz"}),
+    Matriz=Table.AddColumn(SemAntigas,"Matriz",each [Cad_Codigo],type text),
+    Codigo=Table.AddColumn(Matriz,"Codigo_Matriz_Snapshot",each [Cad_Codigo],type text),
+    Excel=Table.AddColumn(Codigo,"Codigo_Matriz_Excel",each [Cad_Codigo],type text),
+    Curso=Table.AddColumn(Excel,"Nome_Curso_Snapshot",each [Cad_Nome],type text),
+    Area=Table.AddColumn(Curso,"Area_Snapshot",each [Cad_Area],type text),
+    Modalidade=Table.AddColumn(Area,"Modalidade_Snapshot",each [Cad_Modalidade],type text),
+    Mediacao=Table.AddColumn(Modalidade,"Tipo_Mediacao_Snapshot",each [Cad_Mediacao],type text),
+    Carga=Table.AddColumn(Mediacao,"Carga_Horaria_Snapshot",each [Cad_Carga],type number),
+    Captura=Table.AddColumn(Carga,"Data_Snapshot_Matriz",each if [Cad_ID]=null then null else DateTime.FixedLocalNow(),type datetime),
+    ModalidadeObrigatoria=Table.AddColumn(Captura,"Modalidade",each if List.Contains(ModalidadesPermitidas,[Cad_Modalidade]) then [Cad_Modalidade] else null,type text),
+    SegundaData=Table.AddColumn(ModalidadeObrigatoria,"Data_Snapshot_Matriz0",each [Data_Snapshot_Matriz],type datetime),
+    Status=Table.AddColumn(SegundaData,"Status_Cruzamento_Matriz",each if [ID_Matriz_SharePoint]=null then "Pendente: aprovar de/para de matriz" else if [Cad_ID]=null then "Pendente: ID não encontrado em matrizes ativas" else if [Cad_Modalidade]=null or [Cad_Mediacao]=null or [Cad_Carga]=null then "Pendente: cadastro da matriz incompleto" else if not List.Contains(ModalidadesPermitidas,[Cad_Modalidade]) then "Pendente: modalidade da matriz não existe nas opções atuais da lista" else "Matriz cruzada; validar demais campos antes da carga",type text),
+    Resultado=Table.SelectColumns(Status,{"Planejamento", "Unidade", "Periodo_Letivo", "Ano_Referencia", "Identificador_Temporario", "Codigo_Turma_SGE", "Matriz", "Status_Turma", "Ativa", "Codigo_Matriz_Snapshot", "Nome_Curso_Snapshot", "Area_Snapshot", "Modalidade_Snapshot", "Tipo_Mediacao_Snapshot", "Carga_Horaria_Snapshot", "Data_Snapshot_Matriz", "Data_Inicio_Prevista", "Data_Fim_Prevista", "Quantidade_Vagas", "Matriculas_Previstas", "Campus_Polo", "Financiamento", "Tipo_Periodo", "Pedagogo_Responsavel", "Mobilizacao", "Empresa", "Projeto", "Sindicato", "Classe_Valor", "Item_Contabil_Snapshot", "Centro_Custo_Snapshot", "Observacoes", "Motivo_Cancelamento", "Data_Cancelamento", "Cancelada_Por", "Data_Conclusao", "Bloqueada_Para_Edicao", "Versao_Planejamento", "Origem_Registro", "Data_Ultima_Revisao", "Turno", "Tipo_Calculo_Evasao", "Percentual_Evasao_Previsto", "Quantidade_Evasao_Prevista", "Matriculas_Consideradas", "ID", "Matriculas_Reais", "Matriculas_Reais_Confirmadas", "Código da turma SGE", "Local_realizacao", "Instrutor", "Codigo_Matriz_Excel", "Criado", "Criado por", "Modalidade", "Data_Snapshot_Matriz0", "ID_Matriz_SharePoint", "Status_Cruzamento_Matriz"})
+in Resultado
+
+// CONSULTA: RM_Estrutura_Integracao
+let Fonte=Sql.Database("SRVSEDE01621PRE","CorporeRM",[Query="SELECT TABLE_SCHEMA,TABLE_NAME,COLUMN_NAME,DATA_TYPE FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME IN ('STURMA','SCURSO','SHABILITACAOFILIAL','SGRADE','STURNO','SCAMPUS','SMODALIDADECURSO','STURMACOMPL','SCURSOCOMPL','GFILIAL') ORDER BY TABLE_SCHEMA,TABLE_NAME,ORDINAL_POSITION"]) in Fonte

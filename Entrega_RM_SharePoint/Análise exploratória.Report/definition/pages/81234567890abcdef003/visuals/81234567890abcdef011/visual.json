@@ -1,0 +1,79 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "81234567890abcdef011",
+  "position": {
+    "x": 20,
+    "y": 690,
+    "z": 0,
+    "width": 1880,
+    "height": 350
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DP_Matrizes_Validadas"
+                    }
+                  },
+                  "Property": "RM_CODCOLIGADA"
+                }
+              },
+              "queryRef": "DP_Matrizes_Validadas.RM_CODCOLIGADA",
+              "nativeQueryRef": "RM_CODCOLIGADA"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DP_Matrizes_Validadas"
+                    }
+                  },
+                  "Property": "RM_Codigo_Curso"
+                }
+              },
+              "queryRef": "DP_Matrizes_Validadas.RM_Codigo_Curso",
+              "nativeQueryRef": "RM_Codigo_Curso"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DP_Matrizes_Validadas"
+                    }
+                  },
+                  "Property": "RM_Codigo_Grade"
+                }
+              },
+              "queryRef": "DP_Matrizes_Validadas.RM_Codigo_Grade",
+              "nativeQueryRef": "RM_Codigo_Grade"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DP_Matrizes_Validadas"
+                    }
+                  },
+                  "Property": "ID_Matriz_SharePoint"
+                }
+              },
+              "queryRef": "DP_Matrizes_Validadas.ID_Matriz_SharePoint",
+              "nativeQueryRef": "ID_Matriz_SharePoint"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

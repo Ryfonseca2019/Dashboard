@@ -1,0 +1,37 @@
+table 'DP_Financiamentos'
+
+	column 'Codigo_SGE'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Codigo_SGE
+
+	column 'ID_SharePoint'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: ID_SharePoint
+
+	column 'Valor_App'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Valor_App
+
+	column 'Ativa'
+		dataType: boolean
+		summarizeBy: none
+		sourceColumn: Ativa
+
+	column 'Status'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Status
+
+	partition 'DP_Financiamentos' = m
+		mode: import
+		source =
+				let
+				    Fonte=Table.SelectColumns(APP_Cad_Financiamentos, {"ID", "Codigo_Financiamento_SGE", "Nome_Financiamento", "Ativa"}),
+				    Renomeado=Table.RenameColumns(Fonte, {{"ID","ID_SharePoint"}, {"Codigo_Financiamento_SGE","Codigo_SGE"}, {"Nome_Financiamento","Valor_App"}}),
+				    Status=Table.AddColumn(Renomeado, "Status", each "Confirmar equivalência do código SGE com a coluna RM antes de aplicar", type text)
+				in Status
+
+	annotation PBI_ResultType = Table

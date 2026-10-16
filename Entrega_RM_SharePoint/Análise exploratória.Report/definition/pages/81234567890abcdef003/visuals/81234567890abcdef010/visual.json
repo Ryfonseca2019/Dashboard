@@ -1,0 +1,135 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "81234567890abcdef010",
+  "position": {
+    "x": 20,
+    "y": 20,
+    "z": 0,
+    "width": 1880,
+    "height": 650
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DP_Matrizes_Candidatas"
+                    }
+                  },
+                  "Property": "RM_CODCOLIGADA"
+                }
+              },
+              "queryRef": "DP_Matrizes_Candidatas.RM_CODCOLIGADA",
+              "nativeQueryRef": "RM_CODCOLIGADA"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DP_Matrizes_Candidatas"
+                    }
+                  },
+                  "Property": "RM_Codigo_Curso"
+                }
+              },
+              "queryRef": "DP_Matrizes_Candidatas.RM_Codigo_Curso",
+              "nativeQueryRef": "RM_Codigo_Curso"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DP_Matrizes_Candidatas"
+                    }
+                  },
+                  "Property": "RM_Codigo_Grade"
+                }
+              },
+              "queryRef": "DP_Matrizes_Candidatas.RM_Codigo_Grade",
+              "nativeQueryRef": "RM_Codigo_Grade"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DP_Matrizes_Candidatas"
+                    }
+                  },
+                  "Property": "Curso_RM"
+                }
+              },
+              "queryRef": "DP_Matrizes_Candidatas.Curso_RM",
+              "nativeQueryRef": "Curso_RM"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DP_Matrizes_Candidatas"
+                    }
+                  },
+                  "Property": "ID_Matriz_SharePoint"
+                }
+              },
+              "queryRef": "DP_Matrizes_Candidatas.ID_Matriz_SharePoint",
+              "nativeQueryRef": "ID_Matriz_SharePoint"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DP_Matrizes_Candidatas"
+                    }
+                  },
+                  "Property": "Codigo_Matriz_App"
+                }
+              },
+              "queryRef": "DP_Matrizes_Candidatas.Codigo_Matriz_App",
+              "nativeQueryRef": "Codigo_Matriz_App"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DP_Matrizes_Candidatas"
+                    }
+                  },
+                  "Property": "Curso_App"
+                }
+              },
+              "queryRef": "DP_Matrizes_Candidatas.Curso_App",
+              "nativeQueryRef": "Curso_App"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DP_Matrizes_Candidatas"
+                    }
+                  },
+                  "Property": "Status"
+                }
+              },
+              "queryRef": "DP_Matrizes_Candidatas.Status",
+              "nativeQueryRef": "Status"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}
