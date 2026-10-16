@@ -3,9 +3,7 @@
 -- NULL identifica campo ainda não mapeado; não significa apagar a lista.
 -- Tipos dos campos pendentes são provisórios, não são tipos SharePoint confirmados.
 -- Este SQL reutiliza origens do PBIP, mas ainda NÃO foi executado no RM.
-DECLARE @Ano int = 2026; -- ajustar ao período de extração desejado
-DECLARE @Inicio date = DATEFROMPARTS(@Ano, 1, 1);
-DECLARE @Fim date = DATEADD(year, 1, @Inicio);
+DECLARE @FimAPartirDe date = DATEFROMPARTS(2027, 1, 1); -- após o ano de 2026
 
 SELECT
     CAST(NULL AS nvarchar(4000)) AS [Planejamento], -- PENDENTE: não enviar NULL para sobrescrever valores existentes
@@ -78,7 +76,7 @@ SELECT
     T.IDITEMCONTABILPROTHEUS AS [RM_Item_Contabil],
     T.TURMAENCERRADA AS [RM_Turma_Encerrada]
 FROM dbo.STURMA AS T
-INNER JOIN dbo.SPLETIVO AS P
+LEFT JOIN dbo.SPLETIVO AS P
     ON P.CODCOLIGADA = T.CODCOLIGADA AND P.IDPERLET = T.IDPERLET
 LEFT JOIN dbo.GFILIAL AS F
     ON F.CODCOLIGADA = T.CODCOLIGADA AND F.CODFILIAL = T.CODFILIAL
@@ -87,9 +85,9 @@ LEFT JOIN dbo.SHABILITACAOFILIAL AS H
     AND H.IDHABILITACAOFILIAL = T.IDHABILITACAOFILIAL
 LEFT JOIN dbo.SCURSO AS C
     ON C.CODCOLIGADA = H.CODCOLIGADA AND C.CODCURSO = H.CODCURSO
-WHERE T.DTINICIAL >= @Inicio AND T.DTINICIAL < @Fim
+WHERE T.DTFINAL >= @FimAPartirDe
 ORDER BY T.CODCOLIGADA, T.CODFILIAL, T.IDPERLET, T.CODTURMA;
 
 -- A chave de turma e a cardinalidade dos joins são provisórias.
 -- Resolver descrições/domínios e agregar matrículas e instrutores antes de adicioná-los.
--- Sem limite de linhas. Somente turmas com início no ano indicado; datas nulas ficam de fora.
+-- Sem limite de linhas e sem filtro de início. Término a partir de 01/01/2027; términos nulos ficam de fora.

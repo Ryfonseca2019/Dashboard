@@ -1,14 +1,15 @@
-PROJETO POWER BI — V3 — TURMAS COM INÍCIO EM 2026
+PROJETO POWER BI — V4 — TÉRMINO APÓS 2026
 
-Extraia o ZIP inteiro em uma pasta nova no Windows e abra Análise exploratória.pbip no Power BI Desktop.
-Conecte-se à rede/VPN corporativa e execute Atualizar. A nova página é RM → SharePoint | Início 2026.
+Extraia o ZIP em uma pasta nova e abra Análise exploratória.pbip no Power BI Desktop. Conecte-se à rede corporativa e execute Atualizar.
+Use a página RM → SharePoint | Fim após 2026 e a consulta RM_Integracao_SharePoint.
 
-A consulta RM_Integracao_SharePoint retorna todas as linhas com STURMA.DTINICIAL >= 01/01/2026 e < 01/01/2027, sem TOP ou outro limite de linhas. Não seleciona por data final, código ou descrição do período letivo. Datas iniciais nulas ficam de fora.
-O campo Data_Inicio_Prevista vem de STURMA.DTINICIAL, conforme o SQL original. A equivalência de negócio ainda depende de confirmação no RM.
-A antiga Consulta das turmas de 2026 foi preservada e continua com sua regra e limite originais; use a nova tabela RM_Integracao_SharePoint para a extração solicitada.
+REGRA
+STURMA.DTFINAL >= 01/01/2027. Inclui turmas que terminam em 2027 ou depois, independentemente de quando começaram, inclusive com início nulo. Exclui términos em 2026 ou anteriores e términos nulos. Sem TOP ou limite de quantidade.
+O período letivo agora é ligado por LEFT JOIN para não excluir uma turma apenas por não encontrar o cadastro de período.
+A data prevista de fim continua sendo a coluna DTFINAL do SQL fornecido; confirmar a semântica no RM.
 
-Mantidos os 54 campos de destino e identificadores técnicos. Seis campos de destino possuem origem identificada; os demais 48 permanecem nulos até concluir o mapeamento. Não há escrita no SharePoint.
-Preservados os joins do SQL recebido. Confirmar no banco a integridade dos vínculos e a unicidade por turma antes de usar totais: remover TOP não elimina duplicações ou eventuais exclusões por joins.
-
-A conexão efetiva, os resultados e a renderização precisam ser validados no Desktop com acesso ao RM. O ambiente de edição não possui acesso ao servidor corporativo. Caches e configurações locais .pbi não estão incluídos.
-V3 também mantém a correção da propriedade description: inválida removida na V2.
+LIMITES
+Seis campos de destino possuem origem identificada; 48 permanecem nulos. Não há escrita no SharePoint. Os demais joins e a unicidade ainda precisam ser validados no banco.
+Consultas originais foram preservadas e têm suas regras antigas; o filtro novo está na consulta RM_Integracao_SharePoint.
+Conexão, resultados e renderização ainda precisam ser validados no Desktop com acesso ao RM. Arquivos .pbi não estão incluídos.
+Se você criou medidas ou visuais na sua cópia local, preserve-a antes de substituir por este projeto: alterações locais não estão neste ZIP.

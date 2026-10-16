@@ -1,9 +1,21 @@
-# Power BI — Todas as turmas com início em 2026
+# Power BI — Turmas com término após 2026
 
-Baixe **Planejamento_Turmas_RM_Inicio_2026_v3.zip**, extraia em uma pasta nova e abra **Análise exploratória.pbip** no Power BI Desktop. Conecte-se à rede corporativa e clique em **Atualizar**.
+Baixe **Planejamento_Turmas_RM_Fim_Apos_2026_v4.zip** e extraia em uma pasta nova. Abra o PBIP, atualize e acesse **RM → SharePoint | Fim após 2026**.
 
-A página **RM → SharePoint | Início 2026** usa a consulta **RM_Integracao_SharePoint**, sem limite de 200 linhas. O filtro agora é somente `STURMA.DTINICIAL >= 2026-01-01 AND STURMA.DTINICIAL < 2027-01-01`.
+A consulta **RM_Integracao_SharePoint** filtra apenas `STURMA.DTFINAL >= 2027-01-01`, sem filtro de início e sem limite de linhas. Datas finais nulas ficam de fora.
 
-O projeto mantém seis campos de destino com origem identificada e 48 pendentes. Abertura, conexão e resultados precisam ser validados no Desktop. O relatório e a consulta original foram preservados; o filtro novo se aplica à tabela de integração adicionada.
+PROJETO POWER BI — V4 — TÉRMINO APÓS 2026
 
-Arquivos editáveis em `Entrega_RM_SharePoint`. Detalhes no arquivo `LEIA-ME - Tabela RM SharePoint.txt`.
+Extraia o ZIP em uma pasta nova e abra Análise exploratória.pbip no Power BI Desktop. Conecte-se à rede corporativa e execute Atualizar.
+Use a página RM → SharePoint | Fim após 2026 e a consulta RM_Integracao_SharePoint.
+
+REGRA
+STURMA.DTFINAL >= 01/01/2027. Inclui turmas que terminam em 2027 ou depois, independentemente de quando começaram, inclusive com início nulo. Exclui términos em 2026 ou anteriores e términos nulos. Sem TOP ou limite de quantidade.
+O período letivo agora é ligado por LEFT JOIN para não excluir uma turma apenas por não encontrar o cadastro de período.
+A data prevista de fim continua sendo a coluna DTFINAL do SQL fornecido; confirmar a semântica no RM.
+
+LIMITES
+Seis campos de destino possuem origem identificada; 48 permanecem nulos. Não há escrita no SharePoint. Os demais joins e a unicidade ainda precisam ser validados no banco.
+Consultas originais foram preservadas e têm suas regras antigas; o filtro novo está na consulta RM_Integracao_SharePoint.
+Conexão, resultados e renderização ainda precisam ser validados no Desktop com acesso ao RM. Arquivos .pbi não estão incluídos.
+Se você criou medidas ou visuais na sua cópia local, preserve-a antes de substituir por este projeto: alterações locais não estão neste ZIP.
