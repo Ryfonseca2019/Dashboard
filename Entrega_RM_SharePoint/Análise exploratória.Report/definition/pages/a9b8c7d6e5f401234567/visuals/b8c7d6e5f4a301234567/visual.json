@@ -120,6 +120,34 @@
                       "Entity": "RM_Integracao_SharePoint"
                     }
                   },
+                  "Property": "Instrutor"
+                }
+              },
+              "queryRef": "RM_Integracao_SharePoint.Instrutor",
+              "nativeQueryRef": "Instrutor"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Integracao_SharePoint"
+                    }
+                  },
+                  "Property": "RM_Status_Instrutor"
+                }
+              },
+              "queryRef": "RM_Integracao_SharePoint.RM_Status_Instrutor",
+              "nativeQueryRef": "RM_Status_Instrutor"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Integracao_SharePoint"
+                    }
+                  },
                   "Property": "Data_Inicio_Prevista"
                 }
               },
@@ -769,20 +797,6 @@
               },
               "queryRef": "RM_Integracao_SharePoint.Local_realizacao",
               "nativeQueryRef": "Local_realizacao"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "RM_Integracao_SharePoint"
-                    }
-                  },
-                  "Property": "Instrutor"
-                }
-              },
-              "queryRef": "RM_Integracao_SharePoint.Instrutor",
-              "nativeQueryRef": "Instrutor"
             },
             {
               "field": {

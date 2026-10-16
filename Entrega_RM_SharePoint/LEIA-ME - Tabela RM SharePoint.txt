@@ -1,16 +1,17 @@
-PROJETO POWER BI — V5 — TÉRMINO NO ANO ATUAL EM DIANTE
+PROJETO POWER BI — V6 — INSTRUTORES POR TURMA
 
-Extraia o ZIP em uma pasta nova, abra Análise exploratória.pbip no Power BI Desktop, conecte-se à rede corporativa e execute Atualizar.
-Use a página RM → SharePoint | Fim ano atual+ e a consulta RM_Integracao_SharePoint.
+Extraia em uma pasta nova, abra o PBIP no Desktop, conecte-se à rede corporativa e execute Atualizar.
+Página: RM → SharePoint | Fim ano atual+. Consulta: RM_Integracao_SharePoint.
 
-REGRA
-STURMA.DTFINAL >= DATEFROMPARTS(YEAR(GETDATE()), 1, 1).
-Inclui turmas com término previsto em qualquer dia do ano atual ou dos próximos anos, independentemente da data de início. Não significa somente as turmas que terminam a partir de hoje.
-O ano é determinado pela data do servidor SQL Server RM no momento da atualização. Em 2026, inclui término a partir de 01/01/2026; em 2027, a partir de 01/01/2027. Como o modelo é Import, deve ser atualizado para refletir a mudança de ano.
-Não há limite de linhas. Términos nulos ficam de fora. Datas de início não são filtradas.
-Mantido LEFT JOIN do período letivo para não excluir turmas sem correspondência nesse cadastro. Unicidade e demais vínculos precisam ser confirmados no banco.
+INSTRUTOR
+Consulta candidata: STURMADISC → SPROFESSORTURMA → SPROFESSOR → PPESSOA. Verifica existência das colunas por metadados. Prefere PPESSOA.NOME por CODPESSOA; usa SPROFESSOR.NOME se disponível como alternativa. A existência das colunas não comprova a semântica dos vínculos: comparar nomes com o RM.
+Instrutor reúne nomes distintos em ordem alfabética, separados por ponto e vírgula, por coligada + filial + período + turma. A agregação não adiciona linhas ao resultado de turmas; os joins preexistentes ainda precisam de validação de unicidade.
+RM_Status_Instrutor diferencia estrutura não reconhecida, ausência de nome e vínculo encontrado a validar. Falta de permissão pode impedir a leitura ou a visibilidade dos metadados. Nenhum erro SQL de permissão é ocultado.
+Não há filtro de papel, período de atuação ou professor ativo: reúne os nomes dos vínculos disponíveis. Não representa necessariamente um único professor responsável ou atual. Se a estrutura for diferente, enviar resultado de Diagnostico_Estrutura_RM.sql para completar o vínculo.
 
-LIMITAÇÕES
-Seis campos de destino têm origem identificada e 48 permanecem nulos até completar o mapeamento. Não há escrita no SharePoint.
-As consultas originais foram preservadas, com suas regras antigas; use RM_Integracao_SharePoint para a regra nova.
-A fonte está configurada, mas conexão, resultados, DAX e renderização ainda precisam de validação no Power BI Desktop com acesso ao RM. Este ZIP não inclui caches .pbi nem alterações que você tenha feito apenas em sua cópia local.
+ESCOPO
+Mantido término previsto no ano atual em diante, sem filtro de início nem limite de registros. O ano é o do servidor RM no momento da atualização.
+A consulta usa tabela temporária e SQL dinâmico somente para SELECT de dados e preparação temporária; não modifica tabelas persistentes. SQL nativo pode exigir aprovação no Desktop e não é destinado a DirectQuery.
+A nova coluna é uma tentativa de extração condicionada à estrutura; não foi executada no banco corporativo. Conexão, SQL, nomes e visual precisam ser validados no Desktop. Os demais campos pendentes continuam vazios. Não há escrita no SharePoint.
+O texto com vários nomes precisa ser tratado antes de gravar em coluna SharePoint Pessoa: ela exige identidades válidas, não nomes concatenados.
+Preserve sua cópia local se já criou medidas ou visuais; alterações locais não estão neste ZIP.
