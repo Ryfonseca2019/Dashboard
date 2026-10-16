@@ -1,0 +1,261 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "f1234567890abcdef111",
+  "position": {
+    "x": 20,
+    "y": 320,
+    "width": 1880,
+    "height": 740,
+    "z": 1
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Niteroi_PreCarga"
+                    }
+                  },
+                  "Property": "RM_CODCOLIGADA"
+                }
+              },
+              "queryRef": "Niteroi_PreCarga.RM_CODCOLIGADA",
+              "nativeQueryRef": "RM_CODCOLIGADA"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Niteroi_PreCarga"
+                    }
+                  },
+                  "Property": "RM_CODFILIAL"
+                }
+              },
+              "queryRef": "Niteroi_PreCarga.RM_CODFILIAL",
+              "nativeQueryRef": "RM_CODFILIAL"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Niteroi_PreCarga"
+                    }
+                  },
+                  "Property": "RM_IDPERLET"
+                }
+              },
+              "queryRef": "Niteroi_PreCarga.RM_IDPERLET",
+              "nativeQueryRef": "RM_IDPERLET"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Niteroi_PreCarga"
+                    }
+                  },
+                  "Property": "RM_CODTURMA"
+                }
+              },
+              "queryRef": "Niteroi_PreCarga.RM_CODTURMA",
+              "nativeQueryRef": "RM_CODTURMA"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Niteroi_PreCarga"
+                    }
+                  },
+                  "Property": "Codigo_Turma_SGE"
+                }
+              },
+              "queryRef": "Niteroi_PreCarga.Codigo_Turma_SGE",
+              "nativeQueryRef": "Codigo_Turma_SGE"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Niteroi_PreCarga"
+                    }
+                  },
+                  "Property": "Nome_Curso_Snapshot"
+                }
+              },
+              "queryRef": "Niteroi_PreCarga.Nome_Curso_Snapshot",
+              "nativeQueryRef": "Nome_Curso_Snapshot"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Niteroi_PreCarga"
+                    }
+                  },
+                  "Property": "Matriz"
+                }
+              },
+              "queryRef": "Niteroi_PreCarga.Matriz",
+              "nativeQueryRef": "Matriz"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Niteroi_PreCarga"
+                    }
+                  },
+                  "Property": "Carga_Horaria_Snapshot"
+                }
+              },
+              "queryRef": "Niteroi_PreCarga.Carga_Horaria_Snapshot",
+              "nativeQueryRef": "Carga_Horaria_Snapshot"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Niteroi_PreCarga"
+                    }
+                  },
+                  "Property": "Modalidade_Snapshot"
+                }
+              },
+              "queryRef": "Niteroi_PreCarga.Modalidade_Snapshot",
+              "nativeQueryRef": "Modalidade_Snapshot"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Niteroi_PreCarga"
+                    }
+                  },
+                  "Property": "Tipo_Mediacao_Snapshot"
+                }
+              },
+              "queryRef": "Niteroi_PreCarga.Tipo_Mediacao_Snapshot",
+              "nativeQueryRef": "Tipo_Mediacao_Snapshot"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Niteroi_PreCarga"
+                    }
+                  },
+                  "Property": "Campus_Polo"
+                }
+              },
+              "queryRef": "Niteroi_PreCarga.Campus_Polo",
+              "nativeQueryRef": "Campus_Polo"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Niteroi_PreCarga"
+                    }
+                  },
+                  "Property": "Financiamento"
+                }
+              },
+              "queryRef": "Niteroi_PreCarga.Financiamento",
+              "nativeQueryRef": "Financiamento"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Niteroi_PreCarga"
+                    }
+                  },
+                  "Property": "ID_Financiamento_SharePoint"
+                }
+              },
+              "queryRef": "Niteroi_PreCarga.ID_Financiamento_SharePoint",
+              "nativeQueryRef": "ID_Financiamento_SharePoint"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Niteroi_PreCarga"
+                    }
+                  },
+                  "Property": "Status_Financiamento"
+                }
+              },
+              "queryRef": "Niteroi_PreCarga.Status_Financiamento",
+              "nativeQueryRef": "Status_Financiamento"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Niteroi_PreCarga"
+                    }
+                  },
+                  "Property": "Status_Cruzamento_Matriz"
+                }
+              },
+              "queryRef": "Niteroi_PreCarga.Status_Cruzamento_Matriz",
+              "nativeQueryRef": "Status_Cruzamento_Matriz"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Niteroi_PreCarga"
+                    }
+                  },
+                  "Property": "Obrigatorios_Vazios"
+                }
+              },
+              "queryRef": "Niteroi_PreCarga.Obrigatorios_Vazios",
+              "nativeQueryRef": "Obrigatorios_Vazios"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Niteroi_PreCarga"
+                    }
+                  },
+                  "Property": "Status_PreCarga"
+                }
+              },
+              "queryRef": "Niteroi_PreCarga.Status_PreCarga",
+              "nativeQueryRef": "Status_PreCarga"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

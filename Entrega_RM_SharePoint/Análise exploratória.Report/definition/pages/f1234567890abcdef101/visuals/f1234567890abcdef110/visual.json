@@ -1,0 +1,107 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "f1234567890abcdef110",
+  "position": {
+    "x": 20,
+    "y": 20,
+    "width": 1880,
+    "height": 280,
+    "z": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DP_Financiamento_Confirmado"
+                    }
+                  },
+                  "Property": "Codigo_Classificacao"
+                }
+              },
+              "queryRef": "DP_Financiamento_Confirmado.Codigo_Classificacao",
+              "nativeQueryRef": "Codigo_Classificacao"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DP_Financiamento_Confirmado"
+                    }
+                  },
+                  "Property": "Descricao_Esperada"
+                }
+              },
+              "queryRef": "DP_Financiamento_Confirmado.Descricao_Esperada",
+              "nativeQueryRef": "Descricao_Esperada"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DP_Financiamento_Confirmado"
+                    }
+                  },
+                  "Property": "Financiamento_App"
+                }
+              },
+              "queryRef": "DP_Financiamento_Confirmado.Financiamento_App",
+              "nativeQueryRef": "Financiamento_App"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DP_Financiamento_Confirmado"
+                    }
+                  },
+                  "Property": "Status_DePara"
+                }
+              },
+              "queryRef": "DP_Financiamento_Confirmado.Status_DePara",
+              "nativeQueryRef": "Status_DePara"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DP_Financiamento_Confirmado"
+                    }
+                  },
+                  "Property": "ID_Financiamento_SharePoint"
+                }
+              },
+              "queryRef": "DP_Financiamento_Confirmado.ID_Financiamento_SharePoint",
+              "nativeQueryRef": "ID_Financiamento_SharePoint"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DP_Financiamento_Confirmado"
+                    }
+                  },
+                  "Property": "Valor_App"
+                }
+              },
+              "queryRef": "DP_Financiamento_Confirmado.Valor_App",
+              "nativeQueryRef": "Valor_App"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

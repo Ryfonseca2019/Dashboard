@@ -1,0 +1,52 @@
+table 'DP_Financiamento_Confirmado'
+
+	column 'Codigo_Classificacao'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Codigo_Classificacao
+
+	column 'Descricao_Esperada'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Descricao_Esperada
+
+	column 'Financiamento_App'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Financiamento_App
+
+	column 'Status_DePara'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Status_DePara
+
+	column 'ID_Financiamento_SharePoint'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: ID_Financiamento_SharePoint
+
+	column 'Valor_App'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Valor_App
+
+	partition 'DP_Financiamento_Confirmado' = m
+		mode: import
+		source =
+				let
+				    // Regra de negócio confirmada pelo usuário para a migração.
+				    Regra=#table(type table [Codigo_Classificacao=text, Descricao_Esperada=text, Financiamento_App=text],{
+				        {"1","GRATUITO","Gratuidade"},
+				        {"2","NEGOCIO","Negócio"},
+				        {"3","NEGOCIO PJ","Negócio"}}),
+				    Dom=Table.Buffer(Table.SelectRows(RM_Dominios_Direcionados,each [CODCOLIGADA]=0 and [APLICACAO]="S" and [Codigo_Tabela]="CLASSIFTUR")),
+				    Cad=Table.Buffer(APP_Cad_Financiamentos),
+				    J=Table.NestedJoin(Regra,{"Codigo_Classificacao"},Dom,{"Codigo_Valor"},"Dom",JoinKind.LeftOuter),
+				    A=Table.NestedJoin(J,{"Financiamento_App"},Cad,{"Nome_Financiamento"},"App",JoinKind.LeftOuter),
+				    Status=Table.AddColumn(A,"Status_DePara",each if Table.RowCount([Dom])<>1 then "Pendente: domínio CLASSIFTUR ausente ou ambíguo" else if [Dom]{0}[Descricao_Valor]<>[Descricao_Esperada] then "Pendente: descrição do domínio mudou" else if Table.RowCount([App])<>1 then "Pendente: opção app ausente ou duplicada" else if [App]{0}[Ativa]<>true then "Pendente: opção app não ativa" else "Regra confirmada",type text),
+				    ID=Table.AddColumn(Status,"ID_Financiamento_SharePoint",each if [Status_DePara]="Regra confirmada" then [App]{0}[ID] else null,Int64.Type),
+				    Valor=Table.AddColumn(ID,"Valor_App",each if [Status_DePara]="Regra confirmada" then [App]{0}[Nome_Financiamento] else null,type text),
+				    Resultado=Table.RemoveColumns(Valor,{"Dom","App"})
+				in Resultado
+
+	annotation PBI_ResultType = Table

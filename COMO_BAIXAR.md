@@ -1,22 +1,23 @@
-# Power BI — Tipos de turno e classificação de financiamento
+# Power BI — Financiamento aplicado e pré-carga Niterói
 
-Baixe **Planejamento_Turmas_SENAI_Tipos_Turno_Financiamento_v18.zip**.
+Baixe **Planejamento_Turmas_SENAI_Financiamento_Aplicado_v19.zip**.
 
-V18 — TIPOS DE TURNO E CLASSIFICAÇÃO DO FINANCIAMENTO
+V19 — FINANCIAMENTO APLICADO POR REGRA APROVADA
 
-Dicionários recebidos confirmam:
-CLASSIFTUR, coligada global 0: 1=GRATUITO, 2=NEGOCIO, 3=NEGOCIO PJ.
-TIPOTURNO, coligada 3: M=Manhã, T=Tarde, N=Noite.
-Essas descrições são reais, mas o vínculo do campo complementar CLASSIFICACAO ao domínio CLASSIFTUR ainda requer validação. Coluna CODTABELA sozinha não é chave global: a nova extração inclui APLICACAO e coligada para identificar ambiguidades.
+CLASSIFICACAO 1/GRATUITO → Gratuidade; 2/NEGOCIO e 3/NEGOCIO PJ → Negócio.
+A regra foi confirmada pelo usuário para a migração. O esquema recebido não prova formalmente o vínculo de configuração do campo com CLASSIFTUR; a associação é aplicada como regra de negócio autorizada, com validação atual dos rótulos de CLASSIFTUR (coligada 0, aplicação S) e das opções ativas do app.
+Sem classificação, código desconhecido ou classificações conflitantes: sem financiamento e com status pendente. Não há valor padrão.
+A extração anterior indica 4.932 Gratuidade e 2.026 Negócio, total 6.958 candidatas classificadas; 119 sem classificação. Essas contagens não são uma nova execução.
 
-A V18 adiciona STURNO.TIPO, HORINI e HORFIM ao diagnóstico existente, agrupados pela mesma chave e somente quando há uma ocorrência. Não converte Unico/Online em Integral ou em um turno arbitrário.
-Financiamento_Classificacao_Validar cruza os valores de classificação com CLASSIFTUR como candidato. Não preenche Financiamento automaticamente. NEGOCIO PJ depende de decisão sobre agrupamento em Negócio.
-RM_Rotulos_Campos busca os rótulos do campo CLASSIFICACAO e do tipo de turno em GCAMPOS para apoiar a validação; a ausência de rótulos não é prova de ausência do campo ou do domínio.
+COMO USAR
+Extraia em pasta nova e atualize o PBIP. Na página Financiamento e pré-carga Niterói:
+- Tabela superior: DP_Financiamento_Confirmado com as três regras e IDs reais do app.
+- Tabela inferior: Niteroi_PreCarga, com financiamento, pendências de matriz e campos obrigatórios vazios.
+Exporte a inferior e envie para preparar o lote piloto. Não cole essa tabela de diagnóstico diretamente na lista.
+O campo Financiamento é preenchido na Exportacao_App_Enriquecida e nas páginas Exportação | 54 campos e Colagem | sem metadados, que usam essa tabela.
 
-EXTRAÇÃO
-Atualize no Desktop e abra a página Tipos de turno e financiamento.
-Envie a tabela superior esquerda (Turnos_Tipo_Validar), a superior direita (Financiamento_Classificacao_Validar) e a inferior (RM_Rotulos_Campos). A segunda tende a ter poucas linhas; a primeira mantém filial/tipo de curso para não misturar códigos locais.
-Se GCAMPOS não retornar linhas, envie as duas primeiras e informe que os rótulos ficaram vazios.
-
-Os dados anteriores somam classificação 1: 4.932 turmas; 2: 1.161; 3: 865; vazia: 119. Contagens descrevem a exportação recebida, não esta nova execução. Sem código válido, não atribuir financiamento padrão.
-Mantida a decisão de usar carga horária do app e as demais regras anteriores. SQL/referências/ZIP verificados estruturalmente; as novas consultas e a correspondência de negócio precisam ser confirmadas no Desktop. Nenhuma escrita no RM/SharePoint.
+Os campos técnicos ID_Financiamento_SharePoint e Status_Financiamento são de auditoria e não devem ser colados como colunas comuns. A ordem das 54/51 colunas anteriores foi preservada.
+O check de obrigatórios usa o esquema do msapp recebido. Se você tornou pedagogo ou cálculo de evasão opcionais na lista, esse snapshot ainda os indicará; confirme as alterações reais antes da carga. Não foram removidas exigências na lista por esta entrega.
+Unidade, planejamento, ano de referência, status Rascunho, Ativa e identificadores ainda devem ser conferidos na sua planilha: as decisões não equivalem a preenchimento automático de todos esses campos no PBIP atual. A visão não anuncia que o lote está pronto.
+Turno continua pendente: o cadastro não corresponde com segurança ao horário efetivo de todas as turmas. Preservada carga horária do app e demais regras anteriores.
+Nenhuma linha foi gravada no SharePoint ou RM. ZIP, referências e lógica de classificação verificados localmente; refresh e dados dependem do Desktop corporativo.

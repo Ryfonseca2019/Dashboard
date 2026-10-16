@@ -291,7 +291,11 @@ let
     CodigosCampus=Table.TransformColumns(SemCampus,{{"RM_Codigo_Campus",each if _=null then null else Text.Trim(_),type nullable text}}),
     MapaCampus=Table.Buffer(DP_Campus_Confirmado),
     JC=Table.NestedJoin(CodigosCampus,{"RM_Codigo_Campus"},MapaCampus,{"Codigo_RM"},"CampusValidado",JoinKind.LeftOuter),
-    RM=Table.ExpandTableColumn(JC,"CampusValidado",{"Valor_App"},{"Campus_Polo"}),
+    Campus=Table.ExpandTableColumn(JC,"CampusValidado",{"Valor_App"},{"Campus_Polo"}),
+    SemFinanciamento=Table.RemoveColumns(Campus,{"Financiamento"}),
+    JF=Table.NestedJoin(SemFinanciamento,{"RM_CODCOLIGADA","RM_CODFILIAL","RM_IDPERLET","RM_CODTURMA"},Table.Buffer(Financiamento_Por_Turma),{"RM_CODCOLIGADA","RM_CODFILIAL","RM_IDPERLET","RM_CODTURMA"},"FinanciamentoValidado",JoinKind.LeftOuter),
+    EF=Table.ExpandTableColumn(JF,"FinanciamentoValidado",{"Financiamento","ID_Financiamento_SharePoint","Status_Financiamento"},{"Financiamento","ID_Financiamento_SharePoint","Status_Financiamento"}),
+    RM=Table.TransformColumns(EF,{{"Status_Financiamento",each if _=null then "Pendente: turma sem diagnóstico de classificação" else _,type text}}),
     ModalidadesPermitidas=List.Buffer(Table.SelectRows(APP_Opcoes_Escolha,each [Campo_Interno]="Modalidade")[Opcao]),
     DP=Table.Buffer(DP_Matrizes_Validadas),
     Cad=Table.Buffer(Table.SelectRows(APP_Cad_Matrizes,each [Ativa]=true)),
@@ -314,7 +318,7 @@ let
     Conflitos=Table.Buffer(Table.SelectRows(Matrizes_Divergencias_Recebidas,each Text.Contains([Motivo],"Modalidade"))),
     JCf=Table.NestedJoin(SegundaData,{"RM_CODCOLIGADA","RM_Codigo_Curso","RM_Codigo_Grade"},Conflitos,{"RM_CODCOLIGADA","RM_Codigo_Curso","RM_Codigo_Grade"},"Divergencias",JoinKind.LeftOuter),
     Status=Table.AddColumn(JCf,"Status_Cruzamento_Matriz",each if Table.RowCount([Divergencias])>0 then "Pendente: divergência de modalidade nos arquivos recebidos; revisar" else if [ID_Matriz_SharePoint]=null then "Pendente: aprovar de/para de matriz" else if [Cad_ID]=null then "Pendente: ID não encontrado em matrizes ativas" else if [Cad_Modalidade]=null or [Cad_Mediacao]=null or [Cad_Carga]=null then "Pendente: cadastro da matriz incompleto" else if not List.Contains(ModalidadesPermitidas,[Cad_Modalidade]) then "Pendente: modalidade da matriz não existe nas opções atuais da lista" else "Matriz cruzada; validar demais campos antes da carga",type text),
-    Resultado=Table.SelectColumns(Status,{"Planejamento", "Unidade", "Periodo_Letivo", "Ano_Referencia", "Identificador_Temporario", "Codigo_Turma_SGE", "Matriz", "Status_Turma", "Ativa", "Codigo_Matriz_Snapshot", "Nome_Curso_Snapshot", "Area_Snapshot", "Modalidade_Snapshot", "Tipo_Mediacao_Snapshot", "Carga_Horaria_Snapshot", "Data_Snapshot_Matriz", "Data_Inicio_Prevista", "Data_Fim_Prevista", "Quantidade_Vagas", "Matriculas_Previstas", "Campus_Polo", "Financiamento", "Tipo_Periodo", "Pedagogo_Responsavel", "Mobilizacao", "Empresa", "Projeto", "Sindicato", "Classe_Valor", "Item_Contabil_Snapshot", "Centro_Custo_Snapshot", "Observacoes", "Motivo_Cancelamento", "Data_Cancelamento", "Cancelada_Por", "Data_Conclusao", "Bloqueada_Para_Edicao", "Versao_Planejamento", "Origem_Registro", "Data_Ultima_Revisao", "Turno", "Tipo_Calculo_Evasao", "Percentual_Evasao_Previsto", "Quantidade_Evasao_Prevista", "Matriculas_Consideradas", "ID", "Matriculas_Reais", "Matriculas_Reais_Confirmadas", "Código da turma SGE", "Local_realizacao", "Instrutor", "Codigo_Matriz_Excel", "Criado", "Criado por", "Modalidade", "Data_Snapshot_Matriz0", "ID_Matriz_SharePoint", "Status_Cruzamento_Matriz"})
+    Resultado=Table.SelectColumns(Status,{"Planejamento", "Unidade", "Periodo_Letivo", "Ano_Referencia", "Identificador_Temporario", "Codigo_Turma_SGE", "Matriz", "Status_Turma", "Ativa", "Codigo_Matriz_Snapshot", "Nome_Curso_Snapshot", "Area_Snapshot", "Modalidade_Snapshot", "Tipo_Mediacao_Snapshot", "Carga_Horaria_Snapshot", "Data_Snapshot_Matriz", "Data_Inicio_Prevista", "Data_Fim_Prevista", "Quantidade_Vagas", "Matriculas_Previstas", "Campus_Polo", "Financiamento", "Tipo_Periodo", "Pedagogo_Responsavel", "Mobilizacao", "Empresa", "Projeto", "Sindicato", "Classe_Valor", "Item_Contabil_Snapshot", "Centro_Custo_Snapshot", "Observacoes", "Motivo_Cancelamento", "Data_Cancelamento", "Cancelada_Por", "Data_Conclusao", "Bloqueada_Para_Edicao", "Versao_Planejamento", "Origem_Registro", "Data_Ultima_Revisao", "Turno", "Tipo_Calculo_Evasao", "Percentual_Evasao_Previsto", "Quantidade_Evasao_Prevista", "Matriculas_Consideradas", "ID", "Matriculas_Reais", "Matriculas_Reais_Confirmadas", "Código da turma SGE", "Local_realizacao", "Instrutor", "Codigo_Matriz_Excel", "Criado", "Criado por", "Modalidade", "Data_Snapshot_Matriz0", "ID_Matriz_SharePoint", "Status_Cruzamento_Matriz", "RM_CODCOLIGADA", "RM_CODFILIAL", "RM_IDPERLET", "RM_CODTURMA", "RM_Codigo_Curso", "RM_Codigo_Grade", "ID_Financiamento_SharePoint", "Status_Financiamento"})
 in Resultado
 
 // CONSULTA: RM_Estrutura_Integracao
@@ -1416,4 +1420,42 @@ let
     Proposta=Table.AddColumn(Aplicacao,"Financiamento_Proposto",each if [Descricao_CLASSIFTUR]="GRATUITO" then "Gratuidade" else if [Descricao_CLASSIFTUR]="NEGOCIO" then "Negócio" else if [Descricao_CLASSIFTUR]="NEGOCIO PJ" then "Negócio — PJ: confirmar agrupamento" else null,type text),
     Status=Table.AddColumn(Proposta,"Status_Validacao",each if [RM_CLASSIFICACAO]=null or [RM_CLASSIFICACAO]="" then "Sem classificação na turma" else if [Ocorrencias_Dominio]<>1 then "Domínio ausente ou ambíguo" else "Validar que CLASSIFICACAO usa CLASSIFTUR; proposta não aplicada",type text),
     Resultado=Table.RemoveColumns(Status,{"Dicionario"})
+in Resultado
+
+// CONSULTA: DP_Financiamento_Confirmado
+let
+    // Regra de negócio confirmada pelo usuário para a migração.
+    Regra=#table(type table [Codigo_Classificacao=text, Descricao_Esperada=text, Financiamento_App=text],{
+        {"1","GRATUITO","Gratuidade"},
+        {"2","NEGOCIO","Negócio"},
+        {"3","NEGOCIO PJ","Negócio"}}),
+    Dom=Table.Buffer(Table.SelectRows(RM_Dominios_Direcionados,each [CODCOLIGADA]=0 and [APLICACAO]="S" and [Codigo_Tabela]="CLASSIFTUR")),
+    Cad=Table.Buffer(APP_Cad_Financiamentos),
+    J=Table.NestedJoin(Regra,{"Codigo_Classificacao"},Dom,{"Codigo_Valor"},"Dom",JoinKind.LeftOuter),
+    A=Table.NestedJoin(J,{"Financiamento_App"},Cad,{"Nome_Financiamento"},"App",JoinKind.LeftOuter),
+    Status=Table.AddColumn(A,"Status_DePara",each if Table.RowCount([Dom])<>1 then "Pendente: domínio CLASSIFTUR ausente ou ambíguo" else if [Dom]{0}[Descricao_Valor]<>[Descricao_Esperada] then "Pendente: descrição do domínio mudou" else if Table.RowCount([App])<>1 then "Pendente: opção app ausente ou duplicada" else if [App]{0}[Ativa]<>true then "Pendente: opção app não ativa" else "Regra confirmada",type text),
+    ID=Table.AddColumn(Status,"ID_Financiamento_SharePoint",each if [Status_DePara]="Regra confirmada" then [App]{0}[ID] else null,Int64.Type),
+    Valor=Table.AddColumn(ID,"Valor_App",each if [Status_DePara]="Regra confirmada" then [App]{0}[Nome_Financiamento] else null,type text),
+    Resultado=Table.RemoveColumns(Valor,{"Dom","App"})
+in Resultado
+
+// CONSULTA: Financiamento_Por_Turma
+let
+    Fonte=Table.TransformColumns(Table.SelectColumns(RM_Oferta_Diagnostico,{"RM_CODCOLIGADA","RM_CODFILIAL","RM_IDPERLET","RM_CODTURMA","RM_CLASSIFICACAO"}),{{"RM_CLASSIFICACAO",each if _=null then null else let T=Text.Trim(_) in if T="" then null else T,type nullable text}}),
+    Agrupa=Table.Group(Fonte,{"RM_CODCOLIGADA","RM_CODFILIAL","RM_IDPERLET","RM_CODTURMA"},{{"Codigos",each List.Distinct([RM_CLASSIFICACAO]),type list}}),
+    N=Table.AddColumn(Agrupa,"Quantidade_Classificacoes",each List.Count([Codigos]),Int64.Type),
+    Codigo=Table.AddColumn(N,"Codigo_Classificacao",each if [Quantidade_Classificacoes]=1 then [Codigos]{0} else null,type text),
+    J=Table.NestedJoin(Codigo,{"Codigo_Classificacao"},Table.Buffer(DP_Financiamento_Confirmado),{"Codigo_Classificacao"},"Mapa",JoinKind.LeftOuter),
+    E=Table.ExpandTableColumn(J,"Mapa",{"ID_Financiamento_SharePoint","Valor_App","Status_DePara"},{"ID_Financiamento_SharePoint","Financiamento","Status_DePara"}),
+    Status=Table.AddColumn(E,"Status_Financiamento",each if [Quantidade_Classificacoes]<>1 then "Pendente: classificações conflitantes na turma" else if [Codigo_Classificacao]=null then "Pendente: turma sem classificação" else if [Status_DePara]=null then "Pendente: classificação sem regra aprovada" else [Status_DePara],type text),
+    Resultado=Table.RemoveColumns(Status,{"Codigos","Status_DePara"})
+in Resultado
+
+// CONSULTA: Niteroi_PreCarga
+let
+    Fonte=Table.SelectRows(Exportacao_App_Enriquecida,each [RM_CODCOLIGADA]=3 and [RM_CODFILIAL]=266),
+    Obrigatorios=List.Buffer(Table.SelectRows(APP_Contrato_Campos,each [Obrigatorio]=true)[Campo_Interno]),
+    Campos=Table.AddColumn(Fonte,"Obrigatorios_Vazios",each let R=_ in Text.Combine(List.Select(Obrigatorios,(C)=>let V=Record.FieldOrDefault(R,C,null) in V=null or (Value.Is(V,type text) and Text.Trim(V)="")),"; "),type text),
+    Status=Table.AddColumn(Campos,"Status_PreCarga",each if [Obrigatorios_Vazios]<>"" then "Pendente: preencher campos ou ajustar obrigatoriedade" else if [Status_Financiamento]<>"Regra confirmada" then "Pendente: financiamento" else if [Status_Cruzamento_Matriz]<>"Matriz cruzada; validar demais campos antes da carga" then "Pendente: matriz" else "Conferência estrutural sem pendências; testar inclusão no app",type text),
+    Resultado=Table.SelectColumns(Status,{"RM_CODCOLIGADA","RM_CODFILIAL","RM_IDPERLET","RM_CODTURMA","Codigo_Turma_SGE","Nome_Curso_Snapshot","Matriz","Carga_Horaria_Snapshot","Modalidade_Snapshot","Tipo_Mediacao_Snapshot","Campus_Polo","Financiamento","ID_Financiamento_SharePoint","Status_Financiamento","Status_Cruzamento_Matriz","Obrigatorios_Vazios","Status_PreCarga"})
 in Resultado

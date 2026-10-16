@@ -103,3 +103,9 @@ ref table 'RM_Rotulos_Campos'
 ref table 'Turnos_Tipo_Validar'
 
 ref table 'Financiamento_Classificacao_Validar'
+
+ref table 'DP_Financiamento_Confirmado'
+
+ref table 'Financiamento_Por_Turma'
+
+ref table 'Niteroi_PreCarga'
