@@ -16,5 +16,7 @@ Na página Dicionários RM - validar, exporte as duas tabelas:
 - Direita: RM_Dominios_Estrutura. Mostra os campos reais das tabelas de consistência e definições de complementares, para localizar o vínculo do campo com seu dicionário.
 Se os domínios vierem vazios ou com status de estrutura não reconhecida, envie ainda assim a estrutura. Nenhuma descrição é inventada e nenhum código de classificação é convertido em Gratuidade/Negócio por suposição.
 
-A decisão sobre a carga horária divergente está pendente: revisar antes de importar, usar RM ou manter app. A estrutura de opções e os campos obrigatórios ainda precisam de validação antes da carga em massa. Não há escrita no RM/SharePoint. Mantidas as melhorias da V16.
+Carga horária: decisão confirmada de manter o cadastro do app. A estrutura de opções e os campos obrigatórios ainda precisam de validação antes da carga em massa. Não há escrita no RM/SharePoint. Mantidas as melhorias da V16.
 Código/estrutura/ZIP verificados; novas consultas dependem de execução no Desktop com acesso ao RM. Preserve sua cópia local.
+
+DECISÃO CONFIRMADA: manter Carga_Horaria_Snapshot do cadastro do app, mesmo quando diferente do RM. As sete diferenças permanecem visíveis para auditoria, mas não bloqueiam a exportação por esse motivo. Divergências de modalidade continuam pendentes; nenhum valor de modalidade foi substituído automaticamente.
