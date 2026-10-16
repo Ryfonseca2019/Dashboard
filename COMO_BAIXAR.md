@@ -1,23 +1,16 @@
-# Power BI — Financiamento aplicado e pré-carga Niterói
+# Power BI — Resumo de classificação independente
 
-Baixe **Planejamento_Turmas_SENAI_Financiamento_Aplicado_v19.zip**.
+Baixe **Planejamento_Turmas_SENAI_Correcao_Classificacao_v20.zip**.
 
-V19 — FINANCIAMENTO APLICADO POR REGRA APROVADA
+V20 — RESUMO DE CLASSIFICAÇÃO ISOLADO
 
-CLASSIFICACAO 1/GRATUITO → Gratuidade; 2/NEGOCIO e 3/NEGOCIO PJ → Negócio.
-A regra foi confirmada pelo usuário para a migração. O esquema recebido não prova formalmente o vínculo de configuração do campo com CLASSIFTUR; a associação é aplicada como regra de negócio autorizada, com validação atual dos rótulos de CLASSIFTUR (coligada 0, aplicação S) e das opções ativas do app.
-Sem classificação, código desconhecido ou classificações conflitantes: sem financiamento e com status pendente. Não há valor padrão.
-A extração anterior indica 4.932 Gratuidade e 2.026 Negócio, total 6.958 candidatas classificadas; 119 sem classificação. Essas contagens não são uma nova execução.
+O Desktop reportou referência cíclica em Financiamento_Classificacao_Validar. A inspeção das consultas salvas não encontrou ciclo explícito; a origem exata do erro de execução ainda não foi reproduzida neste ambiente.
+A tabela foi reescrita como uma consulta SQL direta e independente. Agora lê somente STURMA, STURMACOMPL e GCONSIST, sem referências a outras consultas M, SharePoint ou função de de/para. Mantém os sete campos usados no visual e a regra confirmada 1=Gratuidade e 2/3=Negócio.
+A classificação vazia ou desconhecida continua pendente. O resumo verifica coligada 0/aplicação S/CLASSIFTUR e mantém contagens do dicionário. Não escolhe um rótulo por MAX quando houver mais de uma ocorrência.
+Os registros são distintos por chave RM e classificação antes da contagem; se uma turma tiver classificações conflitantes, pode aparecer em mais de um grupo deste diagnóstico, enquanto Financiamento_Por_Turma continua sinalizando o conflito e não preenche essa turma.
 
-COMO USAR
-Extraia em pasta nova e atualize o PBIP. Na página Financiamento e pré-carga Niterói:
-- Tabela superior: DP_Financiamento_Confirmado com as três regras e IDs reais do app.
-- Tabela inferior: Niteroi_PreCarga, com financiamento, pendências de matriz e campos obrigatórios vazios.
-Exporte a inferior e envie para preparar o lote piloto. Não cole essa tabela de diagnóstico diretamente na lista.
-O campo Financiamento é preenchido na Exportacao_App_Enriquecida e nas páginas Exportação | 54 campos e Colagem | sem metadados, que usam essa tabela.
-
-Os campos técnicos ID_Financiamento_SharePoint e Status_Financiamento são de auditoria e não devem ser colados como colunas comuns. A ordem das 54/51 colunas anteriores foi preservada.
-O check de obrigatórios usa o esquema do msapp recebido. Se você tornou pedagogo ou cálculo de evasão opcionais na lista, esse snapshot ainda os indicará; confirme as alterações reais antes da carga. Não foram removidas exigências na lista por esta entrega.
-Unidade, planejamento, ano de referência, status Rascunho, Ativa e identificadores ainda devem ser conferidos na sua planilha: as decisões não equivalem a preenchimento automático de todos esses campos no PBIP atual. A visão não anuncia que o lote está pronto.
-Turno continua pendente: o cadastro não corresponde com segurança ao horário efetivo de todas as turmas. Preservada carga horária do app e demais regras anteriores.
-Nenhuma linha foi gravada no SharePoint ou RM. ZIP, referências e lógica de classificação verificados localmente; refresh e dados dependem do Desktop corporativo.
+COMO TESTAR
+Cancele/feche a atualização anterior e feche o projeto. Extraia a V20 em pasta nova e abra o PBIP. Em Transformar dados, selecione Financiamento_Classificacao_Validar e Atualizar Visualização. Ela deve consultar o SQL Server diretamente.
+Se a prévia carregar, prossiga para Fechar e Aplicar. Se o erro persistir, envie o texto completo do erro e a etapa marcada no Editor do Power Query para localizar a dependência efetiva do ambiente.
+A visão Financiamento e pré-carga Niterói e as regras de financiamento da V19 permanecem; nenhuma informação foi gravada no SharePoint ou no RM. Não é confirmação de lote pronto.
+A alteração foi validada estruturalmente e com casos de teste relacionais; execução do SQL Server, Power Query e atualização completa precisam ser confirmadas no Desktop.

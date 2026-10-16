@@ -1,0 +1,12 @@
+V20 — RESUMO DE CLASSIFICAÇÃO ISOLADO
+
+O Desktop reportou referência cíclica em Financiamento_Classificacao_Validar. A inspeção das consultas salvas não encontrou ciclo explícito; a origem exata do erro de execução ainda não foi reproduzida neste ambiente.
+A tabela foi reescrita como uma consulta SQL direta e independente. Agora lê somente STURMA, STURMACOMPL e GCONSIST, sem referências a outras consultas M, SharePoint ou função de de/para. Mantém os sete campos usados no visual e a regra confirmada 1=Gratuidade e 2/3=Negócio.
+A classificação vazia ou desconhecida continua pendente. O resumo verifica coligada 0/aplicação S/CLASSIFTUR e mantém contagens do dicionário. Não escolhe um rótulo por MAX quando houver mais de uma ocorrência.
+Os registros são distintos por chave RM e classificação antes da contagem; se uma turma tiver classificações conflitantes, pode aparecer em mais de um grupo deste diagnóstico, enquanto Financiamento_Por_Turma continua sinalizando o conflito e não preenche essa turma.
+
+COMO TESTAR
+Cancele/feche a atualização anterior e feche o projeto. Extraia a V20 em pasta nova e abra o PBIP. Em Transformar dados, selecione Financiamento_Classificacao_Validar e Atualizar Visualização. Ela deve consultar o SQL Server diretamente.
+Se a prévia carregar, prossiga para Fechar e Aplicar. Se o erro persistir, envie o texto completo do erro e a etapa marcada no Editor do Power Query para localizar a dependência efetiva do ambiente.
+A visão Financiamento e pré-carga Niterói e as regras de financiamento da V19 permanecem; nenhuma informação foi gravada no SharePoint ou no RM. Não é confirmação de lote pronto.
+A alteração foi validada estruturalmente e com casos de teste relacionais; execução do SQL Server, Power Query e atualização completa precisam ser confirmadas no Desktop.

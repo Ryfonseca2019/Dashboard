@@ -1410,17 +1410,8 @@ in Resultado
 
 // CONSULTA: Financiamento_Classificacao_Validar
 let
-    Fonte=Table.TransformColumns(RM_Oferta_Diagnostico,{{"RM_CLASSIFICACAO",each if _=null then null else Text.Trim(_),type nullable text}}),
-    G=Table.Group(Fonte,{"RM_CLASSIFICACAO"},{{"Quantidade_Turmas",each Table.RowCount(Table.Distinct(Table.SelectColumns(_,{"RM_CODCOLIGADA","RM_CODFILIAL","RM_IDPERLET","RM_CODTURMA"}))),Int64.Type}}),
-    Dom=Table.SelectRows(RM_Dominios_Direcionados,each [CODCOLIGADA]=0 and [Codigo_Tabela]="CLASSIFTUR"),
-    J=Table.NestedJoin(G,{"RM_CLASSIFICACAO"},Dom,{"Codigo_Valor"},"Dicionario",JoinKind.LeftOuter),
-    N=Table.AddColumn(J,"Ocorrencias_Dominio",each Table.RowCount([Dicionario]),Int64.Type),
-    Texto=Table.AddColumn(N,"Descricao_CLASSIFTUR",each if [Ocorrencias_Dominio]=1 then [Dicionario]{0}[Descricao_Valor] else null,type text),
-    Aplicacao=Table.AddColumn(Texto,"Aplicacao_Dominio",each Text.Combine(List.Distinct(List.RemoveNulls([Dicionario][APLICACAO])),"; "),type text),
-    Proposta=Table.AddColumn(Aplicacao,"Financiamento_Proposto",each if [Descricao_CLASSIFTUR]="GRATUITO" then "Gratuidade" else if [Descricao_CLASSIFTUR]="NEGOCIO" then "Negócio" else if [Descricao_CLASSIFTUR]="NEGOCIO PJ" then "Negócio — PJ: confirmar agrupamento" else null,type text),
-    Status=Table.AddColumn(Proposta,"Status_Validacao",each if [RM_CLASSIFICACAO]=null or [RM_CLASSIFICACAO]="" then "Sem classificação na turma" else if [Ocorrencias_Dominio]<>1 then "Domínio ausente ou ambíguo" else "Validar que CLASSIFICACAO usa CLASSIFTUR; proposta não aplicada",type text),
-    Resultado=Table.RemoveColumns(Status,{"Dicionario"})
-in Resultado
+    Fonte=Sql.Database("SRVSEDE01621PRE","CorporeRM",[Query="-- Resumo independente de outras consultas Power Query.#(lf)-- Somente leitura; mesma seleção SENAI e término previsto no ano atual em diante.#(lf)WITH Turmas AS (#(lf)    SELECT DISTINCT CODCOLIGADA,CODFILIAL,IDPERLET,CODTURMA#(lf)    FROM dbo.STURMA#(lf)    WHERE CODCOLIGADA=3 AND DTFINAL>=DATEFROMPARTS(YEAR(GETDATE()),1,1)#(lf)), Classificacoes AS (#(lf)    SELECT DISTINCT T.CODCOLIGADA,T.CODFILIAL,T.IDPERLET,T.CODTURMA,#(lf)        NULLIF(LTRIM(RTRIM(CONVERT(nvarchar(4000),C.CLASSIFICACAO))),N'') AS Codigo#(lf)    FROM Turmas T#(lf)    LEFT JOIN dbo.STURMACOMPL C ON C.CODCOLIGADA=T.CODCOLIGADA#(lf)        AND C.CODFILIAL=T.CODFILIAL AND C.IDPERLET=T.IDPERLET AND C.CODTURMA=T.CODTURMA#(lf)), Resumo AS (#(lf)    SELECT Codigo,COUNT_BIG(*) AS Quantidade_Turmas#(lf)    FROM Classificacoes GROUP BY Codigo#(lf)), Dominio AS (#(lf)    SELECT CONVERT(nvarchar(4000),CODCLIENTE) AS Codigo,COUNT(*) AS N,#(lf)        CASE WHEN COUNT(*)=1 THEN MAX(CONVERT(nvarchar(4000),DESCRICAO)) END Descricao#(lf)    FROM dbo.GCONSIST#(lf)    WHERE CODCOLIGADA=0 AND APLICACAO='S' AND CODTABELA='CLASSIFTUR'#(lf)    GROUP BY CONVERT(nvarchar(4000),CODCLIENTE)#(lf))#(lf)SELECT R.Codigo AS RM_CLASSIFICACAO,R.Quantidade_Turmas,#(lf)    COALESCE(D.N,0) AS Ocorrencias_Dominio,D.Descricao AS Descricao_CLASSIFTUR,#(lf)    CASE WHEN D.N=1 THEN N'S' END AS Aplicacao_Dominio,#(lf)    CASE R.Codigo WHEN N'1' THEN N'Gratuidade' WHEN N'2' THEN N'Negócio' WHEN N'3' THEN N'Negócio' END AS Financiamento_Proposto,#(lf)    CASE WHEN R.Codigo IS NULL THEN N'Sem classificação na turma'#(lf)        WHEN R.Codigo NOT IN (N'1',N'2',N'3') THEN N'Classificação sem regra aprovada'#(lf)        WHEN COALESCE(D.N,0)<>1 THEN N'Domínio ausente ou ambíguo'#(lf)        WHEN (R.Codigo=N'1' AND D.Descricao<>N'GRATUITO')#(lf)          OR (R.Codigo=N'2' AND D.Descricao<>N'NEGOCIO')#(lf)          OR (R.Codigo=N'3' AND D.Descricao<>N'NEGOCIO PJ') THEN N'Descrição do domínio mudou; revisar'#(lf)        ELSE N'Regra de migração confirmada; opção atual do app validada no de/para de produção'#(lf)    END AS Status_Validacao#(lf)FROM Resumo R LEFT JOIN Dominio D ON D.Codigo=R.Codigo;#(lf)"])
+in Fonte
 
 // CONSULTA: DP_Financiamento_Confirmado
 let
