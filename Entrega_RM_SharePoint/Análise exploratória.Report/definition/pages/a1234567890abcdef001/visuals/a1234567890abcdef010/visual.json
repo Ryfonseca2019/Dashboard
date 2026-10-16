@@ -223,6 +223,34 @@
               },
               "queryRef": "Campus_SENAI_Validar.Status_DePara",
               "nativeQueryRef": "Status_DePara"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Campus_SENAI_Validar"
+                    }
+                  },
+                  "Property": "RM_Tipos_Campus"
+                }
+              },
+              "queryRef": "Campus_SENAI_Validar.RM_Tipos_Campus",
+              "nativeQueryRef": "RM_Tipos_Campus"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Campus_SENAI_Validar"
+                    }
+                  },
+                  "Property": "RM_Ativos_Campus"
+                }
+              },
+              "queryRef": "Campus_SENAI_Validar.RM_Ativos_Campus",
+              "nativeQueryRef": "RM_Ativos_Campus"
             }
           ]
         }

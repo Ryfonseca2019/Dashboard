@@ -125,6 +125,34 @@
               },
               "queryRef": "Campus_Cadastro_RM.Status_Cadastro_RM",
               "nativeQueryRef": "Status_Cadastro_RM"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Campus_Cadastro_RM"
+                    }
+                  },
+                  "Property": "RM_Tipo_Campus"
+                }
+              },
+              "queryRef": "Campus_Cadastro_RM.RM_Tipo_Campus",
+              "nativeQueryRef": "RM_Tipo_Campus"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Campus_Cadastro_RM"
+                    }
+                  },
+                  "Property": "RM_Campus_Ativo"
+                }
+              },
+              "queryRef": "Campus_Cadastro_RM.RM_Campus_Ativo",
+              "nativeQueryRef": "RM_Campus_Ativo"
             }
           ]
         }
