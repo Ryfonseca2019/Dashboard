@@ -306,10 +306,15 @@ table 'Exportacao_App_Enriquecida'
 		mode: import
 		source =
 				let
-				    RM=RM_Integracao_SharePoint,
+				    Base=RM_Integracao_SharePoint,
+				    SemCampus=Table.RemoveColumns(Base,{"Campus_Polo","ID_Campus_SharePoint","Status_Campus"}),
+				    CodigosCampus=Table.TransformColumns(SemCampus,{{"RM_Codigo_Campus",each if _=null then null else Text.Trim(_),type nullable text}}),
+				    MapaCampus=Table.Buffer(DP_Campus_Confirmado),
+				    JC=Table.NestedJoin(CodigosCampus,{"RM_Codigo_Campus"},MapaCampus,{"Codigo_RM"},"CampusValidado",JoinKind.LeftOuter),
+				    RM=Table.ExpandTableColumn(JC,"CampusValidado",{"Valor_App"},{"Campus_Polo"}),
 				    ModalidadesPermitidas=List.Buffer(Table.SelectRows(APP_Opcoes_Escolha,each [Campo_Interno]="Modalidade")[Opcao]),
-				    DP=DP_Matrizes_Validadas,
-				    Cad=Table.SelectRows(APP_Cad_Matrizes,each [Ativa]=true),
+				    DP=Table.Buffer(DP_Matrizes_Validadas),
+				    Cad=Table.Buffer(Table.SelectRows(APP_Cad_Matrizes,each [Ativa]=true)),
 				    J=Table.NestedJoin(RM,{"RM_CODCOLIGADA","RM_Codigo_Curso","RM_Codigo_Grade"},DP,{"RM_CODCOLIGADA","RM_Codigo_Curso","RM_Codigo_Grade"},"DP",JoinKind.LeftOuter),
 				    D=Table.ExpandTableColumn(J,"DP",{"ID_Matriz_SharePoint"},{"ID_Matriz_SharePoint"}),
 				    K=Table.NestedJoin(D,{"ID_Matriz_SharePoint"},Cad,{"ID"},"Cadastro",JoinKind.LeftOuter),

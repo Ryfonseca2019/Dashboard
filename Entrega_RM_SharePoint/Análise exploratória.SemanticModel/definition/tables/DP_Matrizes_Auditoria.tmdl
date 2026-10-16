@@ -811,7 +811,8 @@ table 'DP_Matrizes_Auditoria'
 				{3,"TEC0162","TEC0162",1923},
 				{3,"TEC0168","TEC0168.01",1925},
 				{3,"TEC0169","TEC0169.01",1926}}),
-				    J=Table.NestedJoin(Fonte,{"ID_Matriz_SharePoint"},APP_Cad_Matrizes,{"ID"},"Cad",JoinKind.LeftOuter),
+				    Catalogo=Table.Buffer(APP_Cad_Matrizes),
+				    J=Table.NestedJoin(Fonte,{"ID_Matriz_SharePoint"},Catalogo,{"ID"},"Cad",JoinKind.LeftOuter),
 				    N=Table.AddColumn(J,"Ocorrencias_ID",each Table.RowCount([Cad]),Int64.Type),
 				    Status=Table.AddColumn(N,"Status_Validacao",each if [Ocorrencias_ID]<>1 then "Pendente: ID ausente ou duplicado no app" else if [Cad]{0}[Codigo_Matriz]<>[RM_Codigo_Grade] then "Pendente: código do cadastro mudou" else if [Cad]{0}[Ativa]<>true then "Pendente: matriz não ativa" else "Código exato e ID conferidos",type text),
 				    Resultado=Table.RemoveColumns(Status,{"Cad"})

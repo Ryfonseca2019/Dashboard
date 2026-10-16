@@ -19,13 +19,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "RM_Integracao_SharePoint"
+                      "Entity": "Exportacao_App_Enriquecida"
                     }
                   },
                   "Property": "Planejamento"
                 }
               },
-              "queryRef": "RM_Integracao_SharePoint.Planejamento",
+              "queryRef": "Exportacao_App_Enriquecida.Planejamento",
               "nativeQueryRef": "Planejamento"
             },
             {
@@ -33,13 +33,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "RM_Integracao_SharePoint"
+                      "Entity": "Exportacao_App_Enriquecida"
                     }
                   },
                   "Property": "Unidade"
                 }
               },
-              "queryRef": "RM_Integracao_SharePoint.Unidade",
+              "queryRef": "Exportacao_App_Enriquecida.Unidade",
               "nativeQueryRef": "Unidade"
             },
             {
@@ -47,13 +47,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "RM_Integracao_SharePoint"
+                      "Entity": "Exportacao_App_Enriquecida"
                     }
                   },
                   "Property": "Periodo_Letivo"
                 }
               },
-              "queryRef": "RM_Integracao_SharePoint.Periodo_Letivo",
+              "queryRef": "Exportacao_App_Enriquecida.Periodo_Letivo",
               "nativeQueryRef": "Periodo_Letivo"
             },
             {
@@ -61,13 +61,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "RM_Integracao_SharePoint"
+                      "Entity": "Exportacao_App_Enriquecida"
                     }
                   },
                   "Property": "Ano_Referencia"
                 }
               },
-              "queryRef": "RM_Integracao_SharePoint.Ano_Referencia",
+              "queryRef": "Exportacao_App_Enriquecida.Ano_Referencia",
               "nativeQueryRef": "Ano_Referencia"
             },
             {
@@ -75,13 +75,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "RM_Integracao_SharePoint"
+                      "Entity": "Exportacao_App_Enriquecida"
                     }
                   },
                   "Property": "Identificador_Temporario"
                 }
               },
-              "queryRef": "RM_Integracao_SharePoint.Identificador_Temporario",
+              "queryRef": "Exportacao_App_Enriquecida.Identificador_Temporario",
               "nativeQueryRef": "Identificador_Temporario"
             },
             {
@@ -89,13 +89,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "RM_Integracao_SharePoint"
+                      "Entity": "Exportacao_App_Enriquecida"
                     }
                   },
                   "Property": "Codigo_Turma_SGE"
                 }
               },
-              "queryRef": "RM_Integracao_SharePoint.Codigo_Turma_SGE",
+              "queryRef": "Exportacao_App_Enriquecida.Codigo_Turma_SGE",
               "nativeQueryRef": "Codigo_Turma_SGE"
             },
             {
@@ -103,13 +103,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "RM_Integracao_SharePoint"
+                      "Entity": "Exportacao_App_Enriquecida"
                     }
                   },
                   "Property": "Matriz"
                 }
               },
-              "queryRef": "RM_Integracao_SharePoint.Matriz",
+              "queryRef": "Exportacao_App_Enriquecida.Matriz",
               "nativeQueryRef": "Matriz"
             },
             {
@@ -117,13 +117,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "RM_Integracao_SharePoint"
+                      "Entity": "Exportacao_App_Enriquecida"
                     }
                   },
                   "Property": "Status_Turma"
                 }
               },
-              "queryRef": "RM_Integracao_SharePoint.Status_Turma",
+              "queryRef": "Exportacao_App_Enriquecida.Status_Turma",
               "nativeQueryRef": "Status_Turma"
             },
             {
@@ -131,13 +131,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "RM_Integracao_SharePoint"
+                      "Entity": "Exportacao_App_Enriquecida"
                     }
                   },
                   "Property": "Ativa"
                 }
               },
-              "queryRef": "RM_Integracao_SharePoint.Ativa",
+              "queryRef": "Exportacao_App_Enriquecida.Ativa",
               "nativeQueryRef": "Ativa"
             },
             {
@@ -145,13 +145,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "RM_Integracao_SharePoint"
+                      "Entity": "Exportacao_App_Enriquecida"
                     }
                   },
                   "Property": "Codigo_Matriz_Snapshot"
                 }
               },
-              "queryRef": "RM_Integracao_SharePoint.Codigo_Matriz_Snapshot",
+              "queryRef": "Exportacao_App_Enriquecida.Codigo_Matriz_Snapshot",
               "nativeQueryRef": "Codigo_Matriz_Snapshot"
             },
             {
@@ -159,13 +159,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "RM_Integracao_SharePoint"
+                      "Entity": "Exportacao_App_Enriquecida"
                     }
                   },
                   "Property": "Nome_Curso_Snapshot"
                 }
               },
-              "queryRef": "RM_Integracao_SharePoint.Nome_Curso_Snapshot",
+              "queryRef": "Exportacao_App_Enriquecida.Nome_Curso_Snapshot",
               "nativeQueryRef": "Nome_Curso_Snapshot"
             },
             {
@@ -173,13 +173,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "RM_Integracao_SharePoint"
+                      "Entity": "Exportacao_App_Enriquecida"
                     }
                   },
                   "Property": "Area_Snapshot"
                 }
               },
-              "queryRef": "RM_Integracao_SharePoint.Area_Snapshot",
+              "queryRef": "Exportacao_App_Enriquecida.Area_Snapshot",
               "nativeQueryRef": "Area_Snapshot"
             },
             {
@@ -187,13 +187,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "RM_Integracao_SharePoint"
+                      "Entity": "Exportacao_App_Enriquecida"
                     }
                   },
                   "Property": "Modalidade_Snapshot"
                 }
               },
-              "queryRef": "RM_Integracao_SharePoint.Modalidade_Snapshot",
+              "queryRef": "Exportacao_App_Enriquecida.Modalidade_Snapshot",
               "nativeQueryRef": "Modalidade_Snapshot"
             },
             {
@@ -201,13 +201,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "RM_Integracao_SharePoint"
+                      "Entity": "Exportacao_App_Enriquecida"
                     }
                   },
                   "Property": "Tipo_Mediacao_Snapshot"
                 }
               },
-              "queryRef": "RM_Integracao_SharePoint.Tipo_Mediacao_Snapshot",
+              "queryRef": "Exportacao_App_Enriquecida.Tipo_Mediacao_Snapshot",
               "nativeQueryRef": "Tipo_Mediacao_Snapshot"
             },
             {
@@ -215,13 +215,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "RM_Integracao_SharePoint"
+                      "Entity": "Exportacao_App_Enriquecida"
                     }
                   },
                   "Property": "Carga_Horaria_Snapshot"
                 }
               },
-              "queryRef": "RM_Integracao_SharePoint.Carga_Horaria_Snapshot",
+              "queryRef": "Exportacao_App_Enriquecida.Carga_Horaria_Snapshot",
               "nativeQueryRef": "Carga_Horaria_Snapshot"
             },
             {
@@ -229,13 +229,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "RM_Integracao_SharePoint"
+                      "Entity": "Exportacao_App_Enriquecida"
                     }
                   },
                   "Property": "Data_Snapshot_Matriz"
                 }
               },
-              "queryRef": "RM_Integracao_SharePoint.Data_Snapshot_Matriz",
+              "queryRef": "Exportacao_App_Enriquecida.Data_Snapshot_Matriz",
               "nativeQueryRef": "Data_Snapshot_Matriz"
             },
             {
@@ -243,13 +243,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "RM_Integracao_SharePoint"
+                      "Entity": "Exportacao_App_Enriquecida"
                     }
                   },
                   "Property": "Data_Inicio_Prevista"
                 }
               },
-              "queryRef": "RM_Integracao_SharePoint.Data_Inicio_Prevista",
+              "queryRef": "Exportacao_App_Enriquecida.Data_Inicio_Prevista",
               "nativeQueryRef": "Data_Inicio_Prevista"
             },
             {
@@ -257,13 +257,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "RM_Integracao_SharePoint"
+                      "Entity": "Exportacao_App_Enriquecida"
                     }
                   },
                   "Property": "Data_Fim_Prevista"
                 }
               },
-              "queryRef": "RM_Integracao_SharePoint.Data_Fim_Prevista",
+              "queryRef": "Exportacao_App_Enriquecida.Data_Fim_Prevista",
               "nativeQueryRef": "Data_Fim_Prevista"
             },
             {
@@ -271,13 +271,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "RM_Integracao_SharePoint"
+                      "Entity": "Exportacao_App_Enriquecida"
                     }
                   },
                   "Property": "Quantidade_Vagas"
                 }
               },
-              "queryRef": "RM_Integracao_SharePoint.Quantidade_Vagas",
+              "queryRef": "Exportacao_App_Enriquecida.Quantidade_Vagas",
               "nativeQueryRef": "Quantidade_Vagas"
             },
             {
@@ -285,13 +285,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "RM_Integracao_SharePoint"
+                      "Entity": "Exportacao_App_Enriquecida"
                     }
                   },
                   "Property": "Matriculas_Previstas"
                 }
               },
-              "queryRef": "RM_Integracao_SharePoint.Matriculas_Previstas",
+              "queryRef": "Exportacao_App_Enriquecida.Matriculas_Previstas",
               "nativeQueryRef": "Matriculas_Previstas"
             },
             {
@@ -299,13 +299,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "RM_Integracao_SharePoint"
+                      "Entity": "Exportacao_App_Enriquecida"
                     }
                   },
                   "Property": "Campus_Polo"
                 }
               },
-              "queryRef": "RM_Integracao_SharePoint.Campus_Polo",
+              "queryRef": "Exportacao_App_Enriquecida.Campus_Polo",
               "nativeQueryRef": "Campus_Polo"
             },
             {
@@ -313,13 +313,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "RM_Integracao_SharePoint"
+                      "Entity": "Exportacao_App_Enriquecida"
                     }
                   },
                   "Property": "Financiamento"
                 }
               },
-              "queryRef": "RM_Integracao_SharePoint.Financiamento",
+              "queryRef": "Exportacao_App_Enriquecida.Financiamento",
               "nativeQueryRef": "Financiamento"
             },
             {
@@ -327,13 +327,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "RM_Integracao_SharePoint"
+                      "Entity": "Exportacao_App_Enriquecida"
                     }
                   },
                   "Property": "Tipo_Periodo"
                 }
               },
-              "queryRef": "RM_Integracao_SharePoint.Tipo_Periodo",
+              "queryRef": "Exportacao_App_Enriquecida.Tipo_Periodo",
               "nativeQueryRef": "Tipo_Periodo"
             },
             {
@@ -341,13 +341,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "RM_Integracao_SharePoint"
+                      "Entity": "Exportacao_App_Enriquecida"
                     }
                   },
                   "Property": "Pedagogo_Responsavel"
                 }
               },
-              "queryRef": "RM_Integracao_SharePoint.Pedagogo_Responsavel",
+              "queryRef": "Exportacao_App_Enriquecida.Pedagogo_Responsavel",
               "nativeQueryRef": "Pedagogo_Responsavel"
             },
             {
@@ -355,13 +355,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "RM_Integracao_SharePoint"
+                      "Entity": "Exportacao_App_Enriquecida"
                     }
                   },
                   "Property": "Mobilizacao"
                 }
               },
-              "queryRef": "RM_Integracao_SharePoint.Mobilizacao",
+              "queryRef": "Exportacao_App_Enriquecida.Mobilizacao",
               "nativeQueryRef": "Mobilizacao"
             },
             {
@@ -369,13 +369,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "RM_Integracao_SharePoint"
+                      "Entity": "Exportacao_App_Enriquecida"
                     }
                   },
                   "Property": "Empresa"
                 }
               },
-              "queryRef": "RM_Integracao_SharePoint.Empresa",
+              "queryRef": "Exportacao_App_Enriquecida.Empresa",
               "nativeQueryRef": "Empresa"
             },
             {
@@ -383,13 +383,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "RM_Integracao_SharePoint"
+                      "Entity": "Exportacao_App_Enriquecida"
                     }
                   },
                   "Property": "Projeto"
                 }
               },
-              "queryRef": "RM_Integracao_SharePoint.Projeto",
+              "queryRef": "Exportacao_App_Enriquecida.Projeto",
               "nativeQueryRef": "Projeto"
             },
             {
@@ -397,13 +397,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "RM_Integracao_SharePoint"
+                      "Entity": "Exportacao_App_Enriquecida"
                     }
                   },
                   "Property": "Sindicato"
                 }
               },
-              "queryRef": "RM_Integracao_SharePoint.Sindicato",
+              "queryRef": "Exportacao_App_Enriquecida.Sindicato",
               "nativeQueryRef": "Sindicato"
             },
             {
@@ -411,13 +411,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "RM_Integracao_SharePoint"
+                      "Entity": "Exportacao_App_Enriquecida"
                     }
                   },
                   "Property": "Classe_Valor"
                 }
               },
-              "queryRef": "RM_Integracao_SharePoint.Classe_Valor",
+              "queryRef": "Exportacao_App_Enriquecida.Classe_Valor",
               "nativeQueryRef": "Classe_Valor"
             },
             {
@@ -425,13 +425,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "RM_Integracao_SharePoint"
+                      "Entity": "Exportacao_App_Enriquecida"
                     }
                   },
                   "Property": "Item_Contabil_Snapshot"
                 }
               },
-              "queryRef": "RM_Integracao_SharePoint.Item_Contabil_Snapshot",
+              "queryRef": "Exportacao_App_Enriquecida.Item_Contabil_Snapshot",
               "nativeQueryRef": "Item_Contabil_Snapshot"
             },
             {
@@ -439,13 +439,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "RM_Integracao_SharePoint"
+                      "Entity": "Exportacao_App_Enriquecida"
                     }
                   },
                   "Property": "Centro_Custo_Snapshot"
                 }
               },
-              "queryRef": "RM_Integracao_SharePoint.Centro_Custo_Snapshot",
+              "queryRef": "Exportacao_App_Enriquecida.Centro_Custo_Snapshot",
               "nativeQueryRef": "Centro_Custo_Snapshot"
             },
             {
@@ -453,13 +453,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "RM_Integracao_SharePoint"
+                      "Entity": "Exportacao_App_Enriquecida"
                     }
                   },
                   "Property": "Observacoes"
                 }
               },
-              "queryRef": "RM_Integracao_SharePoint.Observacoes",
+              "queryRef": "Exportacao_App_Enriquecida.Observacoes",
               "nativeQueryRef": "Observacoes"
             },
             {
@@ -467,13 +467,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "RM_Integracao_SharePoint"
+                      "Entity": "Exportacao_App_Enriquecida"
                     }
                   },
                   "Property": "Motivo_Cancelamento"
                 }
               },
-              "queryRef": "RM_Integracao_SharePoint.Motivo_Cancelamento",
+              "queryRef": "Exportacao_App_Enriquecida.Motivo_Cancelamento",
               "nativeQueryRef": "Motivo_Cancelamento"
             },
             {
@@ -481,13 +481,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "RM_Integracao_SharePoint"
+                      "Entity": "Exportacao_App_Enriquecida"
                     }
                   },
                   "Property": "Data_Cancelamento"
                 }
               },
-              "queryRef": "RM_Integracao_SharePoint.Data_Cancelamento",
+              "queryRef": "Exportacao_App_Enriquecida.Data_Cancelamento",
               "nativeQueryRef": "Data_Cancelamento"
             },
             {
@@ -495,13 +495,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "RM_Integracao_SharePoint"
+                      "Entity": "Exportacao_App_Enriquecida"
                     }
                   },
                   "Property": "Cancelada_Por"
                 }
               },
-              "queryRef": "RM_Integracao_SharePoint.Cancelada_Por",
+              "queryRef": "Exportacao_App_Enriquecida.Cancelada_Por",
               "nativeQueryRef": "Cancelada_Por"
             },
             {
@@ -509,13 +509,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "RM_Integracao_SharePoint"
+                      "Entity": "Exportacao_App_Enriquecida"
                     }
                   },
                   "Property": "Data_Conclusao"
                 }
               },
-              "queryRef": "RM_Integracao_SharePoint.Data_Conclusao",
+              "queryRef": "Exportacao_App_Enriquecida.Data_Conclusao",
               "nativeQueryRef": "Data_Conclusao"
             },
             {
@@ -523,13 +523,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "RM_Integracao_SharePoint"
+                      "Entity": "Exportacao_App_Enriquecida"
                     }
                   },
                   "Property": "Bloqueada_Para_Edicao"
                 }
               },
-              "queryRef": "RM_Integracao_SharePoint.Bloqueada_Para_Edicao",
+              "queryRef": "Exportacao_App_Enriquecida.Bloqueada_Para_Edicao",
               "nativeQueryRef": "Bloqueada_Para_Edicao"
             },
             {
@@ -537,13 +537,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "RM_Integracao_SharePoint"
+                      "Entity": "Exportacao_App_Enriquecida"
                     }
                   },
                   "Property": "Versao_Planejamento"
                 }
               },
-              "queryRef": "RM_Integracao_SharePoint.Versao_Planejamento",
+              "queryRef": "Exportacao_App_Enriquecida.Versao_Planejamento",
               "nativeQueryRef": "Versao_Planejamento"
             },
             {
@@ -551,13 +551,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "RM_Integracao_SharePoint"
+                      "Entity": "Exportacao_App_Enriquecida"
                     }
                   },
                   "Property": "Origem_Registro"
                 }
               },
-              "queryRef": "RM_Integracao_SharePoint.Origem_Registro",
+              "queryRef": "Exportacao_App_Enriquecida.Origem_Registro",
               "nativeQueryRef": "Origem_Registro"
             },
             {
@@ -565,13 +565,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "RM_Integracao_SharePoint"
+                      "Entity": "Exportacao_App_Enriquecida"
                     }
                   },
                   "Property": "Data_Ultima_Revisao"
                 }
               },
-              "queryRef": "RM_Integracao_SharePoint.Data_Ultima_Revisao",
+              "queryRef": "Exportacao_App_Enriquecida.Data_Ultima_Revisao",
               "nativeQueryRef": "Data_Ultima_Revisao"
             },
             {
@@ -579,13 +579,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "RM_Integracao_SharePoint"
+                      "Entity": "Exportacao_App_Enriquecida"
                     }
                   },
                   "Property": "Turno"
                 }
               },
-              "queryRef": "RM_Integracao_SharePoint.Turno",
+              "queryRef": "Exportacao_App_Enriquecida.Turno",
               "nativeQueryRef": "Turno"
             },
             {
@@ -593,13 +593,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "RM_Integracao_SharePoint"
+                      "Entity": "Exportacao_App_Enriquecida"
                     }
                   },
                   "Property": "Tipo_Calculo_Evasao"
                 }
               },
-              "queryRef": "RM_Integracao_SharePoint.Tipo_Calculo_Evasao",
+              "queryRef": "Exportacao_App_Enriquecida.Tipo_Calculo_Evasao",
               "nativeQueryRef": "Tipo_Calculo_Evasao"
             },
             {
@@ -607,13 +607,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "RM_Integracao_SharePoint"
+                      "Entity": "Exportacao_App_Enriquecida"
                     }
                   },
                   "Property": "Percentual_Evasao_Previsto"
                 }
               },
-              "queryRef": "RM_Integracao_SharePoint.Percentual_Evasao_Previsto",
+              "queryRef": "Exportacao_App_Enriquecida.Percentual_Evasao_Previsto",
               "nativeQueryRef": "Percentual_Evasao_Previsto"
             },
             {
@@ -621,13 +621,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "RM_Integracao_SharePoint"
+                      "Entity": "Exportacao_App_Enriquecida"
                     }
                   },
                   "Property": "Quantidade_Evasao_Prevista"
                 }
               },
-              "queryRef": "RM_Integracao_SharePoint.Quantidade_Evasao_Prevista",
+              "queryRef": "Exportacao_App_Enriquecida.Quantidade_Evasao_Prevista",
               "nativeQueryRef": "Quantidade_Evasao_Prevista"
             },
             {
@@ -635,13 +635,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "RM_Integracao_SharePoint"
+                      "Entity": "Exportacao_App_Enriquecida"
                     }
                   },
                   "Property": "Matriculas_Consideradas"
                 }
               },
-              "queryRef": "RM_Integracao_SharePoint.Matriculas_Consideradas",
+              "queryRef": "Exportacao_App_Enriquecida.Matriculas_Consideradas",
               "nativeQueryRef": "Matriculas_Consideradas"
             },
             {
@@ -649,13 +649,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "RM_Integracao_SharePoint"
+                      "Entity": "Exportacao_App_Enriquecida"
                     }
                   },
                   "Property": "Matriculas_Reais"
                 }
               },
-              "queryRef": "RM_Integracao_SharePoint.Matriculas_Reais",
+              "queryRef": "Exportacao_App_Enriquecida.Matriculas_Reais",
               "nativeQueryRef": "Matriculas_Reais"
             },
             {
@@ -663,13 +663,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "RM_Integracao_SharePoint"
+                      "Entity": "Exportacao_App_Enriquecida"
                     }
                   },
                   "Property": "Matriculas_Reais_Confirmadas"
                 }
               },
-              "queryRef": "RM_Integracao_SharePoint.Matriculas_Reais_Confirmadas",
+              "queryRef": "Exportacao_App_Enriquecida.Matriculas_Reais_Confirmadas",
               "nativeQueryRef": "Matriculas_Reais_Confirmadas"
             },
             {
@@ -677,13 +677,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "RM_Integracao_SharePoint"
+                      "Entity": "Exportacao_App_Enriquecida"
                     }
                   },
                   "Property": "Código da turma SGE"
                 }
               },
-              "queryRef": "RM_Integracao_SharePoint.Código da turma SGE",
+              "queryRef": "Exportacao_App_Enriquecida.Código da turma SGE",
               "nativeQueryRef": "Código da turma SGE"
             },
             {
@@ -691,13 +691,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "RM_Integracao_SharePoint"
+                      "Entity": "Exportacao_App_Enriquecida"
                     }
                   },
                   "Property": "Local_realizacao"
                 }
               },
-              "queryRef": "RM_Integracao_SharePoint.Local_realizacao",
+              "queryRef": "Exportacao_App_Enriquecida.Local_realizacao",
               "nativeQueryRef": "Local_realizacao"
             },
             {
@@ -705,13 +705,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "RM_Integracao_SharePoint"
+                      "Entity": "Exportacao_App_Enriquecida"
                     }
                   },
                   "Property": "Instrutor"
                 }
               },
-              "queryRef": "RM_Integracao_SharePoint.Instrutor",
+              "queryRef": "Exportacao_App_Enriquecida.Instrutor",
               "nativeQueryRef": "Instrutor"
             },
             {
@@ -719,13 +719,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "RM_Integracao_SharePoint"
+                      "Entity": "Exportacao_App_Enriquecida"
                     }
                   },
                   "Property": "Codigo_Matriz_Excel"
                 }
               },
-              "queryRef": "RM_Integracao_SharePoint.Codigo_Matriz_Excel",
+              "queryRef": "Exportacao_App_Enriquecida.Codigo_Matriz_Excel",
               "nativeQueryRef": "Codigo_Matriz_Excel"
             }
           ]

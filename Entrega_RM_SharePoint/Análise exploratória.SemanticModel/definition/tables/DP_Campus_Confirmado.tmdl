@@ -42,7 +42,7 @@ table 'DP_Campus_Confirmado'
 				        {"4","Unidades Remotas - Senai"},
 				        {"5","Ambiente da Empresa - Senai"}}),
 				    RM=Table.TransformColumns(Campus_Cadastro_RM,{{"RM_Codigo_Campus",each if _=null then null else Text.Trim(_),type nullable text}}),
-				    App=APP_Cad_Campus_Polo,
+				    App=Table.Buffer(APP_Cad_Campus_Polo),
 				    J=Table.NestedJoin(Esperado,{"Codigo_RM"},RM,{"RM_Codigo_Campus"},"CadastroRM",JoinKind.LeftOuter),
 				    NR=Table.AddColumn(J,"Ocorrencias_RM",each Table.RowCount([CadastroRM]),Int64.Type),
 				    Descricao=Table.AddColumn(NR,"Descricao_RM",each if [Ocorrencias_RM]=1 then [CadastroRM]{0}[RM_Descricao_Campus] else null,type text),

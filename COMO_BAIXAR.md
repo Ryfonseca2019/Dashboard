@@ -1,19 +1,22 @@
-# Power BI — Matrizes, turnos e investigação de financiamento
+# Power BI — Atualização com dependências reduzidas
 
-Baixe **Planejamento_Turmas_SENAI_Matrizes_Turnos_v15.zip**.
+Baixe **Planejamento_Turmas_SENAI_Atualizacao_Otimizada_v16.zip**.
 
-V15 — MATRIZES EXATAS E DIAGNÓSTICO DE OFERTA
+V16 — REDUÇÃO DE DEPENDÊNCIAS E LEITURAS REPETIDAS
 
-A exportação de candidatas contém 2.209 linhas, que representam 999 chaves distintas de curso/grade RM. Foram identificadas 776 correspondências com código de grade exato e um único ID candidato no app; 87 têm somente nomes coincidentes com códigos/versões diferentes e 136 não têm candidata pelo nome exato.
-A V15 aplica somente os 776 vínculos exatos. DP_Matrizes_Auditoria valida ID, código e atividade no cadastro atualizado; se mudarem, a correspondência sai de DP_Matrizes_Validadas e fica pendente. Nome igual não aprova as outras 223 matrizes. Esses números se referem a matrizes, não a turmas.
-Exportacao_App_Enriquecida passa a usar os vínculos aprovados para código, nome, modalidade, mediação, carga e datas de snapshot conforme Cad_Matrizes. Isso não significa que todos os dados curriculares RM tenham sido comparados.
+A V15 não apresentou ciclo de consultas na inspeção estática. Porém, a extração principal RM_Integracao_SharePoint dependia do SharePoint por causa do campus; a consulta de diagnóstico de oferta usava subconsultas correlacionadas a cada turma. Sem acesso ao Desktop/servidor não foi possível confirmar qual etapa causava a demora observada.
 
-A estrutura recebida confirmou SGRADE.CARGAHORARIA e os campos usados para turno em SHABILITACAOFILIAL/STURNO. RM_Oferta_Diagnostico consulta carga, modalidade, mediação e turno, com contagem de ocorrências para não escolher registros ambíguos por MAX. Campos complementares são somente pistas de investigação; não são financiamento comprovado.
+MUDANÇAS
+- RM_Integracao_SharePoint volta a consultar somente RM. Campus_Polo nessa tabela bruta permanece nulo; o preenchimento validado foi movido para Exportacao_App_Enriquecida.
+- As páginas Exportação | 54 campos e Colagem | sem metadados agora usam Exportacao_App_Enriquecida, mantendo a ordem das colunas, campus confirmado e matrizes aprovadas.
+- RM_Oferta_Diagnostico agrupa grade/turno/modalidade/complemento por suas chaves antes dos joins. Mantém contagens, nulidade de valores ambíguos e filtro SENAI/término atual em diante.
+- Catálogos pequenos de SharePoint são materializados com Table.Buffer dentro das consultas que fazem vários cruzamentos. Isso evita releituras dentro de uma avaliação; não é cache persistente nem compartilhado entre todas as consultas.
+- Nenhum filtro de negócio foi ampliado ou limite de linhas imposto; nenhuma verificação de privacidade foi desativada.
 
-EXTRAÇÕES PARA VALIDAR
-1. Página Matrizes - carga e pendências: exportar tabela superior Matrizes_Comparar_Carga e, se possível, inferior DP_Matrizes_Pendentes.
-2. Página Turnos e financiamento: exportar superior esquerda Turnos_Validar e superior direita APP_Cad_Turnos. Exportar inferior esquerda Financiamento_Investigar e inferior direita APP_Cad_Financiamentos.
-Os dados complementares OFERTAP/PLANO/CLASSIFICACAO/PROGTURMA/MOBILIZACAO ainda não foram interpretados. Não há atribuição de financiamento por tentativa nem tradução de códigos de mediação sem validação.
+COMO VERIFICAR
+Cancele a atualização anterior se ainda estiver presa. Extraia a V16 em pasta nova e abra o PBIP. Em Transformar dados, atualize primeiro a prévia de RM_Oferta_Diagnostico para verificar o diagnóstico SQL, depois APP_Cad_Matrizes para verificar o SharePoint, e só depois execute a atualização completa.
+Anote o nome da consulta que fica lendo dados e se a contagem aumenta. Verifique se há solicitação de autenticação ou de privacidade pendente. Use níveis de privacidade compatíveis com as políticas da empresa; não ignore essas proteções.
+Se continuar demorando, envie a consulta que está efetivamente lendo dados e o tempo aproximado. Não é necessário enviar senhas ou capturas com dados pessoais.
 
-Somente SENAI; término no ano atual em diante; matrículas previstas iguais às vagas; pedagogo vazio; campus confirmado continuam mantidos. Os demais campos e decisões de negócio devem ser conferidos antes de migrar. As visões anteriores não mudam automaticamente para Exportacao_App_Enriquecida: use essa tabela para ver os snapshots de matriz preenchidos.
-Nenhuma escrita no SharePoint ou RM foi realizada. Referências SQL verificadas contra o XLSX recebido, JSON/TMDL/ZIP conferidos estruturalmente; execução SQL/M, credenciais e renderização continuam dependendo do Desktop corporativo.
+SQL/M e estrutura foram verificados estaticamente; o desempenho não foi medido contra o banco corporativo. Esta versão é uma correção de estrutura e trabalho repetido, não uma garantia de tempo de atualização.
+As tabelas de diagnóstico e os campos ainda pendentes não representam uma carga pronta para migrar. Preserve alterações locais em sua cópia anterior.
