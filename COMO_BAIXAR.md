@@ -1,6 +1,6 @@
 # Power BI — Catálogos e de/para do app
 
-Baixe **Planejamento_Turmas_RM_Catalogos_App_v8.zip**.
+Baixe **Planejamento_Turmas_RM_Catalogos_App_v9.zip**.
 
 V8 — CATÁLOGOS DO APP E DE/PARA DE MATRIZES
 
@@ -18,3 +18,5 @@ IMPORTANTE
 Não é uma entrega pronta para migrar todas as linhas: faltam correspondências validadas RM ↔ app, autenticação e validação no Desktop. A consulta original de RM e seus professores foi preservada; o filtro segue término no ano atual em diante. Abertura, M, SQL, opções ao vivo e renderização não foram executados neste ambiente.
 Lookup/Pessoa exigem entidades válidas; texto igual não garante que a colagem de grade resolverá o ID. Exportacao_App_Enriquecida inclui campos adicionais fora das 54 colunas; preparar uma exibição correspondente antes de colar. Não colar a coluna de status nem IDs técnicos como dados da lista.
 Nenhuma linha de dados do app ou dos usuários foi publicada no GitHub; somente consultas, esquema e instruções. Preservar sua cópia local se já criou medidas/visuais.
+
+V9 corrige a opção ApiVersion incompatível com o conector SharePoint 2.0, removendo-a das nove conexões de catálogos.

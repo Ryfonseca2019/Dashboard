@@ -8,7 +8,7 @@ let
             in if chave = null then error "Objeto de cadastro sem rótulo reconhecido" else @Texto(Record.Field(v, chave))
         else if Value.Is(v, type list) then Text.Combine(List.RemoveNulls(List.Transform(v, each @Texto(_))), "; ")
         else Text.From(v, "pt-BR"),
-    Fonte = SharePoint.Tables("https://sfirjan.sharepoint.com/sites/PlanejamentodeOfertasparaProduo-EP", [ApiVersion = 15, Implementation = "2.0", ViewMode = "All"]),
+    Fonte = SharePoint.Tables("https://sfirjan.sharepoint.com/sites/PlanejamentodeOfertasparaProduo-EP", [Implementation = "2.0", ViewMode = "All"]),
     Itens = Fonte{[Id = "c3eaa254-c72b-4b34-8fe5-3bea9a84c91e"]}[Items],
     Campos = Table.SelectColumns(Itens, {"ID", "Nome_Unidade", "Codigo_Filial", "Sigla_UNOP", "Ativa"}),
     Rotulos = Table.TransformColumns(Campos, {{"Nome_Unidade", Texto, type text}, {"Codigo_Filial", Texto, type text}, {"Sigla_UNOP", Texto, type text}}),
@@ -26,7 +26,7 @@ let
             in if chave = null then error "Objeto de cadastro sem rótulo reconhecido" else @Texto(Record.Field(v, chave))
         else if Value.Is(v, type list) then Text.Combine(List.RemoveNulls(List.Transform(v, each @Texto(_))), "; ")
         else Text.From(v, "pt-BR"),
-    Fonte = SharePoint.Tables("https://sfirjan.sharepoint.com/sites/PlanejamentodeOfertasparaProduo-EP", [ApiVersion = 15, Implementation = "2.0", ViewMode = "All"]),
+    Fonte = SharePoint.Tables("https://sfirjan.sharepoint.com/sites/PlanejamentodeOfertasparaProduo-EP", [Implementation = "2.0", ViewMode = "All"]),
     Itens = Fonte{[Id = "4d2d7c69-1a70-4d3a-9e96-12dbe4030ade"]}[Items],
     Campos = Table.SelectColumns(Itens, {"ID", "Codigo_Matriz", "Nome_Curso", "Area", "Modalidade", "Tipo_Mediacao", "Carga_Horaria", "Item_Contabil", "Ativa"}),
     Rotulos = Table.TransformColumns(Campos, {{"Codigo_Matriz", Texto, type text}, {"Nome_Curso", Texto, type text}, {"Area", Texto, type text}, {"Modalidade", Texto, type text}, {"Tipo_Mediacao", Texto, type text}, {"Item_Contabil", Texto, type text}}),
@@ -44,7 +44,7 @@ let
             in if chave = null then error "Objeto de cadastro sem rótulo reconhecido" else @Texto(Record.Field(v, chave))
         else if Value.Is(v, type list) then Text.Combine(List.RemoveNulls(List.Transform(v, each @Texto(_))), "; ")
         else Text.From(v, "pt-BR"),
-    Fonte = SharePoint.Tables("https://sfirjan.sharepoint.com/sites/PlanejamentodeOfertasparaProduo-EP", [ApiVersion = 15, Implementation = "2.0", ViewMode = "All"]),
+    Fonte = SharePoint.Tables("https://sfirjan.sharepoint.com/sites/PlanejamentodeOfertasparaProduo-EP", [Implementation = "2.0", ViewMode = "All"]),
     Itens = Fonte{[Id = "b6a922a4-6fab-446f-aa7e-8b9082c03734"]}[Items],
     Campos = Table.SelectColumns(Itens, {"ID", "Nome_Turno", "Codigo_Turno_SGE", "Ativa"}),
     Rotulos = Table.TransformColumns(Campos, {{"Nome_Turno", Texto, type text}, {"Codigo_Turno_SGE", Texto, type text}}),
@@ -62,7 +62,7 @@ let
             in if chave = null then error "Objeto de cadastro sem rótulo reconhecido" else @Texto(Record.Field(v, chave))
         else if Value.Is(v, type list) then Text.Combine(List.RemoveNulls(List.Transform(v, each @Texto(_))), "; ")
         else Text.From(v, "pt-BR"),
-    Fonte = SharePoint.Tables("https://sfirjan.sharepoint.com/sites/PlanejamentodeOfertasparaProduo-EP", [ApiVersion = 15, Implementation = "2.0", ViewMode = "All"]),
+    Fonte = SharePoint.Tables("https://sfirjan.sharepoint.com/sites/PlanejamentodeOfertasparaProduo-EP", [Implementation = "2.0", ViewMode = "All"]),
     Itens = Fonte{[Id = "d6b72180-f358-4a46-a33c-c3d0b55a3812"]}[Items],
     Campos = Table.SelectColumns(Itens, {"ID", "Nome_Financiamento", "Codigo_Financiamento_SGE", "Ativa"}),
     Rotulos = Table.TransformColumns(Campos, {{"Nome_Financiamento", Texto, type text}, {"Codigo_Financiamento_SGE", Texto, type text}}),
@@ -80,7 +80,7 @@ let
             in if chave = null then error "Objeto de cadastro sem rótulo reconhecido" else @Texto(Record.Field(v, chave))
         else if Value.Is(v, type list) then Text.Combine(List.RemoveNulls(List.Transform(v, each @Texto(_))), "; ")
         else Text.From(v, "pt-BR"),
-    Fonte = SharePoint.Tables("https://sfirjan.sharepoint.com/sites/PlanejamentodeOfertasparaProduo-EP", [ApiVersion = 15, Implementation = "2.0", ViewMode = "All"]),
+    Fonte = SharePoint.Tables("https://sfirjan.sharepoint.com/sites/PlanejamentodeOfertasparaProduo-EP", [Implementation = "2.0", ViewMode = "All"]),
     Itens = Fonte{[Id = "6b268d10-9767-49ab-a7bb-41846ec0705c"]}[Items],
     Campos = Table.SelectColumns(Itens, {"ID", "Nome_Campus_Polo", "Codigo_Campus_Polo_SGE", "Ativa"}),
     Rotulos = Table.TransformColumns(Campos, {{"Nome_Campus_Polo", Texto, type text}, {"Codigo_Campus_Polo_SGE", Texto, type text}}),
@@ -98,7 +98,7 @@ let
             in if chave = null then error "Objeto de cadastro sem rótulo reconhecido" else @Texto(Record.Field(v, chave))
         else if Value.Is(v, type list) then Text.Combine(List.RemoveNulls(List.Transform(v, each @Texto(_))), "; ")
         else Text.From(v, "pt-BR"),
-    Fonte = SharePoint.Tables("https://sfirjan.sharepoint.com/sites/PlanejamentodeOfertasparaProduo-EP", [ApiVersion = 15, Implementation = "2.0", ViewMode = "All"]),
+    Fonte = SharePoint.Tables("https://sfirjan.sharepoint.com/sites/PlanejamentodeOfertasparaProduo-EP", [Implementation = "2.0", ViewMode = "All"]),
     Itens = Fonte{[Id = "4598afdd-6877-4325-81ce-cc50c2d00921"]}[Items],
     Campos = Table.SelectColumns(Itens, {"ID", "Periodo_Letivo", "Unidade", "Ativo"}),
     Rotulos = Table.TransformColumns(Campos, {{"Periodo_Letivo", Texto, type text}, {"Unidade", Texto, type text}}),
@@ -116,7 +116,7 @@ let
             in if chave = null then error "Objeto de cadastro sem rótulo reconhecido" else @Texto(Record.Field(v, chave))
         else if Value.Is(v, type list) then Text.Combine(List.RemoveNulls(List.Transform(v, each @Texto(_))), "; ")
         else Text.From(v, "pt-BR"),
-    Fonte = SharePoint.Tables("https://sfirjan.sharepoint.com/sites/PlanejamentodeOfertasparaProduo-EP", [ApiVersion = 15, Implementation = "2.0", ViewMode = "All"]),
+    Fonte = SharePoint.Tables("https://sfirjan.sharepoint.com/sites/PlanejamentodeOfertasparaProduo-EP", [Implementation = "2.0", ViewMode = "All"]),
     Itens = Fonte{[Id = "0c0f17eb-53c5-47af-a58b-ce9f98816012"]}[Items],
     Campos = Table.SelectColumns(Itens, {"ID", "Nome_Planejamento", "Unidade", "Ano_Planejamento", "Ativo"}),
     Rotulos = Table.TransformColumns(Campos, {{"Nome_Planejamento", Texto, type text}, {"Unidade", Texto, type text}}),
@@ -134,7 +134,7 @@ let
             in if chave = null then error "Objeto de cadastro sem rótulo reconhecido" else @Texto(Record.Field(v, chave))
         else if Value.Is(v, type list) then Text.Combine(List.RemoveNulls(List.Transform(v, each @Texto(_))), "; ")
         else Text.From(v, "pt-BR"),
-    Fonte = SharePoint.Tables("https://sfirjan.sharepoint.com/sites/PlanejamentodeOfertasparaProduo-EP", [ApiVersion = 15, Implementation = "2.0", ViewMode = "All"]),
+    Fonte = SharePoint.Tables("https://sfirjan.sharepoint.com/sites/PlanejamentodeOfertasparaProduo-EP", [Implementation = "2.0", ViewMode = "All"]),
     Itens = Fonte{[Id = "0b4a4034-077f-4287-8f6b-ca76f1307fa4"]}[Items],
     Campos = Table.SelectColumns(Itens, {"ID", "Unidade", "Matriz", "Ano_Referencia", "Financiamento", "Centro_Custo", "Item_Contabil", "Ativa"}),
     Rotulos = Table.TransformColumns(Campos, {{"Unidade", Texto, type text}, {"Matriz", Texto, type text}, {"Financiamento", Texto, type text}, {"Centro_Custo", Texto, type text}, {"Item_Contabil", Texto, type text}}),
@@ -152,7 +152,7 @@ let
             in if chave = null then error "Objeto de cadastro sem rótulo reconhecido" else @Texto(Record.Field(v, chave))
         else if Value.Is(v, type list) then Text.Combine(List.RemoveNulls(List.Transform(v, each @Texto(_))), "; ")
         else Text.From(v, "pt-BR"),
-    Fonte = SharePoint.Tables("https://sfirjan.sharepoint.com/sites/PlanejamentodeOfertasparaProduo-EP", [ApiVersion = 15, Implementation = "2.0", ViewMode = "All"]),
+    Fonte = SharePoint.Tables("https://sfirjan.sharepoint.com/sites/PlanejamentodeOfertasparaProduo-EP", [Implementation = "2.0", ViewMode = "All"]),
     Itens = Fonte{[Id = "795d6a29-5282-4ae6-a4af-f047a78cf143"]}[Items],
     Campos = Table.SelectColumns(Itens, {"ID", "Unidade_ID", "Ano_Referencia", "Modalidade", "Percentual_Evasao", "Ativo"}),
     Rotulos = Table.TransformColumns(Campos, {{"Modalidade", Texto, type text}}),

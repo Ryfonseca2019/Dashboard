@@ -16,3 +16,5 @@ Lookup/Pessoa exigem entidades válidas; texto igual não garante que a colagem 
 Nenhuma linha de dados do app ou dos usuários foi publicada no GitHub; somente consultas, esquema e instruções. Preservar sua cópia local se já criou medidas/visuais.
 
 Ao combinar SQL e SharePoint, configure níveis de privacidade compatíveis com as políticas da organização; não ignore as proteções de privacidade. A saída valida Modalidade contra as opções atuais da lista antes de preencher esse campo.
+
+V9: removida ApiVersion das nove conexões SharePoint.Tables com Implementation 2.0. Mantidas Implementation="2.0" e ViewMode="All". Corrige a combinação de opções rejeitada pelo conector. Não altera mapeamentos, dados, regras SQL ou credenciais. Atualização ainda depende da validação no Desktop.

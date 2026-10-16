@@ -43,7 +43,7 @@ table 'APP_Parametros_Evasao_Unidade'
 				            in if chave = null then error "Objeto de cadastro sem rótulo reconhecido" else @Texto(Record.Field(v, chave))
 				        else if Value.Is(v, type list) then Text.Combine(List.RemoveNulls(List.Transform(v, each @Texto(_))), "; ")
 				        else Text.From(v, "pt-BR"),
-				    Fonte = SharePoint.Tables("https://sfirjan.sharepoint.com/sites/PlanejamentodeOfertasparaProduo-EP", [ApiVersion = 15, Implementation = "2.0", ViewMode = "All"]),
+				    Fonte = SharePoint.Tables("https://sfirjan.sharepoint.com/sites/PlanejamentodeOfertasparaProduo-EP", [Implementation = "2.0", ViewMode = "All"]),
 				    Itens = Fonte{[Id = "795d6a29-5282-4ae6-a4af-f047a78cf143"]}[Items],
 				    Campos = Table.SelectColumns(Itens, {"ID", "Unidade_ID", "Ano_Referencia", "Modalidade", "Percentual_Evasao", "Ativo"}),
 				    Rotulos = Table.TransformColumns(Campos, {{"Modalidade", Texto, type text}}),

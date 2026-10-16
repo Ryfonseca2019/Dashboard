@@ -32,7 +32,7 @@ table 'APP_Cad_Financiamentos'
 				            in if chave = null then error "Objeto de cadastro sem rótulo reconhecido" else @Texto(Record.Field(v, chave))
 				        else if Value.Is(v, type list) then Text.Combine(List.RemoveNulls(List.Transform(v, each @Texto(_))), "; ")
 				        else Text.From(v, "pt-BR"),
-				    Fonte = SharePoint.Tables("https://sfirjan.sharepoint.com/sites/PlanejamentodeOfertasparaProduo-EP", [ApiVersion = 15, Implementation = "2.0", ViewMode = "All"]),
+				    Fonte = SharePoint.Tables("https://sfirjan.sharepoint.com/sites/PlanejamentodeOfertasparaProduo-EP", [Implementation = "2.0", ViewMode = "All"]),
 				    Itens = Fonte{[Id = "d6b72180-f358-4a46-a33c-c3d0b55a3812"]}[Items],
 				    Campos = Table.SelectColumns(Itens, {"ID", "Nome_Financiamento", "Codigo_Financiamento_SGE", "Ativa"}),
 				    Rotulos = Table.TransformColumns(Campos, {{"Nome_Financiamento", Texto, type text}, {"Codigo_Financiamento_SGE", Texto, type text}}),
