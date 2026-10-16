@@ -1,0 +1,80 @@
+table 'DP_Unidade_Planejamento'
+
+	column 'RM_CODCOLIGADA'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: RM_CODCOLIGADA
+
+	column 'RM_CODFILIAL'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: RM_CODFILIAL
+
+	column 'RM_Unidade_Nome'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: RM_Unidade_Nome
+
+	column 'Ocorrencias_Unidade'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Ocorrencias_Unidade
+
+	column 'Unidade_App'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Unidade_App
+
+	column 'ID_Unidade_SharePoint'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: ID_Unidade_SharePoint
+
+	column 'Planejamento_Esperado'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Planejamento_Esperado
+
+	column 'Ocorrencias_Planejamento'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Ocorrencias_Planejamento
+
+	column 'Planejamento_App'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Planejamento_App
+
+	column 'ID_Planejamento_SharePoint'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: ID_Planejamento_SharePoint
+
+	column 'Status_Unidade_Planejamento'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Status_Unidade_Planejamento
+
+	partition 'DP_Unidade_Planejamento' = m
+		mode: import
+		source =
+				let
+				    Fonte=Table.Distinct(Table.SelectColumns(RM_Integracao_SharePoint,{"RM_CODCOLIGADA","RM_CODFILIAL","RM_Unidade_Nome"})),
+				    Unidades=Table.Buffer(Table.SelectRows(APP_Cad_Unidades,each [Ativa]=true)),
+				    Planos=Table.Buffer(Table.SelectRows(APP_Planejamentos,each [Ativo]=true)),
+				    Candidatas=Table.AddColumn(Fonte,"Unidades",each let Filial=Text.From([RM_CODFILIAL]),Niteroi=[RM_CODCOLIGADA]=3 and [RM_CODFILIAL]=266 in
+				        if Niteroi then Table.SelectRows(Unidades,each [Nome_Unidade]="Niterói")
+				        else Table.SelectRows(Unidades,each [Codigo_Filial]<>null and Text.Trim([Codigo_Filial])=Filial)),
+				    N=Table.AddColumn(Candidatas,"Ocorrencias_Unidade",each Table.RowCount([Unidades]),Int64.Type),
+				    Unidade=Table.AddColumn(N,"Unidade_App",each if [Ocorrencias_Unidade]=1 then [Unidades]{0}[Nome_Unidade] else null,type text),
+				    IDU=Table.AddColumn(Unidade,"ID_Unidade_SharePoint",each if [Ocorrencias_Unidade]=1 then [Unidades]{0}[ID] else null,Int64.Type),
+				    Esperado=Table.AddColumn(IDU,"Planejamento_Esperado",each if [Unidade_App]=null then null else "Planejamento " & [Unidade_App],type text),
+				    P=Table.AddColumn(Esperado,"Planos",each let Nome=[Planejamento_Esperado],Unidade=[Unidade_App] in if Nome=null then Table.FirstN(Planos,0) else Table.SelectRows(Planos,each [Nome_Planejamento]=Nome and [Unidade]=Unidade)),
+				    NP=Table.AddColumn(P,"Ocorrencias_Planejamento",each Table.RowCount([Planos]),Int64.Type),
+				    NomeP=Table.AddColumn(NP,"Planejamento_App",each if [Ocorrencias_Planejamento]=1 then [Planos]{0}[Nome_Planejamento] else null,type text),
+				    IDP=Table.AddColumn(NomeP,"ID_Planejamento_SharePoint",each if [Ocorrencias_Planejamento]=1 then [Planos]{0}[ID] else null,Int64.Type),
+				    Status=Table.AddColumn(IDP,"Status_Unidade_Planejamento",each if [Ocorrencias_Unidade]<>1 then "Pendente: unidade ausente ou ambígua no cadastro" else if [Ocorrencias_Planejamento]<>1 then "Pendente: planejamento ativo ausente ou ambíguo para a unidade" else "Unidade e planejamento encontrados",type text),
+				    Resultado=Table.RemoveColumns(Status,{"Unidades","Planos"})
+				in Resultado
+
+	annotation PBI_ResultType = Table

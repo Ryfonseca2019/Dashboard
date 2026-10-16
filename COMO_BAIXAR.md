@@ -1,16 +1,27 @@
-# Power BI — Resumo de classificação independente
+# Power BI — Regras aplicadas e opções obrigatórias
 
-Baixe **Planejamento_Turmas_SENAI_Correcao_Classificacao_v20.zip**.
+Baixe **Planejamento_Turmas_SENAI_Regras_PreCarga_v21.zip**.
 
-V20 — RESUMO DE CLASSIFICAÇÃO ISOLADO
+V21 — REGRAS DE NEGÓCIO APLICADAS E OPÇÕES REAIS A VALIDAR
 
-O Desktop reportou referência cíclica em Financiamento_Classificacao_Validar. A inspeção das consultas salvas não encontrou ciclo explícito; a origem exata do erro de execução ainda não foi reproduzida neste ambiente.
-A tabela foi reescrita como uma consulta SQL direta e independente. Agora lê somente STURMA, STURMACOMPL e GCONSIST, sem referências a outras consultas M, SharePoint ou função de de/para. Mantém os sete campos usados no visual e a regra confirmada 1=Gratuidade e 2/3=Negócio.
-A classificação vazia ou desconhecida continua pendente. O resumo verifica coligada 0/aplicação S/CLASSIFTUR e mantém contagens do dicionário. Não escolhe um rótulo por MAX quando houver mais de uma ocorrência.
-Os registros são distintos por chave RM e classificação antes da contagem; se uma turma tiver classificações conflitantes, pode aparecer em mais de um grupo deste diagnóstico, enquanto Financiamento_Por_Turma continua sinalizando o conflito e não preenche essa turma.
+A pré-carga recebida tem 510 turmas Niterói: financiamento confirmado em 509 (385 Gratuidade, 124 Negócio), uma sem classificação; campus preenchido em todas. Matriz: 37 sem vínculo aprovado, 356 com cadastro marcado incompleto, 117 barradas pelas opções de Modalidade. Modalidade obrigatória adicional está vazia nas 510.
 
-COMO TESTAR
-Cancele/feche a atualização anterior e feche o projeto. Extraia a V20 em pasta nova e abra o PBIP. Em Transformar dados, selecione Financiamento_Classificacao_Validar e Atualizar Visualização. Ela deve consultar o SQL Server diretamente.
-Se a prévia carregar, prossiga para Fechar e Aplicar. Se o erro persistir, envie o texto completo do erro e a etapa marcada no Editor do Power Query para localizar a dependência efetiva do ambiente.
-A visão Financiamento e pré-carga Niterói e as regras de financiamento da V19 permanecem; nenhuma informação foi gravada no SharePoint ou no RM. Não é confirmação de lote pronto.
-A alteração foi validada estruturalmente e com casos de teste relacionais; execução do SQL Server, Power Query e atualização completa precisam ser confirmadas no Desktop.
+REGRAS APLICADAS NA EXPORTAÇÃO ENRIQUECIDA
+- Unidade é buscada no cadastro ativo do app; Niterói usa o nome aprovado Niterói para coligada 3/filial 266. Para demais unidades o código de filial deve corresponder de forma única ao Codigo_Filial do app.
+- Planejamento é resolvido como Planejamento + nome da unidade, validando que existe exatamente um planejamento ativo e que pertence à mesma unidade. Não cria o planejamento nem inventa ID se ausente.
+- Ano_Referencia = ano de Data_Inicio_Prevista; início nulo mantém ano nulo.
+- Status_Turma=Rascunho; Ativa=true.
+- Bloqueada_Para_Edicao=false e Versao_Planejamento=1 como inicialização de NOVOS itens, conforme o app recebido. Esta é saída de inclusão, não atualização de itens já existentes.
+- Origem_Registro continua pendente: precisamos escolher uma opção real que identifique a importação. Não foi rotulada como Aplicativo automaticamente.
+- A mediação vazia continua vazia e sinalizada para revisão se necessário, mas não bloqueia o status de matriz apenas por isso: Tipo_Mediacao_Snapshot não consta como obrigatório no esquema recebido. Não há tradução dos códigos 1/2/3 por suposição.
+
+COMO VALIDAR
+Abra em pasta nova, atualize, vá à página Obrigatórios e opções reais e exporte as três tabelas:
+1. Superior esquerda APP_Opcoes_Escolha: opções atuais, incluindo modalidade, origem e status. Exporta todas para evitar perder campos com nomes internos diferentes.
+2. Superior direita DP_Unidade_Planejamento: resultado dos vínculos de unidade/planejamento, com IDs e status.
+3. Inferior Niteroi_PreCarga: pendências depois das regras aplicadas.
+
+Identificadores: os valores gerados anteriormente foram para um lote de 103 linhas, enquanto o atual tem 510. Não colar os 103 por posição sobre 510 nem regenerar a cada refresh. Ainda precisamos transportar os IDs por correspondência inequívoca de turma e gerar IDs persistentes para as demais. A V21 não atribui identificadores por uma posição presumida nem remove os anteriores da sua planilha.
+Pedagogo e tipo de cálculo permanecem vazios por decisão do usuário, mas o esquema do app recebido ainda os marca obrigatórios: confirmar a alteração na lista e validação do app.
+Não é lote pronto para colar: faltam modalidades aceitas, origem, IDs e exceções de matriz/financiamento. Nenhuma lista/cadastro foi alterada.
+A V20 de classificação independente e as otimizações anteriores permanecem. Referências/ZIP foram verificados; refresh e dados finais precisam ser confirmados no Desktop.

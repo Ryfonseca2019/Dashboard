@@ -342,6 +342,21 @@ table 'Exportacao_App_Enriquecida'
 		summarizeBy: none
 		sourceColumn: Status_Financiamento
 
+	column 'ID_Unidade_SharePoint'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: ID_Unidade_SharePoint
+
+	column 'ID_Planejamento_SharePoint'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: ID_Planejamento_SharePoint
+
+	column 'Status_Unidade_Planejamento'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Status_Unidade_Planejamento
+
 	partition 'Exportacao_App_Enriquecida' = m
 		mode: import
 		source =
@@ -355,7 +370,12 @@ table 'Exportacao_App_Enriquecida'
 				    SemFinanciamento=Table.RemoveColumns(Campus,{"Financiamento"}),
 				    JF=Table.NestedJoin(SemFinanciamento,{"RM_CODCOLIGADA","RM_CODFILIAL","RM_IDPERLET","RM_CODTURMA"},Table.Buffer(Financiamento_Por_Turma),{"RM_CODCOLIGADA","RM_CODFILIAL","RM_IDPERLET","RM_CODTURMA"},"FinanciamentoValidado",JoinKind.LeftOuter),
 				    EF=Table.ExpandTableColumn(JF,"FinanciamentoValidado",{"Financiamento","ID_Financiamento_SharePoint","Status_Financiamento"},{"Financiamento","ID_Financiamento_SharePoint","Status_Financiamento"}),
-				    RM=Table.TransformColumns(EF,{{"Status_Financiamento",each if _=null then "Pendente: turma sem diagnóstico de classificação" else _,type text}}),
+				    FinanciamentoBase=Table.TransformColumns(EF,{{"Status_Financiamento",each if _=null then "Pendente: turma sem diagnóstico de classificação" else _,type text}}),
+				    SemUnidadePlano=Table.RemoveColumns(FinanciamentoBase,{"Unidade","Planejamento","Ano_Referencia"}),
+				    JUP=Table.NestedJoin(SemUnidadePlano,{"RM_CODCOLIGADA","RM_CODFILIAL","RM_Unidade_Nome"},Table.Buffer(DP_Unidade_Planejamento),{"RM_CODCOLIGADA","RM_CODFILIAL","RM_Unidade_Nome"},"UnidadePlano",JoinKind.LeftOuter),
+				    EUP=Table.ExpandTableColumn(JUP,"UnidadePlano",{"Unidade_App","Planejamento_App","ID_Unidade_SharePoint","ID_Planejamento_SharePoint","Status_Unidade_Planejamento"},{"Unidade","Planejamento","ID_Unidade_SharePoint","ID_Planejamento_SharePoint","Status_Unidade_Planejamento"}),
+				    Ano=Table.AddColumn(EUP,"Ano_Referencia",each if [Data_Inicio_Prevista]=null then null else Date.Year(Date.From([Data_Inicio_Prevista])),Int64.Type),
+				    RM=Table.TransformColumns(Ano,{{"Status_Turma",each "Rascunho",type text},{"Ativa",each true,type logical},{"Bloqueada_Para_Edicao",each false,type logical},{"Versao_Planejamento",each 1,Int64.Type}}),
 				    ModalidadesPermitidas=List.Buffer(Table.SelectRows(APP_Opcoes_Escolha,each [Campo_Interno]="Modalidade")[Opcao]),
 				    DP=Table.Buffer(DP_Matrizes_Validadas),
 				    Cad=Table.Buffer(Table.SelectRows(APP_Cad_Matrizes,each [Ativa]=true)),
@@ -377,8 +397,8 @@ table 'Exportacao_App_Enriquecida'
 				    SegundaData=Table.AddColumn(ModalidadeObrigatoria,"Data_Snapshot_Matriz0",each [Data_Snapshot_Matriz],type datetime),
 				    Conflitos=Table.Buffer(Table.SelectRows(Matrizes_Divergencias_Recebidas,each Text.Contains([Motivo],"Modalidade"))),
 				    JCf=Table.NestedJoin(SegundaData,{"RM_CODCOLIGADA","RM_Codigo_Curso","RM_Codigo_Grade"},Conflitos,{"RM_CODCOLIGADA","RM_Codigo_Curso","RM_Codigo_Grade"},"Divergencias",JoinKind.LeftOuter),
-				    Status=Table.AddColumn(JCf,"Status_Cruzamento_Matriz",each if Table.RowCount([Divergencias])>0 then "Pendente: divergência de modalidade nos arquivos recebidos; revisar" else if [ID_Matriz_SharePoint]=null then "Pendente: aprovar de/para de matriz" else if [Cad_ID]=null then "Pendente: ID não encontrado em matrizes ativas" else if [Cad_Modalidade]=null or [Cad_Mediacao]=null or [Cad_Carga]=null then "Pendente: cadastro da matriz incompleto" else if not List.Contains(ModalidadesPermitidas,[Cad_Modalidade]) then "Pendente: modalidade da matriz não existe nas opções atuais da lista" else "Matriz cruzada; validar demais campos antes da carga",type text),
-				    Resultado=Table.SelectColumns(Status,{"Planejamento", "Unidade", "Periodo_Letivo", "Ano_Referencia", "Identificador_Temporario", "Codigo_Turma_SGE", "Matriz", "Status_Turma", "Ativa", "Codigo_Matriz_Snapshot", "Nome_Curso_Snapshot", "Area_Snapshot", "Modalidade_Snapshot", "Tipo_Mediacao_Snapshot", "Carga_Horaria_Snapshot", "Data_Snapshot_Matriz", "Data_Inicio_Prevista", "Data_Fim_Prevista", "Quantidade_Vagas", "Matriculas_Previstas", "Campus_Polo", "Financiamento", "Tipo_Periodo", "Pedagogo_Responsavel", "Mobilizacao", "Empresa", "Projeto", "Sindicato", "Classe_Valor", "Item_Contabil_Snapshot", "Centro_Custo_Snapshot", "Observacoes", "Motivo_Cancelamento", "Data_Cancelamento", "Cancelada_Por", "Data_Conclusao", "Bloqueada_Para_Edicao", "Versao_Planejamento", "Origem_Registro", "Data_Ultima_Revisao", "Turno", "Tipo_Calculo_Evasao", "Percentual_Evasao_Previsto", "Quantidade_Evasao_Prevista", "Matriculas_Consideradas", "ID", "Matriculas_Reais", "Matriculas_Reais_Confirmadas", "Código da turma SGE", "Local_realizacao", "Instrutor", "Codigo_Matriz_Excel", "Criado", "Criado por", "Modalidade", "Data_Snapshot_Matriz0", "ID_Matriz_SharePoint", "Status_Cruzamento_Matriz", "RM_CODCOLIGADA", "RM_CODFILIAL", "RM_IDPERLET", "RM_CODTURMA", "RM_Codigo_Curso", "RM_Codigo_Grade", "ID_Financiamento_SharePoint", "Status_Financiamento"})
+				    Status=Table.AddColumn(JCf,"Status_Cruzamento_Matriz",each if Table.RowCount([Divergencias])>0 then "Pendente: divergência de modalidade nos arquivos recebidos; revisar" else if [ID_Matriz_SharePoint]=null then "Pendente: aprovar de/para de matriz" else if [Cad_ID]=null then "Pendente: ID não encontrado em matrizes ativas" else if [Cad_Modalidade]=null or [Cad_Carga]=null then "Pendente: cadastro da matriz incompleto" else if not List.Contains(ModalidadesPermitidas,[Cad_Modalidade]) then "Pendente: modalidade da matriz não existe nas opções atuais da lista" else "Matriz cruzada; validar demais campos antes da carga",type text),
+				    Resultado=Table.SelectColumns(Status,{"Planejamento", "Unidade", "Periodo_Letivo", "Ano_Referencia", "Identificador_Temporario", "Codigo_Turma_SGE", "Matriz", "Status_Turma", "Ativa", "Codigo_Matriz_Snapshot", "Nome_Curso_Snapshot", "Area_Snapshot", "Modalidade_Snapshot", "Tipo_Mediacao_Snapshot", "Carga_Horaria_Snapshot", "Data_Snapshot_Matriz", "Data_Inicio_Prevista", "Data_Fim_Prevista", "Quantidade_Vagas", "Matriculas_Previstas", "Campus_Polo", "Financiamento", "Tipo_Periodo", "Pedagogo_Responsavel", "Mobilizacao", "Empresa", "Projeto", "Sindicato", "Classe_Valor", "Item_Contabil_Snapshot", "Centro_Custo_Snapshot", "Observacoes", "Motivo_Cancelamento", "Data_Cancelamento", "Cancelada_Por", "Data_Conclusao", "Bloqueada_Para_Edicao", "Versao_Planejamento", "Origem_Registro", "Data_Ultima_Revisao", "Turno", "Tipo_Calculo_Evasao", "Percentual_Evasao_Previsto", "Quantidade_Evasao_Prevista", "Matriculas_Consideradas", "ID", "Matriculas_Reais", "Matriculas_Reais_Confirmadas", "Código da turma SGE", "Local_realizacao", "Instrutor", "Codigo_Matriz_Excel", "Criado", "Criado por", "Modalidade", "Data_Snapshot_Matriz0", "ID_Matriz_SharePoint", "Status_Cruzamento_Matriz", "RM_CODCOLIGADA", "RM_CODFILIAL", "RM_IDPERLET", "RM_CODTURMA", "RM_Codigo_Curso", "RM_Codigo_Grade", "ID_Financiamento_SharePoint", "Status_Financiamento", "ID_Unidade_SharePoint", "ID_Planejamento_SharePoint", "Status_Unidade_Planejamento"})
 				in Resultado
 
 	annotation PBI_ResultType = Table
