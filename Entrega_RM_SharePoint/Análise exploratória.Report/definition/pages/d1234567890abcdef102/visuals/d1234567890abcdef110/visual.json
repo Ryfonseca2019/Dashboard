@@ -1,0 +1,93 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "d1234567890abcdef110",
+  "position": {
+    "x": 20,
+    "y": 20,
+    "z": 0,
+    "width": 1100,
+    "height": 1040
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Dominios_Candidatos"
+                    }
+                  },
+                  "Property": "CODCOLIGADA"
+                }
+              },
+              "queryRef": "RM_Dominios_Candidatos.CODCOLIGADA",
+              "nativeQueryRef": "CODCOLIGADA"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Dominios_Candidatos"
+                    }
+                  },
+                  "Property": "Codigo_Tabela"
+                }
+              },
+              "queryRef": "RM_Dominios_Candidatos.Codigo_Tabela",
+              "nativeQueryRef": "Codigo_Tabela"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Dominios_Candidatos"
+                    }
+                  },
+                  "Property": "Codigo_Valor"
+                }
+              },
+              "queryRef": "RM_Dominios_Candidatos.Codigo_Valor",
+              "nativeQueryRef": "Codigo_Valor"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Dominios_Candidatos"
+                    }
+                  },
+                  "Property": "Descricao_Valor"
+                }
+              },
+              "queryRef": "RM_Dominios_Candidatos.Descricao_Valor",
+              "nativeQueryRef": "Descricao_Valor"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Dominios_Candidatos"
+                    }
+                  },
+                  "Property": "Status_Dominio"
+                }
+              },
+              "queryRef": "RM_Dominios_Candidatos.Status_Dominio",
+              "nativeQueryRef": "Status_Dominio"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

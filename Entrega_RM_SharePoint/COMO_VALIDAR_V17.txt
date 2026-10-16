@@ -1,0 +1,16 @@
+V17 — RESULTADOS DA VALIDAÇÃO E DICIONÁRIOS CANDIDATOS
+
+As exportações recebidas totalizam 7.077 turmas nos diagnósticos de turno e financiamento. Nomes de turno: 7.000 turmas com Unico/Único e 77 com Online/On Line; isso não comprova manhã/tarde/noite/integral. O campo complementar TURNO contém códigos sem descrição. Financiamento: OFERTAP e PLANO vazios em todas as 7.077 turmas; CLASSIFICACAO apresenta 1,2,3 e vazio, ainda sem significado confirmado.
+Matrizes: 1.056 linhas de diagnóstico, 813 com carga coincidente (769 chaves distintas), 7 com carga divergente (7 chaves), 236 pendentes (223 chaves). Há 17 chaves com descrição de modalidade divergente; 13 podem ser uma equivalência de Itinerário V com Habilitação Técnica, mas isso exige confirmação, não é considerado erro automaticamente. Mediação está vazia no app em 530 matrizes vinculadas (543 linhas do diagnóstico). Os códigos RM 1/2/3 aparecem com várias descrições de mediação e não permitem tradução unívoca pelos arquivos recebidos.
+
+A página Divergências de matrizes exibe somente os casos a decidir, com valores exportados preservados como evidência, não como consulta viva ao RM. A V17 não troca prioridade RM/app e não modifica as correspondências das matrizes ou seus snapshots.
+A exportação enriquecida agora sinaliza explicitamente no Status_Cruzamento_Matriz os casos de divergência encontrados, sem esconder a pendência. Código de matriz idêntico não comprova todos os demais atributos.
+
+PRÓXIMA EXTRAÇÃO
+Na página Dicionários RM - validar, exporte as duas tabelas:
+- Esquerda: RM_Dominios_Candidatos. Procura em GCONSIST os domínios que contêm descrições de turno/financiamento ou nomes de tabela relacionados. São candidatos de investigação, não associações aprovadas. Não retorna tabelas do cadastro de pessoas.
+- Direita: RM_Dominios_Estrutura. Mostra os campos reais das tabelas de consistência e definições de complementares, para localizar o vínculo do campo com seu dicionário.
+Se os domínios vierem vazios ou com status de estrutura não reconhecida, envie ainda assim a estrutura. Nenhuma descrição é inventada e nenhum código de classificação é convertido em Gratuidade/Negócio por suposição.
+
+A decisão sobre a carga horária divergente está pendente: revisar antes de importar, usar RM ou manter app. A estrutura de opções e os campos obrigatórios ainda precisam de validação antes da carga em massa. Não há escrita no RM/SharePoint. Mantidas as melhorias da V16.
+Código/estrutura/ZIP verificados; novas consultas dependem de execução no Desktop com acesso ao RM. Preserve sua cópia local.

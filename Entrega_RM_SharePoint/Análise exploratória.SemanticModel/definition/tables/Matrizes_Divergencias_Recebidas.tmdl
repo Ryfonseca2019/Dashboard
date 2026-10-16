@@ -1,0 +1,76 @@
+table 'Matrizes_Divergencias_Recebidas'
+
+	column 'RM_CODCOLIGADA'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: RM_CODCOLIGADA
+
+	column 'RM_Codigo_Curso'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: RM_Codigo_Curso
+
+	column 'RM_Codigo_Grade'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: RM_Codigo_Grade
+
+	column 'ID_Matriz_SharePoint'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: ID_Matriz_SharePoint
+
+	column 'Carga_RM_Exportada'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Carga_RM_Exportada
+
+	column 'Carga_App_Exportada'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Carga_App_Exportada
+
+	column 'Modalidade_RM_Exportada'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Modalidade_RM_Exportada
+
+	column 'Modalidade_App_Exportada'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Modalidade_App_Exportada
+
+	column 'Motivo'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Motivo
+
+	partition 'Matrizes_Divergencias_Recebidas' = m
+		mode: import
+		source =
+				let Fonte=#table(type table [RM_CODCOLIGADA=Int64.Type,RM_Codigo_Curso=text,RM_Codigo_Grade=text,ID_Matriz_SharePoint=Int64.Type,Carga_RM_Exportada=text,Carga_App_Exportada=text,Modalidade_RM_Exportada=text,Modalidade_App_Exportada=text,Motivo=text], {{3,"APP0222","APP0222.02",141,"60","40","Aperfeiçoamento/Especialização Profissional","Aperfeiçoamento/Especialização Profissional","Carga horária diferente"},
+				{3,"APP1284","APP1284.01",469,"60","40","Aperfeiçoamento/Especialização Profissional","Aperfeiçoamento/Especialização Profissional","Carga horária diferente"},
+				{3,"APP1670","APP1670.02",630,"960","992","Aperfeiçoamento/Especialização Profissional","Aperfeiçoamento/Especialização Profissional","Carga horária diferente"},
+				{3,"APP1719","APP1719.01",659,"40","40","Aperfeiçoamento/Especialização Profissional","Habilitação Técnica de Nível Médio","Modalidade diferente; confirmar equivalência"},
+				{3,"APP2039","APP2039.02",776,"322","324","Aperfeiçoamento/Especialização Profissional","Aperfeiçoamento/Especialização Profissional","Carga horária diferente"},
+				{3,"APP2813","APP2813.01",1130,"100","100","Aperfeiçoamento/Especialização Profissional","Qualificação Profissional","Modalidade diferente; confirmar equivalência"},
+				{3,"APRT012","APRT012.02",1303,"1600","800","Aprendizagem Industrial Técnica de Nível Médio","Aprendizagem Industrial Técnica de Nível Médio","Carga horária diferente"},
+				{3,"APRT019","APRT019.01",1314,"1480","1480","Aprendizagem Industrial Técnica de Nível Médio","Aprendizagem Industrial Básica","Modalidade diferente; confirmar equivalência"},
+				{3,"CERT001","CERT001.01",4086,"1200","1200","Certificação Profissional de Pessoas","Iniciação Profissional","Modalidade diferente; confirmar equivalência"},
+				{3,"QUA0059","QUA0059.01",1402,"272","180","Qualificação Profissional","Qualificação Profissional","Carga horária diferente"},
+				{3,"TEC0040","TEC0040.02",1806,"1200","1180","Habilitação Técnica de Nível Médio","Habilitação Técnica de Nível Médio","Carga horária diferente"},
+				{3,"TEC0091","TEC0091.01",1856,"1200","1200","Habilitação Técnica de Nível Médio - Itinerário V Ensino Méd","Habilitação Técnica de Nível Médio","Modalidade diferente; confirmar equivalência"},
+				{3,"TEC0096","TEC0096.01",1860,"1200","1200","Habilitação Técnica de Nível Médio - Itinerário V Ensino Méd","Habilitação Técnica de Nível Médio","Modalidade diferente; confirmar equivalência"},
+				{3,"TEC0099","TEC0099.01",1863,"1200","1200","Habilitação Técnica de Nível Médio - Itinerário V Ensino Méd","Habilitação Técnica de Nível Médio","Modalidade diferente; confirmar equivalência"},
+				{3,"TEC0101","TEC0101.01",1865,"1200","1200","Habilitação Técnica de Nível Médio - Itinerário V Ensino Méd","Habilitação Técnica de Nível Médio","Modalidade diferente; confirmar equivalência"},
+				{3,"TEC0102","TEC0102.01",1866,"1200","1200","Habilitação Técnica de Nível Médio - Itinerário V Ensino Méd","Habilitação Técnica de Nível Médio","Modalidade diferente; confirmar equivalência"},
+				{3,"TEC0103","TEC0103.01",1867,"1200","1200","Habilitação Técnica de Nível Médio - Itinerário V Ensino Méd","Habilitação Técnica de Nível Médio","Modalidade diferente; confirmar equivalência"},
+				{3,"TEC0104","TEC0104.01",1868,"1200","1200","Habilitação Técnica de Nível Médio - Itinerário V Ensino Méd","Habilitação Técnica de Nível Médio","Modalidade diferente; confirmar equivalência"},
+				{3,"TEC0106","TEC0106.01",1870,"1200","1200","Habilitação Técnica de Nível Médio - Itinerário V Ensino Méd","Habilitação Técnica de Nível Médio","Modalidade diferente; confirmar equivalência"},
+				{3,"TEC0107","TEC0107.01",1871,"1200","1200","Habilitação Técnica de Nível Médio - Itinerário V Ensino Méd","Habilitação Técnica de Nível Médio","Modalidade diferente; confirmar equivalência"},
+				{3,"TEC0108","TEC0108.01",1872,"1200","1200","Habilitação Técnica de Nível Médio - Itinerário V Ensino Méd","Habilitação Técnica de Nível Médio","Modalidade diferente; confirmar equivalência"},
+				{3,"TEC0110","TEC0110.01",1874,"1200","1200","Habilitação Técnica de Nível Médio - Itinerário V Ensino Méd","Habilitação Técnica de Nível Médio","Modalidade diferente; confirmar equivalência"},
+				{3,"TEC0113","TEC0113.01",1878,"1200","1200","Habilitação Técnica de Nível Médio - Itinerário V Ensino Méd","Habilitação Técnica de Nível Médio","Modalidade diferente; confirmar equivalência"},
+				{3,"TEC0114","TEC0114.01",1879,"1200","1200","Habilitação Técnica de Nível Médio - Itinerário V Ensino Méd","Habilitação Técnica de Nível Médio","Modalidade diferente; confirmar equivalência"}}) in Fonte
+
+	annotation PBI_ResultType = Table

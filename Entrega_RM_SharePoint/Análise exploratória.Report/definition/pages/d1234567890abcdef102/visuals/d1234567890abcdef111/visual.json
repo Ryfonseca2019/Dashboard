@@ -1,0 +1,79 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "d1234567890abcdef111",
+  "position": {
+    "x": 1140,
+    "y": 20,
+    "z": 1,
+    "width": 760,
+    "height": 1040
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Dominios_Estrutura"
+                    }
+                  },
+                  "Property": "TABLE_SCHEMA"
+                }
+              },
+              "queryRef": "RM_Dominios_Estrutura.TABLE_SCHEMA",
+              "nativeQueryRef": "TABLE_SCHEMA"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Dominios_Estrutura"
+                    }
+                  },
+                  "Property": "TABLE_NAME"
+                }
+              },
+              "queryRef": "RM_Dominios_Estrutura.TABLE_NAME",
+              "nativeQueryRef": "TABLE_NAME"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Dominios_Estrutura"
+                    }
+                  },
+                  "Property": "COLUMN_NAME"
+                }
+              },
+              "queryRef": "RM_Dominios_Estrutura.COLUMN_NAME",
+              "nativeQueryRef": "COLUMN_NAME"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Dominios_Estrutura"
+                    }
+                  },
+                  "Property": "DATA_TYPE"
+                }
+              },
+              "queryRef": "RM_Dominios_Estrutura.DATA_TYPE",
+              "nativeQueryRef": "DATA_TYPE"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

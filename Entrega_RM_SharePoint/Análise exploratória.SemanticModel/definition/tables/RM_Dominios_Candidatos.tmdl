@@ -1,0 +1,33 @@
+table 'RM_Dominios_Candidatos'
+
+	column 'CODCOLIGADA'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: CODCOLIGADA
+
+	column 'Codigo_Tabela'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Codigo_Tabela
+
+	column 'Codigo_Valor'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Codigo_Valor
+
+	column 'Descricao_Valor'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Descricao_Valor
+
+	column 'Status_Dominio'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Status_Dominio
+
+	partition 'RM_Dominios_Candidatos' = m
+		mode: import
+		source =
+				let Fonte=Sql.Database("SRVSEDE01621PRE","CorporeRM",[Query="SET NOCOUNT ON;#(lf)IF COL_LENGTH(N'dbo.GCONSIST',N'CODTABELA') IS NOT NULL#(lf) AND COL_LENGTH(N'dbo.GCONSIST',N'CODCLIENTE') IS NOT NULL#(lf) AND COL_LENGTH(N'dbo.GCONSIST',N'DESCRICAO') IS NOT NULL#(lf)BEGIN#(lf) DECLARE @ExprCol nvarchar(100)=N'CAST(NULL AS int)';#(lf) DECLARE @FiltroCol nvarchar(200)=N'';#(lf) DECLARE @MesmaCol nvarchar(200)=N'';#(lf) IF COL_LENGTH(N'dbo.GCONSIST',N'CODCOLIGADA') IS NOT NULL#(lf) BEGIN#(lf)  SET @ExprCol=N'CONVERT(int,C.CODCOLIGADA)';#(lf)  SET @FiltroCol=N' AND C.CODCOLIGADA IN (0,3) ';#(lf)  SET @MesmaCol=N' AND D.CODCOLIGADA=C.CODCOLIGADA ';#(lf) END;#(lf) DECLARE @Sql nvarchar(max)=N'#(lf) SELECT '+@ExprCol+N' AS CODCOLIGADA,#(lf)  CONVERT(nvarchar(4000),C.CODTABELA) AS Codigo_Tabela,#(lf)  CONVERT(nvarchar(4000),C.CODCLIENTE) AS Codigo_Valor,#(lf)  CONVERT(nvarchar(4000),C.DESCRICAO) AS Descricao_Valor,#(lf)  N''Candidato por texto: validar vínculo com campo complementar'' AS Status_Dominio#(lf) FROM dbo.GCONSIST C#(lf) WHERE EXISTS (#(lf)  SELECT 1 FROM dbo.GCONSIST D#(lf)  WHERE D.CODTABELA=C.CODTABELA '+@MesmaCol+N'#(lf)  AND (#(lf)    UPPER(CONVERT(nvarchar(4000),D.CODTABELA)) LIKE N''%TURNO%''#(lf)    OR UPPER(CONVERT(nvarchar(4000),D.CODTABELA)) LIKE N''%CLASSIF%''#(lf)    OR UPPER(CONVERT(nvarchar(4000),D.CODTABELA)) LIKE N''%FINANC%''#(lf)    OR UPPER(CONVERT(nvarchar(4000),D.DESCRICAO)) IN#(lf)       (N''MANHÃ'',N''MANHA'',N''TARDE'',N''NOITE'',N''INTEGRAL'',N''PERSONALIZADO'',N''GRATUIDADE'',N''NEGÓCIO'',N''NEGOCIO'')#(lf)    OR UPPER(CONVERT(nvarchar(4000),D.DESCRICAO)) LIKE N''%GRATUIDADE%''#(lf)  )#(lf) ) '+@FiltroCol+N';';#(lf) EXEC sys.sp_executesql @Sql;#(lf)END#(lf)ELSE#(lf) SELECT CAST(NULL AS int) AS CODCOLIGADA,#(lf)  CAST(NULL AS nvarchar(4000)) AS Codigo_Tabela,#(lf)  CAST(NULL AS nvarchar(4000)) AS Codigo_Valor,#(lf)  CAST(NULL AS nvarchar(4000)) AS Descricao_Valor,#(lf)  N'GCONSIST/colunas não reconhecidas ou sem metadados; exportar RM_Dominios_Estrutura' AS Status_Dominio;#(lf)"]) in Fonte
+
+	annotation PBI_ResultType = Table

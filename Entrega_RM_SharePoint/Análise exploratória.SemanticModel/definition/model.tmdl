@@ -89,3 +89,9 @@ ref table 'Matrizes_Comparar_Carga'
 ref table 'Turnos_Validar'
 
 ref table 'Financiamento_Investigar'
+
+ref table 'Matrizes_Divergencias_Recebidas'
+
+ref table 'RM_Dominios_Estrutura'
+
+ref table 'RM_Dominios_Candidatos'

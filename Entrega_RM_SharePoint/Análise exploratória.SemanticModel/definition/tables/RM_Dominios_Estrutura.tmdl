@@ -1,0 +1,28 @@
+table 'RM_Dominios_Estrutura'
+
+	column 'TABLE_SCHEMA'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: TABLE_SCHEMA
+
+	column 'TABLE_NAME'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: TABLE_NAME
+
+	column 'COLUMN_NAME'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: COLUMN_NAME
+
+	column 'DATA_TYPE'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: DATA_TYPE
+
+	partition 'RM_Dominios_Estrutura' = m
+		mode: import
+		source =
+				let Fonte=Sql.Database("SRVSEDE01621PRE","CorporeRM",[Query="SELECT TABLE_SCHEMA,TABLE_NAME,COLUMN_NAME,DATA_TYPE#(lf)FROM INFORMATION_SCHEMA.COLUMNS#(lf)WHERE UPPER(TABLE_NAME) LIKE '%CONSIST%'#(lf) OR UPPER(TABLE_NAME) LIKE '%CAMP%COMPL%'#(lf) OR UPPER(TABLE_NAME) LIKE '%FINANC%'#(lf) OR UPPER(TABLE_NAME) IN ('GCAMPOS','GCOLUNAS','GCAMPOSCOMPL','GCAMPOSCOMPLEMENTARES')#(lf)ORDER BY TABLE_SCHEMA,TABLE_NAME,ORDINAL_POSITION;"]) in Fonte
+
+	annotation PBI_ResultType = Table

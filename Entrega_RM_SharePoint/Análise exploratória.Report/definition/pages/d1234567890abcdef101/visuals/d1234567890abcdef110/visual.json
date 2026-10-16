@@ -1,0 +1,149 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "d1234567890abcdef110",
+  "position": {
+    "x": 20,
+    "y": 20,
+    "z": 0,
+    "width": 1880,
+    "height": 1040
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Matrizes_Divergencias_Recebidas"
+                    }
+                  },
+                  "Property": "RM_CODCOLIGADA"
+                }
+              },
+              "queryRef": "Matrizes_Divergencias_Recebidas.RM_CODCOLIGADA",
+              "nativeQueryRef": "RM_CODCOLIGADA"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Matrizes_Divergencias_Recebidas"
+                    }
+                  },
+                  "Property": "RM_Codigo_Curso"
+                }
+              },
+              "queryRef": "Matrizes_Divergencias_Recebidas.RM_Codigo_Curso",
+              "nativeQueryRef": "RM_Codigo_Curso"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Matrizes_Divergencias_Recebidas"
+                    }
+                  },
+                  "Property": "RM_Codigo_Grade"
+                }
+              },
+              "queryRef": "Matrizes_Divergencias_Recebidas.RM_Codigo_Grade",
+              "nativeQueryRef": "RM_Codigo_Grade"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Matrizes_Divergencias_Recebidas"
+                    }
+                  },
+                  "Property": "ID_Matriz_SharePoint"
+                }
+              },
+              "queryRef": "Matrizes_Divergencias_Recebidas.ID_Matriz_SharePoint",
+              "nativeQueryRef": "ID_Matriz_SharePoint"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Matrizes_Divergencias_Recebidas"
+                    }
+                  },
+                  "Property": "Carga_RM_Exportada"
+                }
+              },
+              "queryRef": "Matrizes_Divergencias_Recebidas.Carga_RM_Exportada",
+              "nativeQueryRef": "Carga_RM_Exportada"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Matrizes_Divergencias_Recebidas"
+                    }
+                  },
+                  "Property": "Carga_App_Exportada"
+                }
+              },
+              "queryRef": "Matrizes_Divergencias_Recebidas.Carga_App_Exportada",
+              "nativeQueryRef": "Carga_App_Exportada"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Matrizes_Divergencias_Recebidas"
+                    }
+                  },
+                  "Property": "Modalidade_RM_Exportada"
+                }
+              },
+              "queryRef": "Matrizes_Divergencias_Recebidas.Modalidade_RM_Exportada",
+              "nativeQueryRef": "Modalidade_RM_Exportada"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Matrizes_Divergencias_Recebidas"
+                    }
+                  },
+                  "Property": "Modalidade_App_Exportada"
+                }
+              },
+              "queryRef": "Matrizes_Divergencias_Recebidas.Modalidade_App_Exportada",
+              "nativeQueryRef": "Modalidade_App_Exportada"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Matrizes_Divergencias_Recebidas"
+                    }
+                  },
+                  "Property": "Motivo"
+                }
+              },
+              "queryRef": "Matrizes_Divergencias_Recebidas.Motivo",
+              "nativeQueryRef": "Motivo"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}
