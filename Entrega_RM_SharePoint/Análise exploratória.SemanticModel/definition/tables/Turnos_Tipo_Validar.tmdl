@@ -1,0 +1,96 @@
+table 'Turnos_Tipo_Validar'
+
+	column 'RM_CODCOLIGADA'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: RM_CODCOLIGADA
+
+	column 'RM_CODFILIAL'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: RM_CODFILIAL
+
+	column 'RM_Codigo_Turno'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: RM_Codigo_Turno
+
+	column 'RM_Tipo_Curso'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: RM_Tipo_Curso
+
+	column 'RM_Tipo_Turno'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: RM_Tipo_Turno
+
+	column 'RM_Nome_Turno'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: RM_Nome_Turno
+
+	column 'RM_Hora_Inicio'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: RM_Hora_Inicio
+
+	column 'RM_Hora_Fim'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: RM_Hora_Fim
+
+	column 'Quantidade_Turmas'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Quantidade_Turmas
+
+	column 'Ocorrencias_Dominio'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Ocorrencias_Dominio
+
+	column 'Descricao_Tipo_RM'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Descricao_Tipo_RM
+
+	column 'Aplicacao_Dominio'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Aplicacao_Dominio
+
+	column 'ID_Turno_App'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: ID_Turno_App
+
+	column 'Nome_Turno_App'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Nome_Turno_App
+
+	column 'Status_Comparacao'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Status_Comparacao
+
+	partition 'Turnos_Tipo_Validar' = m
+		mode: import
+		source =
+				let
+				    Fonte=Table.TransformColumns(RM_Oferta_Diagnostico,{{"RM_Tipo_Turno",each if _=null then null else Text.Trim(_),type nullable text}}),
+				    G=Table.Group(Fonte,{"RM_CODCOLIGADA","RM_CODFILIAL","RM_Codigo_Turno","RM_Tipo_Curso","RM_Tipo_Turno","RM_Nome_Turno","RM_Hora_Inicio","RM_Hora_Fim"},{{"Quantidade_Turmas",each Table.RowCount(Table.Distinct(Table.SelectColumns(_,{"RM_CODCOLIGADA","RM_CODFILIAL","RM_IDPERLET","RM_CODTURMA"}))),Int64.Type}}),
+				    Dom=Table.SelectRows(RM_Dominios_Direcionados,each [CODCOLIGADA]=3 and [Codigo_Tabela]="TIPOTURNO"),
+				    J=Table.NestedJoin(G,{"RM_Tipo_Turno"},Dom,{"Codigo_Valor"},"Dicionario",JoinKind.LeftOuter),
+				    N=Table.AddColumn(J,"Ocorrencias_Dominio",each Table.RowCount([Dicionario]),Int64.Type),
+				    Descricao=Table.AddColumn(N,"Descricao_Tipo_RM",each if [Ocorrencias_Dominio]=1 then [Dicionario]{0}[Descricao_Valor] else null,type text),
+				    Aplicacao=Table.AddColumn(Descricao,"Aplicacao_Dominio",each Text.Combine(List.Distinct(List.RemoveNulls([Dicionario][APLICACAO])),"; "),type text),
+				    A=Table.NestedJoin(Aplicacao,{"Descricao_Tipo_RM"},Table.SelectRows(APP_Cad_Turnos,each [Ativa]=true),{"Nome_Turno"},"App",JoinKind.LeftOuter),
+				    ID=Table.AddColumn(A,"ID_Turno_App",each if Table.RowCount([App])=1 then [App]{0}[ID] else null,Int64.Type),
+				    Nome=Table.AddColumn(ID,"Nome_Turno_App",each if Table.RowCount([App])=1 then [App]{0}[Nome_Turno] else null,type text),
+				    Status=Table.AddColumn(Nome,"Status_Comparacao",each if [Ocorrencias_Dominio]<>1 then "Tipo ausente ou ambíguo no dicionário" else if [ID_Turno_App]=null then "Sem opção única ativa no app" else "Candidata por STURNO.TIPO e descrição exata; conferir horários",type text),
+				    Resultado=Table.RemoveColumns(Status,{"Dicionario","App"})
+				in Resultado
+
+	annotation PBI_ResultType = Table

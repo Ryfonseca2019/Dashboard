@@ -95,3 +95,11 @@ ref table 'Matrizes_Divergencias_Recebidas'
 ref table 'RM_Dominios_Estrutura'
 
 ref table 'RM_Dominios_Candidatos'
+
+ref table 'RM_Dominios_Direcionados'
+
+ref table 'RM_Rotulos_Campos'
+
+ref table 'Turnos_Tipo_Validar'
+
+ref table 'Financiamento_Classificacao_Validar'

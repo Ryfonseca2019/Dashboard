@@ -1,0 +1,79 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "e1234567890abcdef112",
+  "position": {
+    "x": 20,
+    "y": 760,
+    "width": 1880,
+    "height": 300,
+    "z": 2
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Rotulos_Campos"
+                    }
+                  },
+                  "Property": "TABELA"
+                }
+              },
+              "queryRef": "RM_Rotulos_Campos.TABELA",
+              "nativeQueryRef": "TABELA"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Rotulos_Campos"
+                    }
+                  },
+                  "Property": "COLUNA"
+                }
+              },
+              "queryRef": "RM_Rotulos_Campos.COLUNA",
+              "nativeQueryRef": "COLUNA"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Rotulos_Campos"
+                    }
+                  },
+                  "Property": "DESCRICAO"
+                }
+              },
+              "queryRef": "RM_Rotulos_Campos.DESCRICAO",
+              "nativeQueryRef": "DESCRICAO"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Rotulos_Campos"
+                    }
+                  },
+                  "Property": "APLICACOES"
+                }
+              },
+              "queryRef": "RM_Rotulos_Campos.APLICACOES",
+              "nativeQueryRef": "APLICACOES"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

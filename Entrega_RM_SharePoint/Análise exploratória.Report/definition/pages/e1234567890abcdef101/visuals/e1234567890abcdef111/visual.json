@@ -1,0 +1,121 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "e1234567890abcdef111",
+  "position": {
+    "x": 1140,
+    "y": 20,
+    "width": 760,
+    "height": 720,
+    "z": 1
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Financiamento_Classificacao_Validar"
+                    }
+                  },
+                  "Property": "RM_CLASSIFICACAO"
+                }
+              },
+              "queryRef": "Financiamento_Classificacao_Validar.RM_CLASSIFICACAO",
+              "nativeQueryRef": "RM_CLASSIFICACAO"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Financiamento_Classificacao_Validar"
+                    }
+                  },
+                  "Property": "Quantidade_Turmas"
+                }
+              },
+              "queryRef": "Financiamento_Classificacao_Validar.Quantidade_Turmas",
+              "nativeQueryRef": "Quantidade_Turmas"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Financiamento_Classificacao_Validar"
+                    }
+                  },
+                  "Property": "Ocorrencias_Dominio"
+                }
+              },
+              "queryRef": "Financiamento_Classificacao_Validar.Ocorrencias_Dominio",
+              "nativeQueryRef": "Ocorrencias_Dominio"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Financiamento_Classificacao_Validar"
+                    }
+                  },
+                  "Property": "Descricao_CLASSIFTUR"
+                }
+              },
+              "queryRef": "Financiamento_Classificacao_Validar.Descricao_CLASSIFTUR",
+              "nativeQueryRef": "Descricao_CLASSIFTUR"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Financiamento_Classificacao_Validar"
+                    }
+                  },
+                  "Property": "Aplicacao_Dominio"
+                }
+              },
+              "queryRef": "Financiamento_Classificacao_Validar.Aplicacao_Dominio",
+              "nativeQueryRef": "Aplicacao_Dominio"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Financiamento_Classificacao_Validar"
+                    }
+                  },
+                  "Property": "Financiamento_Proposto"
+                }
+              },
+              "queryRef": "Financiamento_Classificacao_Validar.Financiamento_Proposto",
+              "nativeQueryRef": "Financiamento_Proposto"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Financiamento_Classificacao_Validar"
+                    }
+                  },
+                  "Property": "Status_Validacao"
+                }
+              },
+              "queryRef": "Financiamento_Classificacao_Validar.Status_Validacao",
+              "nativeQueryRef": "Status_Validacao"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

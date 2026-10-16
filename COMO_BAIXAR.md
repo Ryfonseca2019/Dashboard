@@ -1,22 +1,22 @@
-# Power BI — Divergências e dicionários de códigos
+# Power BI — Tipos de turno e classificação de financiamento
 
-Baixe **Planejamento_Turmas_SENAI_Validacao_Dominios_v17.zip**.
+Baixe **Planejamento_Turmas_SENAI_Tipos_Turno_Financiamento_v18.zip**.
 
-V17 — RESULTADOS DA VALIDAÇÃO E DICIONÁRIOS CANDIDATOS
+V18 — TIPOS DE TURNO E CLASSIFICAÇÃO DO FINANCIAMENTO
 
-As exportações recebidas totalizam 7.077 turmas nos diagnósticos de turno e financiamento. Nomes de turno: 7.000 turmas com Unico/Único e 77 com Online/On Line; isso não comprova manhã/tarde/noite/integral. O campo complementar TURNO contém códigos sem descrição. Financiamento: OFERTAP e PLANO vazios em todas as 7.077 turmas; CLASSIFICACAO apresenta 1,2,3 e vazio, ainda sem significado confirmado.
-Matrizes: 1.056 linhas de diagnóstico, 813 com carga coincidente (769 chaves distintas), 7 com carga divergente (7 chaves), 236 pendentes (223 chaves). Há 17 chaves com descrição de modalidade divergente; 13 podem ser uma equivalência de Itinerário V com Habilitação Técnica, mas isso exige confirmação, não é considerado erro automaticamente. Mediação está vazia no app em 530 matrizes vinculadas (543 linhas do diagnóstico). Os códigos RM 1/2/3 aparecem com várias descrições de mediação e não permitem tradução unívoca pelos arquivos recebidos.
+Dicionários recebidos confirmam:
+CLASSIFTUR, coligada global 0: 1=GRATUITO, 2=NEGOCIO, 3=NEGOCIO PJ.
+TIPOTURNO, coligada 3: M=Manhã, T=Tarde, N=Noite.
+Essas descrições são reais, mas o vínculo do campo complementar CLASSIFICACAO ao domínio CLASSIFTUR ainda requer validação. Coluna CODTABELA sozinha não é chave global: a nova extração inclui APLICACAO e coligada para identificar ambiguidades.
 
-A página Divergências de matrizes exibe somente os casos a decidir, com valores exportados preservados como evidência, não como consulta viva ao RM. A V17 não troca prioridade RM/app e não modifica as correspondências das matrizes ou seus snapshots.
-A exportação enriquecida agora sinaliza explicitamente no Status_Cruzamento_Matriz os casos de divergência encontrados, sem esconder a pendência. Código de matriz idêntico não comprova todos os demais atributos.
+A V18 adiciona STURNO.TIPO, HORINI e HORFIM ao diagnóstico existente, agrupados pela mesma chave e somente quando há uma ocorrência. Não converte Unico/Online em Integral ou em um turno arbitrário.
+Financiamento_Classificacao_Validar cruza os valores de classificação com CLASSIFTUR como candidato. Não preenche Financiamento automaticamente. NEGOCIO PJ depende de decisão sobre agrupamento em Negócio.
+RM_Rotulos_Campos busca os rótulos do campo CLASSIFICACAO e do tipo de turno em GCAMPOS para apoiar a validação; a ausência de rótulos não é prova de ausência do campo ou do domínio.
 
-PRÓXIMA EXTRAÇÃO
-Na página Dicionários RM - validar, exporte as duas tabelas:
-- Esquerda: RM_Dominios_Candidatos. Procura em GCONSIST os domínios que contêm descrições de turno/financiamento ou nomes de tabela relacionados. São candidatos de investigação, não associações aprovadas. Não retorna tabelas do cadastro de pessoas.
-- Direita: RM_Dominios_Estrutura. Mostra os campos reais das tabelas de consistência e definições de complementares, para localizar o vínculo do campo com seu dicionário.
-Se os domínios vierem vazios ou com status de estrutura não reconhecida, envie ainda assim a estrutura. Nenhuma descrição é inventada e nenhum código de classificação é convertido em Gratuidade/Negócio por suposição.
+EXTRAÇÃO
+Atualize no Desktop e abra a página Tipos de turno e financiamento.
+Envie a tabela superior esquerda (Turnos_Tipo_Validar), a superior direita (Financiamento_Classificacao_Validar) e a inferior (RM_Rotulos_Campos). A segunda tende a ter poucas linhas; a primeira mantém filial/tipo de curso para não misturar códigos locais.
+Se GCAMPOS não retornar linhas, envie as duas primeiras e informe que os rótulos ficaram vazios.
 
-Carga horária: decisão confirmada de manter o cadastro do app. A estrutura de opções e os campos obrigatórios ainda precisam de validação antes da carga em massa. Não há escrita no RM/SharePoint. Mantidas as melhorias da V16.
-Código/estrutura/ZIP verificados; novas consultas dependem de execução no Desktop com acesso ao RM. Preserve sua cópia local.
-
-DECISÃO CONFIRMADA: manter Carga_Horaria_Snapshot do cadastro do app, mesmo quando diferente do RM. As sete diferenças permanecem visíveis para auditoria, mas não bloqueiam a exportação por esse motivo. Divergências de modalidade continuam pendentes; nenhum valor de modalidade foi substituído automaticamente.
+Os dados anteriores somam classificação 1: 4.932 turmas; 2: 1.161; 3: 865; vazia: 119. Contagens descrevem a exportação recebida, não esta nova execução. Sem código válido, não atribuir financiamento padrão.
+Mantida a decisão de usar carga horária do app e as demais regras anteriores. SQL/referências/ZIP verificados estruturalmente; as novas consultas e a correspondência de negócio precisam ser confirmadas no Desktop. Nenhuma escrita no RM/SharePoint.

@@ -1,0 +1,28 @@
+table 'RM_Rotulos_Campos'
+
+	column 'TABELA'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: TABELA
+
+	column 'COLUNA'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: COLUNA
+
+	column 'DESCRICAO'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: DESCRICAO
+
+	column 'APLICACOES'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: APLICACOES
+
+	partition 'RM_Rotulos_Campos' = m
+		mode: import
+		source =
+				let Fonte=Sql.Database("SRVSEDE01621PRE","CorporeRM",[Query="SELECT TABELA,COLUNA,DESCRICAO,APLICACOES#(lf)FROM dbo.GCAMPOS#(lf)WHERE UPPER(TABELA) IN ('STURMACOMPL','STURNO')#(lf) AND UPPER(COLUNA) IN ('CLASSIFICACAO','TURNO','TIPO','HORINI','HORFIM');"]) in Fonte
+
+	annotation PBI_ResultType = Table

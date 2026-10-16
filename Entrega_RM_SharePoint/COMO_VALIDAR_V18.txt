@@ -1,0 +1,18 @@
+V18 — TIPOS DE TURNO E CLASSIFICAÇÃO DO FINANCIAMENTO
+
+Dicionários recebidos confirmam:
+CLASSIFTUR, coligada global 0: 1=GRATUITO, 2=NEGOCIO, 3=NEGOCIO PJ.
+TIPOTURNO, coligada 3: M=Manhã, T=Tarde, N=Noite.
+Essas descrições são reais, mas o vínculo do campo complementar CLASSIFICACAO ao domínio CLASSIFTUR ainda requer validação. Coluna CODTABELA sozinha não é chave global: a nova extração inclui APLICACAO e coligada para identificar ambiguidades.
+
+A V18 adiciona STURNO.TIPO, HORINI e HORFIM ao diagnóstico existente, agrupados pela mesma chave e somente quando há uma ocorrência. Não converte Unico/Online em Integral ou em um turno arbitrário.
+Financiamento_Classificacao_Validar cruza os valores de classificação com CLASSIFTUR como candidato. Não preenche Financiamento automaticamente. NEGOCIO PJ depende de decisão sobre agrupamento em Negócio.
+RM_Rotulos_Campos busca os rótulos do campo CLASSIFICACAO e do tipo de turno em GCAMPOS para apoiar a validação; a ausência de rótulos não é prova de ausência do campo ou do domínio.
+
+EXTRAÇÃO
+Atualize no Desktop e abra a página Tipos de turno e financiamento.
+Envie a tabela superior esquerda (Turnos_Tipo_Validar), a superior direita (Financiamento_Classificacao_Validar) e a inferior (RM_Rotulos_Campos). A segunda tende a ter poucas linhas; a primeira mantém filial/tipo de curso para não misturar códigos locais.
+Se GCAMPOS não retornar linhas, envie as duas primeiras e informe que os rótulos ficaram vazios.
+
+Os dados anteriores somam classificação 1: 4.932 turmas; 2: 1.161; 3: 865; vazia: 119. Contagens descrevem a exportação recebida, não esta nova execução. Sem código válido, não atribuir financiamento padrão.
+Mantida a decisão de usar carga horária do app e as demais regras anteriores. SQL/referências/ZIP verificados estruturalmente; as novas consultas e a correspondência de negócio precisam ser confirmadas no Desktop. Nenhuma escrita no RM/SharePoint.

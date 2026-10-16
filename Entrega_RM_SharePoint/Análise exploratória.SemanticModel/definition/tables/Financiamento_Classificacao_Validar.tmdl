@@ -1,0 +1,54 @@
+table 'Financiamento_Classificacao_Validar'
+
+	column 'RM_CLASSIFICACAO'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: RM_CLASSIFICACAO
+
+	column 'Quantidade_Turmas'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Quantidade_Turmas
+
+	column 'Ocorrencias_Dominio'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Ocorrencias_Dominio
+
+	column 'Descricao_CLASSIFTUR'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Descricao_CLASSIFTUR
+
+	column 'Aplicacao_Dominio'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Aplicacao_Dominio
+
+	column 'Financiamento_Proposto'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Financiamento_Proposto
+
+	column 'Status_Validacao'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Status_Validacao
+
+	partition 'Financiamento_Classificacao_Validar' = m
+		mode: import
+		source =
+				let
+				    Fonte=Table.TransformColumns(RM_Oferta_Diagnostico,{{"RM_CLASSIFICACAO",each if _=null then null else Text.Trim(_),type nullable text}}),
+				    G=Table.Group(Fonte,{"RM_CLASSIFICACAO"},{{"Quantidade_Turmas",each Table.RowCount(Table.Distinct(Table.SelectColumns(_,{"RM_CODCOLIGADA","RM_CODFILIAL","RM_IDPERLET","RM_CODTURMA"}))),Int64.Type}}),
+				    Dom=Table.SelectRows(RM_Dominios_Direcionados,each [CODCOLIGADA]=0 and [Codigo_Tabela]="CLASSIFTUR"),
+				    J=Table.NestedJoin(G,{"RM_CLASSIFICACAO"},Dom,{"Codigo_Valor"},"Dicionario",JoinKind.LeftOuter),
+				    N=Table.AddColumn(J,"Ocorrencias_Dominio",each Table.RowCount([Dicionario]),Int64.Type),
+				    Texto=Table.AddColumn(N,"Descricao_CLASSIFTUR",each if [Ocorrencias_Dominio]=1 then [Dicionario]{0}[Descricao_Valor] else null,type text),
+				    Aplicacao=Table.AddColumn(Texto,"Aplicacao_Dominio",each Text.Combine(List.Distinct(List.RemoveNulls([Dicionario][APLICACAO])),"; "),type text),
+				    Proposta=Table.AddColumn(Aplicacao,"Financiamento_Proposto",each if [Descricao_CLASSIFTUR]="GRATUITO" then "Gratuidade" else if [Descricao_CLASSIFTUR]="NEGOCIO" then "Negócio" else if [Descricao_CLASSIFTUR]="NEGOCIO PJ" then "Negócio — PJ: confirmar agrupamento" else null,type text),
+				    Status=Table.AddColumn(Proposta,"Status_Validacao",each if [RM_CLASSIFICACAO]=null or [RM_CLASSIFICACAO]="" then "Sem classificação na turma" else if [Ocorrencias_Dominio]<>1 then "Domínio ausente ou ambíguo" else "Validar que CLASSIFICACAO usa CLASSIFTUR; proposta não aplicada",type text),
+				    Resultado=Table.RemoveColumns(Status,{"Dicionario"})
+				in Resultado
+
+	annotation PBI_ResultType = Table
