@@ -1,0 +1,8 @@
+V24 - Mobilização incorporada à Exportacao_App_Enriquecida.
+63 códigos mapeados para nomes do app; código 69 pendente.
+A atualização valida se a opção ainda existe no SharePoint.
+Códigos desconhecidos, conflitantes ou sem opção atual permanecem vazios e sinalizados em Status_Mobilizacao.
+A chave de cruzamento contém coligada, filial, período letivo e turma.
+As páginas de colagem recebem a coluna Mobilizacao na posição existente.
+Atualizar requer rede corporativa para o RM e autenticação no SharePoint.
+Não executado no Power BI Desktop neste ambiente. Nenhuma lista foi alterada.

@@ -362,11 +362,24 @@ table 'Exportacao_App_Enriquecida'
 		summarizeBy: none
 		sourceColumn: Status_Identificador
 
+	column 'Codigo_Mobilizacao_RM'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Codigo_Mobilizacao_RM
+
+	column 'Status_Mobilizacao'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Status_Mobilizacao
+
 	partition 'Exportacao_App_Enriquecida' = m
 		mode: import
 		source =
 				let
-				    Base=RM_Integracao_SharePoint,
+				    Original=Table.RemoveColumns(RM_Integracao_SharePoint,{"Mobilizacao"}),
+				    JM=Table.NestedJoin(Original,{"RM_CODCOLIGADA","RM_CODFILIAL","RM_IDPERLET","RM_CODTURMA"},Table.Buffer(Mobilizacao_Por_Turma),{"RM_CODCOLIGADA","RM_CODFILIAL","RM_IDPERLET","RM_CODTURMA"},"MobilizacaoValidada",JoinKind.LeftOuter),
+				    EM=Table.ExpandTableColumn(JM,"MobilizacaoValidada",{"Mobilizacao","Codigo_Mobilizacao_RM","Status_Mobilizacao"},{"Mobilizacao","Codigo_Mobilizacao_RM","Status_Mobilizacao"}),
+				    Base=Table.TransformColumns(EM,{{"Status_Mobilizacao",each if _=null then "Pendente: turma sem diagnóstico de mobilização" else _,type text}}),
 				    SemCampus=Table.RemoveColumns(Base,{"Campus_Polo","ID_Campus_SharePoint","Status_Campus"}),
 				    CodigosCampus=Table.TransformColumns(SemCampus,{{"RM_Codigo_Campus",each if _=null then null else Text.Trim(_),type nullable text}}),
 				    MapaCampus=Table.Buffer(DP_Campus_Confirmado),
@@ -378,7 +391,7 @@ table 'Exportacao_App_Enriquecida'
 				    FinanciamentoBase=Table.TransformColumns(EF,{{"Status_Financiamento",each if _=null then "Pendente: turma sem diagnóstico de classificação" else _,type text}}),
 				    SemID=Table.RemoveColumns(FinanciamentoBase,{"Identificador_Temporario"}),
 				    JID=Table.NestedJoin(SemID,{"RM_CODCOLIGADA","RM_CODFILIAL","RM_IDPERLET","RM_CODTURMA"},Table.Buffer(DP_Identificadores_Niteroi),{"RM_CODCOLIGADA","RM_CODFILIAL","RM_IDPERLET","RM_CODTURMA"},"IDFixo",JoinKind.LeftOuter),
-				    EID=Table.ExpandTableColumn(JID,"IDFixo",{"Identificador_Fixo","Status_Identificador"},{"Identificador_Temporario","Status_Identificador"}),
+				    EID=Table.ExpandTableColumn(JID,"IDFixo",{"Identificador_Fixo","Status_Identificador"},{"Identificador_Temporario","Status_Identificador", "Codigo_Mobilizacao_RM", "Status_Mobilizacao"}),
 				    IDs=Table.TransformColumns(EID,{{"Status_Identificador",each if _=null then "Pendente: turma fora do lote de identificadores fixos" else _,type text}}),
 				    SemUnidadePlano=Table.RemoveColumns(IDs,{"Unidade","Planejamento","Ano_Referencia"}),
 				    JUP=Table.NestedJoin(SemUnidadePlano,{"RM_CODCOLIGADA","RM_CODFILIAL","RM_Unidade_Nome"},Table.Buffer(DP_Unidade_Planejamento),{"RM_CODCOLIGADA","RM_CODFILIAL","RM_Unidade_Nome"},"UnidadePlano",JoinKind.LeftOuter),
@@ -408,7 +421,7 @@ table 'Exportacao_App_Enriquecida'
 				    Conflitos=Table.Buffer(Table.SelectRows(Matrizes_Divergencias_Recebidas,each Text.Contains([Motivo],"Modalidade"))),
 				    JCf=Table.NestedJoin(SegundaData,{"RM_CODCOLIGADA","RM_Codigo_Curso","RM_Codigo_Grade"},Conflitos,{"RM_CODCOLIGADA","RM_Codigo_Curso","RM_Codigo_Grade"},"Divergencias",JoinKind.LeftOuter),
 				    Status=Table.AddColumn(JCf,"Status_Cruzamento_Matriz",each if Table.RowCount([Divergencias])>0 then "Pendente: divergência de modalidade nos arquivos recebidos; revisar" else if [ID_Matriz_SharePoint]=null then "Pendente: aprovar de/para de matriz" else if [Cad_ID]=null then "Pendente: ID não encontrado em matrizes ativas" else if [Cad_Modalidade]=null or [Cad_Carga]=null then "Pendente: cadastro da matriz incompleto" else if [Modalidade]=null then "Pendente: mediação sem correspondência em Modalidade de oferta" else "Matriz cruzada; validar demais campos antes da carga",type text),
-				    Resultado=Table.SelectColumns(Status,{"Planejamento", "Unidade", "Periodo_Letivo", "Ano_Referencia", "Identificador_Temporario", "Codigo_Turma_SGE", "Matriz", "Status_Turma", "Ativa", "Codigo_Matriz_Snapshot", "Nome_Curso_Snapshot", "Area_Snapshot", "Modalidade_Snapshot", "Tipo_Mediacao_Snapshot", "Carga_Horaria_Snapshot", "Data_Snapshot_Matriz", "Data_Inicio_Prevista", "Data_Fim_Prevista", "Quantidade_Vagas", "Matriculas_Previstas", "Campus_Polo", "Financiamento", "Tipo_Periodo", "Pedagogo_Responsavel", "Mobilizacao", "Empresa", "Projeto", "Sindicato", "Classe_Valor", "Item_Contabil_Snapshot", "Centro_Custo_Snapshot", "Observacoes", "Motivo_Cancelamento", "Data_Cancelamento", "Cancelada_Por", "Data_Conclusao", "Bloqueada_Para_Edicao", "Versao_Planejamento", "Origem_Registro", "Data_Ultima_Revisao", "Turno", "Tipo_Calculo_Evasao", "Percentual_Evasao_Previsto", "Quantidade_Evasao_Prevista", "Matriculas_Consideradas", "ID", "Matriculas_Reais", "Matriculas_Reais_Confirmadas", "Código da turma SGE", "Local_realizacao", "Instrutor", "Codigo_Matriz_Excel", "Criado", "Criado por", "Modalidade", "Data_Snapshot_Matriz0", "ID_Matriz_SharePoint", "Status_Cruzamento_Matriz", "RM_CODCOLIGADA", "RM_CODFILIAL", "RM_IDPERLET", "RM_CODTURMA", "RM_Codigo_Curso", "RM_Codigo_Grade", "ID_Financiamento_SharePoint", "Status_Financiamento", "ID_Unidade_SharePoint", "ID_Planejamento_SharePoint", "Status_Unidade_Planejamento", "Status_Identificador"})
+				    Resultado=Table.SelectColumns(Status,{"Planejamento", "Unidade", "Periodo_Letivo", "Ano_Referencia", "Identificador_Temporario", "Codigo_Turma_SGE", "Matriz", "Status_Turma", "Ativa", "Codigo_Matriz_Snapshot", "Nome_Curso_Snapshot", "Area_Snapshot", "Modalidade_Snapshot", "Tipo_Mediacao_Snapshot", "Carga_Horaria_Snapshot", "Data_Snapshot_Matriz", "Data_Inicio_Prevista", "Data_Fim_Prevista", "Quantidade_Vagas", "Matriculas_Previstas", "Campus_Polo", "Financiamento", "Tipo_Periodo", "Pedagogo_Responsavel", "Mobilizacao", "Empresa", "Projeto", "Sindicato", "Classe_Valor", "Item_Contabil_Snapshot", "Centro_Custo_Snapshot", "Observacoes", "Motivo_Cancelamento", "Data_Cancelamento", "Cancelada_Por", "Data_Conclusao", "Bloqueada_Para_Edicao", "Versao_Planejamento", "Origem_Registro", "Data_Ultima_Revisao", "Turno", "Tipo_Calculo_Evasao", "Percentual_Evasao_Previsto", "Quantidade_Evasao_Prevista", "Matriculas_Consideradas", "ID", "Matriculas_Reais", "Matriculas_Reais_Confirmadas", "Código da turma SGE", "Local_realizacao", "Instrutor", "Codigo_Matriz_Excel", "Criado", "Criado por", "Modalidade", "Data_Snapshot_Matriz0", "ID_Matriz_SharePoint", "Status_Cruzamento_Matriz", "RM_CODCOLIGADA", "RM_CODFILIAL", "RM_IDPERLET", "RM_CODTURMA", "RM_Codigo_Curso", "RM_Codigo_Grade", "ID_Financiamento_SharePoint", "Status_Financiamento", "ID_Unidade_SharePoint", "ID_Planejamento_SharePoint", "Status_Unidade_Planejamento", "Status_Identificador", "Codigo_Mobilizacao_RM", "Status_Mobilizacao"})
 				in Resultado
 
 	annotation PBI_ResultType = Table

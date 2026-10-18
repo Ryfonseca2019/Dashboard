@@ -123,3 +123,6 @@ ref table 'DP_Mobilizacoes_Candidatas'
 ref table 'Mobilizacoes_Niteroi_Comparar'
 
 ref table 'Mobilizacoes_Niteroi_Resumo'
+
+ref table 'DP_Mobilizacoes_Exportacao'
+ref table 'Mobilizacao_Por_Turma'
