@@ -1,0 +1,88 @@
+table 'RM_Catalogo_Matrizes_Completo'
+
+	column 'CODCOLIGADA'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: CODCOLIGADA
+
+	column 'Codigo_Curso_RM'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Codigo_Curso_RM
+
+	column 'Codigo_Habilitacao_RM'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Codigo_Habilitacao_RM
+
+	column 'Codigo_Matriz_RM'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Codigo_Matriz_RM
+
+	column 'Descricao_Matriz_RM'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Descricao_Matriz_RM
+
+	column 'Carga_Horaria_RM'
+		dataType: double
+		summarizeBy: none
+		sourceColumn: Carga_Horaria_RM
+
+	column 'Status_Matriz_RM'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Status_Matriz_RM
+
+	column 'Ocorrencias_Curso'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Ocorrencias_Curso
+
+	column 'Nome_Curso_RM'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Nome_Curso_RM
+
+	column 'Codigo_Modalidade_RM'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Codigo_Modalidade_RM
+
+	column 'Ocorrencias_Modalidade'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Ocorrencias_Modalidade
+
+	column 'Modalidade_RM'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Modalidade_RM
+
+	column 'Ocorrencias_Complemento'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Ocorrencias_Complemento
+
+	column 'Codigo_Tipo_EAD_RM'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Codigo_Tipo_EAD_RM
+
+	column 'Ocorrencias_Dominio_EAD'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Ocorrencias_Dominio_EAD
+
+	column 'Tipo_EAD_RM'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Tipo_EAD_RM
+
+	partition 'RM_Catalogo_Matrizes_Completo' = m
+		mode: import
+		source =
+				let Fonte=Sql.Database("SRVSEDE01621PRE","CorporeRM",[Query="WITH C AS (#(lf) SELECT CODCOLIGADA,CODCURSO,COUNT(*) N,#(lf) CASE WHEN COUNT(*)=1 THEN MAX(NOME) END Nome,#(lf) CASE WHEN COUNT(*)=1 THEN MAX(CONVERT(nvarchar(100),CODMODALIDADECURSO)) END CodigoModalidade#(lf) FROM dbo.SCURSO WHERE CODCOLIGADA=3 GROUP BY CODCOLIGADA,CODCURSO#(lf)), M AS (#(lf) SELECT CODCOLIGADA,CONVERT(nvarchar(100),CODMODALIDADECURSO) Codigo,COUNT(*) N,#(lf) CASE WHEN COUNT(*)=1 THEN MAX(DESCRICAO) END Nome#(lf) FROM dbo.SMODALIDADECURSO WHERE CODCOLIGADA=3 GROUP BY CODCOLIGADA,CONVERT(nvarchar(100),CODMODALIDADECURSO)#(lf)), X AS (#(lf) SELECT CODCOLIGADA,CODCURSO,CODHABILITACAO,CODGRADE,COUNT(*) N,#(lf) CASE WHEN COUNT(*)=1 THEN MAX(CONVERT(nvarchar(100),TIPOEAD)) END CodigoEAD#(lf) FROM dbo.SGRADECOMPL WHERE CODCOLIGADA=3 GROUP BY CODCOLIGADA,CODCURSO,CODHABILITACAO,CODGRADE#(lf)), E AS (#(lf) SELECT CONVERT(nvarchar(100),CODCLIENTE) Codigo,COUNT(*) N,#(lf) CASE WHEN COUNT(*)=1 THEN MAX(DESCRICAO) END Nome#(lf) FROM dbo.GCONSIST WHERE CODCOLIGADA=3 AND APLICACAO='S' AND CODTABELA='TIPOEAD'#(lf) GROUP BY CONVERT(nvarchar(100),CODCLIENTE)#(lf))#(lf)SELECT G.CODCOLIGADA,#(lf)CONVERT(nvarchar(100),G.CODCURSO) Codigo_Curso_RM,#(lf)CONVERT(nvarchar(100),G.CODHABILITACAO) Codigo_Habilitacao_RM,#(lf)CONVERT(nvarchar(100),G.CODGRADE) Codigo_Matriz_RM,#(lf)G.DESCRICAO Descricao_Matriz_RM,G.CARGAHORARIA Carga_Horaria_RM,#(lf)CONVERT(nvarchar(100),G.STATUS) Status_Matriz_RM,#(lf)C.N Ocorrencias_Curso,C.Nome Nome_Curso_RM,C.CodigoModalidade Codigo_Modalidade_RM,#(lf)M.N Ocorrencias_Modalidade,M.Nome Modalidade_RM,#(lf)X.N Ocorrencias_Complemento,X.CodigoEAD Codigo_Tipo_EAD_RM,#(lf)E.N Ocorrencias_Dominio_EAD,E.Nome Tipo_EAD_RM#(lf)FROM dbo.SGRADE G#(lf)LEFT JOIN C ON C.CODCOLIGADA=G.CODCOLIGADA AND C.CODCURSO=G.CODCURSO#(lf)LEFT JOIN M ON M.CODCOLIGADA=G.CODCOLIGADA AND M.Codigo=C.CodigoModalidade#(lf)LEFT JOIN X ON X.CODCOLIGADA=G.CODCOLIGADA AND X.CODCURSO=G.CODCURSO AND X.CODHABILITACAO=G.CODHABILITACAO AND X.CODGRADE=G.CODGRADE#(lf)LEFT JOIN E ON E.Codigo=X.CodigoEAD#(lf)WHERE G.CODCOLIGADA=3#(lf)ORDER BY G.CODCURSO,G.CODHABILITACAO,G.CODGRADE;"]) in Fonte
+
+	annotation PBI_ResultType = Table

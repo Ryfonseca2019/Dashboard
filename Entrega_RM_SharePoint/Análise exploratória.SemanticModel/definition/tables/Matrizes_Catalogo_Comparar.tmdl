@@ -1,0 +1,143 @@
+table 'Matrizes_Catalogo_Comparar'
+
+	column 'CODCOLIGADA'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: CODCOLIGADA
+
+	column 'Codigo_Curso_RM'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Codigo_Curso_RM
+
+	column 'Codigo_Habilitacao_RM'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Codigo_Habilitacao_RM
+
+	column 'Codigo_Matriz_RM'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Codigo_Matriz_RM
+
+	column 'Descricao_Matriz_RM'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Descricao_Matriz_RM
+
+	column 'Carga_Horaria_RM'
+		dataType: double
+		summarizeBy: none
+		sourceColumn: Carga_Horaria_RM
+
+	column 'Status_Matriz_RM'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Status_Matriz_RM
+
+	column 'Ocorrencias_Curso'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Ocorrencias_Curso
+
+	column 'Nome_Curso_RM'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Nome_Curso_RM
+
+	column 'Codigo_Modalidade_RM'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Codigo_Modalidade_RM
+
+	column 'Ocorrencias_Modalidade'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Ocorrencias_Modalidade
+
+	column 'Modalidade_RM'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Modalidade_RM
+
+	column 'Ocorrencias_Complemento'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Ocorrencias_Complemento
+
+	column 'Codigo_Tipo_EAD_RM'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Codigo_Tipo_EAD_RM
+
+	column 'Ocorrencias_Dominio_EAD'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Ocorrencias_Dominio_EAD
+
+	column 'Tipo_EAD_RM'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Tipo_EAD_RM
+
+	column 'Ocorrencias_Codigo_RM'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Ocorrencias_Codigo_RM
+
+	column 'Ocorrencias_App'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Ocorrencias_App
+
+	column 'ID_Matriz_App'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: ID_Matriz_App
+
+	column 'Nome_Curso_App'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Nome_Curso_App
+
+	column 'Carga_Horaria_App'
+		dataType: double
+		summarizeBy: none
+		sourceColumn: Carga_Horaria_App
+
+	column 'Modalidade_App'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Modalidade_App
+
+	column 'Ativa_App'
+		dataType: boolean
+		summarizeBy: none
+		sourceColumn: Ativa_App
+
+	column 'Situacao_Catalogo'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Situacao_Catalogo
+
+	partition 'Matrizes_Catalogo_Comparar' = m
+		mode: import
+		source =
+				let
+				    Fonte=RM_Catalogo_Matrizes_Completo,
+				    ContagemRM=Table.Group(Fonte,{"Codigo_Matriz_RM"},{{"Ocorrencias_Codigo_RM",each Table.RowCount(_),Int64.Type}}),
+				    Cad=Table.Group(APP_Cad_Matrizes,{"Codigo_Matriz"},{{"Registros_App",each _,type table}}),
+				    J=Table.NestedJoin(Fonte,{"Codigo_Matriz_RM"},ContagemRM,{"Codigo_Matriz_RM"},"Contagem",JoinKind.LeftOuter),
+				    N=Table.ExpandTableColumn(J,"Contagem",{"Ocorrencias_Codigo_RM"},{"Ocorrencias_Codigo_RM"}),
+				    JA=Table.NestedJoin(N,{"Codigo_Matriz_RM"},Cad,{"Codigo_Matriz"},"App",JoinKind.LeftOuter),
+				    NA=Table.AddColumn(JA,"Ocorrencias_App",each if Table.RowCount([App])=0 then 0 else Table.RowCount([App]{0}[Registros_App]),Int64.Type),
+				    ID=Table.AddColumn(NA,"ID_Matriz_App",each if [Ocorrencias_App]=1 then [App]{0}[Registros_App]{0}[ID] else null,Int64.Type),
+				    Nome=Table.AddColumn(ID,"Nome_Curso_App",each if [Ocorrencias_App]=1 then [App]{0}[Registros_App]{0}[Nome_Curso] else null,type text),
+				    Carga=Table.AddColumn(Nome,"Carga_Horaria_App",each if [Ocorrencias_App]=1 then [App]{0}[Registros_App]{0}[Carga_Horaria] else null,type number),
+				    Modalidade=Table.AddColumn(Carga,"Modalidade_App",each if [Ocorrencias_App]=1 then [App]{0}[Registros_App]{0}[Modalidade] else null,type text),
+				    Ativa=Table.AddColumn(Modalidade,"Ativa_App",each if [Ocorrencias_App]=1 then [App]{0}[Registros_App]{0}[Ativa] else null,type logical),
+				    Status=Table.AddColumn(Ativa,"Situacao_Catalogo",each if [Ocorrencias_Codigo_RM]<>1 then "Revisar: código RM em mais de uma chave curricular" else if [Ocorrencias_App]=0 then "Sem código exato no app; revisar cadastro ou equivalência" else if [Ocorrencias_App]<>1 then "Revisar: código duplicado no app" else if [Ativa_App]<>true then "Revisar: cadastro app inativo" else if [Nome_Curso_RM]<>[Nome_Curso_App] or [Modalidade_RM]<>[Modalidade_App] then "Código exato; revisar diferenças de nome/modalidade" else "Código exato único; candidato a vínculo",type text),
+				    Resultado=Table.RemoveColumns(Status,{"App"})
+				in Resultado
+
+	annotation PBI_ResultType = Table

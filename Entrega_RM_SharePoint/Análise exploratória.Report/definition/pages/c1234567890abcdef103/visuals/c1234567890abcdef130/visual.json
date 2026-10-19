@@ -1,0 +1,51 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "c1234567890abcdef130",
+  "position": {
+    "x": 20,
+    "y": 20,
+    "width": 4160,
+    "height": 280,
+    "z": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Matrizes_Catalogo_Resumo"
+                    }
+                  },
+                  "Property": "Situacao_Catalogo"
+                }
+              },
+              "queryRef": "Matrizes_Catalogo_Resumo.Situacao_Catalogo",
+              "nativeQueryRef": "Situacao_Catalogo"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Matrizes_Catalogo_Resumo"
+                    }
+                  },
+                  "Property": "Quantidade_Registros_RM"
+                }
+              },
+              "queryRef": "Matrizes_Catalogo_Resumo.Quantidade_Registros_RM",
+              "nativeQueryRef": "Quantidade_Registros_RM"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

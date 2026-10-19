@@ -1,0 +1,9 @@
+V39 - Catálogo completo SGRADE SENAI, coligada 3, sem filtro de filial, turmas, período, datas ou status da matriz.
+Chave preservada: coligada + curso + habilitação + grade.
+Complementos e descrições são pré-agrupados para evitar multiplicação de registros. Ocorrências ambíguas sinalizadas.
+Comparação consulta APP_Cad_Matrizes atual no SharePoint; IDs existentes e carga horária app preservados.
+Ausência de código exato NÃO determina criação automática: revisar equivalência para evitar duplicação.
+Campo STATUS RM é bruto, sem traduzir ativo/inativo por suposição.
+Página Matrizes - catálogo SENAI: exportar resumo e detalhamento. Conferir quantidade exportada com total do resumo por possível limite do visual.
+Nenhum cadastro ou de-para de matrizes é alterado automaticamente. Mantida a régua de turmas com término a partir de 01/01/2027.
+Consultas não executadas contra RM/SharePoint neste ambiente.

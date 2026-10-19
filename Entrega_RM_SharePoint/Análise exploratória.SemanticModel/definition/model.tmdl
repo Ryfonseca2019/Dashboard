@@ -167,3 +167,9 @@ ref table 'Carga_Niteroi_2027_Conferencia'
 ref table 'Carga_Niteroi_2027_52_Colunas'
 
 ref table 'Carga_Niteroi_2027_Resumo'
+
+ref table 'RM_Catalogo_Matrizes_Completo'
+
+ref table 'Matrizes_Catalogo_Comparar'
+
+ref table 'Matrizes_Catalogo_Resumo'

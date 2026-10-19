@@ -1,0 +1,359 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "c1234567890abcdef131",
+  "position": {
+    "x": 20,
+    "y": 320,
+    "width": 4160,
+    "height": 1060,
+    "z": 1
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Matrizes_Catalogo_Comparar"
+                    }
+                  },
+                  "Property": "CODCOLIGADA"
+                }
+              },
+              "queryRef": "Matrizes_Catalogo_Comparar.CODCOLIGADA",
+              "nativeQueryRef": "CODCOLIGADA"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Matrizes_Catalogo_Comparar"
+                    }
+                  },
+                  "Property": "Codigo_Curso_RM"
+                }
+              },
+              "queryRef": "Matrizes_Catalogo_Comparar.Codigo_Curso_RM",
+              "nativeQueryRef": "Codigo_Curso_RM"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Matrizes_Catalogo_Comparar"
+                    }
+                  },
+                  "Property": "Codigo_Habilitacao_RM"
+                }
+              },
+              "queryRef": "Matrizes_Catalogo_Comparar.Codigo_Habilitacao_RM",
+              "nativeQueryRef": "Codigo_Habilitacao_RM"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Matrizes_Catalogo_Comparar"
+                    }
+                  },
+                  "Property": "Codigo_Matriz_RM"
+                }
+              },
+              "queryRef": "Matrizes_Catalogo_Comparar.Codigo_Matriz_RM",
+              "nativeQueryRef": "Codigo_Matriz_RM"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Matrizes_Catalogo_Comparar"
+                    }
+                  },
+                  "Property": "Descricao_Matriz_RM"
+                }
+              },
+              "queryRef": "Matrizes_Catalogo_Comparar.Descricao_Matriz_RM",
+              "nativeQueryRef": "Descricao_Matriz_RM"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Matrizes_Catalogo_Comparar"
+                    }
+                  },
+                  "Property": "Carga_Horaria_RM"
+                }
+              },
+              "queryRef": "Matrizes_Catalogo_Comparar.Carga_Horaria_RM",
+              "nativeQueryRef": "Carga_Horaria_RM"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Matrizes_Catalogo_Comparar"
+                    }
+                  },
+                  "Property": "Status_Matriz_RM"
+                }
+              },
+              "queryRef": "Matrizes_Catalogo_Comparar.Status_Matriz_RM",
+              "nativeQueryRef": "Status_Matriz_RM"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Matrizes_Catalogo_Comparar"
+                    }
+                  },
+                  "Property": "Ocorrencias_Curso"
+                }
+              },
+              "queryRef": "Matrizes_Catalogo_Comparar.Ocorrencias_Curso",
+              "nativeQueryRef": "Ocorrencias_Curso"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Matrizes_Catalogo_Comparar"
+                    }
+                  },
+                  "Property": "Nome_Curso_RM"
+                }
+              },
+              "queryRef": "Matrizes_Catalogo_Comparar.Nome_Curso_RM",
+              "nativeQueryRef": "Nome_Curso_RM"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Matrizes_Catalogo_Comparar"
+                    }
+                  },
+                  "Property": "Codigo_Modalidade_RM"
+                }
+              },
+              "queryRef": "Matrizes_Catalogo_Comparar.Codigo_Modalidade_RM",
+              "nativeQueryRef": "Codigo_Modalidade_RM"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Matrizes_Catalogo_Comparar"
+                    }
+                  },
+                  "Property": "Ocorrencias_Modalidade"
+                }
+              },
+              "queryRef": "Matrizes_Catalogo_Comparar.Ocorrencias_Modalidade",
+              "nativeQueryRef": "Ocorrencias_Modalidade"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Matrizes_Catalogo_Comparar"
+                    }
+                  },
+                  "Property": "Modalidade_RM"
+                }
+              },
+              "queryRef": "Matrizes_Catalogo_Comparar.Modalidade_RM",
+              "nativeQueryRef": "Modalidade_RM"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Matrizes_Catalogo_Comparar"
+                    }
+                  },
+                  "Property": "Ocorrencias_Complemento"
+                }
+              },
+              "queryRef": "Matrizes_Catalogo_Comparar.Ocorrencias_Complemento",
+              "nativeQueryRef": "Ocorrencias_Complemento"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Matrizes_Catalogo_Comparar"
+                    }
+                  },
+                  "Property": "Codigo_Tipo_EAD_RM"
+                }
+              },
+              "queryRef": "Matrizes_Catalogo_Comparar.Codigo_Tipo_EAD_RM",
+              "nativeQueryRef": "Codigo_Tipo_EAD_RM"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Matrizes_Catalogo_Comparar"
+                    }
+                  },
+                  "Property": "Ocorrencias_Dominio_EAD"
+                }
+              },
+              "queryRef": "Matrizes_Catalogo_Comparar.Ocorrencias_Dominio_EAD",
+              "nativeQueryRef": "Ocorrencias_Dominio_EAD"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Matrizes_Catalogo_Comparar"
+                    }
+                  },
+                  "Property": "Tipo_EAD_RM"
+                }
+              },
+              "queryRef": "Matrizes_Catalogo_Comparar.Tipo_EAD_RM",
+              "nativeQueryRef": "Tipo_EAD_RM"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Matrizes_Catalogo_Comparar"
+                    }
+                  },
+                  "Property": "Ocorrencias_Codigo_RM"
+                }
+              },
+              "queryRef": "Matrizes_Catalogo_Comparar.Ocorrencias_Codigo_RM",
+              "nativeQueryRef": "Ocorrencias_Codigo_RM"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Matrizes_Catalogo_Comparar"
+                    }
+                  },
+                  "Property": "Ocorrencias_App"
+                }
+              },
+              "queryRef": "Matrizes_Catalogo_Comparar.Ocorrencias_App",
+              "nativeQueryRef": "Ocorrencias_App"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Matrizes_Catalogo_Comparar"
+                    }
+                  },
+                  "Property": "ID_Matriz_App"
+                }
+              },
+              "queryRef": "Matrizes_Catalogo_Comparar.ID_Matriz_App",
+              "nativeQueryRef": "ID_Matriz_App"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Matrizes_Catalogo_Comparar"
+                    }
+                  },
+                  "Property": "Nome_Curso_App"
+                }
+              },
+              "queryRef": "Matrizes_Catalogo_Comparar.Nome_Curso_App",
+              "nativeQueryRef": "Nome_Curso_App"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Matrizes_Catalogo_Comparar"
+                    }
+                  },
+                  "Property": "Carga_Horaria_App"
+                }
+              },
+              "queryRef": "Matrizes_Catalogo_Comparar.Carga_Horaria_App",
+              "nativeQueryRef": "Carga_Horaria_App"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Matrizes_Catalogo_Comparar"
+                    }
+                  },
+                  "Property": "Modalidade_App"
+                }
+              },
+              "queryRef": "Matrizes_Catalogo_Comparar.Modalidade_App",
+              "nativeQueryRef": "Modalidade_App"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Matrizes_Catalogo_Comparar"
+                    }
+                  },
+                  "Property": "Ativa_App"
+                }
+              },
+              "queryRef": "Matrizes_Catalogo_Comparar.Ativa_App",
+              "nativeQueryRef": "Ativa_App"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Matrizes_Catalogo_Comparar"
+                    }
+                  },
+                  "Property": "Situacao_Catalogo"
+                }
+              },
+              "queryRef": "Matrizes_Catalogo_Comparar.Situacao_Catalogo",
+              "nativeQueryRef": "Situacao_Catalogo"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}
