@@ -1,0 +1,8 @@
+479 nomes exatos ausentes de Cad_Turnos, extraídos dos 830 registros SENAI.
+Preservar os cinco registros existentes. Colar apenas as 479 linhas da planilha, sem cabeçalho, na primeira nova linha.
+Ordem: Nome_Turno, Ordem_Exibicao, Origem, Ativa, Codigo_Turno_SGE.
+Origem SGE precisa existir se a coluna for Escolha. Ativa=Sim disponibiliza opções no app; a extração RM não trouxe situação ativa.
+Codigo_Turno_SGE fica vazio: um nome pode ter diferentes códigos conforme filial e tipo de curso.
+Arquivo De_Para_Turnos_RM_830.csv preserva as chaves e horários da origem.
+Grafias, espaços e nomes parecidos foram preservados sem agrupamento automático.
+Inclusões ainda não executadas no SharePoint. Não altera os vínculos do app.
