@@ -1,0 +1,9 @@
+V33 - Modalidade (título no app: Tipo de mediação) preenchida por STURMA.TIPOMEDIACAO.
+1 -> Presencial; 2 -> Semipresencial; 3 -> À distância. Evidência: definição SQL de dbo.tmpDashsSGE enviada pelo usuário.
+Opção de destino conferida no catálogo atual do SharePoint. Código desconhecido, nulo ou conflitante não é presumido.
+Tipo_Mediacao_Snapshot continua vindo de Cad_Matrizes; não é substituído pela mediação da turma.
+Colunas técnicas Codigo_Mediacao_RM e Status_Mediacao_Turma adicionadas à tabela de exportação.
+Atualizar e exportar tabela superior da página Niterói - identificação e oferta.
+Contagens esperadas a validar: 459 Presencial, 14 Semipresencial, 37 À distância.
+Mantidas pendências anteriores, inclusive de-para de mobilização com nomes antigos e diagnóstico estático de obrigatoriedade.
+Consultas não executadas contra RM/SharePoint neste ambiente.

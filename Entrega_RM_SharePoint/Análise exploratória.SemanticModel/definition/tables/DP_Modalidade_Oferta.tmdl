@@ -24,8 +24,8 @@ table 'DP_Modalidade_Oferta'
 		mode: import
 		source =
 				let
-				    // Campo Modalidade = forma de oferta. Não confundir com modalidade de formação do snapshot.
-				    Fonte=#table(type table [Mediacao_Origem=text, Modalidade_Destino=text], {{"PRESENCIAL","Presencial"},{"A DISTÂNCIA","À distância"},{"EAD - 50% de Aulas On-line ao Vivo + Autoestudo","À distância"},{"EAD - 100% de Aulas On-line ao Vivo","À distância"},{"EAD Semipresencial - Mínimo de 20% de Atividades Presenciais","À distância"},{"EAD Autoinstrucional","À distância"},{"EAD Semipresencial","À distância"}}),
+				    // Mediação da turma conforme definição SQL de dbo.tmpDashsSGE; TIPOEAD é separado.
+				    Fonte=#table(type table [Mediacao_Origem=text, Modalidade_Destino=text], {{"PRESENCIAL","Presencial"},{"SEMIPRESENCIAL","Semipresencial"},{"A DISTÂNCIA","À distância"}}),
 				    Opcoes=List.Buffer(Table.SelectRows(APP_Opcoes_Escolha,each [Campo_Interno]="Modalidade")[Opcao]),
 				    Validacao=Table.AddColumn(Fonte,"Status",each if List.Contains(Opcoes,[Modalidade_Destino]) then "Opção existente na lista" else "Pendente: opção não existe na lista atual",type text),
 				    Resultado=Table.AddColumn(Validacao,"Valor_App",each if [Status]="Opção existente na lista" then [Modalidade_Destino] else null,type text)

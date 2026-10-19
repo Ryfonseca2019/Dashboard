@@ -144,3 +144,5 @@ ref table 'EAD_Matrizes_Niteroi_Resumo'
 ref table 'RM_Mediacao_Definicoes'
 
 ref table 'RM_Mediacao_Comparar_Auxiliar'
+
+ref table 'Mediacao_Por_Turma'
