@@ -1,0 +1,10 @@
+V40 - Recalcula vínculos com catálogo completo RM e Cad_Matrizes atual.
+Preserva vínculos anteriores validados. Acrescenta correspondência por código e versão exatos, únicos no RM e no app, com cadastro app ativo.
+Não usa nomes semelhantes nem substitui carga horária do cadastro app. Código compartilhado por chaves RM ou duplicado app não ganha novo vínculo automático.
+Usuário informou exclusão da duplicata ID 4683. A consulta deve refletir essa exclusão após atualização.
+As 71 turmas do lote confirmado + PPCP do piloto são excluídas da nova carga.
+Página Carga 2027 - pendências mostra a reavaliação das 31 exceções anteriores.
+Cinco registros tinham também mobilização sem tradução; nomes das opções SharePoint ainda precisam ser conferidos se permanecerem pendentes.
+A atualização depende de Cad_Matrizes no SharePoint; a exportação completa por si só não atualiza o cache local.
+Usar Carga Niterói - 2027 somente após conferir resumo atualizado. Layout de 52 colunas e corte a partir de 01/01/2027 preservados.
+Arquivos verificados estaticamente; execução contra RM/SharePoint não realizada neste ambiente.

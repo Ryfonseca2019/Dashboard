@@ -24,8 +24,20 @@ table 'DP_Matrizes_Validadas'
 		mode: import
 		source =
 				let
-				    Fonte=Table.SelectRows(DP_Matrizes_Auditoria,each [Status_Validacao]="Código exato e ID conferidos"),
-				    Resultado=Table.SelectColumns(Fonte,{"RM_CODCOLIGADA","RM_Codigo_Curso","RM_Codigo_Grade","ID_Matriz_SharePoint"}),
+				    Anteriores=Table.SelectColumns(Table.SelectRows(DP_Matrizes_Auditoria,each [Status_Validacao]="Código exato e ID conferidos"),{"RM_CODCOLIGADA","RM_Codigo_Curso","RM_Codigo_Grade","ID_Matriz_SharePoint"}),
+				    Catalogo=Table.Buffer(RM_Catalogo_Matrizes_Completo),
+				    Codigos=Table.Group(Catalogo,{"Codigo_Matriz_RM"},{{"N_RM",each Table.RowCount(_),Int64.Type},{"Registro_RM",each _,type table}}),
+				    Unicos=Table.SelectRows(Codigos,each [N_RM]=1),
+				    RM=Table.ExpandTableColumn(Unicos,"Registro_RM",{"CODCOLIGADA","Codigo_Curso_RM"},{"RM_CODCOLIGADA","RM_Codigo_Curso"}),
+				    Cadastro=Table.Group(APP_Cad_Matrizes,{"Codigo_Matriz"},{{"N_App",each Table.RowCount(_),Int64.Type},{"Registro_App",each _,type table}}),
+				    J=Table.NestedJoin(RM,{"Codigo_Matriz_RM"},Cadastro,{"Codigo_Matriz"},"App",JoinKind.LeftOuter),
+				    Validos=Table.SelectRows(J,each if Table.RowCount([App])<>1 then false else if [App]{0}[N_App]<>1 then false else [App]{0}[Registro_App]{0}[Ativa]=true),
+				    ID=Table.AddColumn(Validos,"ID_Matriz_SharePoint",each [App]{0}[Registro_App]{0}[ID],Int64.Type),
+				    Nomes=Table.RenameColumns(ID,{{"Codigo_Matriz_RM","RM_Codigo_Grade"}}),
+				    Candidatos=Table.SelectColumns(Nomes,{"RM_CODCOLIGADA","RM_Codigo_Curso","RM_Codigo_Grade","ID_Matriz_SharePoint"}),
+				    SemAnterior=Table.NestedJoin(Candidatos,{"RM_CODCOLIGADA","RM_Codigo_Curso","RM_Codigo_Grade"},Anteriores,{"RM_CODCOLIGADA","RM_Codigo_Curso","RM_Codigo_Grade"},"Anterior",JoinKind.LeftAnti),
+				    Novos=Table.RemoveColumns(SemAnterior,{"Anterior"}),
+				    Resultado=Table.Combine({Anteriores,Novos}),
 				    Repetidos=Table.SelectRows(Table.Group(Resultado,{"RM_CODCOLIGADA","RM_Codigo_Curso","RM_Codigo_Grade"},{{"N",each Table.RowCount(_),Int64.Type}}),each [N]>1)
 				in if Table.RowCount(Repetidos)>0 then error "De/para de matrizes repetido" else Resultado
 
