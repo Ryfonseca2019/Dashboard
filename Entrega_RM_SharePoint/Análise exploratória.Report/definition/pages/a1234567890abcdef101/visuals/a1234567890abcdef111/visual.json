@@ -1,0 +1,205 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "a1234567890abcdef111",
+  "position": {
+    "x": 20,
+    "y": 420,
+    "width": 2560,
+    "height": 960,
+    "z": 1
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Turnos_Classificacao_Validar"
+                    }
+                  },
+                  "Property": "RM_CODCOLIGADA"
+                }
+              },
+              "queryRef": "Turnos_Classificacao_Validar.RM_CODCOLIGADA",
+              "nativeQueryRef": "RM_CODCOLIGADA"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Turnos_Classificacao_Validar"
+                    }
+                  },
+                  "Property": "RM_CODFILIAL"
+                }
+              },
+              "queryRef": "Turnos_Classificacao_Validar.RM_CODFILIAL",
+              "nativeQueryRef": "RM_CODFILIAL"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Turnos_Classificacao_Validar"
+                    }
+                  },
+                  "Property": "RM_IDPERLET"
+                }
+              },
+              "queryRef": "Turnos_Classificacao_Validar.RM_IDPERLET",
+              "nativeQueryRef": "RM_IDPERLET"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Turnos_Classificacao_Validar"
+                    }
+                  },
+                  "Property": "RM_CODTURMA"
+                }
+              },
+              "queryRef": "Turnos_Classificacao_Validar.RM_CODTURMA",
+              "nativeQueryRef": "RM_CODTURMA"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Turnos_Classificacao_Validar"
+                    }
+                  },
+                  "Property": "RM_Tipo_Curso"
+                }
+              },
+              "queryRef": "Turnos_Classificacao_Validar.RM_Tipo_Curso",
+              "nativeQueryRef": "RM_Tipo_Curso"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Turnos_Classificacao_Validar"
+                    }
+                  },
+                  "Property": "RM_Turno_Complemento"
+                }
+              },
+              "queryRef": "Turnos_Classificacao_Validar.RM_Turno_Complemento",
+              "nativeQueryRef": "RM_Turno_Complemento"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Turnos_Classificacao_Validar"
+                    }
+                  },
+                  "Property": "Ocorrencias_Cadastro"
+                }
+              },
+              "queryRef": "Turnos_Classificacao_Validar.Ocorrencias_Cadastro",
+              "nativeQueryRef": "Ocorrencias_Cadastro"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Turnos_Classificacao_Validar"
+                    }
+                  },
+                  "Property": "Nome_Turno_RM"
+                }
+              },
+              "queryRef": "Turnos_Classificacao_Validar.Nome_Turno_RM",
+              "nativeQueryRef": "Nome_Turno_RM"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Turnos_Classificacao_Validar"
+                    }
+                  },
+                  "Property": "Tipo_Turno_RM"
+                }
+              },
+              "queryRef": "Turnos_Classificacao_Validar.Tipo_Turno_RM",
+              "nativeQueryRef": "Tipo_Turno_RM"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Turnos_Classificacao_Validar"
+                    }
+                  },
+                  "Property": "Hora_Inicio_RM"
+                }
+              },
+              "queryRef": "Turnos_Classificacao_Validar.Hora_Inicio_RM",
+              "nativeQueryRef": "Hora_Inicio_RM"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Turnos_Classificacao_Validar"
+                    }
+                  },
+                  "Property": "Hora_Fim_RM"
+                }
+              },
+              "queryRef": "Turnos_Classificacao_Validar.Hora_Fim_RM",
+              "nativeQueryRef": "Hora_Fim_RM"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Turnos_Classificacao_Validar"
+                    }
+                  },
+                  "Property": "Turno_Candidato_App"
+                }
+              },
+              "queryRef": "Turnos_Classificacao_Validar.Turno_Candidato_App",
+              "nativeQueryRef": "Turno_Candidato_App"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Turnos_Classificacao_Validar"
+                    }
+                  },
+                  "Property": "Status_Turno"
+                }
+              },
+              "queryRef": "Turnos_Classificacao_Validar.Status_Turno",
+              "nativeQueryRef": "Status_Turno"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

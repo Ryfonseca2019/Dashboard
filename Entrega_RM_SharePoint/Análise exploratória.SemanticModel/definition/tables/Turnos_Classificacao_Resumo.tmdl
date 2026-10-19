@@ -1,0 +1,36 @@
+table 'Turnos_Classificacao_Resumo'
+
+	column 'RM_CODFILIAL'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: RM_CODFILIAL
+
+	column 'Tipo_Turno_RM'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Tipo_Turno_RM
+
+	column 'Turno_Candidato_App'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Turno_Candidato_App
+
+	column 'Status_Turno'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Status_Turno
+
+	column 'Quantidade_Turmas'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Quantidade_Turmas
+
+	partition 'Turnos_Classificacao_Resumo' = m
+		mode: import
+		source =
+				let
+				    Fonte=Turnos_Classificacao_Validar,
+				    Resultado=Table.Group(Fonte,{"RM_CODFILIAL","Tipo_Turno_RM","Turno_Candidato_App","Status_Turno"},{{"Quantidade_Turmas",each Table.RowCount(Table.Distinct(Table.SelectColumns(_,{"RM_CODCOLIGADA","RM_CODFILIAL","RM_IDPERLET","RM_CODTURMA"}))),Int64.Type}})
+				in Resultado
+
+	annotation PBI_ResultType = Table

@@ -1,3 +1,6 @@
+CANCELADO - NÃO IMPORTAR as 479 inclusões.
+Nomes personalizados de STURNO não serão transformados em opções do app.
+Preservar Cad_Turnos atual; os arquivos são apenas histórico da análise cancelada.
 479 nomes exatos ausentes de Cad_Turnos, extraídos dos 830 registros SENAI.
 Preservar os cinco registros existentes. Colar apenas as 479 linhas da planilha, sem cabeçalho, na primeira nova linha.
 Ordem: Nome_Turno, Ordem_Exibicao, Origem, Ativa, Codigo_Turno_SGE.

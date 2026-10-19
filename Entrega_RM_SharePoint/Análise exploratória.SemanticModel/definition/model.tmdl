@@ -157,3 +157,7 @@ ref table 'RM_Turnos_Complementares_Comparar'
 ref table 'RM_Turnos_Cadastro_Completo'
 
 ref table 'RM_Turno_Configuracao_Estrutura'
+
+ref table 'Turnos_Classificacao_Validar'
+
+ref table 'Turnos_Classificacao_Resumo'

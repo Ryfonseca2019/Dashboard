@@ -1,0 +1,85 @@
+table 'Turnos_Classificacao_Validar'
+
+	column 'RM_CODCOLIGADA'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: RM_CODCOLIGADA
+
+	column 'RM_CODFILIAL'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: RM_CODFILIAL
+
+	column 'RM_IDPERLET'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: RM_IDPERLET
+
+	column 'RM_CODTURMA'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: RM_CODTURMA
+
+	column 'RM_Tipo_Curso'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: RM_Tipo_Curso
+
+	column 'RM_Turno_Complemento'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: RM_Turno_Complemento
+
+	column 'Ocorrencias_Cadastro'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Ocorrencias_Cadastro
+
+	column 'Nome_Turno_RM'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Nome_Turno_RM
+
+	column 'Tipo_Turno_RM'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Tipo_Turno_RM
+
+	column 'Hora_Inicio_RM'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Hora_Inicio_RM
+
+	column 'Hora_Fim_RM'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Hora_Fim_RM
+
+	column 'Turno_Candidato_App'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Turno_Candidato_App
+
+	column 'Status_Turno'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Status_Turno
+
+	partition 'Turnos_Classificacao_Validar' = m
+		mode: import
+		source =
+				let
+				    Base=Table.TransformColumns(Table.SelectColumns(RM_Oferta_Diagnostico,{"RM_CODCOLIGADA","RM_CODFILIAL","RM_IDPERLET","RM_CODTURMA","RM_Tipo_Curso","RM_Turno_Complemento"}),{{"RM_Turno_Complemento",each if _=null then null else Text.Trim(Text.From(_)),type nullable text}}),
+				    Cad=Table.TransformColumns(RM_Turnos_Cadastro_Completo,{{"Codigo_Turno",each if _=null then null else Text.Trim(Text.From(_)),type nullable text}}),
+				    J=Table.NestedJoin(Base,{"RM_CODCOLIGADA","RM_CODFILIAL","RM_Tipo_Curso","RM_Turno_Complemento"},Cad,{"CODCOLIGADA","CODFILIAL","CODTIPOCURSO","Codigo_Turno"},"Cadastro",JoinKind.LeftOuter),
+				    N=Table.AddColumn(J,"Ocorrencias_Cadastro",each Table.RowCount([Cadastro]),Int64.Type),
+				    Nome=Table.AddColumn(N,"Nome_Turno_RM",each if [Ocorrencias_Cadastro]=1 then [Cadastro]{0}[Nome_Turno] else null,type text),
+				    Tipo=Table.AddColumn(Nome,"Tipo_Turno_RM",each if [Ocorrencias_Cadastro]=1 then [Cadastro]{0}[Tipo_Turno] else null,type text),
+				    Inicio=Table.AddColumn(Tipo,"Hora_Inicio_RM",each if [Ocorrencias_Cadastro]=1 then [Cadastro]{0}[Hora_Inicio] else null,type text),
+				    Fim=Table.AddColumn(Inicio,"Hora_Fim_RM",each if [Ocorrencias_Cadastro]=1 then [Cadastro]{0}[Hora_Fim] else null,type text),
+				    Proposta=Table.AddColumn(Fim,"Turno_Candidato_App",each if [Tipo_Turno_RM]="M" then "Manhã" else if [Tipo_Turno_RM]="T" or [Tipo_Turno_RM]="V" then "Tarde" else if [Tipo_Turno_RM]="N" then "Noite" else if [Tipo_Turno_RM]="I" then "Integral" else null,type text),
+				    Status=Table.AddColumn(Proposta,"Status_Turno",each if [RM_Turno_Complemento]=null or [RM_Turno_Complemento]="" then "Vazio no RM; manter vazio" else if [Ocorrencias_Cadastro]=0 then "Pendente: código sem cadastro na chave candidata" else if [Ocorrencias_Cadastro]<>1 then "Pendente: cadastro ambíguo" else if [Turno_Candidato_App]=null then "Revisar: classificação sem correspondência" else "Proposta por classificação; validar nome e horários",type text),
+				    Resultado=Table.RemoveColumns(Status,{"Cadastro"})
+				in Resultado
+
+	annotation PBI_ResultType = Table

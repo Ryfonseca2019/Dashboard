@@ -1,0 +1,93 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "a1234567890abcdef110",
+  "position": {
+    "x": 20,
+    "y": 20,
+    "width": 2560,
+    "height": 380,
+    "z": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Turnos_Classificacao_Resumo"
+                    }
+                  },
+                  "Property": "RM_CODFILIAL"
+                }
+              },
+              "queryRef": "Turnos_Classificacao_Resumo.RM_CODFILIAL",
+              "nativeQueryRef": "RM_CODFILIAL"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Turnos_Classificacao_Resumo"
+                    }
+                  },
+                  "Property": "Tipo_Turno_RM"
+                }
+              },
+              "queryRef": "Turnos_Classificacao_Resumo.Tipo_Turno_RM",
+              "nativeQueryRef": "Tipo_Turno_RM"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Turnos_Classificacao_Resumo"
+                    }
+                  },
+                  "Property": "Turno_Candidato_App"
+                }
+              },
+              "queryRef": "Turnos_Classificacao_Resumo.Turno_Candidato_App",
+              "nativeQueryRef": "Turno_Candidato_App"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Turnos_Classificacao_Resumo"
+                    }
+                  },
+                  "Property": "Status_Turno"
+                }
+              },
+              "queryRef": "Turnos_Classificacao_Resumo.Status_Turno",
+              "nativeQueryRef": "Status_Turno"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Turnos_Classificacao_Resumo"
+                    }
+                  },
+                  "Property": "Quantidade_Turmas"
+                }
+              },
+              "queryRef": "Turnos_Classificacao_Resumo.Quantidade_Turmas",
+              "nativeQueryRef": "Quantidade_Turmas"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

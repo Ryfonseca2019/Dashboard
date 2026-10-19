@@ -1,0 +1,8 @@
+V37 - Proposta de classificação de turnos sem importar nomes personalizados como opções do app.
+Consulta todas as ofertas SENAI do escopo atual (não apenas Niterói).
+Cruza campo complementar TURNO com STURNO por coligada, filial, tipo de curso e código. Chave candidata a validar.
+M -> Manhã; T/V -> Tarde; N -> Noite; I -> Integral são propostas por classificação, não regras já aplicadas.
+Nome e horários são exibidos para revisar casos genéricos ou mistos. Sem preenchimento automático do campo Turno na exportação.
+Não importar a planilha de 479 nomes: orientação cancelada. Cad_Turnos mantém cinco opções atuais.
+Exportar as duas tabelas da página Turnos - classificação sem filtros.
+Consultas não executadas no RM neste ambiente.
