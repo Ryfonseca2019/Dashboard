@@ -1,0 +1,6 @@
+V27 - Correção da expansão EID em Exportacao_App_Enriquecida.
+A etapa expande Identificador_Fixo e Status_Identificador para dois nomes de saída.
+As colunas técnicas de mobilização permanecem na expansão própria e na saída final.
+Mantidas as regras de identificação, financiamento PJ e mobilizações.
+Conferidos os tamanhos das listas de expansões literais e a integridade do ZIP.
+Execução contra RM/SharePoint deve ser validada no Power BI Desktop.

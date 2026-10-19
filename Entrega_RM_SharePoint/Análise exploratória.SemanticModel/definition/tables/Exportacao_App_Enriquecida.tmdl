@@ -391,7 +391,7 @@ table 'Exportacao_App_Enriquecida'
 				    FinanciamentoBase=Table.TransformColumns(EF,{{"Status_Financiamento",each if _=null then "Pendente: turma sem diagnóstico de classificação" else _,type text}}),
 				    SemID=Table.RemoveColumns(FinanciamentoBase,{"Identificador_Temporario"}),
 				    JID=Table.NestedJoin(SemID,{"RM_CODCOLIGADA","RM_CODFILIAL","RM_IDPERLET","RM_CODTURMA"},Table.Buffer(DP_Identificadores_Niteroi),{"RM_CODCOLIGADA","RM_CODFILIAL","RM_IDPERLET","RM_CODTURMA"},"IDFixo",JoinKind.LeftOuter),
-				    EID=Table.ExpandTableColumn(JID,"IDFixo",{"Identificador_Fixo","Status_Identificador"},{"Identificador_Temporario","Status_Identificador", "Codigo_Mobilizacao_RM", "Status_Mobilizacao"}),
+				    EID=Table.ExpandTableColumn(JID,"IDFixo",{"Identificador_Fixo","Status_Identificador"},{"Identificador_Temporario","Status_Identificador"}),
 				    IDs=Table.TransformColumns(EID,{{"Status_Identificador",each if _=null then "Pendente: turma fora do lote de identificadores fixos" else _,type text}}),
 				    SemUnidadePlano=Table.RemoveColumns(IDs,{"Unidade","Planejamento","Ano_Referencia"}),
 				    JUP=Table.NestedJoin(SemUnidadePlano,{"RM_CODCOLIGADA","RM_CODFILIAL","RM_Unidade_Nome"},Table.Buffer(DP_Unidade_Planejamento),{"RM_CODCOLIGADA","RM_CODFILIAL","RM_Unidade_Nome"},"UnidadePlano",JoinKind.LeftOuter),
