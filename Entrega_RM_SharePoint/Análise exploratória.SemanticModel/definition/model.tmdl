@@ -161,3 +161,9 @@ ref table 'RM_Turno_Configuracao_Estrutura'
 ref table 'Turnos_Classificacao_Validar'
 
 ref table 'Turnos_Classificacao_Resumo'
+
+ref table 'Carga_Niteroi_2027_Conferencia'
+
+ref table 'Carga_Niteroi_2027_52_Colunas'
+
+ref table 'Carga_Niteroi_2027_Resumo'

@@ -1,0 +1,163 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "b1234567890abcdef111",
+  "position": {
+    "x": 20,
+    "y": 320,
+    "width": 2360,
+    "height": 740,
+    "z": 1
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Carga_Niteroi_2027_Conferencia"
+                    }
+                  },
+                  "Property": "RM_CODTURMA"
+                }
+              },
+              "queryRef": "Carga_Niteroi_2027_Conferencia.RM_CODTURMA",
+              "nativeQueryRef": "RM_CODTURMA"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Carga_Niteroi_2027_Conferencia"
+                    }
+                  },
+                  "Property": "Identificador_Temporario"
+                }
+              },
+              "queryRef": "Carga_Niteroi_2027_Conferencia.Identificador_Temporario",
+              "nativeQueryRef": "Identificador_Temporario"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Carga_Niteroi_2027_Conferencia"
+                    }
+                  },
+                  "Property": "Nome_Curso_Snapshot"
+                }
+              },
+              "queryRef": "Carga_Niteroi_2027_Conferencia.Nome_Curso_Snapshot",
+              "nativeQueryRef": "Nome_Curso_Snapshot"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Carga_Niteroi_2027_Conferencia"
+                    }
+                  },
+                  "Property": "Matriz"
+                }
+              },
+              "queryRef": "Carga_Niteroi_2027_Conferencia.Matriz",
+              "nativeQueryRef": "Matriz"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Carga_Niteroi_2027_Conferencia"
+                    }
+                  },
+                  "Property": "Modalidade"
+                }
+              },
+              "queryRef": "Carga_Niteroi_2027_Conferencia.Modalidade",
+              "nativeQueryRef": "Modalidade"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Carga_Niteroi_2027_Conferencia"
+                    }
+                  },
+                  "Property": "Financiamento"
+                }
+              },
+              "queryRef": "Carga_Niteroi_2027_Conferencia.Financiamento",
+              "nativeQueryRef": "Financiamento"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Carga_Niteroi_2027_Conferencia"
+                    }
+                  },
+                  "Property": "Codigo_Mobilizacao_RM"
+                }
+              },
+              "queryRef": "Carga_Niteroi_2027_Conferencia.Codigo_Mobilizacao_RM",
+              "nativeQueryRef": "Codigo_Mobilizacao_RM"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Carga_Niteroi_2027_Conferencia"
+                    }
+                  },
+                  "Property": "Mobilizacao"
+                }
+              },
+              "queryRef": "Carga_Niteroi_2027_Conferencia.Mobilizacao",
+              "nativeQueryRef": "Mobilizacao"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Carga_Niteroi_2027_Conferencia"
+                    }
+                  },
+                  "Property": "Pendencias_Carga"
+                }
+              },
+              "queryRef": "Carga_Niteroi_2027_Conferencia.Pendencias_Carga",
+              "nativeQueryRef": "Pendencias_Carga"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Carga_Niteroi_2027_Conferencia"
+                    }
+                  },
+                  "Property": "Situacao_Carga"
+                }
+              },
+              "queryRef": "Carga_Niteroi_2027_Conferencia.Situacao_Carga",
+              "nativeQueryRef": "Situacao_Carga"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

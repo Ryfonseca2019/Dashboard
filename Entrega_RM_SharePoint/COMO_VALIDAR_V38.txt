@@ -1,0 +1,10 @@
+V38 - Nova régua fixa: término a partir de 01/01/2027, independente do início.
+Consultas que usavam corte dinâmico no ano atual foram ajustadas.
+Página Carga Niterói - 2027: somente Niterói, 52 colunas na ordem validada, turno vazio, sem PPCP APP07802026U030 já importado.
+Ano_Referencia exportado como texto 2.026 etc; coluna core continua numérica. Datas dd/MM/yyyy.
+Data exibida na posição 16 vem do campo interno Data_Snapshot_Matriz0. Não há data extra ao final. Modalidade posição 52.
+Matrizes não validadas, obrigatórios vazios, códigos de mobilização sem tradução e identificadores duplicados ficam fora.
+Página Carga 2027 - pendências mostra classificação de todos os registros do novo escopo, incluindo já importado.
+Confeitaria e Gerenciamento de Projetos ficam fora pela data; usuário informou exclusão no SharePoint.
+Não trata consulta estrutural como garantia de inclusão: conferir exportação e vínculos antes da carga.
+Não executado contra RM/SharePoint neste ambiente.

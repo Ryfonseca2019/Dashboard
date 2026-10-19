@@ -1,0 +1,278 @@
+table 'Carga_Niteroi_2027_52_Colunas'
+
+	column 'Planejamento'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Planejamento
+
+	column 'Unidade'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Unidade
+
+	column 'Periodo_Letivo'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Periodo_Letivo
+
+	column 'Ano_Referencia'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Ano_Referencia
+
+	column 'Identificador_Temporario'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Identificador_Temporario
+
+	column 'Codigo_Turma_SGE'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Codigo_Turma_SGE
+
+	column 'Matriz'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Matriz
+
+	column 'Status_Turma'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Status_Turma
+
+	column 'Ativa'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Ativa
+
+	column 'Codigo_Matriz_Snapshot'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Codigo_Matriz_Snapshot
+
+	column 'Nome_Curso_Snapshot'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Nome_Curso_Snapshot
+
+	column 'Area_Snapshot'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Area_Snapshot
+
+	column 'Modalidade_Snapshot'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Modalidade_Snapshot
+
+	column 'Tipo_Mediacao_Snapshot'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Tipo_Mediacao_Snapshot
+
+	column 'Carga_Horaria_Snapshot'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Carga_Horaria_Snapshot
+
+	column 'Data_Snapshot_Matriz'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Data_Snapshot_Matriz
+
+	column 'Data_Inicio_Prevista'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Data_Inicio_Prevista
+
+	column 'Data_Fim_Prevista'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Data_Fim_Prevista
+
+	column 'Quantidade_Vagas'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Quantidade_Vagas
+
+	column 'Matriculas_Previstas'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Matriculas_Previstas
+
+	column 'Campus_Polo'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Campus_Polo
+
+	column 'Financiamento'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Financiamento
+
+	column 'Tipo_Periodo'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Tipo_Periodo
+
+	column 'Pedagogo_Responsavel'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Pedagogo_Responsavel
+
+	column 'Mobilizacao'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Mobilizacao
+
+	column 'Empresa'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Empresa
+
+	column 'Projeto'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Projeto
+
+	column 'Sindicato'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Sindicato
+
+	column 'Classe_Valor'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Classe_Valor
+
+	column 'Item_Contabil_Snapshot'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Item_Contabil_Snapshot
+
+	column 'Centro_Custo_Snapshot'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Centro_Custo_Snapshot
+
+	column 'Observacoes'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Observacoes
+
+	column 'Motivo_Cancelamento'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Motivo_Cancelamento
+
+	column 'Data_Cancelamento'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Data_Cancelamento
+
+	column 'Cancelada_Por'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Cancelada_Por
+
+	column 'Data_Conclusao'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Data_Conclusao
+
+	column 'Bloqueada_Para_Edicao'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Bloqueada_Para_Edicao
+
+	column 'Versao_Planejamento'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Versao_Planejamento
+
+	column 'Origem_Registro'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Origem_Registro
+
+	column 'Data_Ultima_Revisao'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Data_Ultima_Revisao
+
+	column 'Turno'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Turno
+
+	column 'Tipo_Calculo_Evasao'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Tipo_Calculo_Evasao
+
+	column 'Percentual_Evasao_Previsto'
+		dataType: double
+		summarizeBy: none
+		sourceColumn: Percentual_Evasao_Previsto
+
+	column 'Quantidade_Evasao_Prevista'
+		dataType: double
+		summarizeBy: none
+		sourceColumn: Quantidade_Evasao_Prevista
+
+	column 'Matriculas_Consideradas'
+		dataType: double
+		summarizeBy: none
+		sourceColumn: Matriculas_Consideradas
+
+	column 'Matriculas_Reais'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Matriculas_Reais
+
+	column 'Matriculas_Reais_Confirmadas'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Matriculas_Reais_Confirmadas
+
+	column 'Código da turma SGE'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Código da turma SGE
+
+	column 'Local_realizacao'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Local_realizacao
+
+	column 'Instrutor'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Instrutor
+
+	column 'Codigo_Matriz_Excel'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Codigo_Matriz_Excel
+
+	column 'Modalidade'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Modalidade
+
+	partition 'Carga_Niteroi_2027_52_Colunas' = m
+		mode: import
+		source =
+				let
+				    Fonte=Table.SelectRows(Carga_Niteroi_2027_Conferencia,each [Situacao_Carga]="Apta ao lote estrutural"),
+				    SemDataAntiga=Table.RemoveColumns(Fonte,{"Data_Snapshot_Matriz"}),
+				    DataCorreta=Table.RenameColumns(SemDataAntiga,{{"Data_Snapshot_Matriz0","Data_Snapshot_Matriz"}}),
+				    SemTurno=Table.TransformColumns(DataCorreta,{{"Turno",each null,type nullable text}}),
+				    Ano=Table.TransformColumns(SemTurno,{{"Ano_Referencia",each if _=null then null else Number.ToText(_,"N0","pt-BR"),type nullable text}}),
+				    Booleanos=Table.TransformColumns(Ano,{{"Ativa",each if _=null then null else if _ then "Sim" else "Não",type nullable text},{"Bloqueada_Para_Edicao",each if _=null then null else if _ then "Sim" else "Não",type nullable text},{"Matriculas_Reais_Confirmadas",each if _=null then null else if _ then "Sim" else "Não",type nullable text}}),
+				    Datas=Table.TransformColumns(Booleanos,List.Transform({"Data_Snapshot_Matriz","Data_Inicio_Prevista","Data_Fim_Prevista","Data_Cancelamento","Data_Conclusao","Data_Ultima_Revisao"},(C)=>{C,each if _=null then null else Date.ToText(Date.From(_),"dd/MM/yyyy","pt-BR"),type nullable text})),
+				    Carga=Table.TransformColumns(Datas,{{"Carga_Horaria_Snapshot",each if _=null then null else Number.ToText(_,"F2","pt-BR"),type nullable text}}),
+				    Resultado=Table.SelectColumns(Carga,{"Planejamento","Unidade","Periodo_Letivo","Ano_Referencia","Identificador_Temporario","Codigo_Turma_SGE","Matriz","Status_Turma","Ativa","Codigo_Matriz_Snapshot","Nome_Curso_Snapshot","Area_Snapshot","Modalidade_Snapshot","Tipo_Mediacao_Snapshot","Carga_Horaria_Snapshot","Data_Snapshot_Matriz","Data_Inicio_Prevista","Data_Fim_Prevista","Quantidade_Vagas","Matriculas_Previstas","Campus_Polo","Financiamento","Tipo_Periodo","Pedagogo_Responsavel","Mobilizacao","Empresa","Projeto","Sindicato","Classe_Valor","Item_Contabil_Snapshot","Centro_Custo_Snapshot","Observacoes","Motivo_Cancelamento","Data_Cancelamento","Cancelada_Por","Data_Conclusao","Bloqueada_Para_Edicao","Versao_Planejamento","Origem_Registro","Data_Ultima_Revisao","Turno","Tipo_Calculo_Evasao","Percentual_Evasao_Previsto","Quantidade_Evasao_Prevista","Matriculas_Consideradas","Matriculas_Reais","Matriculas_Reais_Confirmadas","Código da turma SGE","Local_realizacao","Instrutor","Codigo_Matriz_Excel","Modalidade"})
+				in Resultado
+
+	annotation PBI_ResultType = Table

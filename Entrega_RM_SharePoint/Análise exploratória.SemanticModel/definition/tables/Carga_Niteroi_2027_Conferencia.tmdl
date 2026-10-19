@@ -1,0 +1,66 @@
+table 'Carga_Niteroi_2027_Conferencia'
+
+	column 'RM_CODTURMA'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: RM_CODTURMA
+
+	column 'Identificador_Temporario'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Identificador_Temporario
+
+	column 'Nome_Curso_Snapshot'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Nome_Curso_Snapshot
+
+	column 'Matriz'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Matriz
+
+	column 'Modalidade'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Modalidade
+
+	column 'Financiamento'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Financiamento
+
+	column 'Codigo_Mobilizacao_RM'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Codigo_Mobilizacao_RM
+
+	column 'Mobilizacao'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Mobilizacao
+
+	column 'Pendencias_Carga'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Pendencias_Carga
+
+	column 'Situacao_Carga'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Situacao_Carga
+
+	partition 'Carga_Niteroi_2027_Conferencia' = m
+		mode: import
+		source =
+				let
+				    Fonte=Table.SelectRows(Exportacao_App_Enriquecida,each [RM_CODCOLIGADA]=3 and [RM_CODFILIAL]=266 and [Data_Fim_Prevista]<>null and Date.From([Data_Fim_Prevista])>=#date(2027,1,1)),
+				    Obrigatorios=List.Buffer(Table.SelectRows(APP_Contrato_Campos,each [Obrigatorio]=true and not List.Contains({"Pedagogo_Responsavel","Tipo_Calculo_Evasao"},[Campo_Interno]))[Campo_Interno]),
+				    Grupos=Table.Group(Fonte,{"Identificador_Temporario"},{{"Contagem",each Table.RowCount(_),Int64.Type}}),
+				    J=Table.NestedJoin(Fonte,{"Identificador_Temporario"},Grupos,{"Identificador_Temporario"},"Duplicados",JoinKind.LeftOuter),
+				    Criticidade=Table.AddColumn(J,"Pendencias_Carga",each let R=_,Vazios=List.Select(Obrigatorios,(C)=>let V=Record.FieldOrDefault(R,C,null) in V=null or (Value.Is(V,type text) and Text.Trim(V)="")),Outras=List.RemoveNulls({if [Status_Cruzamento_Matriz]<>"Matriz cruzada; validar demais campos antes da carga" then [Status_Cruzamento_Matriz] else null,if [Codigo_Mobilizacao_RM]<>null and [Mobilizacao]=null then "Mobilização preenchida no RM sem destino validado" else null,if [Status_Mediacao_Turma]<>"Mediação da turma validada" then "Mediação da turma não validada" else null,if Table.RowCount([Duplicados])<>1 then "Identificador sem conferência de unicidade" else if [Duplicados]{0}[Contagem]<>1 then "Identificador repetido no lote" else null}) in Text.Combine(List.Combine({List.Transform(Vazios,each "Campo vazio: " & _),Outras}),"; "),type text),
+				    Situacao=Table.AddColumn(Criticidade,"Situacao_Carga",each if [RM_CODTURMA]="APP07802026U030" then "Já importada: PPCP do piloto" else if [Pendencias_Carga]<>"" then "Separada: criticidade" else "Apta ao lote estrutural",type text),
+				    Resultado=Table.RemoveColumns(Situacao,{"Duplicados"})
+				in Resultado
+
+	annotation PBI_ResultType = Table

@@ -1,9 +1,9 @@
-﻿-- Resumo independente de outras consultas Power Query.
+-- Resumo independente de outras consultas Power Query.
 -- Somente leitura; mesma seleção SENAI e término previsto no ano atual em diante.
 WITH Turmas AS (
     SELECT DISTINCT CODCOLIGADA,CODFILIAL,IDPERLET,CODTURMA
     FROM dbo.STURMA
-    WHERE CODCOLIGADA=3 AND DTFINAL>=DATEFROMPARTS(YEAR(GETDATE()),1,1)
+    WHERE CODCOLIGADA=3 AND DTFINAL>=CONVERT(date,'20270101',112)
 ), Classificacoes AS (
     SELECT DISTINCT T.CODCOLIGADA,T.CODFILIAL,T.IDPERLET,T.CODTURMA,
         NULLIF(LTRIM(RTRIM(CONVERT(nvarchar(4000),C.CLASSIFICACAO))),N'') AS Codigo

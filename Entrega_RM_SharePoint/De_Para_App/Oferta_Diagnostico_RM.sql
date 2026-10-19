@@ -1,8 +1,8 @@
-﻿-- Somente SENAI, término no ano atual em diante.
+-- Somente SENAI, término no ano atual em diante.
 -- Agrega cada cadastro por chave antes do join, em vez de OUTER APPLY por turma.
 WITH Turmas AS (
     SELECT * FROM dbo.STURMA
-    WHERE CODCOLIGADA=3 AND DTFINAL>=DATEFROMPARTS(YEAR(GETDATE()),1,1)
+    WHERE CODCOLIGADA=3 AND DTFINAL>=CONVERT(date,'20270101',112)
 ), G AS (
     SELECT CODCOLIGADA,CODCURSO,CODHABILITACAO,CODGRADE,COUNT(*) N,
         CASE WHEN COUNT(*)=1 THEN MAX(CARGAHORARIA) END Carga,
