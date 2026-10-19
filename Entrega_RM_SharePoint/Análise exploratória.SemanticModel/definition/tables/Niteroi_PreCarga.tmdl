@@ -115,7 +115,7 @@ table 'Niteroi_PreCarga'
 		source =
 				let
 				    Fonte=Table.SelectRows(Exportacao_App_Enriquecida,each [RM_CODCOLIGADA]=3 and [RM_CODFILIAL]=266),
-				    Obrigatorios=List.Buffer(Table.SelectRows(APP_Contrato_Campos,each [Obrigatorio]=true)[Campo_Interno]),
+				    Obrigatorios=List.Buffer(Table.SelectRows(APP_Contrato_Campos,each [Obrigatorio]=true and not List.Contains({"Pedagogo_Responsavel","Tipo_Calculo_Evasao"},[Campo_Interno]))[Campo_Interno]),
 				    Campos=Table.AddColumn(Fonte,"Obrigatorios_Vazios",each let R=_ in Text.Combine(List.Select(Obrigatorios,(C)=>let V=Record.FieldOrDefault(R,C,null) in V=null or (Value.Is(V,type text) and Text.Trim(V)="")),"; "),type text),
 				    Status=Table.AddColumn(Campos,"Status_PreCarga",each if [Obrigatorios_Vazios]<>"" then "Pendente: preencher campos ou ajustar obrigatoriedade" else if [Status_Financiamento]<>"Regra confirmada" then "Pendente: financiamento" else if [Status_Cruzamento_Matriz]<>"Matriz cruzada; validar demais campos antes da carga" then "Pendente: matriz" else "Conferência estrutural sem pendências; testar inclusão no app",type text),
 				    Resultado=Table.SelectColumns(Status,{"RM_CODCOLIGADA","RM_CODFILIAL","RM_IDPERLET","RM_CODTURMA","Codigo_Turma_SGE","Nome_Curso_Snapshot","Matriz","Carga_Horaria_Snapshot","Modalidade_Snapshot","Tipo_Mediacao_Snapshot","Campus_Polo","Financiamento","ID_Financiamento_SharePoint","Status_Financiamento","Status_Cruzamento_Matriz","Obrigatorios_Vazios","Status_PreCarga","Status_Unidade_Planejamento", "Identificador_Temporario", "Status_Identificador", "Modalidade", "Origem_Registro"})

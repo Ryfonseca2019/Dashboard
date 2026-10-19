@@ -1,0 +1,6 @@
+V34 - Mobilização usa catálogo RM atual e confere opção SharePoint por texto, tolerando apenas espaços externos. Retorna o texto exato da opção SharePoint. Domínio duplicado ou grafia não correspondente permanece pendente.
+Diagnóstico Niteroi_PreCarga exclui Pedagogo_Responsavel e Tipo_Calculo_Evasao da lista estática de obrigatórios conforme alteração já testada pelo usuário. Demais requisitos permanecem.
+Página Turnos - catálogo RM pesquisa domínios candidatos, sem aprovar automaticamente sua relação com STURMACOMPL.TURNO.
+Exportar essa página, Niterói - identificação e oferta (superior) e a consulta Mobilizacao_Por_Turma.
+Falta confirmar obrigatoriedade de financiamento, matrizes pendentes, layout e piloto.
+Consultas não executadas no RM/SharePoint neste ambiente.

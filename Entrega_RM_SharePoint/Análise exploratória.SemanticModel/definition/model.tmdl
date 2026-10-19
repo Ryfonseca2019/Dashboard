@@ -146,3 +146,5 @@ ref table 'RM_Mediacao_Definicoes'
 ref table 'RM_Mediacao_Comparar_Auxiliar'
 
 ref table 'Mediacao_Por_Turma'
+
+ref table 'RM_Turnos_Dominios'
