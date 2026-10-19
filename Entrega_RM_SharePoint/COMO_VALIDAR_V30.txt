@@ -1,0 +1,8 @@
+V30 - Investigação ampliada após exportações V29.
+Domínios inclui TIPOEAD completo, não somente descrições com termos da pesquisa.
+Metadados inclui estrutura de tmpDashsSGE, STURMACOMPL e campos EAD.
+A tabela tmpDashsSGE é apenas candidata auxiliar, não fonte definitiva aprovada.
+Não foi presumido o significado dos códigos STURMA.TIPOMEDIACAO 1/2/3.
+Atualizar e exportar a tabela superior e central da página Mediação RM - investigar.
+A tabela inferior permanece igual. Consultas somente leitura.
+Execução SQL deve ser validada na rede corporativa.

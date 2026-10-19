@@ -13,4 +13,14 @@ FROM sys.check_constraints WHERE definition COLLATE Latin1_General_CI_AI LIKE '%
 UNION ALL
 SELECT N'Descricao SQL',CONVERT(nvarchar(4000),OBJECT_SCHEMA_NAME(c.object_id)+'.'+OBJECT_NAME(c.object_id)),CONVERT(nvarchar(4000),c.name),CONVERT(nvarchar(4000),ep.value)
 FROM sys.columns c JOIN sys.extended_properties ep ON ep.class=1 AND ep.major_id=c.object_id AND ep.minor_id=c.column_id
-WHERE c.name COLLATE Latin1_General_CI_AI LIKE '%MEDIAC%';
+WHERE c.name COLLATE Latin1_General_CI_AI LIKE '%MEDIAC%'
+UNION ALL
+SELECT N'Estrutura candidata',CONVERT(nvarchar(4000),TABLE_SCHEMA+'.'+TABLE_NAME),CONVERT(nvarchar(4000),COLUMN_NAME),CONVERT(nvarchar(4000),DATA_TYPE)
+FROM INFORMATION_SCHEMA.COLUMNS
+WHERE TABLE_NAME IN ('tmpDashsSGE','STURMACOMPL')
+ OR COLUMN_NAME COLLATE Latin1_General_CI_AI LIKE '%EAD%'
+UNION ALL
+SELECT N'Rotulo EAD',CONVERT(nvarchar(4000),TABELA),CONVERT(nvarchar(4000),COLUNA),CONVERT(nvarchar(4000),DESCRICAO)
+FROM dbo.GCAMPOS
+WHERE CONVERT(nvarchar(4000),COLUNA) COLLATE Latin1_General_CI_AI LIKE '%EAD%'
+ OR CONVERT(nvarchar(4000),DESCRICAO) COLLATE Latin1_General_CI_AI LIKE '%TIPO%EAD%';
