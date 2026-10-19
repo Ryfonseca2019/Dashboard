@@ -140,3 +140,7 @@ ref table 'RM_Grade_TipoEAD'
 ref table 'EAD_Matrizes_Niteroi_Validar'
 
 ref table 'EAD_Matrizes_Niteroi_Resumo'
+
+ref table 'RM_Mediacao_Definicoes'
+
+ref table 'RM_Mediacao_Comparar_Auxiliar'

@@ -1,0 +1,149 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "61234567890abcdef111",
+  "position": {
+    "x": 20,
+    "y": 420,
+    "width": 2360,
+    "height": 640,
+    "z": 1
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Mediacao_Comparar_Auxiliar"
+                    }
+                  },
+                  "Property": "CODCOLIGADA"
+                }
+              },
+              "queryRef": "RM_Mediacao_Comparar_Auxiliar.CODCOLIGADA",
+              "nativeQueryRef": "CODCOLIGADA"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Mediacao_Comparar_Auxiliar"
+                    }
+                  },
+                  "Property": "CODFILIAL"
+                }
+              },
+              "queryRef": "RM_Mediacao_Comparar_Auxiliar.CODFILIAL",
+              "nativeQueryRef": "CODFILIAL"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Mediacao_Comparar_Auxiliar"
+                    }
+                  },
+                  "Property": "IDPERLET"
+                }
+              },
+              "queryRef": "RM_Mediacao_Comparar_Auxiliar.IDPERLET",
+              "nativeQueryRef": "IDPERLET"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Mediacao_Comparar_Auxiliar"
+                    }
+                  },
+                  "Property": "CODTURMA"
+                }
+              },
+              "queryRef": "RM_Mediacao_Comparar_Auxiliar.CODTURMA",
+              "nativeQueryRef": "CODTURMA"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Mediacao_Comparar_Auxiliar"
+                    }
+                  },
+                  "Property": "Codigo_Mediacao"
+                }
+              },
+              "queryRef": "RM_Mediacao_Comparar_Auxiliar.Codigo_Mediacao",
+              "nativeQueryRef": "Codigo_Mediacao"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Mediacao_Comparar_Auxiliar"
+                    }
+                  },
+                  "Property": "Descricao_Auxiliar"
+                }
+              },
+              "queryRef": "RM_Mediacao_Comparar_Auxiliar.Descricao_Auxiliar",
+              "nativeQueryRef": "Descricao_Auxiliar"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Mediacao_Comparar_Auxiliar"
+                    }
+                  },
+                  "Property": "Ocorrencias_Auxiliar"
+                }
+              },
+              "queryRef": "RM_Mediacao_Comparar_Auxiliar.Ocorrencias_Auxiliar",
+              "nativeQueryRef": "Ocorrencias_Auxiliar"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Mediacao_Comparar_Auxiliar"
+                    }
+                  },
+                  "Property": "Ultima_Emissao_Auxiliar"
+                }
+              },
+              "queryRef": "RM_Mediacao_Comparar_Auxiliar.Ultima_Emissao_Auxiliar",
+              "nativeQueryRef": "Ultima_Emissao_Auxiliar"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Mediacao_Comparar_Auxiliar"
+                    }
+                  },
+                  "Property": "Status_Evidencia"
+                }
+              },
+              "queryRef": "RM_Mediacao_Comparar_Auxiliar.Status_Evidencia",
+              "nativeQueryRef": "Status_Evidencia"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

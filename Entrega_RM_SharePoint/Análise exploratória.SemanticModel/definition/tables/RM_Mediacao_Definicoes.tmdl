@@ -1,0 +1,23 @@
+table 'RM_Mediacao_Definicoes'
+
+	column 'Objeto'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Objeto
+
+	column 'Tipo_Objeto'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Tipo_Objeto
+
+	column 'Trecho_Definicao'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Trecho_Definicao
+
+	partition 'RM_Mediacao_Definicoes' = m
+		mode: import
+		source =
+				let Fonte=Sql.Database("SRVSEDE01621PRE","CorporeRM",[Query="SELECT CONVERT(nvarchar(4000),QUOTENAME(OBJECT_SCHEMA_NAME(m.object_id))+'.'+QUOTENAME(OBJECT_NAME(m.object_id))) Objeto,#(lf)CONVERT(nvarchar(100),o.type_desc) Tipo_Objeto,#(lf)CONVERT(nvarchar(4000),SUBSTRING(m.definition,CASE WHEN CHARINDEX('TIPOMEDIACAO',UPPER(m.definition))>1000 THEN CHARINDEX('TIPOMEDIACAO',UPPER(m.definition))-1000 ELSE 1 END,4000)) Trecho_Definicao#(lf)FROM sys.sql_modules m JOIN sys.objects o ON o.object_id=m.object_id#(lf)WHERE m.definition COLLATE Latin1_General_CI_AI LIKE '%TIPOMEDIACAO%'#(lf)ORDER BY Objeto;"]) in Fonte
+
+	annotation PBI_ResultType = Table

@@ -1,0 +1,7 @@
+V32 - Pesquisa de tradução de TIPOMEDIACAO.
+Página Mediação - tradução no banco: superior = trechos de definições SQL visíveis; inferior = comparação com tmpDashsSGE.
+Apenas SELECT; não executa procedimentos ou funções encontrados. Não seleciona nomes de alunos, CPF ou outros dados pessoais da tabela auxiliar.
+Chave candidata auxiliar: ENTIDADE/COD_UNIDADE/IDPERLET/TURMA versus coligada/filial/período/turma. Correspondência é evidência, não regra homologada.
+Ausência de definições pode decorrer de permissão. A tabela auxiliar pode estar desatualizada ou ter descrições conflitantes.
+Exportar os dois visuais. Sem preenchimento automático da mediação nesta versão.
+Consultas não executadas no RM neste ambiente.

@@ -1,0 +1,53 @@
+table 'RM_Mediacao_Comparar_Auxiliar'
+
+	column 'CODCOLIGADA'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: CODCOLIGADA
+
+	column 'CODFILIAL'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: CODFILIAL
+
+	column 'IDPERLET'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: IDPERLET
+
+	column 'CODTURMA'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: CODTURMA
+
+	column 'Codigo_Mediacao'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Codigo_Mediacao
+
+	column 'Descricao_Auxiliar'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Descricao_Auxiliar
+
+	column 'Ocorrencias_Auxiliar'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Ocorrencias_Auxiliar
+
+	column 'Ultima_Emissao_Auxiliar'
+		dataType: dateTime
+		summarizeBy: none
+		sourceColumn: Ultima_Emissao_Auxiliar
+
+	column 'Status_Evidencia'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Status_Evidencia
+
+	partition 'RM_Mediacao_Comparar_Auxiliar' = m
+		mode: import
+		source =
+				let Fonte=Sql.Database("SRVSEDE01621PRE","CorporeRM",[Query="WITH D AS (#(lf) SELECT ENTIDADE,COD_UNIDADE,IDPERLET,TURMA,#(lf) CONVERT(nvarchar(4000),MEDIACAO) Descricao,#(lf) COUNT_BIG(*) Ocorrencias,MAX(DATA_EMISSAO) UltimaEmissao#(lf) FROM dbo.tmpDashsSGE WHERE ENTIDADE=3#(lf) GROUP BY ENTIDADE,COD_UNIDADE,IDPERLET,TURMA,CONVERT(nvarchar(4000),MEDIACAO)#(lf))#(lf)SELECT T.CODCOLIGADA,T.CODFILIAL,T.IDPERLET,#(lf)CONVERT(nvarchar(100),T.CODTURMA) CODTURMA,#(lf)CONVERT(nvarchar(100),T.TIPOMEDIACAO) Codigo_Mediacao,#(lf)D.Descricao Descricao_Auxiliar,D.Ocorrencias Ocorrencias_Auxiliar,#(lf)D.UltimaEmissao Ultima_Emissao_Auxiliar,#(lf)CASE WHEN D.Ocorrencias IS NULL THEN N'Sem correspondência auxiliar pela chave candidata' ELSE N'Evidência auxiliar; validar significado e atualidade' END Status_Evidencia#(lf)FROM dbo.STURMA T LEFT JOIN D ON D.ENTIDADE=T.CODCOLIGADA AND D.COD_UNIDADE=T.CODFILIAL AND D.IDPERLET=T.IDPERLET AND D.TURMA=T.CODTURMA#(lf)WHERE T.CODCOLIGADA=3 AND T.CODFILIAL=266#(lf)AND T.DTFINAL>=DATEFROMPARTS(YEAR(GETDATE()),1,1)#(lf)ORDER BY T.TIPOMEDIACAO,T.CODTURMA;"]) in Fonte
+
+	annotation PBI_ResultType = Table

@@ -1,0 +1,65 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "61234567890abcdef110",
+  "position": {
+    "x": 20,
+    "y": 20,
+    "width": 2360,
+    "height": 380,
+    "z": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Mediacao_Definicoes"
+                    }
+                  },
+                  "Property": "Objeto"
+                }
+              },
+              "queryRef": "RM_Mediacao_Definicoes.Objeto",
+              "nativeQueryRef": "Objeto"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Mediacao_Definicoes"
+                    }
+                  },
+                  "Property": "Tipo_Objeto"
+                }
+              },
+              "queryRef": "RM_Mediacao_Definicoes.Tipo_Objeto",
+              "nativeQueryRef": "Tipo_Objeto"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Mediacao_Definicoes"
+                    }
+                  },
+                  "Property": "Trecho_Definicao"
+                }
+              },
+              "queryRef": "RM_Mediacao_Definicoes.Trecho_Definicao",
+              "nativeQueryRef": "Trecho_Definicao"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}
