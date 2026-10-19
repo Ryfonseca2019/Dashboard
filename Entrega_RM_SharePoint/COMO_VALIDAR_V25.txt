@@ -1,0 +1,7 @@
+V25 - Financiamento preserva a classificação NEGOCIO PJ.
+1 GRATUITO -> Gratuidade; 2 NEGOCIO -> Negócio; 3 NEGOCIO PJ -> Negócio PJ.
+O ID é obtido na atualização de APP_Cad_Financiamentos, por nome exato, único e ativo; não é fixado manualmente.
+Cadastro ausente, duplicado ou inativo permanece pendente.
+Mantida a integração de mobilizações da V24.
+Exige rede corporativa e autenticação no SharePoint para atualizar.
+Validação local dos arquivos e ZIP; execução no Power BI Desktop ainda pendente.

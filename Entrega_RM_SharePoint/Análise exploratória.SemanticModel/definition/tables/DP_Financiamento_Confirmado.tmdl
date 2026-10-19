@@ -38,7 +38,7 @@ table 'DP_Financiamento_Confirmado'
 				    Regra=#table(type table [Codigo_Classificacao=text, Descricao_Esperada=text, Financiamento_App=text],{
 				        {"1","GRATUITO","Gratuidade"},
 				        {"2","NEGOCIO","Negócio"},
-				        {"3","NEGOCIO PJ","Negócio"}}),
+				        {"3","NEGOCIO PJ","Negócio PJ"}}),
 				    Dom=Table.Buffer(Table.SelectRows(RM_Dominios_Direcionados,each [CODCOLIGADA]=0 and [APLICACAO]="S" and [Codigo_Tabela]="CLASSIFTUR")),
 				    Cad=Table.Buffer(APP_Cad_Financiamentos),
 				    J=Table.NestedJoin(Regra,{"Codigo_Classificacao"},Dom,{"Codigo_Valor"},"Dom",JoinKind.LeftOuter),
