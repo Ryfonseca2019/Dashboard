@@ -1,0 +1,6 @@
+V28 - Consulta RM_Catalogo_Modalidades e página Catálogo RM - Modalidades.
+Consulta somente leitura em SMODALIDADECURSO, coligada 3, sem filtro de turmas ou período.
+Atualizar e exportar a tabela desta página para CSV.
+Códigos tratados como texto para preservar zeros iniciais.
+Mantidas as demais regras da V27. A padronização recente de nomes de mobilização ainda requer ajuste no de-para de exportação.
+Não executado contra RM neste ambiente.

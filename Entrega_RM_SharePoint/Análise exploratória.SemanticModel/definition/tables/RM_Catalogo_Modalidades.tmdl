@@ -1,0 +1,26 @@
+table 'RM_Catalogo_Modalidades'
+
+	column 'CODCOLIGADA'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: CODCOLIGADA
+
+	column 'Codigo_Modalidade'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Codigo_Modalidade
+
+	column 'Nome_Modalidade'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Nome_Modalidade
+
+	partition 'RM_Catalogo_Modalidades' = m
+		mode: import
+		source =
+				let
+				    Fonte=Sql.Database("SRVSEDE01621PRE","CorporeRM",[Query="SELECT CODCOLIGADA, CONVERT(nvarchar(100),CODMODALIDADECURSO) AS Codigo_Modalidade, DESCRICAO AS Nome_Modalidade FROM dbo.SMODALIDADECURSO WHERE CODCOLIGADA=3 ORDER BY CODMODALIDADECURSO;"]),
+				    Tipos=Table.TransformColumnTypes(Fonte,{{"CODCOLIGADA",Int64.Type},{"Codigo_Modalidade",type text},{"Nome_Modalidade",type text}})
+				in Tipos
+
+	annotation PBI_ResultType = Table

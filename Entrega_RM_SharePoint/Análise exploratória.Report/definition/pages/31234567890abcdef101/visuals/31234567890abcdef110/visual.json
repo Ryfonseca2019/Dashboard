@@ -1,0 +1,65 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "31234567890abcdef110",
+  "position": {
+    "x": 20,
+    "y": 20,
+    "width": 1880,
+    "height": 1000,
+    "z": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Catalogo_Modalidades"
+                    }
+                  },
+                  "Property": "CODCOLIGADA"
+                }
+              },
+              "queryRef": "RM_Catalogo_Modalidades.CODCOLIGADA",
+              "nativeQueryRef": "CODCOLIGADA"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Catalogo_Modalidades"
+                    }
+                  },
+                  "Property": "Codigo_Modalidade"
+                }
+              },
+              "queryRef": "RM_Catalogo_Modalidades.Codigo_Modalidade",
+              "nativeQueryRef": "Codigo_Modalidade"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Catalogo_Modalidades"
+                    }
+                  },
+                  "Property": "Nome_Modalidade"
+                }
+              },
+              "queryRef": "RM_Catalogo_Modalidades.Nome_Modalidade",
+              "nativeQueryRef": "Nome_Modalidade"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

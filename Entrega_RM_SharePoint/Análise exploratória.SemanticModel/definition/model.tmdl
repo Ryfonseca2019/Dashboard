@@ -126,3 +126,5 @@ ref table 'Mobilizacoes_Niteroi_Resumo'
 
 ref table 'DP_Mobilizacoes_Exportacao'
 ref table 'Mobilizacao_Por_Turma'
+
+ref table 'RM_Catalogo_Modalidades'
