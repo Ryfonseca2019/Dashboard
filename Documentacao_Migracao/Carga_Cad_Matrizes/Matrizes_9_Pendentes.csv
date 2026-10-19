@@ -1,0 +1,10 @@
+﻿CODCOLIGADA;Codigo_Curso_RM;Codigo_Habilitacao_RM;Codigo_Matriz_RM;Descricao_Matriz_RM;Carga_Horaria_RM;Status_Matriz_RM;Ocorrencias_Curso;Nome_Curso_RM;Codigo_Modalidade_RM;Ocorrencias_Modalidade;Modalidade_RM;Ocorrencias_Complemento;Codigo_Tipo_EAD_RM;Ocorrencias_Dominio_EAD;Tipo_EAD_RM;Motivo
+3;APP3016;APP3016;APP3016.01;Leitura e Interpretação de Desenho Técnico Mecânico;8;2;1;Leitura e Interpretação de Desenho Técnico Mecânico;;;;1;;;;Modalidade ausente ou ambígua
+3;APP3018;APP3018;APP3018.01;Pneumática Industrial Básica;8;0;1;Pneumática Industrial Básica;;;;1;;;;Modalidade ausente ou ambígua
+3;APP3026;APP3026;APP3026.01;Programação Básica de Controladores Lógicos Programáveis - Trilha 1: Fundamentos e Programação Ladder;8;2;1;Programação Básica de Controladores Lógicos Programáveis - Trilha 1: Fundamentos e Programação Ladder;;;;1;;;;Modalidade ausente ou ambígua
+3;APP3028;APP3028;APP3028.01;Fundamentos de Desenho Técnico Mecânico para a Indústria;8;0;1;Fundamentos de Desenho Técnico Mecânico para a Indústria;;;;1;;;;Modalidade ausente ou ambígua
+3;APP3029;APP3029;APP3029.01;Instrumentos de Medição Elétrica Aplicados à Instalação e Manutenção;8;0;1;Instrumentos de Medição Elétrica Aplicados à Instalação e Manutenção;;;;1;;;;Modalidade ausente ou ambígua
+3;APP3030;APP3030;APP3030.01;Introdução à Logística e Cadeia de Suprimentos;8;0;1;Introdução à Logística e Cadeia de Suprimentos;;;;1;;;;Modalidade ausente ou ambígua
+3;APP3033;APP3033;APP3033.01;Planejamento e Controle da Manutenção Industrial;8;0;1;Planejamento e Controle da Manutenção Industrial;;;;1;;;;Modalidade ausente ou ambígua
+3;APP3038;APP3038;APP3038.01;Completação de Poços de Petróleo e Gás;8;0;1;Completação de Poços de Petróleo e Gás;;;;1;;;;Modalidade ausente ou ambígua
+3;TESTE;TESTE;TESTE;;10;0;1;TESTE CURSO;;;;1;;;;Modalidade ausente ou ambígua

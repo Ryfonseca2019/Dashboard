@@ -1,0 +1,539 @@
+﻿CODCOLIGADA;Codigo_Curso_RM;Codigo_Habilitacao_RM;Codigo_Matriz_RM;Descricao_Matriz_RM;Carga_Horaria_RM;Status_Matriz_RM;Ocorrencias_Curso;Nome_Curso_RM;Codigo_Modalidade_RM;Ocorrencias_Modalidade;Modalidade_RM;Ocorrencias_Complemento;Codigo_Tipo_EAD_RM;Ocorrencias_Dominio_EAD;Tipo_EAD_RM
+3;APP2727;APP2727;AOO2727.01;Programação e Operação  de Torno CNC (Horizontal / Vertical) - Marinha do Brasil;80;1;1;Programação e Operação  de Torno CNC (Horizontal / Vertical) - Marinha do Brasil;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP0001;APP0001;APP0001.01;Acabamento e qualidade de costura para o desenvolvimento de produto - moda íntima;60;1;1;Acabamento e qualidade de costura para o desenvolvimento de produto - moda íntima;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP0017;APP0017;APP0017.01;Aperfeiçoamento Das Práticas De Mergulho;20;1;1;Aperfeiçoamento Das Práticas De Mergulho;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP0029;APP0029;APP0029.01;BIM - Processo de Projeto de Edificações;80;1;1;BIM - Processo de Projeto de Edificações;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP0034;APP0034;APP0034.01;Colorimetria De Vídeo;40;1;1;Colorimetria De Vídeo;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP0035;APP0035;APP0035.01;Concept Art Para Games;80;1;1;Concept Art Para Games;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP0045;APP0045;APP0045.01;Desenho de Storybord;32;1;1;Desenho de Storybord;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP0046;APP0046;APP0046.01;Desenho E Criação de Personagem;80;1;1;Desenho E Criação de Personagem;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP0050;APP0050;APP0050.01;Design De Móveis: Tecnologias E Experiência Do Usuário;24;1;1;Design De Móveis: Tecnologias E Experiência Do Usuário;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP0052;APP0052;APP0052.01;Design Thinking;24;1;1;Design Thinking;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP0089;APP0089;APP0089.01;Gamificação para Empresas;16;0;1;Gamificação para Empresas;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP0107;APP0107;APP0107.02;Illustrator;32;2;1;Illustrator;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP0112;APP0112;APP0112.01;Injeção Eletrônica de Motocicletas;40;0;1;Injeção Eletrônica de Motocicletas;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP0120;APP0120;APP0120.01;Inspeção Visual Subaquático / Nível 2;96;2;1;Inspeção Visual Subaquático / Nível 2;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP0145;APP0145;APP0145.01;Manutenção de Capacetes e Máscaras Full-faces de Mergulho;40;1;1;Manutenção de Capacetes e Máscaras Full-faces de Mergulho;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP0155;APP0155;APP0155.01;Mediação E Gestão de Conflitos;12;1;1;Mediação E Gestão de Conflitos;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP0166;APP0166;APP0166.01;Modelagem Fitness Avançado I;40;0;1;Modelagem Fitness Avançado I;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP0167;APP0167;APP0167.01;Modelagem Fitness Avançado II;40;0;1;Modelagem Fitness Avançado II;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP0170;APP0170;APP0170.01;Modelagem Moda Íntima Avançada II;60;0;1;Modelagem Moda Íntima Avançada II;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP0171;APP0171;APP0171.01;Modelagem Moda Praia Avançado II: Interpretação De Modelos E;60;0;1;Modelagem Moda Praia Avanç II Interp De Modelos Acabamentos;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP0215;APP0215;APP0215.01;Orçamento Gráfico;60;0;1;Orçamento Gráfico;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP0223;APP0223;APP0223.01;Pós Produção de Fashion Film;18;1;1;Pós Produção de Fashion Film;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP0224;APP0224;APP0224.01;Processos Avançados de Animação;60;0;1;Processos Avançados de Animação;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP0227;APP0227;APP0227.01;Produção de Fashion Film;24;0;1;Produção de Fashion Film;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP0236;APP0236;APP0236.01;Redes Wireless;40;1;1;Redes Wireless;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP0249;APP0249;APP0249.01;Sistema de Gestão Financeira no Vestillo;40;1;1;Sistema de Gestão Financeira no Vestillo;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP0258;APP0258;APP0258.01;Storytelling para Negócios;18;1;1;Storytelling para Negócios;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP0269;APP0269;APP0269.01;Técnicas Básicas de Topografia;160;1;1;Técnicas Básicas de Topografia;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP0271;APP0271;APP0271.01;Técnicas de Avaliação em Higiene Ocupacional;40;0;1;Técnicas de Avaliação em Higiene Ocupacional;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP0284;APP0284;APP0284.01;Técnicas de Montagem Drywall;40;1;1;Técnicas de Montagem Drywall;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP0295;APP0295;APP0295.01;Visualização de Dados para Negócios;21;1;1;Visualização de Dados para Negócios;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP0296;APP0296;APP0296.01;Web Design Responsivo;40;1;1;Web Design Responsivo;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP0300;APP0300;APP0300.01;Corte a Plasma Para Mecânico de Manutenção - C.S.E Mecânica;20;1;1;Corte a Plasma Para Mecânico de Manutenção - C.S.E Mecânica;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP0332;APP0332;APP0332.01;Técnicas em Operação e Controle de Trafego Rodoviário - ECOP;60;1;1;Técnicas em Operação e Contr. de Trafego Rodoviário;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP0337;APP0337;APP0337.01;Automação Para A Indústria De Bebidas II - AMBEV;180;1;1;Automação Para A Indústria De Bebidas II;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP0383;APP0383;APP0383.01;Ferramentaria de Moldes para Termoplásticos;240;1;1;Ferramentaria de Moldes para Termoplásticos;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP0454;APP0454;APP0454.01;Fabricação de móveis multifuncionais com modelagem 3D;160;1;1;Fabricação de móveis multifuncionais com modelagem 3D;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP0550;APP0550;APP0550.01;Podcasting - EBEP CT em Multimídia;100;1;1;Podcasting - EBEP CT em Multimídia;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP0564;APP0564;APP0564.01;Gestão de Custos;40;1;1;Gestão de Custos;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP0565;APP0565;APP0565.01;Gestão Empresarial;120;0;1;Gestão Empresarial;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP0566;APP0566;APP0566.01;Produção Enxuta;80;1;1;Produção Enxuta;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP0620;APP0620;APP0620;Cloud Computing: Arquitetura e Aplicações;48;1;1;Cloud Computing: Arquitetura e Aplicações;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP0621;APP0621;APP0621.01;Desenvolvimento de Aplicações em Realidade Virtual e Aumentada;40;1;1;Desenvolvimento de Aplicações em Realidade Virtual e Aumentada;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP0623;APP0623;APP0623.01;Explorando o Big Data;56;1;1;Explorando o Big Data;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP0626;APP0626;APP0626.01;Manufatura Aditiva Aplicada;48;1;1;Manufatura Aditiva Aplicada;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP0628;APP0628;APP0628.01;Microcontroladores com Arduíno em Fablab;48;1;1;Microcontroladores com Arduíno em Fablab;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP0629;APP0629;APP0629.01;Robótica Colaborativa Aplicada;60;1;1;Robótica Colaborativa Aplicada;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP0630;APP0630;APP0630.01;Sistemas de Execução de Manufatura;60;0;1;Sistemas de Execução de Manufatura;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP0634;APP0634;APP0634.01;Beer Sommelier;120;1;1;Beer Sommelier;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP0635;APP0635;APP0635.01;Chef Patisserie;260;1;1;Chef Patisserie;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP0635;APP0635;APP0635.03;Chef Patisserie;120;2;1;Chef Patisserie;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP0636;APP0636;APP0636.01;Fotografia Publicitária;60;0;1;Fotografia Publicitária;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP0639;APP0639;APP0639.01;Harmonizando com Cachaça;40;0;1;Harmonizando com Cachaça;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP0671;APP0671;APP0671.01;Custos Logísticos;90;1;1;Custos Logísticos - E+;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP0692;APP0692.01;APP0692.01;Custos Industriais do Vestuário;80;1;1;Custos Industriais do Vestuário - E+;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP0764;APP0764;APP0764;Fund. de Ger. de Injeção Eletrônica Automotiva (On Line);32;1;1;Fundamentos de Gerenciamento de Injeção Eletrônica Automotiva;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP0766;APP0766;APP0766.01;Instalação de Acessórios Automotivos (On Line);40;1;1;Instalação de Acessórios Automotivos (On Line);58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP0768;APP0768;APP0768.02;Programação do Sistema de Injeção de GNV 5ª Geração;40;2;1;Programação do Sistema de Injeção de GNV 5ª Geração;58;1;Aperfeiçoamento/Especialização Profissional;1;1;1;EAD - 50% de Aulas On-line ao Vivo + Autoestudo
+3;APP0777;APP0777;APP0777;Revit Famílias, Templates e Organização;32;1;1;Revit Famílias, Templates e Organização;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP0784;APP0784;APP0784;Projetos Elétricos Industriais (On Line);80;1;1;Projetos Elétricos Industriais;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP0793;APP0793;APP0793.01;Confecção de Máscaras de Proteção;20;1;1;Confecção de Máscaras de Proteção;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP0840;APP0840;APP0840;Promob - Modelagem 3D de Móveis;36;1;1;Promob - Modelagem 3D de Móveis;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP0906;APP0906;APP0906.01;Aperfeiçoamento em Sistemas Automatizados de Manufatura;20;0;1;Aperfeiçoamento em Sistemas Automatizados de Manufatura - Voucher;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP0907;APP0907;APP0907.01;Aperfeiçoamento em Instalações Elétricas Industriais;120;0;1;Aperfeiçoamento em Instalações Elétricas Industriais - Voucher;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP0908;APP0908;APP0908.01;Aperfeiçoamento em Sistemas lógicos e Processo de Manufatura;80;0;1;Aperfeiçoamento em Sistemas lógicos e Processo de Manufatura - Voucher;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP0909;APP0909;APP0909.01;Aperfeiçoamento em Indústria 4.0 e Sistemas Lógicos Programáveis;80;0;1;Aperfeiçoamento em Indústria 4.0 e Sistemas Lógicos Programáveis - Voucher;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP0910;APP0910;APP0910.01;Aperfeiçoamento em Processos de Manufatura e Microcontroladores;80;0;1;Aperfeiçoamento em Processos de Manufatura e Microcontroladores - Voucher;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP0911;APP0911;APP0911.01;c;80;0;1;Aperfeiçoamento em Sistemas Lógicos e Controle de Malhas - Voucher;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP0952;APP0952;APP0952.01;Custos Logísticos;90;1;1;Custos Logísticos;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP0962;APP0962;APP0962.01;Programação Client-Side;80;0;1;Programação Client-Side - EAD;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP0974;APP0974;APP0974.01;BIM - Aplicado em Projeto de Arquitetura;68;1;1;BIM - Aplicado em Projeto de Arquitetura - EAD;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP0976;APP0976;APP0976;Projeto de Sistemas Fotovoltaicos - CEFAN;40;1;1;Projeto de Sistemas Fotovoltaicos - CEFAN;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP0992;APP0992;APP0992.02;Lógica de Programação;14;2;1;Lógica de Programação;58;1;Aperfeiçoamento/Especialização Profissional;1;3;1;EAD Autoinstrucional
+3;APP1009;APP1009;APP1009.01;Programação Offline de Robótica Industrial;80;0;1;Programação Offline de Robótica Industrial;58;1;Aperfeiçoamento/Especialização Profissional;1;2;1;EAD - 100% de Aulas On-line ao Vivo
+3;APP1018;APP1018;APP1018.01;Oficina de Práticas Pedagógicas - Observatório de Ideias;44;0;1;Oficina de Práticas Pedagógicas - Observatório de Ideias;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP1071;APP1071;APP1071.01;Desenvolvimento de Sistemas Automatizados;100;0;1;Desenvolvimento de Sistemas Automatizados;58;1;Aperfeiçoamento/Especialização Profissional;1;1;1;EAD - 50% de Aulas On-line ao Vivo + Autoestudo
+3;APP1072;APP1072;APP1072.01;Marketing Digital na Prática;140;1;1;Marketing Digital na Prática;58;1;Aperfeiçoamento/Especialização Profissional;1;2;1;EAD - 100% de Aulas On-line ao Vivo
+3;APP1144;APP1144;APP1144.01;Metodologia Ágil OKR;20;0;1;Metodologia Ágil OKR;58;1;Aperfeiçoamento/Especialização Profissional;1;1;1;EAD - 50% de Aulas On-line ao Vivo + Autoestudo
+3;APP1171;APP1171;APP1171.01;PCP - Planejamento E Controle da Produção;72;0;1;PCP - Planejamento E Controle da Produção;58;1;Aperfeiçoamento/Especialização Profissional;1;2;1;EAD - 100% de Aulas On-line ao Vivo
+3;APP1173;APP1173;APP1173.01;Realidade Aumentada para Mídias Impressas;100;0;1;Realidade Aumentada para Mídias Impressas;58;1;Aperfeiçoamento/Especialização Profissional;1;2;1;EAD - 100% de Aulas On-line ao Vivo
+3;APP1340;APP1340;APP1340.01;Oficina Maker para Indústria 4.0: Meu primeiro Robô - Prefeitura de Quissamã;180;0;1;Oficina Maker para Indústria 4.0: Meu primeiro Robô - Prefeitura de Quissamã;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP1398;APP1398;APP1398;Aperfeiçoamento e Ampliação das Competências Profissionais - Robótica FTC;120;1;1;Aperfeiçoamento e Ampliação das Competências Profissionais - Robótica FTC;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP1501;APP1501;APP1501;Aperfeiçoamento Eletricistas Transpetro - Petrobras Transporte S.A.;120;1;1;Aperfeiçoamento Eletricistas Transpetro - Petrobras Transporte S.A.;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP1516;APP1516;APP1516.01;Impermeabilização de Sistemas Flexíveis Asfálticos;40;2;1;Impermeabilização de Sistemas Flexíveis Asfálticos;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP1526;APP1526;APP1526.01;Revestimento com Gesso Projetado;40;2;1;Revestimento com Gesso Projetado;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP1527;APP1527;APP1527.01;Revestimento em Argamassa Projetada;40;2;1;Revestimento em Argamassa Projetada;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP1542;APP1542;APP1542.01;Fotografia e Iluminação para Audiovisual;40;2;1;Fotografia e Iluminação para Audiovisual;58;1;Aperfeiçoamento/Especialização Profissional;1;1;1;EAD - 50% de Aulas On-line ao Vivo + Autoestudo
+3;APP1572;APP1572;APP1572.01;Interface e Monitoramento Industrial;40;0;1;Interface e Monitoramento Industrial;58;1;Aperfeiçoamento/Especialização Profissional;1;2;1;EAD - 100% de Aulas On-line ao Vivo
+3;APP1573;APP1573;APP1573.01;Interface e Monitoramento Industrial;40;0;1;Interface e Monitoramento Industrial;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP1585;APP1585;APP1585.01;Fabricação de Mosto Cervejeiro;20;2;1;Fabricação de Mosto Cervejeiro;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP1617;APP1617;APP1617.01;Treinamento em ROV - Veículo Operado Remotamente;40;1;1;Treinamento em ROV - Veículo Operado Remotamente;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP1659;APP1659;APP1659.01;Robótica Colaborativa Aplicada;60;2;1;Robótica Colaborativa Aplicada;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP1660;APP1660;APP1660.01;Inspeção por Partículas Magnéticas - SM-PM-N2-YO;80;2;1;Inspeção por Partículas Magnéticas - SM-PM-N2-YO;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP1675;APP1675;APP1675;Aperfeiçoamento em Gestão de Sistemas de Redes TI;960;1;1;Aperfeiçoamento em Gestão de Sistemas de Redes TI;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP1676;APP1676;APP1676.02;Aperfeiçoamento em Tecnologia Indústria 4.0;960;0;1;Aperfeiçoamento em Tecnologia Indústria 4.0;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP1757;APP1757;APP1757.01;Técnicas de Produção em Tecelagem;120;1;1;Técnicas de Produção em Tecelagem;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP2138;APP2138;APP2138.01;NR 20 - Segurança com Inflamáveis e Combustíveis - Avançado I - Inst. Classe II - Inicial - Furnas;24;0;1;NR 20 - Segurança com Inflamáveis e Combustíveis - Avançado I - Inst. Classe II - Inicial - Furnas;58;1;Aperfeiçoamento/Especialização Profissional;1;2;1;EAD - 100% de Aulas On-line ao Vivo
+3;APP2376;APP2376;APP2376;Técnicas de Operações Offshore - One Subsea;160;1;1;Técnicas de Operações Offshore - One Subsea;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP2382;APP2382;APP2382;Modelagem 3D, Renderização e Prototipagem de Joias e Bijuterias;60;1;1;Modelagem 3D, Renderização e Prototipagem de Joias e Bijuterias;58;1;Aperfeiçoamento/Especialização Profissional;1;5;1;EAD Semipresencial
+3;APP2382;APP2382;APP2382.01;Modelagem 3D, Renderização e Prototipagem de Joias e Bijuterias;60;1;1;Modelagem 3D, Renderização e Prototipagem de Joias e Bijuterias;58;1;Aperfeiçoamento/Especialização Profissional;1;5;1;EAD Semipresencial
+3;APP2392;APP2392;APP2392;Modelagem 3D para Projetos e Produtos;30;1;1;Modelagem 3D para Projetos e Produtos;58;1;Aperfeiçoamento/Especialização Profissional;1;7;1;Híbrido
+3;APP2401;APP2401;APP2401;Introdução a Internet das Coisas (IoT);30;1;1;Introdução a Internet das Coisas (IoT);58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP2416;APP2416;APP2416;Controladores Lógicos Programáveis - TechnipFMC;40;1;1;Controladores Lógicos Programáveis - TechnipFMC;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP2419;APP2419;APP2419;Workshop em Lavadoras, lava-seca e secadoras - Electrolux;4;1;1;Workshop em Lavadoras, lava-seca e secadoras - Electrolux;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP2437;APP2437;APP2437;Aperfeiçoamento em Tecnologia dos Materiais - Marinha do Brasil;16;1;1;Aperfeiçoamento em Tecnologia dos Materiais - Marinha do Brasil;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP2474;APP2474;APP2474;Operação de Produção Industrial - Módulo 2 - BBRAUN;20;1;1;Operação de Produção Industrial - Módulo 2 - BBRAUN;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP2489;APP2489;APP2489;Climatização e Sistema de Resfriamento - TECHNIPFMC;40;1;1;Climatização e Sistema de Resfriamento - TECHNIPFMC;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP2510;APP2510;APP2510;Oficina de Projetos e Mentoria - CODE School;10;1;1;Oficina de Projetos e Mentoria - CODE School;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP2536;APP2536;APP2536;Capacitação em Power BI;32;1;1;Capacitação em Power BI;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP2561;APP2561;APP2561;Audaces Moldes e Encaixe - Capacitação;16;1;1;Audaces Moldes e Encaixe - Capacitação;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP2600;APP2600;APP2600;Execução de Revestimentos com Placas Cerâmicas - Prêmio Empreendimentos;90;1;1;Execução de Revestimentos com Placas Cerâmicas - Prêmio Empreendimentos;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP2695;APP2695;APP2695.01;Produção Industrial de Alimentos Saudáveis;20;2;1;Produção Industrial de Alimentos Saudáveis;58;1;Aperfeiçoamento/Especialização Profissional;1;2;1;EAD - 100% de Aulas On-line ao Vivo
+3;APP2700;APP2700;APP2700;Ferramentas de IA: Agentes e Automações;40;1;1;Ferramentas de IA: Agentes e Automações;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP2729;APP2729;APP2729.01;Confecção de Modelos de Joias em Cera;24;2;1;Confecção de Modelos de Joias em Cera;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP2743;APP2743;APP2743.01;Eletricidade Básica - Via Permanente -  MRS;40;0;1;Eletricidade Básica - Via Permanente -  MRS;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP2751;APP2751;APP2751.01;Fundamentos de Operações Logísticas - Vesuvius Refratários Ltda;48;0;1;Fundamentos de Operações Logísticas - Vesuvius Refratários Ltda;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP2755;APP2755;APP2755.01;Design UI UX;60;0;1;Design UI UX - Prefeitura Municipal de Volta Redonda - PMVR;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP2808;APP2808;APP2808.01;Controle de Qualidade na Indústria de Água Mineral;32;2;1;Controle de Qualidade na Indústria de Água Mineral;58;1;Aperfeiçoamento/Especialização Profissional;1;2;1;EAD - 100% de Aulas On-line ao Vivo
+3;APP2815;APP2815;APP2815.01;Boas Práticas de Fabricação e Higiene de Equipamentos na Indústria de Bebidas;24;2;1;Boas Práticas de Fabricação e Higiene de Equipamentos na Indústria de Bebidas;58;1;Aperfeiçoamento/Especialização Profissional;1;2;1;EAD - 100% de Aulas On-line ao Vivo
+3;APP2816;APP2816;APP2816.01;Envelhecimento e Guarda de Cachaça;24;2;1;Envelhecimento e Guarda de Cachaça;58;1;Aperfeiçoamento/Especialização Profissional;1;2;1;EAD - 100% de Aulas On-line ao Vivo
+3;APP2817;APP2817;APP2817.01;Gestão de Processos em Cervejarias;32;2;1;Gestão de Processos em Cervejarias;58;1;Aperfeiçoamento/Especialização Profissional;1;2;1;EAD - 100% de Aulas On-line ao Vivo
+3;APP2818;APP2818;APP2818.01;Gestão Sustentável na Indústria de Bebidas;32;2;1;Gestão Sustentável na Indústria de Bebidas;58;1;Aperfeiçoamento/Especialização Profissional;1;2;1;EAD - 100% de Aulas On-line ao Vivo
+3;APP2819;APP2819;APP2819.01;Inovação em Bebidas Fermentadas;40;2;1;Inovação em Bebidas Fermentadas;58;1;Aperfeiçoamento/Especialização Profissional;1;1;1;EAD - 50% de Aulas On-line ao Vivo + Autoestudo
+3;APP2820;APP2820;APP2820.01;Inovação em Bebidas: Desenvolvimento e Formulação de Novos Produtos;80;2;1;Inovação em Bebidas: Desenvolvimento e Formulação de Novos Produtos;58;1;Aperfeiçoamento/Especialização Profissional;1;1;1;EAD - 50% de Aulas On-line ao Vivo + Autoestudo
+3;APP2821;APP2821;APP2821;Introdução a Estilos Cervejeiros;24;1;1;Introdução a Estilos Cervejeiros;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP2822;APP2822;APP2822.01;Processamento de Café: Qualidade, Beneficiamento e Armazenagem;32;2;1;Processamento de Café: Qualidade, Beneficiamento e Armazenagem;58;1;Aperfeiçoamento/Especialização Profissional;1;2;1;EAD - 100% de Aulas On-line ao Vivo
+3;APP2831;APP2831;APP2831.01;Processo de Produção de Água Mineral;40;2;1;Processo de Produção de Água Mineral;58;1;Aperfeiçoamento/Especialização Profissional;1;2;1;EAD - 100% de Aulas On-line ao Vivo
+3;APP2836;APP2836;APP2836.01;Qualidade da Água na Indústria de Bebidas;24;2;1;Qualidade da Água na Indústria de Bebidas;58;1;Aperfeiçoamento/Especialização Profissional;1;2;1;EAD - 100% de Aulas On-line ao Vivo
+3;APP2838;APP2838;APP2838.01;Rotulagem de Bebidas;32;2;1;Rotulagem de Bebidas;58;1;Aperfeiçoamento/Especialização Profissional;1;2;1;EAD - 100% de Aulas On-line ao Vivo
+3;APP2855;APP2855;APP2855.01;Fundamentos de Atmosferas Explosivas - EX;20;2;1;Fundamentos de Atmosferas Explosivas - EX;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP2865;APP2865;APP2865.01;Solid Edge CAD MEC - Capacitação;40;0;1;Solid Edge CAD MEC - Capacitação;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP2866;APP2866;APP2866.01;NX CAD MEC. Fundamentals Processes - Capacitação;40;0;1;NX CAD MEC. Fundamentals Processes - Capacitação;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP2876;APP2876;APP2876;Sistemas de Refrigeração e Climatização - Capacitação;32;1;1;Sistemas de Refrigeração e Climatização - Capacitação;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP2887;APP2887;APP2887;Set-Up e Operação de Centro de Usinagem CNC - Capacitação;32;1;1;Set-Up e Operação de Centro de Usinagem CNC - Capacitação;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP2894;APP2894;APP2894.01;Inteligência Artificial e suas Tecnologias no PCP  - Capacitação;32;0;1;Inteligência Artificial e suas Tecnologias no PCP  - Capacitação;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP2946;APP2946;APP2947;Técnicas Avançadas de Tratamento de Água - Projeto Niterói Jovem Ecosocial IV;18;1;1;Técnicas Avançadas de Tratamento de Água - Projeto Niterói Jovem Ecosocial IV;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP2948;APP2948;APP2948;Simulação de Proteção em Infraestruturas e Gestão de Crise - Guardião Cibernético;40;1;1;Simulação de Proteção em Infraestruturas e Gestão de Crise - Guardião Cibernético;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP2974;APP2974;APP2974.01;Introdução à Impressão 3D;16;2;1;Introdução à Impressão 3D;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP3005;APP3005;APP3005.01;Introdução à Comunicação em Libras – Linguagem de Sinais;16;2;1;Introdução à Comunicação em Libras – Linguagem de Sinais;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP3027;APP3027;APP3027.1;Programação Básica de Controladores Lógicos Programáveis - Trilha 3: Sinais Analógicos e Aplicações Integradas;8;2;1;Programação Básica de Controladores Lógicos Programáveis - Trilha 3: Sinais Analógicos e Aplicações Integradas;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP3065;APP3065;APP3065.01;Ferramentas e Instrumentos Aplicados à Manutenção Mecânica - VLI MULTIMODAL S.A;16;0;1;Ferramentas e Instrumentos Aplicados à Manutenção Mecânica - VLI MULTIMODAL S.A;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP3066;APP3066;APP3066.01;Elementos de Máquinas para Manutenção Mecânica - VLI MULTIMODAL S.A;16;0;1;Elementos de Máquinas para Manutenção Mecânica - VLI MULTIMODAL S.A;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP3067;APP3067;APP3067.01;Ferramentas e Instrumentos Aplicados à Manutenção - VLI MULTIMODAL S.A;16;0;1;Ferramentas e Instrumentos Aplicados à Manutenção - VLI MULTIMODAL S.A;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP3068;APP3068;APP3068.01;Leitura e Interpretação de Desenho Técnico Mecânico - VLI MULTIMODAL S.A;16;0;1;Leitura e Interpretação de Desenho Técnico Mecânico - VLI MULTIMODAL S.A;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP3069;APP3069;APP3069.01;Lubrificação Industrial Aplicada à Manutenção Mecânica - VLI MULTIMODAL S.A;16;0;1;Lubrificação Industrial Aplicada à Manutenção Mecânica - VLI MULTIMODAL S.A;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP3070;APP3070.01;APP3070.01;Metrologia Aplicada à Manutenção Mecânica - VLI MULTIMODAL S.A;16;0;1;Metrologia Aplicada à Manutenção Mecânica - VLI MULTIMODAL S.A;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP3071;APP3071;APP3071.01;Fabricação de Bolos e Doces - Ferroport;32;0;1;Fabricação de Bolos e Doces - Ferroport;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP3072;APP3072.01;APP3072.01;Introdução à Inteligência Artificial Para Gestores - Capacitação;16;0;1;Introdução à Inteligência Artificial Para Gestores - Capacitação;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APP3073;APP3073;APP3073.01;Técnicas de Armazenagem e Operação de Empilhadeiras - LIMPPANO S A;60;0;1;Técnicas de Armazenagem e Operação de Empilhadeiras - LIMPPANO S A;58;1;Aperfeiçoamento/Especialização Profissional;1;;;
+3;APR0011;APR0011;APR0011.01;Eletricista de Manutenção Eletroeletrônica Ferroviário;800;1;1;Eletricista de Manutenção Eletroeletrônica Ferroviário;11;1;Aprendizagem Industrial Básica;1;;;
+3;APR0020;APR0020;APR0020.01;Instalador de Tubulações Prediais de Gás Combustível;600;1;1;Instalador de Tubulações Prediais de Gás Combustível;11;1;Aprendizagem Industrial Básica;1;;;
+3;APR0039;APR0039;APR0039.01;Operador de Processos na Indústria de Alimentos e Bebidas;600;1;1;Operador de Processos na Indústria de Alimentos e Bebidas;11;1;Aprendizagem Industrial Básica;1;;;
+3;APR0040;APR0040;APR0040.01;Operador de Processos Ópticos;800;1;1;Operador de Processos Ópticos;11;1;Aprendizagem Industrial Básica;1;;;
+3;APR0061;APR0061;APR0061.01;Soldador de Tubulação – PPJA;1340;1;1;Soldador de Tubulação – PPJA;11;1;Aprendizagem Industrial Básica;1;;;
+3;APR0062;APR0062;APR0062.01;Caldeireiro - PPJA;1340;1;1;Caldeireiro - PPJA;11;1;Aprendizagem Industrial Básica;1;;;
+3;APR0063;APR0063;APR0063.01;Desenhista Mecânico - PPJA;1340;1;1;Desenhista Mecânico - PPJA;11;1;Aprendizagem Industrial Básica;1;;;
+3;APR0064;APR0064;APR0064.01;Mecânico de Manutenção - PPJA;1340;1;1;Mecânico de Manutenção - PPJA;11;1;Aprendizagem Industrial Básica;1;;;
+3;APR0068;APR0068;APR0068;Assistente Administrativo - PPJA;600;0;1;Assistente Administrativo - PPJA;11;1;Aprendizagem Industrial Básica;1;;;
+3;APR0090;APR0090;APR0090.01;Operador de Sistemas Computacionais em Redes - Comlurb;800;0;1;Operador de Sistemas Computacionais em Redes - Comlurb;11;1;Aprendizagem Industrial Básica;1;;;
+3;APR0112;APR0112;APR0112.01;Assistente de Logística - Correios;480;1;1;Assistente de Logística - Correios;11;1;Aprendizagem Industrial Básica;1;;;
+3;APR0127;APR0127;APR0127.01;Mecânico de Manutenção de Motores a Reação - Reparos e Acessórios;840;1;1;Mecânico de Manutenção de Motores a Reação - Reparos e Acessórios;11;1;Aprendizagem Industrial Básica;1;;;
+3;APRT001;APRT001;APRT001.04;Técnico em Alimentos;1200;2;1;Técnico em Alimentos;15;1;Aprendizagem Industrial Técnica de Nível Médio;1;;;
+3;APRT003;APRT003;APRT003.04;Técnico Em Edificações;1200;2;1;Técnico Em Edificações;15;1;Aprendizagem Industrial Técnica de Nível Médio;1;;;
+3;APRT007;APRT007;APRT007.01;Técnico em Manutenção de Máquinas Industriais;1200;1;1;Técnico em Manutenção de Máquinas Industriais;15;1;Aprendizagem Industrial Técnica de Nível Médio;1;;;
+3;APRT010;APRT010;APRT010.04;Técnico em Vestuário;1200;2;1;Técnico em Vestuário;15;1;Aprendizagem Industrial Técnica de Nível Médio;1;;;
+3;APRT020;APRT020;APRT020.2;Técnico em Sistemas de Energia Renovável;1480;1;1;Técnico em Sistemas de Energia Renovável - PPJA;15;1;Aprendizagem Industrial Técnica de Nível Médio;1;;;
+3;APRT023;APRT023;APRT023.01;Técnico em Produção de Moda;1000;2;1;Técnico em Produção de Moda;15;1;Aprendizagem Industrial Técnica de Nível Médio;1;;;
+3;APRT024;APRT024;APRT024.01;Técnico em Multimídia;1000;2;1;Técnico em Multimídia;15;1;Aprendizagem Industrial Técnica de Nível Médio;1;;;
+3;QUA0003;QUA0003;QUA0003.01;Administrador De Redes - CCNA;308;1;1;Administrador De Redes - CCNA;21;1;Qualificação Profissional;1;;;
+3;QUA0018;QUA0018;QUA0018.01;Auxiliar De Eletricista Predial;280;1;1;Auxiliar De Eletricista Predial - EAD;21;1;Qualificação Profissional;1;;;
+3;QUA0022;QUA0022;QUA0022.01;Cabista de Sistemas De Telecomunicações;260;1;1;Cabista de Sistemas De Telecomunicações;21;1;Qualificação Profissional;1;;;
+3;QUA0027;QUA0027;QUA0027.01;Colorista Automotivo;180;1;1;Colorista Automotivo - EAD;21;1;Qualificação Profissional;1;;;
+3;QUA0046;QUA0046;QUA0046.01;Eletricista de Automóveis;220;1;1;Eletricista de Automóveis;21;1;Qualificação Profissional;1;;;
+3;QUA0060;QUA0060;QUA0060.04;Inspetor de Soldagem N1;220;1;1;Inspetor de Soldagem N1;21;1;Qualificação Profissional;1;;;
+3;QUA0061;QUA0061;QUA0061.01;Instalador e Reparador de Redes, Cabos e Equipamentos Telefônicos;220;1;1;Instalador e Reparador de Redes, Cabos e Equipamentos Telefônicos;21;1;Qualificação Profissional;1;;;
+3;QUA0079;QUA0079;QUA0079.01;Mecânico De Manutenção Em Motocicletas;280;1;1;Mecânico De Manutenção Em Motocicletas - EAD;21;1;Qualificação Profissional;1;2;1;EAD - 100% de Aulas On-line ao Vivo
+3;QUA0080;QUA0080;QUA0080.01;Mecânico De Manutenção Em Motores Ciclo Otto;260;1;1;Mecânico De Manutenção Em Motores Ciclo Otto - EAD;21;1;Qualificação Profissional;1;4;1;EAD Semipresencial - Mínimo de 20% de Atividades Presenciais
+3;QUA0126;QUA0126;QUA0126;Soldador Mecânico;360;1;1;Soldador Mecânico;21;1;Qualificação Profissional;1;;;
+3;QUA0138;QUA0138;QUA0138.01;Desenvolvedor de Aplicativos;160;1;1;Desenvolvedor de Aplicativos;21;1;Qualificação Profissional;1;;;
+3;QUA0140;QUA0140;QUA0140.01;Eletromecânico de Instalação e Manutenção de GNV;180;1;1;Eletromecânico de Instalação e Manutenção de GNV;21;1;Qualificação Profissional;1;;;
+3;QUA0141;QUA0141;QUA0141.01;Instalador de Acessórios Automotivos;320;1;1;Instalador de Acessórios Automotivos;21;1;Qualificação Profissional;1;;;
+3;QUA0142;QUA0142;QUA0142.01;Mecânico de Motores Ciclo Otto - Convênio;240;1;1;Mecânico de Motores Ciclo Otto - Convênio;21;1;Qualificação Profissional;1;;;
+3;QUA0144;QUA0144;QUA0144.01;Operador De Máquinas Com Comando Numérico Computadorizado;180;1;1;Operador De Máquinas Com Comando Numérico Computadorizado;21;1;Qualificação Profissional;1;;;
+3;QUA0145;QUA0145;QUA0145.01;Pizzaiolo - Convênio;160;1;1;Pizzaiolo - Convênio;21;1;Qualificação Profissional;1;;;
+3;QUA0146;QUA0146;QUA0146.01;Operador de Equipamentos de Produção e Refino de Petróleo - SBM Offshore Gás;480;0;1;Operador de Equipamentos de Produção e Refino de Petróleo;21;1;Qualificação Profissional;1;;;
+3;QUA0147;QUA0147;QUA0147.01;Mecânico de Motores Ciclo Otto - Projeto Maricá;240;0;1;Mecânico de Motores Ciclo Otto - Projeto Maricá;21;1;Qualificação Profissional;1;;;
+3;QUA0149;QUA0149;QUA0149.01;Torneiro Mecânico;260;1;1;Torneiro Mecânico - 260;21;1;Qualificação Profissional;1;;;
+3;QUA0151;QUA0151;QUA0151.01;Assistente Administrativo - Projeto Niterói EcoSocial;540;0;1;Assistente Administrativo - Projeto Niterói EcoSocial;21;1;Qualificação Profissional;1;;;
+3;QUA0152;QUA0152;QUA0152.01;Auxiliar de Cozinha - Projeto Niterói EcoSocial;540;1;1;Auxiliar de Cozinha - Projeto Niterói EcoSocial;21;1;Qualificação Profissional;1;;;
+3;QUA0153;QUA0153;QUA0153.01;Eletricista de Automóveis - Prefeitura de Maricá;200;1;1;Eletricista de Automóveis - Prefeitura de Maricá;21;1;Qualificação Profissional;1;;;
+3;QUA0153;QUA0153;QUA0153.02;Eletricista de Automóveis - Prefeitura de Maricá;200;1;1;Eletricista de Automóveis - Prefeitura de Maricá;21;1;Qualificação Profissional;1;;;
+3;QUA0154;QUA0154;QUA0154.01;Mecânico de Motores Ciclo Otto - Prefeitura de Maricá;240;1;1;Mecânico de Motores Ciclo Otto - Prefeitura de Maricá;21;1;Qualificação Profissional;1;;;
+3;QUA0154;QUA0154;QUA0154.02;Mecânico de Motores Ciclo Otto - Prefeitura de Maricá;240;1;1;Mecânico de Motores Ciclo Otto - Prefeitura de Maricá;21;1;Qualificação Profissional;1;;;
+3;QUA0155;QUA0155;QUA0155.01;Eletricista Instalador Predial de Baixa Tensão - Prefeitura de Maricá;200;0;1;Eletricista Inst. Predial de Baixa Tensão - Pref. de Maricá;21;1;Qualificação Profissional;1;;;
+3;QUA0156;QUA0156;QUA0156.01;Serralheiro de Alumínio - Prefeitura de Maricá;358;1;1;Serralheiro de Alumínio - Prefeitura de Maricá;21;1;Qualificação Profissional;1;;;
+3;QUA0157;QUA0157;QUA0157.01;Pizzaiolo - Prefeitura Municipal de Tanguá;160;1;1;Pizzaiolo - Prefeitura Municipal de Tanguá;21;1;Qualificação Profissional;1;;;
+3;QUA0158;QUA0158;QUA0158.01;Operador de Máquinas Ferramenta Convencionais;500;1;1;Operador de Máquinas Ferramenta Convencionais;21;1;Qualificação Profissional;1;;;
+3;QUA0159;QUA0159;QUA0159.01;Operador de Montagem de Veículos Automotores - Groupe PSA;168;0;1;Operador de Montagem de Veículos Automotores - Groupe PSA;21;1;Qualificação Profissional;1;;;
+3;QUA0160;QUA0160;QUA0160.01;Assistente de Operação de Logística Portuária - Prefeitura de Maricá;160;0;1;Assistente de Operação de Logística Portuária - Pref. Maricá;21;1;Qualificação Profissional;1;;;
+3;QUA0160;QUA0160;QUA0160.02;Assistente de Operação de Logística Portuária - Prefeitura de Maricá;180;0;1;Assistente de Operação de Logística Portuária - Pref. Maricá;21;1;Qualificação Profissional;1;;;
+3;QUA0161;QUA0161;QUA0161.01;Assistente Administrativo - Prefeitura de Maricá;540;1;1;Assistente Administrativo - Prefeitura de Maricá;21;1;Qualificação Profissional;1;;;
+3;QUA0161;QUA0161;QUA0161.02;Assistente Administrativo - Prefeitura de Maricá;160;1;1;Assistente Administrativo - Prefeitura de Maricá;21;1;Qualificação Profissional;1;;;
+3;QUA0162;QUA0162;QUA0162.01;Auxiliar de Padaria e Confeitaria - Projeto Niterói EcoSocial;540;0;1;Auxiliar de Padaria e Confeitaria - Proj. Niterói EcoSocial;21;1;Qualificação Profissional;1;;;
+3;QUA0163;QUA0163;QUA0163.01;Pizzaiolo - Projeto Niterói EcoSocial;540;1;1;Pizzaiolo - Projeto Niterói EcoSocial;21;1;Qualificação Profissional;1;;;
+3;QUA0164;QUA0164;QUA0164.01;Confeccionador de Bolsas em Tecido Plano - Projeto Niterói EcoSocial;540;0;1;Confeccionador de Bols.em Tec. Plano - Proj. Nit. Ecosocial;21;1;Qualificação Profissional;1;;;
+3;QUA0165;QUA0165;QUA0165.01;Costureiro Industrial do Vestuário - Projeto Niterói EcoSocial;540;0;1;Costureiro Industrial do Vestuário - Proj. Niterói EcoSocial;21;1;Qualificação Profissional;1;;;
+3;QUA0166;QUA0166;QUA0166.01;Montador e Reparador de Computador - Projeto Niterói EcoSocial;540;0;1;Montador e Repar. de Computador - Projeto Niterói EcoSocial;21;1;Qualificação Profissional;1;;;
+3;QUA0167;QUA0167;QUA0167.01;Mecânico de Motores Ciclo Otto - Projeto Niterói EcoSocial;540;0;1;Mecânico de Motores Ciclo Otto - Projeto Niterói EcoSocial;21;1;Qualificação Profissional;1;;;
+3;QUA0168;QUA0168;QUA0168.01;Eletricista de Automóveis - Projeto Niterói EcoSocial;540;0;1;Eletricista de Automóveis - Projeto Niterói EcoSocial;21;1;Qualificação Profissional;1;;;
+3;QUA0169;QUA0169;QUA0169.01;Instalador Hidráulico Residencial - Projeto Niterói EcoSocial;540;0;1;Instalador Hidráulico Residencial - Proj. Niterói EcoSocial;21;1;Qualificação Profissional;1;;;
+3;QUA0170;QUA0170;QUA0170.01;Mecânico de Motocicletas - Projeto Niterói EcoSocial;540;1;1;Mecânico de Motocicletas - Projeto Niterói EcoSocial;21;1;Qualificação Profissional;1;;;
+3;QUA0173;QUA0173;QUA0173.01;Montador e Reparador de Computadores - Prefeitura de Maricá;160;0;1;Montador e Reparador de Computadores - Prefeitura de Maricá;21;1;Qualificação Profissional;1;;;
+3;QUA0174;QUA0174;QUA0174.01;Operador de Computador - Prefeitura de Maricá;160;0;1;Operador de Computador - Prefeitura de Maricá;21;1;Qualificação Profissional;1;;;
+3;QUA0175;QUA0175;QUA0175.01;Assistente de Produção Industrial - ECOPONTE;160;1;1;Assistente de Produção Industrial - ECOPONTE;21;1;Qualificação Profissional;1;;;
+3;QUA0176;QUA0176;QUA0176.01;Mecânico De Motores Ciclo Otto - ECOPONTE;260;1;1;Mecânico De Motores Ciclo Otto - ECOPONTE;21;1;Qualificação Profissional;1;;;
+3;QUA0177;QUA0177;QUA0177.01;Pintor de Automóveis - ECOPONTE;420;1;1;Pintor de Automóveis - ECOPONTE;21;1;Qualificação Profissional;1;;;
+3;QUA0178;QUA0178;QUA0178.01;Eletricista de Automóveis - ECOPONTE;220;1;1;Eletricista de Automóveis - ECOPONTE;21;1;Qualificação Profissional;1;;;
+3;QUA0181;QUA0181;QUA0181.01;Eletricista Instalador Predial De Baixa Tensão - Ecoponte;248;1;1;Eletricista Instalador Predial De Baixa Tensão - Ecoponte;21;1;Qualificação Profissional;1;;;
+3;QUA0184;QUA0184;QUA0184.01;Mestre Cervejeiro;580;1;1;Mestre Cervejeiro;21;1;Qualificação Profissional;1;;;
+3;QUA0185;QUA0185;QUA0185.01;Eletricista Instalador Predial - Prefeitura Municipal de São Gonçalo;220;1;1;Eletricista Instalador Predial - Prefeitura Municipal de São Gonçalo;21;1;Qualificação Profissional;1;;;
+3;QUA0187;QUA0187;QUA0187.01;Auxiliar de Operações em Logística  -  Ocyan;296;1;1;Auxiliar de Operações em Logística  -  Ocyan;21;1;Qualificação Profissional;1;;;
+3;QUA0188;QUA0188;QUA0188.01;Soldador de Alumínio Mig Pulsado 6g;212;1;1;Soldador de Alumínio Mig Pulsado 6g;21;1;Qualificação Profissional;1;;;
+3;QUA0189;QUA0189;QUA0189;Instalador Predial E de Manutenção De Tubulações De Gás Combustível;252;1;1;Instalador Predial E de Manutenção De Tubulações De Gás Combustível;21;1;Qualificação Profissional;1;;;
+3;QUA0192;QUA0192;QUA0192.01;Montagem e Manutenção de Computador - VALID;560;0;1;Montagem e Manutenção de Computador - VALID;21;1;Qualificação Profissional;1;;;
+3;QUA0196;QUA0196;QUA0196.01;Confeiteiro;310;0;1;Confeiteiro - E+;21;1;Qualificação Profissional;1;;;
+3;QUA0197;QUA0197;QUA0197.01;Costureiro Industrial do Vestuário - Prefeitura de Saquarema;240;1;1;Costureiro Industrial do Vestuário - Prefeitura de Saquarema;21;1;Qualificação Profissional;1;;;
+3;QUA0198;QUA0198;QUA0198.01;Confeccionador de Bolsa em Tecido - Prefeitura de Saquarema;160;1;1;Confeccionador de Bolsa em Tecido - Prefeitura de Saquarema;21;1;Qualificação Profissional;1;;;
+3;QUA0199;QUA0199;QUA0199.01;Confeccionador de Lingerie e Moda Praia - Prefeitura de Saquarema;240;1;1;Confeccionador de Lingerie e Moda Praia - Pref. de Saquarema;21;1;Qualificação Profissional;1;;;
+3;QUA0201;QUA0201;QUA0201.01;Pedreiro de Alvenaria Estrutural;220;1;1;Pedreiro de Alvenaria Estrutural - E+;21;1;Qualificação Profissional;1;;;
+3;QUA0204;QUA0204;QUA0204.01;Instalador de Sistemas Drywall;320;1;1;Instalador de Sistemas Drywall - E+;21;1;Qualificação Profissional;1;;;
+3;QUA0206;QUA0206;QUA0206.01;Soldador de Aço Carbono Eletrodo Revestido 4G;220;1;1;Soldador de Aço Carbono Eletrodo Revestido 4G - Emprega Mais Novo Emprego;21;1;Qualificação Profissional;1;;;
+3;QUA0207;QUA0207;QUA0207.01;Programador de Sistemas;260;1;1;Programador de Sistemas - E+;21;1;Qualificação Profissional;1;;;
+3;QUA0208;QUA0208;QUA0208.01;Auxiliar de Operações Em Logística;220;1;1;Auxiliar de Operações em Logística - E+;21;1;Qualificação Profissional;1;;;
+3;QUA0209;QUA0209;QUA0209.01;Costureiro Industrial do Vestuário;300;0;1;Costureiro Industrial do Vestuário - E+;21;1;Qualificação Profissional;1;;;
+3;QUA0210;QUA0210;QUA0210.01;Confeccionador de Lingerie e Moda Praia;300;1;1;Confeccionador de Lingerie e Moda Praia - E+;21;1;Qualificação Profissional;1;;;
+3;QUA0213;QUA0213;QUA0213.01;Mecânico de Motores Ciclo Otto - Prefeitura de Saquarema;240;1;1;Mecânico de Motores Ciclo Otto - Prefeitura de Saquarema;21;1;Qualificação Profissional;1;;;
+3;QUA0213;QUA0213;QUA0213.02;Mecânico de Motores Ciclo Otto - Prefeitura de Saquarema;260;0;1;Mecânico de Motores Ciclo Otto - Prefeitura de Saquarema;21;1;Qualificação Profissional;1;;;
+3;QUA0214;QUA0214;QUA0214.01;Auxiliar de Cozinha - Prefeitura de Saquarema;200;1;1;Auxiliar de Cozinha - Prefeitura de Saquarema;21;1;Qualificação Profissional;1;;;
+3;QUA0216;QUA0216;QUA0216.01;Eletricista Instalador Predial de Baixa Tensão - Saquarema;200;0;1;Eletricista Instalador Predial de Baixa Tensão - Saquarema;21;1;Qualificação Profissional;1;;;
+3;QUA0217;QUA0217;QUA0217.01;Costureiro Industrial do Vestuário - Prefeitura Levy Gasparian;240;1;1;Costureiro Industrial do Vestuário - Prefeit. Levy Gasparian;21;1;Qualificação Profissional;1;;;
+3;QUA0221;QUA0221;QUA0221.02;Eletricista Instalador Residencial;180;2;1;Eletricista Instalador Residencial;21;1;Qualificação Profissional;1;5;1;EAD Semipresencial
+3;QUA0225;QUA0225;QUA0225.01;Assistente Administrativo - ENEL BRASIL;160;1;1;Assistente Administrativo - ENEL BRASIL;21;1;Qualificação Profissional;1;;;
+3;QUA0226;QUA0226;QUA0226.01;Desenvolvedor de Projeto de Móveis com PROMOB;200;1;1;Desenvolvedor de Projeto de Móveis com PROMOB - EAD;21;1;Qualificação Profissional;1;;;
+3;QUA0229;QUA0229;QUA0229.01;Operador de Produção - Shell;240;0;1;Operador de Produção - Shell;21;1;Qualificação Profissional;1;;;
+3;QUA0233;QUA0233;QUA0233.01;Assistente de Produção Industrial;240;1;1;Assistente de Produção Industrial - EAD;21;1;Qualificação Profissional;1;2;1;EAD - 100% de Aulas On-line ao Vivo
+3;QUA0234;QUA0234;QUA0234.01;Desenvolvedor de Conteúdos Youtube;160;1;1;Desenvolvedor de Conteúdos YouTube - EAD;21;1;Qualificação Profissional;1;1;1;EAD - 50% de Aulas On-line ao Vivo + Autoestudo
+3;QUA0235;QUA0235;QUA0235.01;Eletricista Instalador Predial de Baixa Tensão - CEFAN;200;0;1;Eletricista Instalador Predial de Baixa Tensão - CEFAN;21;1;Qualificação Profissional;1;;;
+3;QUA0236;QUA0236;QUA0236.01;Desenhista de Projetos Elétricos Industriais;160;1;1;Desenhista de Projetos Elétricos Industriais;21;1;Qualificação Profissional;1;1;1;EAD - 50% de Aulas On-line ao Vivo + Autoestudo
+3;QUA0237;QUA0237;QUA0237.01;Desenvolvedor de Aplicativos;160;1;1;Desenvolvedor de Aplicativos;21;1;Qualificação Profissional;1;2;1;EAD - 100% de Aulas On-line ao Vivo
+3;QUA0239;QUA0239;QUA0239.01;Programador Mobile;180;1;1;Programador Mobile;21;1;Qualificação Profissional;1;2;1;EAD - 100% de Aulas On-line ao Vivo
+3;QUA0240;QUA0240;QUA0240.01;Programador WEB;220;1;1;Programador WEB;21;1;Qualificação Profissional;1;2;1;EAD - 100% de Aulas On-line ao Vivo
+3;QUA0241;QUA0241;QUA0241.01;Operador de Manutenção Eletromecânica - GROUPE SEB SDA;280;0;1;Operador de Manutenção Eletromecânica - GROUPE SEB SDA;21;1;Qualificação Profissional;1;;;
+3;QUA0242;QUA0242;QUA0242.01;Operador de Manutenção Eletromecânica - GROUPE SEB COOKWARE;280;0;1;Operador de Manutenção Eletromecânica - GROUPE SEB COOKWARE;21;1;Qualificação Profissional;1;;;
+3;QUA0243;QUA0243;QUA0243.01;Administrador de Rede de Computadores - Valid Soluções S/A;520;1;1;Administrador de Rede de Computadores - Valid Soluções S/A;21;1;Qualificação Profissional;1;;;
+3;QUA0245;QUA0245;QUA0245;Administrador de Rede de Computadores - Valid Soluções S/A;520;1;1;Administrador de Rede de Computadores - Valid Soluções S/A;21;1;Qualificação Profissional;1;;;
+3;QUA0245;QUA0245;QUA0245.01;Administrador de Rede de Computadores - Valid Soluções S/A;520;1;1;Administrador de Rede de Computadores - Valid Soluções S/A;21;1;Qualificação Profissional;1;;;
+3;QUA0246;QUA0246;QUA0246.01;Operador de Máquinas Móveis Ferroviárias - CSN;160;0;1;Operador de Máquinas Móveis Ferroviárias - CSN - EAD;21;1;Qualificação Profissional;1;2;1;EAD - 100% de Aulas On-line ao Vivo
+3;QUA0247;QUA0247;QUA0247.01;Operador de Processos Siderúrgicos - CSN;208;0;1;Operador de Processos Siderúrgicos - CSN – EAD;21;1;Qualificação Profissional;1;2;1;EAD - 100% de Aulas On-line ao Vivo
+3;QUA0251;QUA0251;QUA0251.01;Operador de Máquina em Produção Industrial de T-shirt e Camisa Polo;300;1;1;Operador de Máquina em Produção Industrial de T-shirt e Camisa Polo - Floc Têxtil;21;1;Qualificação Profissional;1;;;
+3;QUA0251;QUA0251;QUA0251.02;Operador de Máquina em Produção Industrial de T-shirt e Camisa Polo - Floc Têxtil;300;1;1;Operador de Máquina em Produção Industrial de T-shirt e Camisa Polo - Floc Têxtil;21;1;Qualificação Profissional;1;;;
+3;QUA0253;QUA0253;QUA0253.01;Assistente de Operações em Logística - Ocyan;180;0;1;Assistente de Operações em Logística - Ocyan;21;1;Qualificação Profissional;1;2;1;EAD - 100% de Aulas On-line ao Vivo
+3;QUA0254;QUA0254;QUA0254.01;Auxiliar de Plataforma - Ocyan;180;1;1;Auxiliar de Plataforma - Ocyan;21;1;Qualificação Profissional;1;1;1;EAD - 50% de Aulas On-line ao Vivo + Autoestudo
+3;QUA0256;QUA0256;QUA0256.01;Almoxarife - ABESPETRO;200;0;1;Almoxarife - ABESPETRO;21;1;Qualificação Profissional;1;;;
+3;QUA0257;QUA0257;QUA0257.01;Assistente de Produção Industrial - ABESPETRO;200;0;1;Assistente de Produção Industrial - ABESPETRO;21;1;Qualificação Profissional;1;;;
+3;QUA0258;QUA0258;QUA0258.01;Operador de Impressão em Processo Dry Offset - Ball Corporation;160;1;1;Operador de Impressão em Processo Dry Offset - Ball Corporation;21;1;Qualificação Profissional;1;;;
+3;QUA0258;QUA0258;QUA0258.02;Operador de Impressão em Processo Dry Offset - Ball Corporation;160;0;1;Operador de Impressão em Processo Dry Offset - Ball Corporation;21;1;Qualificação Profissional;1;1;1;EAD - 50% de Aulas On-line ao Vivo + Autoestudo
+3;QUA0259;QUA0259;QUA0259.01;Operador de Computador - ABESPETRO;200;0;1;Operador de Computador - ABESPETRO;21;1;Qualificação Profissional;1;;;
+3;QUA0260;QUA0260;QUA0260.01;Montador e Reparador de Computadores - ABESPETRO;200;0;1;Montador e Reparador de Computadores - ABESPETRO;21;1;Qualificação Profissional;1;;;
+3;QUA0261;QUA0261;QUA0261.01;Operador de Processos Siderúrgicos - ArcelorMittal;208;0;1;Operador de Processos Siderúrgicos - ArcelorMittal;21;1;Qualificação Profissional;1;;;
+3;QUA0262;QUA0262;QUA0262.01;Operador de Máquina de Sopro - Grande Rio Alimentos;200;1;1;Operador de Máquina de Sopro - Grande Rio Alimentos;21;1;Qualificação Profissional;1;;;
+3;QUA0264;QUA0264;QUA0264.01;Eletricista Instalador Residencial;220;1;1;Eletricista Instalador Residencial - E+;21;1;Qualificação Profissional;1;;;
+3;QUA0267;QUA0267;QUA0267.01;Mecânico de Ar Condicionado e Refrigeração;220;1;1;Mecânico de Ar Condicionado e Refrigeração - E+;21;1;Qualificação Profissional;1;;;
+3;QUA0269;QUA0269;QUA0269.01;Assistente de Produção Industrial - Porto Sudeste;180;0;1;Assistente de Produção Industrial - Porto Sudeste;21;1;Qualificação Profissional;1;;;
+3;QUA0270;QUA0270;QUA0270.01;Assistente de Recursos Humanos;180;1;1;Assistente de Recursos Humanos - RH - SIQUIRJ;21;1;Qualificação Profissional;1;;;
+3;QUA0274;QUA0274;QUA0274.01;Qualificação Inicial Mundo do Trabalho - Itinerário Gestão;200;0;1;Qualificação Inicial Mundo do Trabalho - Itinerário Gestão;22;1;Qualificação Profissional - Itinerário V Ensino Médio;1;;;
+3;QUA0276;QUA0276;QUA0276.01;Qualificação Inicial Mundo do Trabalho - Itinerário Audiovisual;200;0;1;Qualificação Inicial Mundo do Trabalho - Itinerário Audiovisual;22;1;Qualificação Profissional - Itinerário V Ensino Médio;1;;;
+3;QUA0277;QUA0277;QUA0277.01;Qualificação Inicial Mundo do Trabalho - Itinerário Design;200;0;1;Qualificação Inicial Mundo do Trabalho - Itinerário Design;22;1;Qualificação Profissional - Itinerário V Ensino Médio;1;;;
+3;QUA0278;QUA0278;QUA0278.01;Qualificação Inicial Mundo do Trabalho - Itinerário Eletroeletrônica;200;0;1;Qualificação Inicial Mundo do Trabalho - Itinerário Eletroeletrônica;22;1;Qualificação Profissional - Itinerário V Ensino Médio;1;;;
+3;QUA0282;QUA0282;QUA0282.01;Eletricista de Redes de Distribuição de Energia Elétrica - ENEL BRASIL;240;1;1;Eletricista de Redes de Distribuição de Energia Elétrica - ENEL BRASIL;21;1;Qualificação Profissional;1;;;
+3;QUA0282;QUA0282;QUA0282.02;Eletricista de Redes de Distribuição de Energia Elétrica - ENEL BRASIL;240;1;1;Eletricista de Redes de Distribuição de Energia Elétrica - ENEL BRASIL;21;1;Qualificação Profissional;1;;;
+3;QUA0283;QUA0283;QUA0283.01;Auxiliar de Padaria e Confeitaria - Prefeitura de Saquarema;200;0;1;Auxiliar de Padaria e Confeitaria - Prefeitura de Saquarema;21;1;Qualificação Profissional;1;;;
+3;QUA0284;QUA0284;QUA0284.01;Operador de Produção Industrial - Bayer;240;0;1;Operador de Produção Industrial - Bayer;21;1;Qualificação Profissional;1;;;
+3;QUA0289;QUA0289;QUA0289.01;Mecânico Montador - GNA (Gás Natural Açu);380;0;1;Mecânico Montador - GNA (Gás Natural Açu);21;1;Qualificação Profissional;1;;;
+3;QUA0294;QUA0294;QUA0294.01;Assistente de Operações em Logística - ONESUBSEA;180;0;1;Assistente de Operações em Logística - ONESUBSEA;21;1;Qualificação Profissional;1;;;
+3;QUA0299;QUA0299;QUA0299.01;Auxiliar de Plataforma - Prefeitura de Carapebus;200;1;1;Auxiliar de Plataforma - Prefeitura de Carapebus;21;1;Qualificação Profissional;1;;;
+3;QUA0300;QUA0300;QUA0300.02;Programador Front-End;200;2;1;Programador Front-End;21;1;Qualificação Profissional;1;;;
+3;QUA0302;QUA0302;QUA0302.01;Desenvolvedor Mobile Multiplataformas;360;1;1;Desenvolvedor Mobile Multiplataformas;21;1;Qualificação Profissional;1;;;
+3;QUA0305;QUA0305;QUA0305.02;Programador Full Stack;560;2;1;Programador Full Stack;21;1;Qualificação Profissional;1;;;
+3;QUA0309;QUA0309;QUA0309.01;Operador de Produção Industrial - Ingredion Brasil;160;0;1;Operador de Produção Industrial - Ingredion Brasil;21;1;Qualificação Profissional;1;;;
+3;QUA0312;QUA0312;QUA0312.01;Assistente de Marketing Digital - Prefeitura de Carapebus;200;0;1;Assistente de Marketing Digital - Prefeitura de Carapebus;21;1;Qualificação Profissional;1;;;
+3;QUA0314;QUA0314;QUA0314.01;Operador de Produção de Petróleo Offshore;340;1;1;Operador de Produção de Petróleo Offshore;21;1;Qualificação Profissional;1;;;
+3;QUA0316;QUA0316;QUA0316.01;Eletricista de Manutenção Ferroviária - Prefeitura de Barra do Piraí;420;0;1;Eletricista de Manutenção Ferroviária - Prefeitura de Barra do Piraí;21;1;Qualificação Profissional;1;;;
+3;QUA0317;QUA0317;QUA0317.01;Assistente de Controle da Qualidade;200;1;1;Assistente de Controle da Qualidade - Prefeitura Municipal de São Francisco do Itabapoana;21;1;Qualificação Profissional;1;;;
+3;QUA0322;QUA0322;QUA0322.01;Construtor Refratarista - CBSI;280;0;1;Construtor Refratarista - CBSI;21;1;Qualificação Profissional;1;;;
+3;QUA0323;QUA0323;QUA0323.01;Manobrador Ferroviário - Supervia;212;0;1;Manobrador Ferroviário - Supervia;21;1;Qualificação Profissional;1;;;
+3;QUA0324;QUA0324;QUA0324.01;Eletricista Instalador Predial - Prefeitura de Cachoeiras de Macacu;180;0;1;Eletricista Instalador Predial - Prefeitura de Cachoeiras de Macacu;21;1;Qualificação Profissional;1;;;
+3;QUA0325;QUA0325;QUA0325.01;Auxiliar em Operações Logísticas;360;0;1;Auxiliar em Operações Logísticas - Projeto Niterói EcoSocial II;21;1;Qualificação Profissional;1;;;
+3;QUA0327;QUA0327;QUA0327.01;Assistente de Marketing Digital;340;0;1;Assistente de Marketing Digital - Projeto Niterói EcoSocial II;21;1;Qualificação Profissional;1;;;
+3;QUA0328;QUA0328;QUA0328.01;Confeiteiro;420;0;1;Confeiteiro - Projeto Niterói EcoSocial II;21;1;Qualificação Profissional;1;;;
+3;QUA0329;QUA0329;QUA0329.01;Desenvolvedor de Aplicativos;420;0;1;Desenvolvedor de Aplicativos - Projeto Niterói EcoSocial II;21;1;Qualificação Profissional;1;;;
+3;QUA0330;QUA0330;QUA0330.01;Mecânico de Refrigeração Doméstica;360;0;1;Mecânico de Refrigeração Doméstica - Projeto Niterói EcoSocial II;21;1;Qualificação Profissional;1;;;
+3;QUA0331;QUA0331;QUA0331.01;Padeiro;420;0;1;Padeiro - Projeto Niterói EcoSocial II;21;1;Qualificação Profissional;1;;;
+3;QUA0332;QUA0332;QUA0332.01;Almoxarife;220;1;1;Almoxarife - Emprega Mais Novo Emprego;21;1;Qualificação Profissional;1;;;
+3;QUA0334;QUA0334;QUA0334.01;Assistente de Controle da Qualidade;240;1;1;Assistente de Controle da Qualidade - Emprega Mais Novo Emprego;21;1;Qualificação Profissional;1;;;
+3;QUA0336;QUA0336;QUA0336.01;Caldeireiro;316;0;1;Caldeireiro - Emprega Mais Novo Emprego;21;1;Qualificação Profissional;1;;;
+3;QUA0337;QUA0337;QUA0337.01;Eletricista Predial;440;1;1;Eletricista Predial - Emprega Mais Novo Emprego;21;1;Qualificação Profissional;1;;;
+3;QUA0339;QUA0339;QUA0339.01;Instalador de Sistemas Fotovoltaicos;220;1;1;Instalador de Sistemas Fotovoltaicos - Emprega Mais Novo Emprego;21;1;Qualificação Profissional;1;;;
+3;QUA0340;QUA0340;QUA0340.01;Operador de Produção Industrial;420;0;1;Operador de Produção Industrial - Emprega Mais Novo Emprego;21;1;Qualificação Profissional;1;;;
+3;QUA0348;QUA0348;QUA0348.01;Assistente de Operações em Logística;220;1;1;Assistente de Operações em Logística - Emprega Mais Novo Emprego;21;1;Qualificação Profissional;1;;;
+3;QUA0349;QUA0349;QUA0349.01;Mecânico de Manutenção e Instalação de Aparelhos de Climatização e Refrigeração;220;1;1;Mecânico de Manutenção e Instalação de Aparelhos de Climatização e Refrigeração - Emprega Mais Novo Emprego;21;1;Qualificação Profissional;1;;;
+3;QUA0352;QUA0352;QUA0352.01;Agente de Reflorestamento;420;0;1;Agente de Reflorestamento - Projeto Niterói EcoSocial II;21;1;Qualificação Profissional;1;;;
+3;QUA0353;QUA0353;QUA0353.01;Agente de Saneamento;508;0;1;Agente de Saneamento - Projeto Niterói EcoSocial II;21;1;Qualificação Profissional;1;;;
+3;QUA0354;QUA0354;QUA0354.01;Eletricista Instalador Residencial;420;0;1;Eletricista Instalador Residencial - Projeto Niterói EcoSocial II;21;1;Qualificação Profissional;1;;;
+3;QUA0355;QUA0355;QUA0355.01;Operador de Suporte Técnico em TI;440;0;1;Operador de Suporte Técnico em TI - Projeto Niterói EcoSocial II;21;1;Qualificação Profissional;1;;;
+3;QUA0356;QUA0356;QUA0356.01;Soldador de Aço Carbono Eletro Revestido 4G - CBSI;212;0;1;Soldador de Aço Carbono Eletro Revestido 4G - CBSI;21;1;Qualificação Profissional;1;;;
+3;QUA0361;QUA0361;QUA0361.01;Operador de Manutenção Eletromecânico - Pernod Ricard;180;0;1;Operador de Manutenção Eletromecânico - Pernod Ricard;21;1;Qualificação Profissional;1;;;
+3;QUA0367;QUA0367;QUA0367.01;Eletricista de Obras - Centro de Avaliações do Exército - CAEx;300;0;1;Eletricista de Obras - Centro de Avaliações do Exército - CAEx;21;1;Qualificação Profissional;1;;;
+3;QUA0370;QUA0370;QUA0370.02;Programador Full Stack;560;2;1;Programador Full Stack;21;1;Qualificação Profissional;1;;;
+3;QUA0373;QUA0373;QUA0373.01;Eletricista de Audiovisual;212;0;1;Eletricista de Audiovisual;21;1;Qualificação Profissional;1;;;
+3;QUA0374;QUA0374;QUA0374.01;Soldador de aço carbono TIG 6G - Secretaria Especial de Políticas e Promoção da Mulher;268;0;1;Soldador de aço carbono TIG 6G - Secretaria Especial de Políticas e Promoção da Mulher;21;1;Qualificação Profissional;1;;;
+3;QUA0375;QUA0375;QUA0375.02;Programador Back-End;300;2;1;Programador Back-End;21;1;Qualificação Profissional;1;;;
+3;QUA0376;QUA0376;QUA0376.01;Operador de Produção de Petróleo Offshore - Prefeitura de Carapebus;340;0;1;Operador de Produção de Petróleo Offshore - Prefeitura de Carapebus;21;1;Qualificação Profissional;1;;;
+3;QUA0377;QUA0377;QUA0377.01;Alimentador de Linha de Produção - Banco da Providência;180;0;1;Alimentador de Linha de Produção - Banco da Providência;21;1;Qualificação Profissional;1;;;
+3;QUA0378;QUA0378;QUA0378.01;Montador e Reparador de Computador - Projeto Energia para Vencer;180;0;1;Montador e Reparador de Computador - Projeto Energia para Vencer;21;1;Qualificação Profissional;1;;;
+3;QUA0385;QUA0385;QUA0385.01;Assistente Administrativo - Projeto Energia para Vencer;180;0;1;Assistente Administrativo - Projeto Energia para Vencer;21;1;Qualificação Profissional;1;;;
+3;QUA0386;QUA0386;QUA0386.01;Desenvolvedor de Conteúdos Youtube - Projeto Energia para Vencer;160;0;1;Desenvolvedor de Conteúdos Youtube - Projeto Energia para Vencer;21;1;Qualificação Profissional;1;;;
+3;QUA0387;QUA0387;QUA0387.01;Ferramenteiro de Bancada - Projeto Elas na Indústria;360;0;1;Ferramenteiro de Bancada - Projeto Elas na Indústria;21;1;Qualificação Profissional;1;;;
+3;QUA0389;QUA0389;QUA0389.01;Soldador a Arco Elétrico - SINDMETAL;380;0;1;Soldador a Arco Elétrico - SINDMETAL;21;1;Qualificação Profissional;1;;;
+3;QUA0390;QUA0390;QUA0390.01;Montador e Reparador de Computador - Prefeitura de Tanguá / ACT;180;0;1;Montador e Reparador de Computador - Prefeitura de Tanguá / ACT;21;1;Qualificação Profissional;1;;;
+3;QUA0391;QUA0391;QUA0391.01;Assistente de Recursos Humanos - Prefeitura Municipal de São Gonçalo;160;0;1;Assistente de Recursos Humanos - Prefeitura Municipal de São Gonçalo;21;1;Qualificação Profissional;1;;;
+3;QUA0394;QUA0394;QUA0394.01;Instalador e Reparador de Redes de Computadores - SPM;220;0;1;Instalador e Reparador de Redes de Computadores - SPM;21;1;Qualificação Profissional;1;;;
+3;QUA0399;QUA0399;QUA0399.01;Mecânico Ajustador - Votorantim Cimentos;200;0;1;Mecânico Ajustador - Votorantim Cimentos;21;1;Qualificação Profissional;1;;;
+3;QUA0404;QUA0404;QUA0404.01;Montador de Andaimes;260;1;1;Montador de Andaimes;21;1;Qualificação Profissional;1;;;
+3;QUA0404;QUA0404;QUA0404.02;Montador de Andaimes;260;0;1;Montador de Andaimes;21;1;Qualificação Profissional;1;;;
+3;QUA0406;QUA0406;QUA0406.01;Montador de Andaimes - Prefeitura de Macaé;180;0;1;Montador de Andaimes - Prefeitura de Macaé;21;1;Qualificação Profissional;1;;;
+3;QUA0407;QUA0407;QUA0407.01;Galvanizador;160;0;1;Galvanizador;21;1;Qualificação Profissional;1;;;
+3;QUA0410;QUA0410;QUA0410.01;Eletricista Instalador Residencial - Prefeitura de Carapebus;180;0;1;Eletricista Instalador Residencial - Prefeitura de Carapebus;21;1;Qualificação Profissional;1;;;
+3;QUA0411;QUA0411;QUA0411.01;Instalador de Sistemas Elétricos Prediais - Prefeitura de Carapebus;240;0;1;Instalador de Sistemas Elétricos Prediais - Prefeitura de Carapebus;21;1;Qualificação Profissional;1;;;
+3;QUA0415;QUA0415;QUA0415.01;Assistente Administrativo;800;0;1;Assistente Administrativo - RH;21;1;Qualificação Profissional;1;;;
+3;QUA0416;QUA0416;QUA0416.01;Confeccionador de Lingerie e Moda Praia - Prefeitura de Maricá;260;0;1;Confeccionador de Lingerie e Moda Praia - Prefeitura de Maricá;21;1;Qualificação Profissional;1;;;
+3;QUA0418;QUA0418;QUA0418.01;Motion Designer;220;2;1;Motion Designer;21;1;Qualificação Profissional;1;;;
+3;QUA0419;QUA0419;QUA0419.01;Produtor de Audiovisual;180;2;1;Produtor de Audiovisual;21;1;Qualificação Profissional;1;;;
+3;QUA0420;QUA0420;QUA0420.01;Videomaker;304;2;1;Videomaker;21;1;Qualificação Profissional;1;;;
+3;QUA0426;QUA0426;QUA0426.01;Assistente de Operações em Logística - Halliburton;340;1;1;Assistente de Operações em Logística - Halliburton;21;1;Qualificação Profissional;1;;;
+3;QUA0426;QUA0426;QUA0426.02;Assistente de Operações em Logística - Halliburton;340;0;1;Assistente de Operações em Logística - Halliburton;21;1;Qualificação Profissional;1;;;
+3;QUA0428;QUA0428;QUA0428.01;Eletricista Industrial - CBSI;180;0;1;Eletricista Industrial - CBSI;21;1;Qualificação Profissional;1;;;
+3;QUA0433;QUA0433;QUA0433.02;Assistente de Moda - Desenvolvimento de Coleção;300;2;1;Assistente de Moda - Desenvolvimento de Coleção;21;1;Qualificação Profissional;1;;;
+3;QUA0451;QUA0451;QUA0451.01;Eletricista de Automóveis;220;0;1;Eletricista de Automóveis - Programa SEEDUC;21;1;Qualificação Profissional;1;;;
+3;QUA0452;QUA0452;QUA0452.01;Marketing Digital;200;0;1;Marketing Digital - Programa SEEDUC;21;1;Qualificação Profissional;1;;;
+3;QUA0458;QUA0458;QUA0458.01;Curso Especial de Supervisor de Mergulho Raso Profissional - Oceânica;324;1;1;Curso Especial de Supervisor de Mergulho Raso Profissional - Oceânica;21;1;Qualificação Profissional;1;4;1;EAD Semipresencial - Mínimo de 20% de Atividades Presenciais
+3;QUA0464;QUA0464;QUA0464.01;Editor De Vídeo - Prefeitura de Pinheiral;200;0;1;Editor De Vídeo - Prefeitura de Pinheiral;21;1;Qualificação Profissional;1;;;
+3;QUA0465;QUA0465;QUA0465.01;Estofador de Veículos;188;2;1;Estofador de Veículos;21;1;Qualificação Profissional;1;;;
+3;QUA0466;QUA0466;QUA0466.02;Produtor de Audiovisual;180;2;1;Produtor de Audiovisual;21;1;Qualificação Profissional;1;1;1;EAD - 50% de Aulas On-line ao Vivo + Autoestudo
+3;QUA0468;QUA0468;QUA0468.01;Operador de Infraestrutura de Redes - PMERJ;432;0;1;Operador de Infraestrutura de Redes - PMERJ;21;1;Qualificação Profissional;1;;;
+3;QUA0470;QUA0470;QUA0470.01;Operador de Processos Petroquímicos - ICONIC;260;0;1;Operador de Processos Petroquímicos - ICONIC;21;1;Qualificação Profissional;1;;;
+3;QUA0471;QUA0471;QUA0471.01;Eletricista de Redes De Distribuição De Energia Elétrica;420;2;1;Eletricista de Redes De Distribuição De Energia Elétrica;21;1;Qualificação Profissional;1;;;
+3;QUA0476;QUA0476;QUA0476.01;Mecânico Montador;300;0;1;Mecânico Montador;21;1;Qualificação Profissional;1;;;
+3;QUA0483;QUA0483;QUA0483.01;Eletricista Instalador Predial - Instituto Cyrela;160;0;1;Eletricista Instalador Predial - Instituto Cyrela;21;1;Qualificação Profissional;1;;;
+3;QUA0484;QUA0484;QUA0484.01;Curso Especial de Supervisor de Mergulho Raso Comercial - Continental;324;0;1;Curso Especial de Supervisor de Mergulho Raso Comercial - Continental;21;1;Qualificação Profissional;1;4;1;EAD Semipresencial - Mínimo de 20% de Atividades Presenciais
+3;QUA0485;QUA0485;QUA0485.01;Curso Especial de Supervisor de Mergulho Raso Comercial - Oceânica;324;0;1;Curso Especial de Supervisor de Mergulho Raso Comercial - Oceânica;21;1;Qualificação Profissional;1;;;
+3;QUA0486;QUA0486;QUA0486.01;Instalador Hidráulico de Edificação - Instituto Cyrela;160;0;1;Instalador Hidráulico de Edificação - Instituto Cyrela;21;1;Qualificação Profissional;1;;;
+3;QUA0487;QUA0487;QUA0487.01;Modelista Modelagem Manual - Prefeitura de Saquarema;220;0;1;Modelista Modelagem Manual - Prefeitura de Saquarema;21;1;Qualificação Profissional;1;;;
+3;QUA0488;QUA0488;QUA0488.01;Operador de Máquina de Costura para Produção Industrial Tecido Plano - Prefeitura de Saquarema;260;0;1;Operador de Máquina de Costura para Produção Industrial Tecido Plano - Prefeitura de Saquarema;21;1;Qualificação Profissional;1;;;
+3;QUA0489;QUA0489;QUA0489.01;Operador de Máquinas de Costura Industrial de Lingerie - Prefeitura de Saquarema;268;0;1;Operador de Máquinas de Costura Industrial de Lingerie - Prefeitura de Saquarema;21;1;Qualificação Profissional;1;;;
+3;QUA0491;QUA0491;QUA0491.01;Auxiliar de Encanador Industrial;240;0;1;Auxiliar de Encanador Industrial - SINAVAL;21;1;Qualificação Profissional;1;;;
+3;QUA0495;QUA0495;QUA0495.01;Programador Full-Stack - Autonomia e Renda;670;0;1;Programador Full-Stack - Autonomia e Renda;21;1;Qualificação Profissional;1;;;
+3;QUA0496;QUA0496;QUA0496.01;Eletricista de Obras - IGUÁ;160;0;1;Eletricista de Obras - IGUÁ;21;1;Qualificação Profissional;1;;;
+3;QUA0497;QUA0497;QUA0497.01;Montador de Andaimes - FerroPort;180;0;1;Montador de Andaimes - FerroPort;21;1;Qualificação Profissional;1;;;
+3;QUA0498;QUA498;QUA0498.01;Sinaleiro Amarrador de Cargas - SERVMAR;180;0;1;Sinaleiro Amarrador de Cargas - SERVMAR;21;1;Qualificação Profissional;1;;;
+3;QUA0499;QUA0499;QUA0499.01;Desenvolvedor de Projetos Maker e Empreendedorismo - Fundação Gol de Letra;200;0;1;Desenvolvedor de Projetos Maker e Empreendedorismo - Fundação Gol de Letra;21;1;Qualificação Profissional;1;;;
+3;QUA0500;QUA0500;QUA0500.01;Mecânico de Refrigeração e Climatização Residencial;280;2;1;Mecânico de Refrigeração e Climatização Residencial;21;1;Qualificação Profissional;1;;;
+3;QUA0502;QUA0502;QUA0502.01;Operador de Processos Siderúrgicos - Gerdau;252;0;1;Operador de Processos Siderúrgicos - Gerdau;21;1;Qualificação Profissional;1;;;
+3;QUA0503;QUA0503;QUA0503.01;Operador de Processos e Manutenção Industrial - Limppano;308;0;1;Operador de Processos e Manutenção Industrial - Limppano;21;1;Qualificação Profissional;1;;;
+3;QUA0504;QUA0504;QUA0504.01;Operador de Torno Mecânico e Fresadora - Macrousi;240;0;1;Operador de Torno Mecânico e Fresadora - Macrousi;21;1;Qualificação Profissional;1;;;
+3;QUA0505;QUA0505;QUA0505.01;Operador de Produção de Petróleo Offshore - PRIO;348;0;1;Operador de Produção de Petróleo Offshore - PRIO;21;1;Qualificação Profissional;1;;;
+3;QUA0507;QUA0507;QUA0507.01;Ilustrador - Vast Infraestrutura;160;0;1;Ilustrador - Vast Infraestrutura;21;1;Qualificação Profissional;1;;;
+3;QUA0508;QUA0508;QUA0508.01;Instalador Hidráulico de Edificações - CBIC;200;0;1;Instalador Hidráulico de Edificações - CBIC;21;1;Qualificação Profissional;1;;;
+3;QUA0509;QUA0509;QUA0509.01;Operador de Sistemas Computacionais em Rede - Fundação Gol de Letra;180;0;1;Operador de Sistemas Computacionais em Rede - Fundação Gol de Letra;21;1;Qualificação Profissional;1;;;
+3;QUA0510;QUA0510;QUA0510.01;Operador de Sistemas Computacionais em Rede - Fundec;180;0;1;Operador de Sistemas Computacionais em Rede - Fundec;21;1;Qualificação Profissional;1;;;
+3;QUA0511;QUA0511;QUA0511.01;Almoxarife - ASSECAMPE;180;0;1;Almoxarife - ASSECAMPE;21;1;Qualificação Profissional;1;;;
+3;QUA0512;QUA512;QUA0512.01;Almoxarife - FUNDEC;180;0;1;Almoxarife - FUNDEC;21;1;Qualificação Profissional;1;;;
+3;QUA0513;QUA0513;QUA0513.01;Assistente de Operações em Logística - FUNDEC;180;0;1;Assistente de Operações em Logística - FUNDEC;21;1;Qualificação Profissional;1;;;
+3;QUA0515;QUA0515;QUA0515.01;Programador de Banco de Dados - FORESEA;500;0;1;Programador de Banco de Dados - FORESEA;21;1;Qualificação Profissional;1;;;
+3;QUA0516;QUA0516;QUA0516.01;Programador para Análise de Dados - SERRATEC;560;0;1;Programador para Análise de Dados - SERRATEC;21;1;Qualificação Profissional;1;2;1;EAD - 100% de Aulas On-line ao Vivo
+3;QUA0517;QUA0517;QUA0517.01;Mecânico de Motocicletas - Projeto Niterói Jovem EcoSocial IV;460;0;1;Mecânico de Motocicletas - Projeto Niterói Jovem EcoSocial IV;21;1;Qualificação Profissional;1;;;
+3;QUA0518;QUA0518;QUA0518.01;Desenvolvedor de Aplicativos - Projeto Niterói Jovem EcoSocial IV;424;0;1;Desenvolvedor de Aplicativos - Projeto Niterói Jovem EcoSocial IV;21;1;Qualificação Profissional;1;;;
+3;QUA0519;QUA0519;QUA0519.01;Programador Front-End e Back-End - Projeto Niterói Jovem EcoSocial IV;456;0;1;Programador Front-End e Back-End - Projeto Niterói Jovem EcoSocial IV;21;1;Qualificação Profissional;1;;;
+3;QUA0520;QUA0520;QUA0520.01;Soldador de Aço Carbono, Eletrodo Revestido e MAG 6G - Projeto Niterói Jovem EcoSocial IV;510;0;1;Soldador de Aço Carbono, Eletrodo Revestido e MAG 6G - Projeto Niterói Jovem EcoSocial IV;21;1;Qualificação Profissional;1;;;
+3;QUA0521;QUA0521;QUA0521.01;Eletricista de Obras - Projeto Niterói Jovem EcoSocial IV;400;0;1;Eletricista de Obras - Projeto Niterói Jovem EcoSocial IV;21;1;Qualificação Profissional;1;;;
+3;QUA0522;QUA0522;QUA0522.01;Mecânico de Refrigeração Residencial - Projeto Niterói Jovem EcoSocial IV;480;0;1;Mecânico de Refrigeração Residencial - Projeto Niterói Jovem EcoSocial IV;21;1;Qualificação Profissional;1;;;
+3;QUA0523;QUA0523;QUA0523.01;Eletricista Instalador Predial - CBIC;200;0;1;Eletricista Instalador Predial - CBIC;21;1;Qualificação Profissional;1;;;
+3;QUA0524;QUA0524;QUA0524.01;Agente de Reflorestamento - Projeto Niterói Jovem EcoSocial IV;424;0;1;Agente de Reflorestamento - Projeto Niterói Jovem EcoSocial IV;21;1;Qualificação Profissional;1;;;
+3;QUA0525;QUA0525;QUA0525.01;Agente de Saneamento - Projeto Niterói Jovem EcoSocial IV;508;0;1;Agente de Saneamento - Projeto Niterói Jovem EcoSocial IV;21;1;Qualificação Profissional;1;;;
+3;QUA0526;QUA0526;QUA0526.01;Desenvolvedor Back-End - Start CO.DE;180;0;1;Desenvolvedor Back-End - Start CO.DE;21;1;Qualificação Profissional;1;;;
+3;QUA0527;QUA0527;QUA0527.01;Desenvolvedor Front-End - Start CO.DE;180;0;1;Desenvolvedor Front-End - Start CO.DE;21;1;Qualificação Profissional;1;;;
+3;QUA0528;QUA0528;QUA0528.01;Confeiteiro - Projeto Niterói Jovem EcoSocial IV;440;0;1;Confeiteiro - Projeto Niterói Jovem EcoSocial IV;21;1;Qualificação Profissional;1;;;
+3;QUA0529;QUA0529;QUA0529.01;Padeiro - Projeto Niterói Jovem EcoSocial IV;440;0;1;Padeiro - Projeto Niterói Jovem EcoSocial IV;21;1;Qualificação Profissional;1;;;
+3;QUA0530;QUA0530;QUA0530.01;Pizzaiolo - Projeto Niterói Jovem EcoSocial IV;280;0;1;Pizzaiolo - Projeto Niterói Jovem EcoSocial IV;21;1;Qualificação Profissional;1;;;
+3;QUA0531;QUA0531;QUA0531.01;Agente Ambiental Comunitário - Projeto Niterói Jovem EcoSocial IV;324;0;1;Agente Ambiental Comunitário - Projeto Niterói Jovem EcoSocial IV;21;1;Qualificação Profissional;1;;;
+3;QUA0532;QUA0532;QUA0532.01;Pizzaiolo - Setrab;160;0;1;Pizzaiolo - Setrab;21;1;Qualificação Profissional;1;;;
+3;QUA0533;QUA0533;QUA0533.01;Operador de Máquinas de Costura Industrial do Vestuário - Setrab;160;0;1;Operador de Máquinas de Costura Industrial do Vestuário - Setrab;21;1;Qualificação Profissional;1;;;
+3;QUA0534;QUA0534;QUA0534.01;Almoxarife - Setrab;180;0;1;Almoxarife - Setrab;21;1;Qualificação Profissional;1;;;
+3;QUA0535;QUA0535;QUA0535.01;Alimentador de Linha de Produção - Setrab;160;0;1;Alimentador de Linha de Produção - Setrab;21;1;Qualificação Profissional;1;;;
+3;QUA0536;QUA0536;QUA0536.01;Ajudantes de Obras Civis - Setrab;160;0;1;Ajudantes de Obras Civis - Setrab;21;1;Qualificação Profissional;1;;;
+3;QUA0537;QUA0537;QUA0537.01;Operador de Computador - Seatrium;180;0;1;Operador de Computador - Seatrium;21;1;Qualificação Profissional;1;;;
+3;QUA0538;QUA0538;QUA0538.01;Assistente de Operações em Logística - IGUÁ;180;0;1;Assistente de Operações em Logística - IGUÁ;21;1;Qualificação Profissional;1;;;
+3;QUA0539;QUA0539;QUA0539.01;Curso Especial de Supervisor de Mergulho Raso Comercial;324;2;1;Curso Especial de Supervisor de Mergulho Raso Comercial;21;1;Qualificação Profissional;1;5;1;EAD Semipresencial
+3;QUA0540;QUA0540;QUA0540.01;Eletricista de instalações - VAST;240;0;1;Eletricista de instalações - VAST;21;1;Qualificação Profissional;1;;;
+3;QUA0541;QUA0541;QUA0541.01;Operador de Redes - Marinha do Brasil;432;0;1;Operador de Redes - Marinha do Brasil;21;1;Qualificação Profissional;1;;;
+3;QUA2018;QUA2018;QUA2018.01;Assistente Administrativo - Prefeitura de Tanguá;180;0;1;Assistente Administrativo - Prefeitura de Tanguá;21;1;Qualificação Profissional;1;;;
+3;QUA2019;QUA2019;QUA2019.02;Operador de Máquinas de Costura Industrial do Vestuário;300;2;1;Operador de Máquinas de Costura Industrial do Vestuário;21;1;Qualificação Profissional;1;;;
+3;QUA2020;QUA2020;QUA2020.01;Operador de Máquinas de Costura Industrial de Lingerie;268;1;1;Operador de Máquinas de Costura Industrial de Lingerie;21;1;Qualificação Profissional;1;;;
+3;QUA2021;QUA2021;QUA2021.02;Operador de Máquinas de Costura industrial de Moda Fitness;252;2;1;Operador de Máquinas de Costura industrial de Moda Fitness;21;1;Qualificação Profissional;1;;;
+3;QUA2028;QUA2028;QUA2028.01;Soldador de Aço Carbono Mag 6g - Marinha do Brasil;212;0;1;Soldador de Aço Carbono Mag 6g - Marinha do Brasil;21;1;Qualificação Profissional;1;;;
+3;QUA2034;QUA2034;QUA2034.02;Administrador de Banco de Dados;180;2;1;Administrador de Banco de Dados;21;1;Qualificação Profissional;1;1;1;EAD - 50% de Aulas On-line ao Vivo + Autoestudo
+3;QUA2049;QUA2049;QUA2049.02;Inspetor de Soldagem N1;220;2;1;Inspetor de Soldagem N1;21;1;Qualificação Profissional;1;5;1;EAD Semipresencial
+3;QUA2050;QUA2050;QUA2050.01;Qualificação Básica em Inteligência Artificial Industrial - Programa SENAI de IA Industrial;200;0;1;Qualificação Básica em Inteligência Artificial Industrial - Programa SENAI de IA Industrial;21;1;Qualificação Profissional;1;2;1;EAD - 100% de Aulas On-line ao Vivo
+3;QUA2051;QUA2051;QUA2051;Inspetor de Soldagem N1 - Petrobras;180;0;1;Inspetor de Soldagem N1 - Petrobras;21;1;Qualificação Profissional;1;;;
+3;TEC0001;TEC0001;TEC0001.03;Técnico em Automação Industrial - PROPAG;1200;0;1;Técnico em Automação Industrial;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0002;TEC0002;TEC0002.02;Técnico em Automação Industrial;1360;1;1;Técnico em Automação Industrial;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0003;TEC0003;TEC0003.01;Técnico em Comunicação Visual;800;0;1;Técnico em Comunicação Visual;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0005;TEC0005;TEC0005.03;Técnico Em Edificações;1200;2;1;Técnico Em Edificações;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0005;TEC0005;TEC0005.04;Técnico em Edificações - PROPAG;1200;0;1;Técnico Em Edificações;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0007;TEC0007;TEC0007.02;Técnico em Eletroeletrônica;1200;1;1;Técnico em Eletroeletrônica;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0008;TEC0008;TEC0008.04;Técnico em Eletrotécnica - PROPAG;1200;0;1;Técnico em Eletrotécnica;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0009;TEC0009;TEC0009.02;Técnico em Informática;1200;2;1;Técnico em Informática;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0010;TEC0010;TEC0010.04;Técnico em Logística - PROPAG;1200;0;1;Técnico em Logística;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0011;TEC0011;TEC0011.01;Técnico em Logística;960;1;1;Técnico em Logística;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0011;TEC0011;TEC0011.02;Técnico em Logística;960;1;1;Técnico em Logística;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0012;TEC0012;TEC0012.03;Técnico em Manutenção Automotiva;1200;2;1;Técnico em Manutenção Automotiva;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0013;TEC0013;TEC0013.01;Técnico em Manutenção e Suporte em Informática;1000;1;1;Técnico em Manutenção e Suporte em Informática;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0014;TEC0014;TEC0014.01;Técnico em Manutenção e Suporte em Informática;1200;1;1;Técnico em Manutenção e Suporte em Informática;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0014;TEC0014;TEC0014.02;Técnico em Manutenção e Suporte em Informática;1200;1;1;Técnico em Manutenção e Suporte em Informática;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0015;TEC0015;TEC0015.05;Técnico em Mecânica - PROPAG;1200;0;1;Técnico em Mecânica;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0016;TEC0016;TEC0016.01;Técnico em Mecatrônica;1200;0;1;Técnico em Mecatrônica;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0016;TEC0016;TEC0016.03;Técnico em Mecatrônica - PROPAG;1200;0;1;Técnico em Mecatrônica;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0017;TEC0017;TEC0017.01;Técnico em Multimídia;800;0;1;Técnico em Multimídia;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0017;TEC0017;TEC0017.02;Técnico em Multimídia;1000;2;1;Técnico em Multimídia;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0018;TEC0018;TEC0018.01;Técnico em Petróleo e Gás;1200;0;1;Técnico em Petróleo e Gás;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0019;TEC0019;TEC0019.01;Técnico em Petróleo e Gás;1200;1;1;Técnico em Petróleo e Gás;31;1;Habilitação Técnica de Nível Médio;1;4;1;EAD Semipresencial - Mínimo de 20% de Atividades Presenciais
+3;TEC0021;TEC0021;TEC0021.02;Técnico em Processos Gráficos;1200;2;1;Técnico em Processos Gráficos;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0021;TEC0021;TEC0021.03;Técnico em Processos Gráficos - PROPAG;1200;0;1;Técnico em Processos Gráficos;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0022;TEC0022;TEC0022.01;Técnico em Produção de Moda;800;1;1;Técnico em Produção de Moda;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0022;TEC0022;TEC0022.03;Técnico em Produção de Moda - PROPAG;1000;0;1;Técnico em Produção de Moda;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0023;TEC0023;TEC0023;Técnico em Programação de Jogos Digitais;1000;1;1;Técnico em Programação de Jogos Digitais;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0024;TEC0024;TEC0024.03;Técnico em Redes de Computadores - PROPAG;1000;0;1;Técnico em Redes de Computadores;31;1;Habilitação Técnica de Nível Médio;1;4;1;EAD Semipresencial - Mínimo de 20% de Atividades Presenciais
+3;TEC0025;TEC0025;TEC0025.01;Técnico em Redes de Computadores;1200;1;1;Técnico em Redes de Computadores;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0025;TEC0025;TEC0025.03;Técnico em Redes de Computadores;1000;1;1;Técnico em Redes de Computadores;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0026;TEC0026;TEC0026.02;Técnico Em Segurança Do Trabalho;1200;1;1;Técnico em Segurança do Trabalho;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0027;TEC0027;TEC0027.03;Técnico em Soldagem;1200;2;1;Técnico em Soldagem;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0027;TEC0027;TEC0027.04;Técnico em Soldagem - PROPAG;1200;0;1;Técnico em Soldagem;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0028;TEC0028;TEC0028.01;Técnico em Vestuário;1200;0;1;Técnico em Vestuário;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0028;TEC0028;TEC0028.03;Técnico em Vestuário - PROPAG;1200;0;1;Técnico em Vestuário;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0029;TEC0029;TEC0029;Técnico em Eletrotécnica - Michelin;1200;1;1;Técnico em Eletrotécnica - Michelin;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0030;TEC0030;TEC0030.02;Técnico em Alimentos;1200;1;1;Técnico em Alimentos;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0030;TEC0030;TEC0030.04;Técnico em Alimentos;1200;2;1;Técnico em Alimentos;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0030;TEC0030;TEC0030.05;Técnico em Alimentos - PROPAG;1200;0;1;Técnico em Alimentos;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0031;TEC0031;TEC0031.01;Técnico em Mecatrônica;1200;1;1;Técnico em Mecatrônica;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0031;TEC0031;TEC0031.02;Técnico em Mecatrônica;1200;1;1;Técnico em Mecatrônica;31;1;Habilitação Técnica de Nível Médio;1;4;1;EAD Semipresencial - Mínimo de 20% de Atividades Presenciais
+3;TEC0033;TEC0033;TEC0033.01;Técnico Em Edificações;1200;1;1;Técnico Em Edificações;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0034;TEC0034;TEC0034.01;Técnico em Mecânica;1280;1;1;Técnico em Mecânica;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0035;TEC0035;TEC0035.01;Técnico em Alimentos;1200;1;1;Técnico em Alimentos;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0036;TEC0036.01;TEC0036.01;Técnico Em Eletromecânica;1200;1;1;Técnico Em Eletromecânica;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0036;TEC0036.01;TEC0036.02;Técnico Em Eletromecânica;1200;1;1;Técnico Em Eletromecânica;31;1;Habilitação Técnica de Nível Médio;1;4;1;EAD Semipresencial - Mínimo de 20% de Atividades Presenciais
+3;TEC0037;TEC0037;TEC0037.01;Técnico em Manutenção Automotiva;1200;1;1;Técnico em Manutenção Automotiva;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0038;TEC0038;TEC0038.01;Técnico em Vestuário;1200;1;1;Técnico em Vestuário;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0038;TEC0038;TEC0038.02;Técnico em Vestuário;1200;1;1;Técnico em Vestuário;31;1;Habilitação Técnica de Nível Médio;1;4;1;EAD Semipresencial - Mínimo de 20% de Atividades Presenciais
+3;TEC0039;TEC0039;TEC0039.01;Técnico em Informática;1200;1;1;Técnico em Informática;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0040;TEC0040;TEC0040.03;Técnico em Sistemas de Energia Renovável - PROPAG;1200;0;1;Técnico em Sistemas de Energia Renovável;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0041;TEC0041;TEC0041.05;Técnico em Desenvolvimento de Sistemas - PROPAG;1200;0;1;Técnico em Desenvolvimento de Sistemas;31;1;Habilitação Técnica de Nível Médio;1;4;1;EAD Semipresencial - Mínimo de 20% de Atividades Presenciais
+3;TEC0043;TE0043;TEC0043.01;Técnico em Sistemas de Energia Renovável;1200;1;1;Técnico em Sistemas de Energia Renovável;31;1;Habilitação Técnica de Nível Médio;1;4;1;EAD Semipresencial - Mínimo de 20% de Atividades Presenciais
+3;TEC0044;TEC0044;TEC0044.01;Técnico em Cervejaria;1200;1;1;Técnico em Cervejaria;31;1;Habilitação Técnica de Nível Médio;1;4;1;EAD Semipresencial - Mínimo de 20% de Atividades Presenciais
+3;TEC0044;TEC0044;TEC0044.03;Técnico em Cervejaria;1200;2;1;Técnico em Cervejaria;31;1;Habilitação Técnica de Nível Médio;1;7;1;Híbrido
+3;TEC0045;TEC0045;TEC0045.01;Técnico em Desenvolvimento de Sistemas;1000;1;1;Técnico em Desenvolvimento de Sistemas;31;1;Habilitação Técnica de Nível Médio;1;4;1;EAD Semipresencial - Mínimo de 20% de Atividades Presenciais
+3;TEC0045;TEC0045;TEC0045.02;Técnico em Desenvolvimento de Sistemas;1200;1;1;Técnico em Desenvolvimento de Sistemas;31;1;Habilitação Técnica de Nível Médio;1;4;1;EAD Semipresencial - Mínimo de 20% de Atividades Presenciais
+3;TEC0045;TEC0045;TEC0045.03;Técnico em Desenvolvimento de Sistemas;1200;0;1;Técnico em Desenvolvimento de Sistemas;31;1;Habilitação Técnica de Nível Médio;1;7;1;Híbrido
+3;TEC0047;TEC0047;TEC0047.01;Técnico em Informática para Internet;1000;1;1;Técnico em Informática para Internet;31;1;Habilitação Técnica de Nível Médio;1;4;1;EAD Semipresencial - Mínimo de 20% de Atividades Presenciais
+3;TEC0047;TEC0047;TEC0047.02;Técnico em Informática para Internet;1000;1;1;Técnico em Informática para Internet;31;1;Habilitação Técnica de Nível Médio;1;4;1;EAD Semipresencial - Mínimo de 20% de Atividades Presenciais
+3;TEC0047;TEC0047;TEC0047.03;Técnico em Informática para Internet;1000;0;1;Técnico em Informática para Internet;31;1;Habilitação Técnica de Nível Médio;1;7;1;Híbrido
+3;TEC0048;TEC0048;TEC0048.01;Técnico Em Eletromecânica;1200;0;1;Técnico Em Eletromecânica;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0048;TEC0048;TEC0048.04;Técnico em Eletromecânica - PROPAG;1200;0;1;Técnico Em Eletromecânica;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0049;TEC0049;TEC0049.01;Técnico em Internet das Coisas - IoT;1300;1;1;Técnico em Internet das Coisas - IoT;31;1;Habilitação Técnica de Nível Médio;1;4;1;EAD Semipresencial - Mínimo de 20% de Atividades Presenciais
+3;TEC0049;TEC0049;TEC0049.02;Técnico em Internet das Coisas - IoT;1200;0;1;Técnico em Internet das Coisas - IoT;31;1;Habilitação Técnica de Nível Médio;1;7;1;Híbrido
+3;TEC0050;TEC0050;TEC0050.01;Técnico em Internet das Coisas - IoT;1200;1;1;Técnico em Internet das Coisas - IoT;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0051;TEC0051;TEC0051.01;Técnico em Química;1200;1;1;Técnico em Química;31;1;Habilitação Técnica de Nível Médio;1;4;1;EAD Semipresencial - Mínimo de 20% de Atividades Presenciais
+3;TEC0052;TEC0052;TEC0052.01;Técnico em Eletrotécnica;1200;0;1;Técnico em Eletrotécnica;32;1;Habilitação Técnica de Nível Médio - Itinerário V Ensino Méd;1;;;
+3;TEC0062;TEC0062;TEC0062.01;Técnico em Produção de Áudio e Vídeo;1200;0;1;Técnico em Produção de Áudio e Vídeo;32;1;Habilitação Técnica de Nível Médio - Itinerário V Ensino Méd;1;;;
+3;TEC0063;TEC0063;TEC0063.01;Técnico em Computação Gráfica;1200;0;1;Técnico em Computação Gráfica;32;1;Habilitação Técnica de Nível Médio - Itinerário V Ensino Méd;1;;;
+3;TEC0073;TEC0073;TEC0073.01;Técnico em Computação Gráfica;1000;1;1;Técnico em Computação Gráfica;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0073;TEC0073;TEC0073.02;Técnico em Computação Gráfica;1200;2;1;Técnico em Computação Gráfica;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0073;TEC0073;TEC0073.03;Técnico em Computação Gráfica - PROPAG;1200;0;1;Técnico em Computação Gráfica;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0074;TEC0074;TEC0074.02;Técnico em Mecânica;1200;0;1;Técnico em Mecânica - Michelin;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0075;TEC0075;TEC0075.01;Técnico em Design Gráfico;1000;0;1;Técnico em Design Gráfico;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0077;TEC0077;TEC0077.01;Técnico em Produção de Áudio e Vídeo;800;1;1;Técnico em Produção de Áudio e Vídeo;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0077;TEC0077;TEC0077.02;Técnico em Produção de Áudio e Vídeo;1200;2;1;Técnico em Produção de Áudio e Vídeo;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0077;TEC0077;TEC0077.03;Técnico em Produção de Áudio e Vídeo - PROPAG;1200;0;1;Técnico em Produção de Áudio e Vídeo;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0078;TEC0078;TEC0078.01;Técnico em Planejamento e Controle da Produção;800;1;1;Técnico em Planejamento e Controle da Produção;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0078;TEC0078;TEC0078.02;Técnico em Planejamento e Controle da Produção;800;1;1;Técnico em Planejamento e Controle da Produção;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0078;TEC0078;TEC0078.05;Técnico em Planejamento e Controle da Produção - PROPAG;1000;0;1;Técnico em Planejamento e Controle da Produção;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0080;TEC0080;TEC0080.01;Técnico em Design Gráfico;1000;0;1;Técnico em Design Gráfico;31;1;Habilitação Técnica de Nível Médio;1;7;1;Híbrido
+3;TEC0081;TEC0081;TEC0081.01;Técnico em Multimídia;800;0;1;Técnico em Multimídia;31;1;Habilitação Técnica de Nível Médio;1;7;1;Híbrido
+3;TEC0082;TEC0082;TEC0082.01;Técnico em Programação de Jogos Digitais;1000;0;1;Técnico em Programação de Jogos Digitais;31;1;Habilitação Técnica de Nível Médio;1;7;1;Híbrido
+3;TEC0089;TEC0089;TEC0089.01;Técnico em Processos Gráficos;1200;0;1;Técnico em Processos Gráficos;31;1;Habilitação Técnica de Nível Médio;1;7;1;Híbrido
+3;TEC0090;TEC0090;TEC0090.01;Técnico em Vestuário;1200;1;1;Técnico em Vestuário;31;1;Habilitação Técnica de Nível Médio;1;7;1;Híbrido
+3;TEC0090;TEC0090;TEC0090.02;Técnico em Vestuário;1200;0;1;Técnico em Vestuário;31;1;Habilitação Técnica de Nível Médio;1;7;1;Híbrido
+3;TEC0094;TEC0094;TEC0094.01;Técnico em Produção de Moda;800;1;1;Técnico em Produção de Moda;31;1;Habilitação Técnica de Nível Médio;1;7;1;Híbrido
+3;TEC0097;TEC0097;TEC0097.01;Técnico em Computação Gráfica;1200;0;1;Técnico em Computação Gráfica;32;1;Habilitação Técnica de Nível Médio - Itinerário V Ensino Méd;1;;;
+3;TEC0111;TEC0111;TEC0111.01;Técnico em Produção de Áudio e Vídeo;1200;0;1;Técnico em Produção de Áudio e Vídeo;32;1;Habilitação Técnica de Nível Médio - Itinerário V Ensino Méd;1;;;
+3;TEC0115;TEC0115;TEC0115.02;Técnico em Segurança do Trabalho - PROPAG;1200;0;1;Técnico em Segurança do Trabalho;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0116;TEC0116;TEC0116.02;Técnico em Refrigeração e Climatização - PROPAG;1200;0;1;Técnico em Refrigeração e Climatização;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0122;TEC0122;TEC0122.01;Técnico em Confeitaria;1200;0;1;Técnico em Confeitaria;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0123;TEC0123;TEC0123.01;Técnico em Computação Gráfica;1200;0;1;Técnico em Computação Gráfica;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0123;TEC0123;TEC0123.02;Técnico em Computação Gráfica;1200;0;1;Técnico em Computação Gráfica;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0128;TEC0128;TEC0128.01;Técnico em Eletroeletrônica;1200;0;1;Técnico em Eletroeletrônica;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0136;TEC0136;TEC0136.01;Técnico em Produção de Áudio e Vídeo;1200;0;1;Técnico em Produção de Áudio e Vídeo;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0136;TEC0136;TEC0136.02;Técnico em Produção de Áudio e Vídeo;1200;0;1;Técnico em Produção de Áudio e Vídeo;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0141;TEC0141;TEC0141;Técnico em Automação Industrial - Programa Autonomia e Renda Petrobras;1200;1;1;Técnico em Automação Industrial - Programa Autonomia e Renda Petrobras;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0149;TEC0149;TEC0149.02;Técnico em Química - PROPAG;1200;0;1;Técnico em Química;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0153;TEC0153;TEC0153.01;Técnico em Administração;800;1;1;Técnico em Administração;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0155;TEC0155;TEC0155.01;Técnico em Segurança do Trabalho - ETAM;1200;1;1;Técnico em Segurança do Trabalho - ETAM;31;1;Habilitação Técnica de Nível Médio;1;7;1;Híbrido
+3;TEC0155;TEC0155;TEC0155.02;Técnico em Segurança do Trabalho - ETAM;1200;0;1;Técnico em Segurança do Trabalho - ETAM;31;1;Habilitação Técnica de Nível Médio;1;7;1;Híbrido
+3;TEC0158;TEC0158;TEC0158.01;Técnico em Computação Gráfica;1200;0;1;Técnico em Computação Gráfica;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0159;TEC0159;TEC0159.01;Técnico em Produção de Áudio e Vídeo;1200;0;1;Técnico em Produção de Áudio e Vídeo;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0160;TEC0160;TEC0160.01;Técnico em Processos Gráficos;1200;0;1;Técnico em Processos Gráficos;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0161;TEC0161;TEC0161.01;Técnico em Design Gráfico;1000;0;1;Técnico em Design Gráfico;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0164;TEC0164;TEC0164.01;Técnico em Programação de Jogos Digitais - Programa SEEDUC;1280;0;1;Técnico em Programação de Jogos Digitais - Programa SEEDUC;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0165;TEC0165;TEC0165.01;Técnico em Panificação - Programa SEEDUC;1760;0;1;Técnico em Panificação - Programa SEEDUC;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0166;TEC0166;TEC0166.01;Técnico em Multimídia - Programa SEEDUC;1200;0;1;Técnico em Multimídia - Programa SEEDUC;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0167;TEC0167;TEC0167.01;Técnico em Eletrotécnica - Programa SEEDUC;1200;0;1;Técnico em Eletrotécnica - Programa SEEDUC;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0170;TEC0170;TEC0170.01;Técnico em Logística - Projeto Niterói Jovem Ecosocial IV;960;0;1;Técnico em Logística - Projeto Niterói Jovem Ecosocial IV;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0171;TEC0171;TEC0171.01;Técnico em Eletrotécnica - Projeto Niterói Jovem Ecosocial IV;1200;0;1;Técnico em Eletrotécnica - Projeto Niterói Jovem Ecosocial IV;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0172;TEC0172;TEC0172.01;Técnico em Metalurgia - PROPAG;1200;0;1;Técnico em Metalurgia - PROPAG;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0173;TEC0173;TEC0173.01;Técnico em Manutenção de Máquinas Industriais - PROPAG;1200;0;1;Técnico em Manutenção de Máquinas Industriais - PROPAG;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0174;TEC0174;TEC0174.01;Técnico em Manutenção Automotiva - PROPAG;1200;0;1;Técnico em Manutenção Automotiva - PROPAG;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0175;TEC0175;TEC0175.01;Técnico em Qualidade - PROPAG;1000;0;1;Técnico em Qualidade - PROPAG;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0176;TEC0176;TEC0176.01;Técnico em Eletroeletrônica - PROPAG;1200;0;1;Técnico em Eletroeletrônica - PROPAG;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;TEC0177;TEC0177;TEC0177.01;Técnico em Panificação - PROPAG;1200;0;1;Técnico em Panificação - PROPAG;31;1;Habilitação Técnica de Nível Médio;1;;;
+3;APR0001;APR0001;apr0001;Assistente Administrativo;800;1;1;Assistente Administrativo;11;1;Aprendizagem Industrial Básica;1;;;
