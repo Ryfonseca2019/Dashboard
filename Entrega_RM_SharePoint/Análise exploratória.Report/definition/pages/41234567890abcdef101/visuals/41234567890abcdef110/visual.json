@@ -1,0 +1,93 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "41234567890abcdef110",
+  "position": {
+    "x": 20,
+    "y": 20,
+    "width": 1880,
+    "height": 470,
+    "z": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Mediacao_Dominios"
+                    }
+                  },
+                  "Property": "CODCOLIGADA"
+                }
+              },
+              "queryRef": "RM_Mediacao_Dominios.CODCOLIGADA",
+              "nativeQueryRef": "CODCOLIGADA"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Mediacao_Dominios"
+                    }
+                  },
+                  "Property": "APLICACAO"
+                }
+              },
+              "queryRef": "RM_Mediacao_Dominios.APLICACAO",
+              "nativeQueryRef": "APLICACAO"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Mediacao_Dominios"
+                    }
+                  },
+                  "Property": "Codigo_Tabela"
+                }
+              },
+              "queryRef": "RM_Mediacao_Dominios.Codigo_Tabela",
+              "nativeQueryRef": "Codigo_Tabela"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Mediacao_Dominios"
+                    }
+                  },
+                  "Property": "Codigo_Valor"
+                }
+              },
+              "queryRef": "RM_Mediacao_Dominios.Codigo_Valor",
+              "nativeQueryRef": "Codigo_Valor"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Mediacao_Dominios"
+                    }
+                  },
+                  "Property": "Descricao_Valor"
+                }
+              },
+              "queryRef": "RM_Mediacao_Dominios.Descricao_Valor",
+              "nativeQueryRef": "Descricao_Valor"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

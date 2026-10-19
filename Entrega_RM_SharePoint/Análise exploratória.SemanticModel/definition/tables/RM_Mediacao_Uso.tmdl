@@ -1,0 +1,33 @@
+table 'RM_Mediacao_Uso'
+
+	column 'CODCOLIGADA'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: CODCOLIGADA
+
+	column 'CODFILIAL'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: CODFILIAL
+
+	column 'Codigo_Mediacao'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Codigo_Mediacao
+
+	column 'Quantidade_Turmas'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Quantidade_Turmas
+
+	column 'Turma_Exemplo'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Turma_Exemplo
+
+	partition 'RM_Mediacao_Uso' = m
+		mode: import
+		source =
+				let Fonte=Sql.Database("SRVSEDE01621PRE","CorporeRM",[Query="SELECT T.CODCOLIGADA,T.CODFILIAL,#(lf)CONVERT(nvarchar(100),T.TIPOMEDIACAO) Codigo_Mediacao,#(lf)COUNT_BIG(*) Quantidade_Turmas,#(lf)MIN(CONVERT(nvarchar(4000),T.CODTURMA)) Turma_Exemplo#(lf)FROM dbo.STURMA T WHERE T.CODCOLIGADA=3#(lf)AND T.DTFINAL>=DATEFROMPARTS(YEAR(GETDATE()),1,1)#(lf)GROUP BY T.CODCOLIGADA,T.CODFILIAL,T.TIPOMEDIACAO#(lf)ORDER BY T.CODFILIAL,T.TIPOMEDIACAO;"]) in Fonte
+
+	annotation PBI_ResultType = Table

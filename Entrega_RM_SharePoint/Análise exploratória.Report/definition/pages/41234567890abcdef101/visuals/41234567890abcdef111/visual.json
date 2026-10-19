@@ -1,0 +1,79 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "41234567890abcdef111",
+  "position": {
+    "x": 20,
+    "y": 510,
+    "width": 1880,
+    "height": 470,
+    "z": 1
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Mediacao_Metadados"
+                    }
+                  },
+                  "Property": "Origem"
+                }
+              },
+              "queryRef": "RM_Mediacao_Metadados.Origem",
+              "nativeQueryRef": "Origem"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Mediacao_Metadados"
+                    }
+                  },
+                  "Property": "Tabela"
+                }
+              },
+              "queryRef": "RM_Mediacao_Metadados.Tabela",
+              "nativeQueryRef": "Tabela"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Mediacao_Metadados"
+                    }
+                  },
+                  "Property": "Campo"
+                }
+              },
+              "queryRef": "RM_Mediacao_Metadados.Campo",
+              "nativeQueryRef": "Campo"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Mediacao_Metadados"
+                    }
+                  },
+                  "Property": "Detalhe"
+                }
+              },
+              "queryRef": "RM_Mediacao_Metadados.Detalhe",
+              "nativeQueryRef": "Detalhe"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -1,0 +1,8 @@
+V29 - Diagnóstico somente leitura de mediação.
+Página Mediação RM - investigar: tabela superior = candidatos GCONSIST; central = metadados e descrições; inferior = uso por filial e código.
+Correspondências encontradas são evidências para análise, não de-para aprovado. Não preenche automaticamente a mediação.
+GCONSIST examina coligadas 0 e 3. Uso filtra SENAI e término no ano atual ou posterior.
+Metadados podem ser incompletos conforme as permissões do usuário SQL. Domínio fixo do sistema pode não constar nessas tabelas.
+Consultas independentes da exportação principal. Atualizar e exportar as três tabelas em CSV.
+Mantidas as consultas V28. A padronização recente da mobilização ainda precisa ser refletida no de-para final.
+JSON, referências e integridade do ZIP conferidos; consultas não executadas contra o RM neste ambiente.

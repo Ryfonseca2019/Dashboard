@@ -1,0 +1,93 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "41234567890abcdef112",
+  "position": {
+    "x": 20,
+    "y": 1000,
+    "width": 1880,
+    "height": 470,
+    "z": 2
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Mediacao_Uso"
+                    }
+                  },
+                  "Property": "CODCOLIGADA"
+                }
+              },
+              "queryRef": "RM_Mediacao_Uso.CODCOLIGADA",
+              "nativeQueryRef": "CODCOLIGADA"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Mediacao_Uso"
+                    }
+                  },
+                  "Property": "CODFILIAL"
+                }
+              },
+              "queryRef": "RM_Mediacao_Uso.CODFILIAL",
+              "nativeQueryRef": "CODFILIAL"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Mediacao_Uso"
+                    }
+                  },
+                  "Property": "Codigo_Mediacao"
+                }
+              },
+              "queryRef": "RM_Mediacao_Uso.Codigo_Mediacao",
+              "nativeQueryRef": "Codigo_Mediacao"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Mediacao_Uso"
+                    }
+                  },
+                  "Property": "Quantidade_Turmas"
+                }
+              },
+              "queryRef": "RM_Mediacao_Uso.Quantidade_Turmas",
+              "nativeQueryRef": "Quantidade_Turmas"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Mediacao_Uso"
+                    }
+                  },
+                  "Property": "Turma_Exemplo"
+                }
+              },
+              "queryRef": "RM_Mediacao_Uso.Turma_Exemplo",
+              "nativeQueryRef": "Turma_Exemplo"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}
