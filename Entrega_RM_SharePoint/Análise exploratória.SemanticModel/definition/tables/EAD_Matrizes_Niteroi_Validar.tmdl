@@ -1,0 +1,87 @@
+table 'EAD_Matrizes_Niteroi_Validar'
+
+	column 'RM_CODCOLIGADA'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: RM_CODCOLIGADA
+
+	column 'RM_CODFILIAL'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: RM_CODFILIAL
+
+	column 'RM_IDPERLET'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: RM_IDPERLET
+
+	column 'RM_CODTURMA'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: RM_CODTURMA
+
+	column 'RM_Codigo_Curso'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: RM_Codigo_Curso
+
+	column 'RM_Codigo_Habilitacao'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: RM_Codigo_Habilitacao
+
+	column 'RM_Codigo_Grade'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: RM_Codigo_Grade
+
+	column 'RM_Tipo_Mediacao'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: RM_Tipo_Mediacao
+
+	column 'Ocorrencias_Grade_Compl'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Ocorrencias_Grade_Compl
+
+	column 'Codigo_Tipo_EAD_RM'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Codigo_Tipo_EAD_RM
+
+	column 'Descricao_EAD_RM'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Descricao_EAD_RM
+
+	column 'Opcao_App'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Opcao_App
+
+	column 'Status_Tipo_EAD'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Status_Tipo_EAD
+
+	partition 'EAD_Matrizes_Niteroi_Validar' = m
+		mode: import
+		source =
+				let
+				    Base=Table.SelectRows(RM_Oferta_Diagnostico,each [RM_CODFILIAL]=266),
+				    Grade=Table.Group(RM_Grade_TipoEAD,{"CODCOLIGADA","CODCURSO","CODHABILITACAO","CODGRADE"},{{"Ocorrencias",each Table.RowCount(_),Int64.Type},{"Codigos",each List.Distinct([TIPOEAD]),type list}}),
+				    Codigo=Table.AddColumn(Grade,"Codigo_Tipo_EAD_RM",each if List.Count([Codigos])=1 then [Codigos]{0} else null,type nullable text),
+				    J=Table.NestedJoin(Base,{"RM_CODCOLIGADA","RM_Codigo_Curso","RM_Codigo_Habilitacao","RM_Codigo_Grade"},Codigo,{"CODCOLIGADA","CODCURSO","CODHABILITACAO","CODGRADE"},"Grade",JoinKind.LeftOuter),
+				    E=Table.ExpandTableColumn(J,"Grade",{"Ocorrencias","Codigos","Codigo_Tipo_EAD_RM"},{"Ocorrencias_Grade_Compl","Codigos_EAD","Codigo_Tipo_EAD_RM"}),
+				    Mapa=#table(type table [Codigo_Tipo_EAD_RM=text,Opcao_App=text],{{"2","EAD - 100% de Aulas On-line ao Vivo"},{"1","EAD - 50% de Aulas On-line ao Vivo + Autoestudo"},{"3","EAD Autoinstrucional"},{"5","EAD Semipresencial"},{"4","EAD Semipresencial - Mínimo de 20% de Atividades Presenciais"},{"7","Híbrido"}}),
+				    JM=Table.NestedJoin(E,{"Codigo_Tipo_EAD_RM"},Mapa,{"Codigo_Tipo_EAD_RM"},"App",JoinKind.LeftOuter),
+				    EM=Table.ExpandTableColumn(JM,"App",{"Opcao_App"},{"Opcao_App"}),
+				    Dom=Table.SelectRows(RM_Mediacao_Dominios,each [CODCOLIGADA]=3 and [APLICACAO]="S" and [Codigo_Tabela]="TIPOEAD"),
+				    JD=Table.NestedJoin(EM,{"Codigo_Tipo_EAD_RM"},Dom,{"Codigo_Valor"},"Dominio",JoinKind.LeftOuter),
+				    Descricao=Table.AddColumn(JD,"Descricao_EAD_RM",each if Table.RowCount([Dominio])=1 then [Dominio]{0}[Descricao_Valor] else null,type nullable text),
+				    Status=Table.AddColumn(Descricao,"Status_Tipo_EAD",each if [Ocorrencias_Grade_Compl]=null then "Sem registro complementar da matriz" else if [Ocorrencias_Grade_Compl]<>1 then "Revisar: múltiplos registros complementares" else if [Codigo_Tipo_EAD_RM]=null or Text.Trim([Codigo_Tipo_EAD_RM])="" then "Tipo EAD vazio no RM; não inferir Presencial" else if [Descricao_EAD_RM]=null then "Revisar: domínio ausente ou ambíguo" else if [Opcao_App]=null then "Revisar: código sem opção no cadastro enviado" else if [Opcao_App]<>[Descricao_EAD_RM] then "Revisar: descrição diferente do cadastro enviado" else "Código e nome coincidem com cadastro enviado",type text),
+				    Resultado=Table.SelectColumns(Status,{"RM_CODCOLIGADA","RM_CODFILIAL","RM_IDPERLET","RM_CODTURMA","RM_Codigo_Curso","RM_Codigo_Habilitacao","RM_Codigo_Grade","RM_Tipo_Mediacao","Ocorrencias_Grade_Compl","Codigo_Tipo_EAD_RM","Descricao_EAD_RM","Opcao_App","Status_Tipo_EAD"})
+				in Resultado
+
+	annotation PBI_ResultType = Table

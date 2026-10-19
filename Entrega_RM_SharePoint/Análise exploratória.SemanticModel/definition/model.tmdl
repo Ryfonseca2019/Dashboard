@@ -134,3 +134,9 @@ ref table 'RM_Mediacao_Dominios'
 ref table 'RM_Mediacao_Metadados'
 
 ref table 'RM_Mediacao_Uso'
+
+ref table 'RM_Grade_TipoEAD'
+
+ref table 'EAD_Matrizes_Niteroi_Validar'
+
+ref table 'EAD_Matrizes_Niteroi_Resumo'

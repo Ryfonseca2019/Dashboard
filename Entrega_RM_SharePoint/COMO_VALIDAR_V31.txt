@@ -1,0 +1,8 @@
+V31 - Cruzamento diagnóstico de SGRADECOMPL.TIPOEAD com as ofertas de Niterói.
+Chave: coligada + curso + habilitação + grade. Estrutura é verificada antes da consulta.
+Compara descrições com domínio GCONSIST e com o cadastro enviado pelo usuário (snapshot, sem IDs).
+Não altera SharePoint nem preenche automaticamente a exportação final nesta etapa.
+Tipo EAD vazio não implica Presencial. Múltiplos registros são sinalizados para revisão.
+Página EAD - matrizes Niterói: exportar resumo superior e detalhamento inferior.
+As demais pendências e regras anteriores são preservadas.
+Consultas não executadas contra RM neste ambiente.

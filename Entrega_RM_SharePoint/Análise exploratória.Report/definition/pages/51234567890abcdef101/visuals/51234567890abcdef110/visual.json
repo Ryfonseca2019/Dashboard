@@ -1,0 +1,51 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "51234567890abcdef110",
+  "position": {
+    "x": 20,
+    "y": 20,
+    "width": 2360,
+    "height": 280,
+    "z": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "EAD_Matrizes_Niteroi_Resumo"
+                    }
+                  },
+                  "Property": "Status_Tipo_EAD"
+                }
+              },
+              "queryRef": "EAD_Matrizes_Niteroi_Resumo.Status_Tipo_EAD",
+              "nativeQueryRef": "Status_Tipo_EAD"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "EAD_Matrizes_Niteroi_Resumo"
+                    }
+                  },
+                  "Property": "Quantidade_Turmas"
+                }
+              },
+              "queryRef": "EAD_Matrizes_Niteroi_Resumo.Quantidade_Turmas",
+              "nativeQueryRef": "Quantidade_Turmas"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -1,0 +1,21 @@
+table 'EAD_Matrizes_Niteroi_Resumo'
+
+	column 'Status_Tipo_EAD'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Status_Tipo_EAD
+
+	column 'Quantidade_Turmas'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Quantidade_Turmas
+
+	partition 'EAD_Matrizes_Niteroi_Resumo' = m
+		mode: import
+		source =
+				let
+				    Fonte=EAD_Matrizes_Niteroi_Validar,
+				    Resultado=Table.Group(Fonte,{"Status_Tipo_EAD"},{{"Quantidade_Turmas",each Table.RowCount(Table.Distinct(Table.SelectColumns(_,{"RM_CODCOLIGADA","RM_CODFILIAL","RM_IDPERLET","RM_CODTURMA"}))),Int64.Type}})
+				in Resultado
+
+	annotation PBI_ResultType = Table

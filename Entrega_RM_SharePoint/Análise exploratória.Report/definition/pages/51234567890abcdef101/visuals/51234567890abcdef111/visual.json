@@ -1,0 +1,205 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "51234567890abcdef111",
+  "position": {
+    "x": 20,
+    "y": 320,
+    "width": 2360,
+    "height": 740,
+    "z": 1
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "EAD_Matrizes_Niteroi_Validar"
+                    }
+                  },
+                  "Property": "RM_CODCOLIGADA"
+                }
+              },
+              "queryRef": "EAD_Matrizes_Niteroi_Validar.RM_CODCOLIGADA",
+              "nativeQueryRef": "RM_CODCOLIGADA"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "EAD_Matrizes_Niteroi_Validar"
+                    }
+                  },
+                  "Property": "RM_CODFILIAL"
+                }
+              },
+              "queryRef": "EAD_Matrizes_Niteroi_Validar.RM_CODFILIAL",
+              "nativeQueryRef": "RM_CODFILIAL"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "EAD_Matrizes_Niteroi_Validar"
+                    }
+                  },
+                  "Property": "RM_IDPERLET"
+                }
+              },
+              "queryRef": "EAD_Matrizes_Niteroi_Validar.RM_IDPERLET",
+              "nativeQueryRef": "RM_IDPERLET"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "EAD_Matrizes_Niteroi_Validar"
+                    }
+                  },
+                  "Property": "RM_CODTURMA"
+                }
+              },
+              "queryRef": "EAD_Matrizes_Niteroi_Validar.RM_CODTURMA",
+              "nativeQueryRef": "RM_CODTURMA"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "EAD_Matrizes_Niteroi_Validar"
+                    }
+                  },
+                  "Property": "RM_Codigo_Curso"
+                }
+              },
+              "queryRef": "EAD_Matrizes_Niteroi_Validar.RM_Codigo_Curso",
+              "nativeQueryRef": "RM_Codigo_Curso"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "EAD_Matrizes_Niteroi_Validar"
+                    }
+                  },
+                  "Property": "RM_Codigo_Habilitacao"
+                }
+              },
+              "queryRef": "EAD_Matrizes_Niteroi_Validar.RM_Codigo_Habilitacao",
+              "nativeQueryRef": "RM_Codigo_Habilitacao"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "EAD_Matrizes_Niteroi_Validar"
+                    }
+                  },
+                  "Property": "RM_Codigo_Grade"
+                }
+              },
+              "queryRef": "EAD_Matrizes_Niteroi_Validar.RM_Codigo_Grade",
+              "nativeQueryRef": "RM_Codigo_Grade"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "EAD_Matrizes_Niteroi_Validar"
+                    }
+                  },
+                  "Property": "RM_Tipo_Mediacao"
+                }
+              },
+              "queryRef": "EAD_Matrizes_Niteroi_Validar.RM_Tipo_Mediacao",
+              "nativeQueryRef": "RM_Tipo_Mediacao"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "EAD_Matrizes_Niteroi_Validar"
+                    }
+                  },
+                  "Property": "Ocorrencias_Grade_Compl"
+                }
+              },
+              "queryRef": "EAD_Matrizes_Niteroi_Validar.Ocorrencias_Grade_Compl",
+              "nativeQueryRef": "Ocorrencias_Grade_Compl"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "EAD_Matrizes_Niteroi_Validar"
+                    }
+                  },
+                  "Property": "Codigo_Tipo_EAD_RM"
+                }
+              },
+              "queryRef": "EAD_Matrizes_Niteroi_Validar.Codigo_Tipo_EAD_RM",
+              "nativeQueryRef": "Codigo_Tipo_EAD_RM"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "EAD_Matrizes_Niteroi_Validar"
+                    }
+                  },
+                  "Property": "Descricao_EAD_RM"
+                }
+              },
+              "queryRef": "EAD_Matrizes_Niteroi_Validar.Descricao_EAD_RM",
+              "nativeQueryRef": "Descricao_EAD_RM"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "EAD_Matrizes_Niteroi_Validar"
+                    }
+                  },
+                  "Property": "Opcao_App"
+                }
+              },
+              "queryRef": "EAD_Matrizes_Niteroi_Validar.Opcao_App",
+              "nativeQueryRef": "Opcao_App"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "EAD_Matrizes_Niteroi_Validar"
+                    }
+                  },
+                  "Property": "Status_Tipo_EAD"
+                }
+              },
+              "queryRef": "EAD_Matrizes_Niteroi_Validar.Status_Tipo_EAD",
+              "nativeQueryRef": "Status_Tipo_EAD"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}
