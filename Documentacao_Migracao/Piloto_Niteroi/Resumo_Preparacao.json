@@ -1,0 +1,27 @@
+{
+  "linhas_exportacao": 7092,
+  "niteroi": 510,
+  "candidatas_estruturais": 472,
+  "excecoes": 38,
+  "colunas_piloto": 26,
+  "turmas_piloto": [
+    {
+      "codigo": "APP00362026U044",
+      "curso": "Confeitaria Fina",
+      "mediacao": "Presencial",
+      "financiamento": "Gratuidade"
+    },
+    {
+      "codigo": "APP07802026U030",
+      "curso": "Planejamento, Programação e Controle da Produção - PPCP",
+      "mediacao": "Semipresencial",
+      "financiamento": "Gratuidade"
+    },
+    {
+      "codigo": "APP00912025U081",
+      "curso": "Gerenciamento de Projetos",
+      "mediacao": "À distância",
+      "financiamento": "Gratuidade"
+    }
+  ]
+}
