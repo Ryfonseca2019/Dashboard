@@ -153,3 +153,7 @@ ref table 'RM_Turnos_Dominios'
 ref table 'RM_Turnos_Codigos_Internos'
 
 ref table 'RM_Turnos_Complementares_Comparar'
+
+ref table 'RM_Turnos_Cadastro_Completo'
+
+ref table 'RM_Turno_Configuracao_Estrutura'

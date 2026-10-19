@@ -1,0 +1,28 @@
+table 'RM_Turno_Configuracao_Estrutura'
+
+	column 'Origem'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Origem
+
+	column 'Tabela'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Tabela
+
+	column 'Campo'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Campo
+
+	column 'Detalhe'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Detalhe
+
+	partition 'RM_Turno_Configuracao_Estrutura' = m
+		mode: import
+		source =
+				let Fonte=Sql.Database("SRVSEDE01621PRE","CorporeRM",[Query="SELECT N'Estrutura configuração' Origem,#(lf)CONVERT(nvarchar(4000),TABLE_SCHEMA+'.'+TABLE_NAME) Tabela,#(lf)CONVERT(nvarchar(4000),COLUMN_NAME) Campo,#(lf)CONVERT(nvarchar(4000),DATA_TYPE) Detalhe#(lf)FROM INFORMATION_SCHEMA.COLUMNS#(lf)WHERE TABLE_NAME IN ('GCAMPOSCOMPL','GCAMPOSCOMPLEMENTARES','GCOLUNAS','GCAMPOS')#(lf) OR TABLE_NAME COLLATE Latin1_General_CI_AI LIKE '%CAMPO%COMPL%'#(lf)UNION ALL#(lf)SELECT N'Chave estrangeira',CONVERT(nvarchar(4000),OBJECT_SCHEMA_NAME(fkc.parent_object_id)+'.'+OBJECT_NAME(fkc.parent_object_id)),#(lf)CONVERT(nvarchar(4000),pc.name),CONVERT(nvarchar(4000),OBJECT_SCHEMA_NAME(fkc.referenced_object_id)+'.'+OBJECT_NAME(fkc.referenced_object_id)+'.'+rc.name)#(lf)FROM sys.foreign_key_columns fkc#(lf)JOIN sys.columns pc ON pc.object_id=fkc.parent_object_id AND pc.column_id=fkc.parent_column_id#(lf)JOIN sys.columns rc ON rc.object_id=fkc.referenced_object_id AND rc.column_id=fkc.referenced_column_id#(lf)WHERE OBJECT_NAME(fkc.parent_object_id)='STURMACOMPL' AND pc.name='TURNO'#(lf)UNION ALL#(lf)SELECT N'Rotulo do campo',CONVERT(nvarchar(4000),TABELA),CONVERT(nvarchar(4000),COLUNA),CONVERT(nvarchar(4000),DESCRICAO)#(lf)FROM dbo.GCAMPOS WHERE TABELA='STURMACOMPL' AND COLUNA='TURNO';"]) in Fonte
+
+	annotation PBI_ResultType = Table

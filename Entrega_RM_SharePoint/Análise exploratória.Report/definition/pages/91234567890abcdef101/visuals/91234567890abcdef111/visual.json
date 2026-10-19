@@ -1,0 +1,79 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "91234567890abcdef111",
+  "position": {
+    "x": 20,
+    "y": 720,
+    "width": 2360,
+    "height": 660,
+    "z": 1
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Turno_Configuracao_Estrutura"
+                    }
+                  },
+                  "Property": "Origem"
+                }
+              },
+              "queryRef": "RM_Turno_Configuracao_Estrutura.Origem",
+              "nativeQueryRef": "Origem"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Turno_Configuracao_Estrutura"
+                    }
+                  },
+                  "Property": "Tabela"
+                }
+              },
+              "queryRef": "RM_Turno_Configuracao_Estrutura.Tabela",
+              "nativeQueryRef": "Tabela"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Turno_Configuracao_Estrutura"
+                    }
+                  },
+                  "Property": "Campo"
+                }
+              },
+              "queryRef": "RM_Turno_Configuracao_Estrutura.Campo",
+              "nativeQueryRef": "Campo"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Turno_Configuracao_Estrutura"
+                    }
+                  },
+                  "Property": "Detalhe"
+                }
+              },
+              "queryRef": "RM_Turno_Configuracao_Estrutura.Detalhe",
+              "nativeQueryRef": "Detalhe"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

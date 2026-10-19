@@ -1,0 +1,5 @@
+V36 - Consulta completa STURNO da coligada SENAI, sem filtro dos turnos utilizados pelas matrizes.
+Preserva filial, tipo de curso, código, nome, tipo e horários para verificar contexto e duplicidades.
+Pesquisa também estrutura de tabelas de configuração e FK de STURMACOMPL.TURNO. Não presume relacionamento se não houver evidência.
+Página Turnos - cadastro e estrutura: exportar as duas tabelas.
+Consultas somente leitura; nenhum de-para aplicado nesta etapa. Não executadas contra RM neste ambiente.
