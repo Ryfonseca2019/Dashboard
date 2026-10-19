@@ -1,0 +1,65 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "81234567890abcdef111",
+  "position": {
+    "x": 20,
+    "y": 420,
+    "width": 2360,
+    "height": 640,
+    "z": 1
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Turnos_Complementares_Comparar"
+                    }
+                  },
+                  "Property": "RM_Turno_Complemento"
+                }
+              },
+              "queryRef": "RM_Turnos_Complementares_Comparar.RM_Turno_Complemento",
+              "nativeQueryRef": "RM_Turno_Complemento"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Turnos_Complementares_Comparar"
+                    }
+                  },
+                  "Property": "Quantidade_Turmas"
+                }
+              },
+              "queryRef": "RM_Turnos_Complementares_Comparar.Quantidade_Turmas",
+              "nativeQueryRef": "Quantidade_Turmas"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Turnos_Complementares_Comparar"
+                    }
+                  },
+                  "Property": "Candidatos_Dominio"
+                }
+              },
+              "queryRef": "RM_Turnos_Complementares_Comparar.Candidatos_Dominio",
+              "nativeQueryRef": "Candidatos_Dominio"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

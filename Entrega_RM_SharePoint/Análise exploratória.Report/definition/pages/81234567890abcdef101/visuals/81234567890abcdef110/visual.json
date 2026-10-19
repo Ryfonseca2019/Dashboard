@@ -1,0 +1,107 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "81234567890abcdef110",
+  "position": {
+    "x": 20,
+    "y": 20,
+    "width": 2360,
+    "height": 380,
+    "z": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Turnos_Codigos_Internos"
+                    }
+                  },
+                  "Property": "CODCOLIGADA"
+                }
+              },
+              "queryRef": "RM_Turnos_Codigos_Internos.CODCOLIGADA",
+              "nativeQueryRef": "CODCOLIGADA"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Turnos_Codigos_Internos"
+                    }
+                  },
+                  "Property": "APLICACAO"
+                }
+              },
+              "queryRef": "RM_Turnos_Codigos_Internos.APLICACAO",
+              "nativeQueryRef": "APLICACAO"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Turnos_Codigos_Internos"
+                    }
+                  },
+                  "Property": "Codigo_Tabela"
+                }
+              },
+              "queryRef": "RM_Turnos_Codigos_Internos.Codigo_Tabela",
+              "nativeQueryRef": "Codigo_Tabela"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Turnos_Codigos_Internos"
+                    }
+                  },
+                  "Property": "Codigo_Cliente"
+                }
+              },
+              "queryRef": "RM_Turnos_Codigos_Internos.Codigo_Cliente",
+              "nativeQueryRef": "Codigo_Cliente"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Turnos_Codigos_Internos"
+                    }
+                  },
+                  "Property": "Codigo_Interno"
+                }
+              },
+              "queryRef": "RM_Turnos_Codigos_Internos.Codigo_Interno",
+              "nativeQueryRef": "Codigo_Interno"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Turnos_Codigos_Internos"
+                    }
+                  },
+                  "Property": "Descricao"
+                }
+              },
+              "queryRef": "RM_Turnos_Codigos_Internos.Descricao",
+              "nativeQueryRef": "Descricao"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

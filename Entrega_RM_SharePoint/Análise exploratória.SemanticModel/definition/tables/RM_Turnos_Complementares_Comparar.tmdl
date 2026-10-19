@@ -1,0 +1,29 @@
+table 'RM_Turnos_Complementares_Comparar'
+
+	column 'RM_Turno_Complemento'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: RM_Turno_Complemento
+
+	column 'Quantidade_Turmas'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Quantidade_Turmas
+
+	column 'Candidatos_Dominio'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Candidatos_Dominio
+
+	partition 'RM_Turnos_Complementares_Comparar' = m
+		mode: import
+		source =
+				let
+				    Fonte=Table.SelectRows(RM_Oferta_Diagnostico,each [RM_CODFILIAL]=266),
+				    Codigos=Table.TransformColumns(Fonte,{{"RM_Turno_Complemento",each if _=null then null else Text.Trim(Text.From(_)),type nullable text}}),
+				    Grupo=Table.Group(Codigos,{"RM_Turno_Complemento"},{{"Quantidade_Turmas",each Table.RowCount(Table.Distinct(Table.SelectColumns(_,{"RM_CODCOLIGADA","RM_CODFILIAL","RM_IDPERLET","RM_CODTURMA"}))),Int64.Type}}),
+				    Dom=Table.Buffer(RM_Turnos_Codigos_Internos),
+				    Evidencias=Table.AddColumn(Grupo,"Candidatos_Dominio",each let C=[RM_Turno_Complemento],D=if C=null or C="" then Table.FirstN(Dom,0) else Table.SelectRows(Dom,each [Codigo_Interno]=C or [Codigo_Cliente]=C) in Text.Combine(List.Transform(Table.ToRecords(D),(R)=>Text.From(R[CODCOLIGADA]) & " / " & R[APLICACAO] & " / " & R[Codigo_Tabela] & " / interno=" & R[Codigo_Interno] & " / cliente=" & R[Codigo_Cliente] & " / " & R[Descricao]),"; "),type text)
+				in Evidencias
+
+	annotation PBI_ResultType = Table

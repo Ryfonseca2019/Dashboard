@@ -1,0 +1,6 @@
+V35 - Pesquisa de CODINTERNO e CODCLIENTE em GCONSIST para turnos.
+Não se deve presumir que M/T/N sejam os valores gravados em STURMACOMPL.TURNO.
+Página Turnos - códigos internos: superior catálogo com dois códigos; inferior códigos usados em Niterói e correspondências candidatas.
+Nenhuma correspondência é aplicada automaticamente à exportação nesta etapa.
+Atualizar e exportar ambos os visuais. Consultas somente leitura.
+Mantidos ajustes anteriores. Não executado contra RM neste ambiente.
