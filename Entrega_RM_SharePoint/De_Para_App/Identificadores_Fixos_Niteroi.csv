@@ -17,11 +17,11 @@
 3;266;1062;TEC00082026.2001;NIT-20261016125852;Identificador anterior reaproveitado por correspondência única
 3;266;1062;TEC00102026.2109;NIT-20261016184451;Identificador fixo gerado para a chave RM
 3;266;1062;TEC00102026.2110;NIT-20261016184452;Identificador fixo gerado para a chave RM
-3;266;1062;TEC00102026.2125;;"Pendente: reconciliar identificador do lote anterior; correspondência ambígua"
-3;266;1062;TEC00102026.2126;;"Pendente: reconciliar identificador do lote anterior; correspondência ambígua"
+3;266;1062;TEC00102026.2125;NIT-20261018212430;Identificador novo fixo após conferência da lista SharePoint
+3;266;1062;TEC00102026.2126;NIT-20261018212431;Identificador novo fixo após conferência da lista SharePoint
 3;266;1062;TEC00152026.2001;NIT-20261016125855;Identificador anterior reaproveitado por correspondência única
-3;266;1062;TEC00412026.2083;;"Pendente: reconciliar identificador do lote anterior; correspondência ambígua"
-3;266;1062;TEC00412026.2084;;"Pendente: reconciliar identificador do lote anterior; correspondência ambígua"
+3;266;1062;TEC00412026.2083;NIT-20261018212432;Identificador novo fixo após conferência da lista SharePoint
+3;266;1062;TEC00412026.2084;NIT-20261018212433;Identificador novo fixo após conferência da lista SharePoint
 3;266;1062;TEC00482026.2001;NIT-20261016125858;Identificador anterior reaproveitado por correspondência única
 3;266;1062;TEC00782026.2001;NIT-20261016125859;Identificador anterior reaproveitado por correspondência única
 3;266;1062;TEC01702026.2001;NIT-20261016125900;Identificador anterior reaproveitado por correspondência única
@@ -273,18 +273,18 @@
 3;266;999;APR00242026U432;NIT-20261016125728;Identificador anterior reaproveitado por correspondência única
 3;266;999;APR00242026U460;NIT-20261016125729;Identificador anterior reaproveitado por correspondência única
 3;266;999;APR00432026U001;NIT-20261016125730;Identificador anterior reaproveitado por correspondência única
-3;266;999;APR00552026U018;;"Pendente: reconciliar identificador do lote anterior; correspondência ambígua"
-3;266;999;APR00552026U019;;"Pendente: reconciliar identificador do lote anterior; correspondência ambígua"
+3;266;999;APR00552026U018;NIT-20261018212434;Identificador novo fixo após conferência da lista SharePoint
+3;266;999;APR00552026U019;NIT-20261018212435;Identificador novo fixo após conferência da lista SharePoint
 3;266;999;APR00772026U041;NIT-20261016125733;Identificador anterior reaproveitado por correspondência única
 3;266;999;APR00862026U001;NIT-20261016125734;Identificador anterior reaproveitado por correspondência única
 3;266;999;APR00862026U480;NIT-20261016125735;Identificador anterior reaproveitado por correspondência única
-3;266;999;APR00862026U481;;"Pendente: reconciliar identificador do lote anterior; correspondência ambígua"
+3;266;999;APR00862026U481;NIT-20261018212436;Identificador novo fixo após conferência da lista SharePoint
 3;266;999;APR00862026U482;NIT-20261016125737;Identificador anterior reaproveitado por correspondência única
-3;266;999;APR00862026U483;;"Pendente: reconciliar identificador do lote anterior; correspondência ambígua"
-3;266;999;APR00862026U484;;"Pendente: reconciliar identificador do lote anterior; correspondência ambígua"
+3;266;999;APR00862026U483;NIT-20261018212437;Identificador novo fixo após conferência da lista SharePoint
+3;266;999;APR00862026U484;NIT-20261018212438;Identificador novo fixo após conferência da lista SharePoint
 3;266;999;APR00862026U485;NIT-20261016125740;Identificador anterior reaproveitado por correspondência única
 3;266;999;APR00862026U486;NIT-20261016125741;Identificador anterior reaproveitado por correspondência única
-3;266;999;APR00862026U487;;"Pendente: reconciliar identificador do lote anterior; correspondência ambígua"
+3;266;999;APR00862026U487;NIT-20261018212439;Identificador novo fixo após conferência da lista SharePoint
 3;266;999;APR00862026U493;NIT-20261016125743;Identificador anterior reaproveitado por correspondência única
 3;266;999;APR00862026U494;NIT-20261016125744;Identificador anterior reaproveitado por correspondência única
 3;266;999;APR00862026U529;NIT-20261016125745;Identificador anterior reaproveitado por correspondência única
@@ -338,9 +338,9 @@
 3;266;999;QUA00632026U204;NIT-20261016184927;Identificador fixo gerado para a chave RM
 3;266;999;QUA00632026U205;NIT-20261016184928;Identificador fixo gerado para a chave RM
 3;266;999;QUA00632026U227;NIT-20261016184929;Identificador fixo gerado para a chave RM
-3;266;999;QUA00632026U228;;"Pendente: reconciliar identificador do lote anterior; correspondência ambígua"
+3;266;999;QUA00632026U228;NIT-20261018212440;Identificador novo fixo após conferência da lista SharePoint
 3;266;999;QUA00632026U229;NIT-20261016184930;Identificador fixo gerado para a chave RM
-3;266;999;QUA00632026U230;;"Pendente: reconciliar identificador do lote anterior; correspondência ambígua"
+3;266;999;QUA00632026U230;NIT-20261018212441;Identificador novo fixo após conferência da lista SharePoint
 3;266;999;QUA00632026U233;NIT-20261016184931;Identificador fixo gerado para a chave RM
 3;266;999;QUA00632026U241;NIT-20261016184932;Identificador fixo gerado para a chave RM
 3;266;999;QUA00632026U242;NIT-20261016184933;Identificador fixo gerado para a chave RM
@@ -426,9 +426,9 @@
 3;266;999;QUA02312026U068;NIT-20261016185043;Identificador fixo gerado para a chave RM
 3;266;999;QUA02312026U069;NIT-20261016185044;Identificador fixo gerado para a chave RM
 3;266;999;QUA02312026U070;NIT-20261016185045;Identificador fixo gerado para a chave RM
-3;266;999;QUA02312026U094;;"Pendente: reconciliar identificador do lote anterior; correspondência ambígua"
-3;266;999;QUA02312026U095;;"Pendente: reconciliar identificador do lote anterior; correspondência ambígua"
-3;266;999;QUA02312026U096;;"Pendente: reconciliar identificador do lote anterior; correspondência ambígua"
+3;266;999;QUA02312026U094;NIT-20261018212442;Identificador novo fixo após conferência da lista SharePoint
+3;266;999;QUA02312026U095;NIT-20261018212443;Identificador novo fixo após conferência da lista SharePoint
+3;266;999;QUA02312026U096;NIT-20261018212444;Identificador novo fixo após conferência da lista SharePoint
 3;266;999;QUA02322026U148;NIT-20261016185046;Identificador fixo gerado para a chave RM
 3;266;999;QUA02502026U828;NIT-20261016185047;Identificador fixo gerado para a chave RM
 3;266;999;QUA02502026U829;NIT-20261016185048;Identificador fixo gerado para a chave RM
@@ -495,10 +495,10 @@
 3;266;999;QUA05192026U001;NIT-20261016125821;Identificador anterior reaproveitado por correspondência única
 3;266;999;QUA05192026U002;NIT-20261016125822;Identificador anterior reaproveitado por correspondência única
 3;266;999;QUA05202026U001;NIT-20261016125823;Identificador anterior reaproveitado por correspondência única
-3;266;999;QUA05212026U001;;"Pendente: reconciliar identificador do lote anterior; correspondência ambígua"
-3;266;999;QUA05212026U002;;"Pendente: reconciliar identificador do lote anterior; correspondência ambígua"
-3;266;999;QUA05222026U001;;"Pendente: reconciliar identificador do lote anterior; correspondência ambígua"
-3;266;999;QUA05222026U002;;"Pendente: reconciliar identificador do lote anterior; correspondência ambígua"
+3;266;999;QUA05212026U001;NIT-20261018212445;Identificador novo fixo após conferência da lista SharePoint
+3;266;999;QUA05212026U002;NIT-20261018212446;Identificador novo fixo após conferência da lista SharePoint
+3;266;999;QUA05222026U001;NIT-20261018212447;Identificador novo fixo após conferência da lista SharePoint
+3;266;999;QUA05222026U002;NIT-20261018212448;Identificador novo fixo após conferência da lista SharePoint
 3;266;999;QUA05242026U001;NIT-20261016125828;Identificador anterior reaproveitado por correspondência única
 3;266;999;QUA05252026U001;NIT-20261016125829;Identificador anterior reaproveitado por correspondência única
 3;266;999;QUA05282026U001;NIT-20261016125830;Identificador anterior reaproveitado por correspondência única

@@ -1,0 +1,8 @@
+V26 - 19 identificadores pendentes resolvidos por geração de novos valores fixos.
+510 chaves RM com identificadores preenchidos e únicos. 491 valores anteriores preservados.
+Sem colisões com os 14 registros da exportação Turmas_Planejadas (4).csv.
+Registro de teste ID 26 preservado; conferir possível duplicidade semântica antes de importar.
+Identificadores não se regeneram em cada atualização.
+Mantidas mobilizações V24 e separação Negócio PJ V25.
+Não implica que as 510 turmas estejam prontas para importar: demais pendências continuam.
+Atualização no Power BI Desktop e RM não executada neste ambiente.
