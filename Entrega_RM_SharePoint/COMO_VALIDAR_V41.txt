@@ -1,0 +1,9 @@
+V41 - APP_Cad_Matrizes usa cópia local incorporada, sem SharePoint.Tables/Web.Contents nessa consulta.
+Origem: Cad_Matrizes (2).csv enviado pelo usuário; 4734 registros menos ID 4683 cuja exclusão foi confirmada = 4733.
+Não exige caminho local, Excel, CSV externo ou configuração de pasta no computador do usuário.
+Cópia permanece fixa durante refresh; futuras alterações em Cad_Matrizes exigem nova exportação e atualização dessa cópia.
+Outras consultas de cadastros/opções ainda acessam SharePoint. A versão não é totalmente offline.
+Mantido RM ao vivo, corte de término a partir de 01/01/2027, layout 52 colunas e exclusão das 72 turmas já incluídas.
+Reavaliar as 31 exceções em Carga 2027 - pendências após atualizar.
+Cinco exceções anteriores também tinham mobilização sem correspondência (67/68); poderão permanecer pendentes.
+Arquivo e conteúdo incorporado conferidos localmente; execução Power BI Desktop e vínculos ainda precisam ser validados.
