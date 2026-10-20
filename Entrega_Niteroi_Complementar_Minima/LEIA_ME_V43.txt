@@ -1,0 +1,11 @@
+V43 MINIMA - somente as 31 turmas pendentes de Niterói.
+Uma origem externa: SQL Server SRVSEDE01621PRE/CorporeRM. Zero SharePoint.Tables e zero Web.Contents.
+A consulta central faz um SELECT sobre turmas explicitamente listadas, término a partir de 01/01/2027. Não consulta alunos, professores ou estrutura de metadados.
+Cadastro local de 4733 matrizes e 31 identificadores incorporado.
+Só 3 tabelas no modelo e duas páginas. As tabelas derivadas podem causar mais de uma avaliação da mesma SQL; não são novas origens.
+As 72 já carregadas ficam fora pelo escopo explícito das 31 pendentes.
+Mobilização vem da descrição RM, sem validação online das opções SharePoint. Conferir em especial PROPAG - Concomitante/Subsequente antes de colar.
+Nomes, IDs e carga horária de matriz preservados do cadastro local; não há atualização automática dessa cópia.
+Layout de 52 colunas, ano com ponto, turno vazio e data de snapshot na posição 16.
+Não substitui o projeto completo para futuras unidades: arquivo exclusivo para concluir o complementar de Niterói.
+Execução SQL e atualização Desktop ainda não validadas neste ambiente.

@@ -1,0 +1,135 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "d1234567890abcdef111",
+  "position": {
+    "x": 20,
+    "y": 320,
+    "width": 2360,
+    "height": 740,
+    "z": 1
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Complementar_Conferencia"
+                    }
+                  },
+                  "Property": "Codigo_Turma_SGE"
+                }
+              },
+              "queryRef": "Complementar_Conferencia.Codigo_Turma_SGE",
+              "nativeQueryRef": "Codigo_Turma_SGE"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Complementar_Conferencia"
+                    }
+                  },
+                  "Property": "Matriz"
+                }
+              },
+              "queryRef": "Complementar_Conferencia.Matriz",
+              "nativeQueryRef": "Matriz"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Complementar_Conferencia"
+                    }
+                  },
+                  "Property": "Nome_Curso_Snapshot"
+                }
+              },
+              "queryRef": "Complementar_Conferencia.Nome_Curso_Snapshot",
+              "nativeQueryRef": "Nome_Curso_Snapshot"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Complementar_Conferencia"
+                    }
+                  },
+                  "Property": "Modalidade"
+                }
+              },
+              "queryRef": "Complementar_Conferencia.Modalidade",
+              "nativeQueryRef": "Modalidade"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Complementar_Conferencia"
+                    }
+                  },
+                  "Property": "Financiamento"
+                }
+              },
+              "queryRef": "Complementar_Conferencia.Financiamento",
+              "nativeQueryRef": "Financiamento"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Complementar_Conferencia"
+                    }
+                  },
+                  "Property": "Mobilizacao"
+                }
+              },
+              "queryRef": "Complementar_Conferencia.Mobilizacao",
+              "nativeQueryRef": "Mobilizacao"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Complementar_Conferencia"
+                    }
+                  },
+                  "Property": "Pendencias_Carga"
+                }
+              },
+              "queryRef": "Complementar_Conferencia.Pendencias_Carga",
+              "nativeQueryRef": "Pendencias_Carga"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Complementar_Conferencia"
+                    }
+                  },
+                  "Property": "Situacao_Carga"
+                }
+              },
+              "queryRef": "Complementar_Conferencia.Situacao_Carga",
+              "nativeQueryRef": "Situacao_Carga"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}
