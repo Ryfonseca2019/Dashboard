@@ -14,7 +14,6 @@ annotation PBI_QueryOrder = ["APP_Cad_Campus_Polo", "APP_Cad_Financiamentos", "A
 annotation PBI_ProTooling = ["DevMode"]
 
 
-ref cultureInfo pt-BR
 
 ref table 'APP_Cad_Campus_Polo'
 ref table 'APP_Cad_Financiamentos'
