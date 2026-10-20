@@ -1,0 +1,5 @@
+V46 - Otimiza buscas por índices de código/chave no processamento M.
+Elimina Table.SelectRows por turma sobre o catálogo de 4733 matrizes e sobre contagens/identificadores. Índices preservam duplicados para revisão, sem escolher registros arbitrariamente.
+Buffer da leitura SQL e dos registros intermediários dentro de cada avaliação. Consultas derivadas ainda podem reavaliar a origem; não há cache global garantido.
+Mesma origem RM, cadastros locais, 3 tabelas, 2 páginas, regras de data, planejamento e criticidade da V45.
+Tempo de atualização precisa ser medido no Power BI Desktop. SQL não executada neste ambiente.
