@@ -1,0 +1,38 @@
+table 'Geral_Resumo'
+
+	column 'Codigo_Filial_RM'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Codigo_Filial_RM
+
+	column 'Nome_Unidade_RM'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Nome_Unidade_RM
+
+	column 'Unidade'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Unidade
+
+	column 'Planejamento'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Planejamento
+
+	column 'Situacao_Carga'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Situacao_Carga
+
+	column 'Quantidade_Turmas'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Quantidade_Turmas
+
+	partition 'Geral_Resumo' = m
+		mode: import
+		source =
+				let Fonte=Geral_Conferencia, Resultado=Table.Group(Fonte,{"Codigo_Filial_RM","Nome_Unidade_RM","Unidade","Planejamento","Situacao_Carga"},{{"Quantidade_Turmas",each Table.RowCount(_),Int64.Type}}) in Resultado
+
+	annotation PBI_ResultType = Table

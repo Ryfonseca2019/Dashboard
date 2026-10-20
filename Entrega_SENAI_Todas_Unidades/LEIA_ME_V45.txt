@@ -1,0 +1,9 @@
+V45 - Todas unidades SENAI, coligada 3, término a partir de 01/01/2027.
+Uma origem externa SQL RM; cadastros de matrizes, unidades e planejamentos incorporados dos arquivos enviados. Sem SharePoint.
+29 unidades e 22 planejamentos recebidos. Apenas correspondência exata Codigo_Filial -> CODFILIAL; vazios e códigos não numéricos ficam pendentes, sem dedução.
+Planejamento = Planejamento + espaço + nome da unidade. Deve existir único e ativo no cadastro local.
+Turmas existentes são identificadas por unidade + código RM no CSV Turmas_Planejadas (7); separadas da inclusão.
+Identificadores existentes preservados. Novos: sigla + carimbo determinístico calculado a partir de IDFT e marco fixo 19/10/2026, preservando formato do app e estabilidade entre atualizações; não representa data real de criação. Conferir unicidade no lote antes de colar.
+Tabela de carga não aprova registros com criticidade; opções de mobilização e cadastros locais não são validados online.
+Exportar resumo e detalhamento da página Todas unidades - conferência antes de usar a carga.
+Executado apenas preparo e verificação estrutural local; consultas SQL não executadas neste ambiente.

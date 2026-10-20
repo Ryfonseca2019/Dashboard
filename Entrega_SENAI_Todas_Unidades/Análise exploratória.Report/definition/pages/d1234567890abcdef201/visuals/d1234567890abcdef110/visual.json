@@ -1,0 +1,107 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "d1234567890abcdef110",
+  "position": {
+    "x": 20,
+    "y": 20,
+    "width": 2360,
+    "height": 280,
+    "z": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Geral_Resumo"
+                    }
+                  },
+                  "Property": "Codigo_Filial_RM"
+                }
+              },
+              "queryRef": "Geral_Resumo.Codigo_Filial_RM",
+              "nativeQueryRef": "Codigo_Filial_RM"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Geral_Resumo"
+                    }
+                  },
+                  "Property": "Nome_Unidade_RM"
+                }
+              },
+              "queryRef": "Geral_Resumo.Nome_Unidade_RM",
+              "nativeQueryRef": "Nome_Unidade_RM"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Geral_Resumo"
+                    }
+                  },
+                  "Property": "Unidade"
+                }
+              },
+              "queryRef": "Geral_Resumo.Unidade",
+              "nativeQueryRef": "Unidade"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Geral_Resumo"
+                    }
+                  },
+                  "Property": "Planejamento"
+                }
+              },
+              "queryRef": "Geral_Resumo.Planejamento",
+              "nativeQueryRef": "Planejamento"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Geral_Resumo"
+                    }
+                  },
+                  "Property": "Situacao_Carga"
+                }
+              },
+              "queryRef": "Geral_Resumo.Situacao_Carga",
+              "nativeQueryRef": "Situacao_Carga"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Geral_Resumo"
+                    }
+                  },
+                  "Property": "Quantidade_Turmas"
+                }
+              },
+              "queryRef": "Geral_Resumo.Quantidade_Turmas",
+              "nativeQueryRef": "Quantidade_Turmas"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

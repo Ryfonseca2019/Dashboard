@@ -1,0 +1,205 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "d1234567890abcdef111",
+  "position": {
+    "x": 20,
+    "y": 320,
+    "width": 2360,
+    "height": 740,
+    "z": 1
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Geral_Conferencia"
+                    }
+                  },
+                  "Property": "Codigo_Filial_RM"
+                }
+              },
+              "queryRef": "Geral_Conferencia.Codigo_Filial_RM",
+              "nativeQueryRef": "Codigo_Filial_RM"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Geral_Conferencia"
+                    }
+                  },
+                  "Property": "Nome_Unidade_RM"
+                }
+              },
+              "queryRef": "Geral_Conferencia.Nome_Unidade_RM",
+              "nativeQueryRef": "Nome_Unidade_RM"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Geral_Conferencia"
+                    }
+                  },
+                  "Property": "Unidade"
+                }
+              },
+              "queryRef": "Geral_Conferencia.Unidade",
+              "nativeQueryRef": "Unidade"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Geral_Conferencia"
+                    }
+                  },
+                  "Property": "Planejamento"
+                }
+              },
+              "queryRef": "Geral_Conferencia.Planejamento",
+              "nativeQueryRef": "Planejamento"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Geral_Conferencia"
+                    }
+                  },
+                  "Property": "Codigo_Turma_SGE"
+                }
+              },
+              "queryRef": "Geral_Conferencia.Codigo_Turma_SGE",
+              "nativeQueryRef": "Codigo_Turma_SGE"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Geral_Conferencia"
+                    }
+                  },
+                  "Property": "Codigo_Matriz_RM"
+                }
+              },
+              "queryRef": "Geral_Conferencia.Codigo_Matriz_RM",
+              "nativeQueryRef": "Codigo_Matriz_RM"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Geral_Conferencia"
+                    }
+                  },
+                  "Property": "Matriz"
+                }
+              },
+              "queryRef": "Geral_Conferencia.Matriz",
+              "nativeQueryRef": "Matriz"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Geral_Conferencia"
+                    }
+                  },
+                  "Property": "Nome_Curso_Snapshot"
+                }
+              },
+              "queryRef": "Geral_Conferencia.Nome_Curso_Snapshot",
+              "nativeQueryRef": "Nome_Curso_Snapshot"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Geral_Conferencia"
+                    }
+                  },
+                  "Property": "Modalidade"
+                }
+              },
+              "queryRef": "Geral_Conferencia.Modalidade",
+              "nativeQueryRef": "Modalidade"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Geral_Conferencia"
+                    }
+                  },
+                  "Property": "Financiamento"
+                }
+              },
+              "queryRef": "Geral_Conferencia.Financiamento",
+              "nativeQueryRef": "Financiamento"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Geral_Conferencia"
+                    }
+                  },
+                  "Property": "Mobilizacao"
+                }
+              },
+              "queryRef": "Geral_Conferencia.Mobilizacao",
+              "nativeQueryRef": "Mobilizacao"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Geral_Conferencia"
+                    }
+                  },
+                  "Property": "Pendencias_Carga"
+                }
+              },
+              "queryRef": "Geral_Conferencia.Pendencias_Carga",
+              "nativeQueryRef": "Pendencias_Carga"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Geral_Conferencia"
+                    }
+                  },
+                  "Property": "Situacao_Carga"
+                }
+              },
+              "queryRef": "Geral_Conferencia.Situacao_Carga",
+              "nativeQueryRef": "Situacao_Carga"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

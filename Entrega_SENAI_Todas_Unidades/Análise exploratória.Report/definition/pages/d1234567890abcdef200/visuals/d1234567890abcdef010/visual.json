@@ -1,0 +1,751 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "d1234567890abcdef010",
+  "position": {
+    "x": 20,
+    "y": 20,
+    "width": 4160,
+    "height": 1000,
+    "z": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Geral_52_Colunas"
+                    }
+                  },
+                  "Property": "Planejamento"
+                }
+              },
+              "queryRef": "Geral_52_Colunas.Planejamento",
+              "nativeQueryRef": "Planejamento"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Geral_52_Colunas"
+                    }
+                  },
+                  "Property": "Unidade"
+                }
+              },
+              "queryRef": "Geral_52_Colunas.Unidade",
+              "nativeQueryRef": "Unidade"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Geral_52_Colunas"
+                    }
+                  },
+                  "Property": "Periodo_Letivo"
+                }
+              },
+              "queryRef": "Geral_52_Colunas.Periodo_Letivo",
+              "nativeQueryRef": "Periodo_Letivo"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Geral_52_Colunas"
+                    }
+                  },
+                  "Property": "Ano_Referencia"
+                }
+              },
+              "queryRef": "Geral_52_Colunas.Ano_Referencia",
+              "nativeQueryRef": "Ano_Referencia"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Geral_52_Colunas"
+                    }
+                  },
+                  "Property": "Identificador_Temporario"
+                }
+              },
+              "queryRef": "Geral_52_Colunas.Identificador_Temporario",
+              "nativeQueryRef": "Identificador_Temporario"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Geral_52_Colunas"
+                    }
+                  },
+                  "Property": "Codigo_Turma_SGE"
+                }
+              },
+              "queryRef": "Geral_52_Colunas.Codigo_Turma_SGE",
+              "nativeQueryRef": "Codigo_Turma_SGE"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Geral_52_Colunas"
+                    }
+                  },
+                  "Property": "Matriz"
+                }
+              },
+              "queryRef": "Geral_52_Colunas.Matriz",
+              "nativeQueryRef": "Matriz"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Geral_52_Colunas"
+                    }
+                  },
+                  "Property": "Status_Turma"
+                }
+              },
+              "queryRef": "Geral_52_Colunas.Status_Turma",
+              "nativeQueryRef": "Status_Turma"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Geral_52_Colunas"
+                    }
+                  },
+                  "Property": "Ativa"
+                }
+              },
+              "queryRef": "Geral_52_Colunas.Ativa",
+              "nativeQueryRef": "Ativa"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Geral_52_Colunas"
+                    }
+                  },
+                  "Property": "Codigo_Matriz_Snapshot"
+                }
+              },
+              "queryRef": "Geral_52_Colunas.Codigo_Matriz_Snapshot",
+              "nativeQueryRef": "Codigo_Matriz_Snapshot"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Geral_52_Colunas"
+                    }
+                  },
+                  "Property": "Nome_Curso_Snapshot"
+                }
+              },
+              "queryRef": "Geral_52_Colunas.Nome_Curso_Snapshot",
+              "nativeQueryRef": "Nome_Curso_Snapshot"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Geral_52_Colunas"
+                    }
+                  },
+                  "Property": "Area_Snapshot"
+                }
+              },
+              "queryRef": "Geral_52_Colunas.Area_Snapshot",
+              "nativeQueryRef": "Area_Snapshot"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Geral_52_Colunas"
+                    }
+                  },
+                  "Property": "Modalidade_Snapshot"
+                }
+              },
+              "queryRef": "Geral_52_Colunas.Modalidade_Snapshot",
+              "nativeQueryRef": "Modalidade_Snapshot"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Geral_52_Colunas"
+                    }
+                  },
+                  "Property": "Tipo_Mediacao_Snapshot"
+                }
+              },
+              "queryRef": "Geral_52_Colunas.Tipo_Mediacao_Snapshot",
+              "nativeQueryRef": "Tipo_Mediacao_Snapshot"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Geral_52_Colunas"
+                    }
+                  },
+                  "Property": "Carga_Horaria_Snapshot"
+                }
+              },
+              "queryRef": "Geral_52_Colunas.Carga_Horaria_Snapshot",
+              "nativeQueryRef": "Carga_Horaria_Snapshot"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Geral_52_Colunas"
+                    }
+                  },
+                  "Property": "Data_Snapshot_Matriz"
+                }
+              },
+              "queryRef": "Geral_52_Colunas.Data_Snapshot_Matriz",
+              "nativeQueryRef": "Data_Snapshot_Matriz"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Geral_52_Colunas"
+                    }
+                  },
+                  "Property": "Data_Inicio_Prevista"
+                }
+              },
+              "queryRef": "Geral_52_Colunas.Data_Inicio_Prevista",
+              "nativeQueryRef": "Data_Inicio_Prevista"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Geral_52_Colunas"
+                    }
+                  },
+                  "Property": "Data_Fim_Prevista"
+                }
+              },
+              "queryRef": "Geral_52_Colunas.Data_Fim_Prevista",
+              "nativeQueryRef": "Data_Fim_Prevista"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Geral_52_Colunas"
+                    }
+                  },
+                  "Property": "Quantidade_Vagas"
+                }
+              },
+              "queryRef": "Geral_52_Colunas.Quantidade_Vagas",
+              "nativeQueryRef": "Quantidade_Vagas"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Geral_52_Colunas"
+                    }
+                  },
+                  "Property": "Matriculas_Previstas"
+                }
+              },
+              "queryRef": "Geral_52_Colunas.Matriculas_Previstas",
+              "nativeQueryRef": "Matriculas_Previstas"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Geral_52_Colunas"
+                    }
+                  },
+                  "Property": "Campus_Polo"
+                }
+              },
+              "queryRef": "Geral_52_Colunas.Campus_Polo",
+              "nativeQueryRef": "Campus_Polo"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Geral_52_Colunas"
+                    }
+                  },
+                  "Property": "Financiamento"
+                }
+              },
+              "queryRef": "Geral_52_Colunas.Financiamento",
+              "nativeQueryRef": "Financiamento"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Geral_52_Colunas"
+                    }
+                  },
+                  "Property": "Tipo_Periodo"
+                }
+              },
+              "queryRef": "Geral_52_Colunas.Tipo_Periodo",
+              "nativeQueryRef": "Tipo_Periodo"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Geral_52_Colunas"
+                    }
+                  },
+                  "Property": "Pedagogo_Responsavel"
+                }
+              },
+              "queryRef": "Geral_52_Colunas.Pedagogo_Responsavel",
+              "nativeQueryRef": "Pedagogo_Responsavel"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Geral_52_Colunas"
+                    }
+                  },
+                  "Property": "Mobilizacao"
+                }
+              },
+              "queryRef": "Geral_52_Colunas.Mobilizacao",
+              "nativeQueryRef": "Mobilizacao"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Geral_52_Colunas"
+                    }
+                  },
+                  "Property": "Empresa"
+                }
+              },
+              "queryRef": "Geral_52_Colunas.Empresa",
+              "nativeQueryRef": "Empresa"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Geral_52_Colunas"
+                    }
+                  },
+                  "Property": "Projeto"
+                }
+              },
+              "queryRef": "Geral_52_Colunas.Projeto",
+              "nativeQueryRef": "Projeto"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Geral_52_Colunas"
+                    }
+                  },
+                  "Property": "Sindicato"
+                }
+              },
+              "queryRef": "Geral_52_Colunas.Sindicato",
+              "nativeQueryRef": "Sindicato"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Geral_52_Colunas"
+                    }
+                  },
+                  "Property": "Classe_Valor"
+                }
+              },
+              "queryRef": "Geral_52_Colunas.Classe_Valor",
+              "nativeQueryRef": "Classe_Valor"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Geral_52_Colunas"
+                    }
+                  },
+                  "Property": "Item_Contabil_Snapshot"
+                }
+              },
+              "queryRef": "Geral_52_Colunas.Item_Contabil_Snapshot",
+              "nativeQueryRef": "Item_Contabil_Snapshot"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Geral_52_Colunas"
+                    }
+                  },
+                  "Property": "Centro_Custo_Snapshot"
+                }
+              },
+              "queryRef": "Geral_52_Colunas.Centro_Custo_Snapshot",
+              "nativeQueryRef": "Centro_Custo_Snapshot"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Geral_52_Colunas"
+                    }
+                  },
+                  "Property": "Observacoes"
+                }
+              },
+              "queryRef": "Geral_52_Colunas.Observacoes",
+              "nativeQueryRef": "Observacoes"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Geral_52_Colunas"
+                    }
+                  },
+                  "Property": "Motivo_Cancelamento"
+                }
+              },
+              "queryRef": "Geral_52_Colunas.Motivo_Cancelamento",
+              "nativeQueryRef": "Motivo_Cancelamento"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Geral_52_Colunas"
+                    }
+                  },
+                  "Property": "Data_Cancelamento"
+                }
+              },
+              "queryRef": "Geral_52_Colunas.Data_Cancelamento",
+              "nativeQueryRef": "Data_Cancelamento"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Geral_52_Colunas"
+                    }
+                  },
+                  "Property": "Cancelada_Por"
+                }
+              },
+              "queryRef": "Geral_52_Colunas.Cancelada_Por",
+              "nativeQueryRef": "Cancelada_Por"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Geral_52_Colunas"
+                    }
+                  },
+                  "Property": "Data_Conclusao"
+                }
+              },
+              "queryRef": "Geral_52_Colunas.Data_Conclusao",
+              "nativeQueryRef": "Data_Conclusao"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Geral_52_Colunas"
+                    }
+                  },
+                  "Property": "Bloqueada_Para_Edicao"
+                }
+              },
+              "queryRef": "Geral_52_Colunas.Bloqueada_Para_Edicao",
+              "nativeQueryRef": "Bloqueada_Para_Edicao"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Geral_52_Colunas"
+                    }
+                  },
+                  "Property": "Versao_Planejamento"
+                }
+              },
+              "queryRef": "Geral_52_Colunas.Versao_Planejamento",
+              "nativeQueryRef": "Versao_Planejamento"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Geral_52_Colunas"
+                    }
+                  },
+                  "Property": "Origem_Registro"
+                }
+              },
+              "queryRef": "Geral_52_Colunas.Origem_Registro",
+              "nativeQueryRef": "Origem_Registro"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Geral_52_Colunas"
+                    }
+                  },
+                  "Property": "Data_Ultima_Revisao"
+                }
+              },
+              "queryRef": "Geral_52_Colunas.Data_Ultima_Revisao",
+              "nativeQueryRef": "Data_Ultima_Revisao"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Geral_52_Colunas"
+                    }
+                  },
+                  "Property": "Turno"
+                }
+              },
+              "queryRef": "Geral_52_Colunas.Turno",
+              "nativeQueryRef": "Turno"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Geral_52_Colunas"
+                    }
+                  },
+                  "Property": "Tipo_Calculo_Evasao"
+                }
+              },
+              "queryRef": "Geral_52_Colunas.Tipo_Calculo_Evasao",
+              "nativeQueryRef": "Tipo_Calculo_Evasao"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Geral_52_Colunas"
+                    }
+                  },
+                  "Property": "Percentual_Evasao_Previsto"
+                }
+              },
+              "queryRef": "Geral_52_Colunas.Percentual_Evasao_Previsto",
+              "nativeQueryRef": "Percentual_Evasao_Previsto"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Geral_52_Colunas"
+                    }
+                  },
+                  "Property": "Quantidade_Evasao_Prevista"
+                }
+              },
+              "queryRef": "Geral_52_Colunas.Quantidade_Evasao_Prevista",
+              "nativeQueryRef": "Quantidade_Evasao_Prevista"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Geral_52_Colunas"
+                    }
+                  },
+                  "Property": "Matriculas_Consideradas"
+                }
+              },
+              "queryRef": "Geral_52_Colunas.Matriculas_Consideradas",
+              "nativeQueryRef": "Matriculas_Consideradas"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Geral_52_Colunas"
+                    }
+                  },
+                  "Property": "Matriculas_Reais"
+                }
+              },
+              "queryRef": "Geral_52_Colunas.Matriculas_Reais",
+              "nativeQueryRef": "Matriculas_Reais"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Geral_52_Colunas"
+                    }
+                  },
+                  "Property": "Matriculas_Reais_Confirmadas"
+                }
+              },
+              "queryRef": "Geral_52_Colunas.Matriculas_Reais_Confirmadas",
+              "nativeQueryRef": "Matriculas_Reais_Confirmadas"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Geral_52_Colunas"
+                    }
+                  },
+                  "Property": "Código da turma SGE"
+                }
+              },
+              "queryRef": "Geral_52_Colunas.Código da turma SGE",
+              "nativeQueryRef": "Código da turma SGE"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Geral_52_Colunas"
+                    }
+                  },
+                  "Property": "Local_realizacao"
+                }
+              },
+              "queryRef": "Geral_52_Colunas.Local_realizacao",
+              "nativeQueryRef": "Local_realizacao"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Geral_52_Colunas"
+                    }
+                  },
+                  "Property": "Instrutor"
+                }
+              },
+              "queryRef": "Geral_52_Colunas.Instrutor",
+              "nativeQueryRef": "Instrutor"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Geral_52_Colunas"
+                    }
+                  },
+                  "Property": "Codigo_Matriz_Excel"
+                }
+              },
+              "queryRef": "Geral_52_Colunas.Codigo_Matriz_Excel",
+              "nativeQueryRef": "Codigo_Matriz_Excel"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Geral_52_Colunas"
+                    }
+                  },
+                  "Property": "Modalidade"
+                }
+              },
+              "queryRef": "Geral_52_Colunas.Modalidade",
+              "nativeQueryRef": "Modalidade"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}
