@@ -1,0 +1,7 @@
+V44 - Remove compressão dos dois blocos de dados locais da V43.
+JSON codificado diretamente em Base64; elimina etapa Binary.Decompress da leitura.
+4733 matrizes e 31 identificadores conferidos por round-trip local.
+Mantida uma única origem externa (RM), três tabelas, duas páginas e o escopo de 31 turmas complementares.
+Sem SharePoint e sem alteração das regras de carga.
+Atualizar e exportar os dois visuais de Complementar - conferência.
+Execução no Power BI Desktop ainda precisa ser validada.
