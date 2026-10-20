@@ -1,0 +1,380 @@
+table 'RM_Integracao_SharePoint'
+
+	column 'Planejamento'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Planejamento
+
+	column 'Unidade'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Unidade
+
+	column 'Periodo_Letivo'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Periodo_Letivo
+
+	column 'Ano_Referencia'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Ano_Referencia
+
+	column 'Identificador_Temporario'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Identificador_Temporario
+
+	column 'Codigo_Turma_SGE'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Codigo_Turma_SGE
+
+	column 'Matriz'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Matriz
+
+	column 'Status_Turma'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Status_Turma
+
+	column 'Ativa'
+		dataType: boolean
+		summarizeBy: none
+		sourceColumn: Ativa
+
+	column 'Codigo_Matriz_Snapshot'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Codigo_Matriz_Snapshot
+
+	column 'Nome_Curso_Snapshot'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Nome_Curso_Snapshot
+
+	column 'Area_Snapshot'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Area_Snapshot
+
+	column 'Modalidade_Snapshot'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Modalidade_Snapshot
+
+	column 'Tipo_Mediacao_Snapshot'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Tipo_Mediacao_Snapshot
+
+	column 'Carga_Horaria_Snapshot'
+		dataType: double
+		summarizeBy: none
+		sourceColumn: Carga_Horaria_Snapshot
+		formatString: #,0.00
+
+	column 'Data_Snapshot_Matriz'
+		dataType: dateTime
+		summarizeBy: none
+		sourceColumn: Data_Snapshot_Matriz
+		formatString: dd/MM/yyyy
+
+	column 'Data_Inicio_Prevista'
+		dataType: dateTime
+		summarizeBy: none
+		sourceColumn: Data_Inicio_Prevista
+		formatString: dd/MM/yyyy
+
+	column 'Data_Fim_Prevista'
+		dataType: dateTime
+		summarizeBy: none
+		sourceColumn: Data_Fim_Prevista
+		formatString: dd/MM/yyyy
+
+	column 'Quantidade_Vagas'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Quantidade_Vagas
+
+	column 'Matriculas_Previstas'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Matriculas_Previstas
+
+	column 'Campus_Polo'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Campus_Polo
+
+	column 'Financiamento'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Financiamento
+
+	column 'Tipo_Periodo'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Tipo_Periodo
+
+	column 'Pedagogo_Responsavel'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Pedagogo_Responsavel
+
+	column 'Mobilizacao'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Mobilizacao
+
+	column 'Empresa'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Empresa
+
+	column 'Projeto'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Projeto
+
+	column 'Sindicato'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Sindicato
+
+	column 'Classe_Valor'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Classe_Valor
+
+	column 'Item_Contabil_Snapshot'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Item_Contabil_Snapshot
+
+	column 'Centro_Custo_Snapshot'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Centro_Custo_Snapshot
+
+	column 'Observacoes'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Observacoes
+
+	column 'Motivo_Cancelamento'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Motivo_Cancelamento
+
+	column 'Data_Cancelamento'
+		dataType: dateTime
+		summarizeBy: none
+		sourceColumn: Data_Cancelamento
+		formatString: dd/MM/yyyy
+
+	column 'Cancelada_Por'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Cancelada_Por
+
+	column 'Data_Conclusao'
+		dataType: dateTime
+		summarizeBy: none
+		sourceColumn: Data_Conclusao
+		formatString: dd/MM/yyyy
+
+	column 'Bloqueada_Para_Edicao'
+		dataType: boolean
+		summarizeBy: none
+		sourceColumn: Bloqueada_Para_Edicao
+
+	column 'Versao_Planejamento'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Versao_Planejamento
+
+	column 'Origem_Registro'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Origem_Registro
+
+	column 'Data_Ultima_Revisao'
+		dataType: dateTime
+		summarizeBy: none
+		sourceColumn: Data_Ultima_Revisao
+		formatString: dd/MM/yyyy
+
+	column 'Turno'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Turno
+
+	column 'Tipo_Calculo_Evasao'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Tipo_Calculo_Evasao
+
+	column 'Percentual_Evasao_Previsto'
+		dataType: double
+		summarizeBy: none
+		sourceColumn: Percentual_Evasao_Previsto
+		formatString: #,0.00
+
+	column 'Quantidade_Evasao_Prevista'
+		dataType: double
+		summarizeBy: none
+		sourceColumn: Quantidade_Evasao_Prevista
+		formatString: #,0.00
+
+	column 'Matriculas_Consideradas'
+		dataType: double
+		summarizeBy: none
+		sourceColumn: Matriculas_Consideradas
+		formatString: #,0.00
+
+	column 'ID'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: ID
+
+	column 'Matriculas_Reais'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Matriculas_Reais
+
+	column 'Matriculas_Reais_Confirmadas'
+		dataType: boolean
+		summarizeBy: none
+		sourceColumn: Matriculas_Reais_Confirmadas
+
+	column 'Código da turma SGE'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Código da turma SGE
+
+	column 'Local_realizacao'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Local_realizacao
+
+	column 'Instrutor'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Instrutor
+
+	column 'Codigo_Matriz_Excel'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Codigo_Matriz_Excel
+
+	column 'Criado'
+		dataType: dateTime
+		summarizeBy: none
+		sourceColumn: Criado
+		formatString: dd/MM/yyyy
+
+	column 'Criado por'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Criado por
+
+	column 'RM_CODCOLIGADA'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: RM_CODCOLIGADA
+
+	column 'RM_CODFILIAL'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: RM_CODFILIAL
+
+	column 'RM_IDPERLET'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: RM_IDPERLET
+
+	column 'RM_CODTURMA'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: RM_CODTURMA
+
+	column 'RM_Unidade_Nome'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: RM_Unidade_Nome
+
+	column 'RM_Unidade_Fantasia'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: RM_Unidade_Fantasia
+
+	column 'RM_Codigo_Grade'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: RM_Codigo_Grade
+
+	column 'RM_Codigo_Curso'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: RM_Codigo_Curso
+
+	column 'RM_Codigo_Modalidade_Curso'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: RM_Codigo_Modalidade_Curso
+
+	column 'RM_Modalidade_Turma'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: RM_Modalidade_Turma
+
+	column 'RM_Codigo_Campus'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: RM_Codigo_Campus
+
+	column 'RM_Centro_Custo'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: RM_Centro_Custo
+
+	column 'RM_Item_Contabil'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: RM_Item_Contabil
+
+	column 'RM_Turma_Encerrada'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: RM_Turma_Encerrada
+
+	column 'RM_Status_Instrutor'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: RM_Status_Instrutor
+
+	column 'ID_Campus_SharePoint'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: ID_Campus_SharePoint
+
+	column 'Status_Campus'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Status_Campus
+
+	partition 'RM_Integracao_SharePoint' = m
+		mode: import
+		source =
+				let
+				    Fonte = Sql.Database("SRVSEDE01621PRE", "CorporeRM", [Query = "SET NOCOUNT ON;#(lf)-- CONSULTA DE INTEGRAÇÃO: somente leitura; mapeamento de campos ainda parcial.#(lf)-- Mantém os 54 nomes do CSV como contrato provisório de saída.#(lf)-- NULL identifica campo ainda não mapeado; não significa apagar a lista.#(lf)-- Tipos dos campos pendentes são provisórios, não são tipos SharePoint confirmados.#(lf)-- Este SQL reutiliza origens do PBIP, mas ainda NÃO foi executado no RM.#(lf)DECLARE @FimAPartirDe date = CONVERT(date,'20270101',112); -- início do ano atual no servidor RM#(lf)#(lf)-- Professor é associado à oferta/disciplina, não somente ao nome do curso.#(lf)-- Os vínculos abaixo são candidatos e são verificados por metadados antes de uso.#(lf)-- A tabela temporária recebe somente os nomes e a chave da turma.#(lf)SELECT TOP (0) T.CODCOLIGADA, T.CODFILIAL, T.IDPERLET, T.CODTURMA,#(lf)    CAST(NULL AS nvarchar(max)) AS Instrutor#(lf)INTO #(#)RM_ProfessoresPorTurma#(lf)FROM dbo.STURMA AS T;#(lf)#(lf)DECLARE @StatusEstruturaInstrutor nvarchar(250) =#(lf)    N'Estrutura de professores não reconhecida ou sem permissão de metadados; enviar diagnóstico';#(lf)DECLARE @ExpressaoNome nvarchar(100) = NULL;#(lf)DECLARE @JoinPessoa nvarchar(500) = N'';#(lf)IF COL_LENGTH(N'dbo.STURMADISC', N'CODCOLIGADA') IS NOT NULL#(lf)    AND COL_LENGTH(N'dbo.STURMADISC', N'CODFILIAL') IS NOT NULL#(lf)    AND COL_LENGTH(N'dbo.STURMADISC', N'IDPERLET') IS NOT NULL#(lf)    AND COL_LENGTH(N'dbo.STURMADISC', N'CODTURMA') IS NOT NULL#(lf)    AND COL_LENGTH(N'dbo.STURMADISC', N'IDTURMADISC') IS NOT NULL#(lf)    AND COL_LENGTH(N'dbo.SPROFESSORTURMA', N'CODCOLIGADA') IS NOT NULL#(lf)    AND COL_LENGTH(N'dbo.SPROFESSORTURMA', N'IDTURMADISC') IS NOT NULL#(lf)    AND COL_LENGTH(N'dbo.SPROFESSORTURMA', N'CODPROF') IS NOT NULL#(lf)    AND COL_LENGTH(N'dbo.SPROFESSOR', N'CODCOLIGADA') IS NOT NULL#(lf)    AND COL_LENGTH(N'dbo.SPROFESSOR', N'CODPROF') IS NOT NULL#(lf)BEGIN#(lf)    IF COL_LENGTH(N'dbo.SPROFESSOR', N'CODPESSOA') IS NOT NULL#(lf)        AND COL_LENGTH(N'dbo.PPESSOA', N'CODIGO') IS NOT NULL#(lf)        AND COL_LENGTH(N'dbo.PPESSOA', N'NOME') IS NOT NULL#(lf)    BEGIN#(lf)        SET @ExpressaoNome = N'PE.NOME';#(lf)        SET @JoinPessoa = N' INNER JOIN dbo.PPESSOA AS PE ON PE.CODIGO = PR.CODPESSOA ';#(lf)    END#(lf)    ELSE IF COL_LENGTH(N'dbo.SPROFESSOR', N'NOME') IS NOT NULL#(lf)        SET @ExpressaoNome = N'PR.NOME';#(lf)END;#(lf)#(lf)IF @ExpressaoNome IS NOT NULL#(lf)BEGIN#(lf)    -- SQL dinâmico evita compilar referências a colunas ausentes nas instalações RM.#(lf)    -- Identificadores fixos do código, sem entrada de usuário.#(lf)    DECLARE @SQLProfessores nvarchar(max) = N'#(lf)        INSERT INTO #(#)RM_ProfessoresPorTurma#(lf)            (CODCOLIGADA, CODFILIAL, IDPERLET, CODTURMA, Instrutor)#(lf)        SELECT DISTINCT D.CODCOLIGADA, D.CODFILIAL, D.IDPERLET, D.CODTURMA,#(lf)            LTRIM(RTRIM(CONVERT(nvarchar(max), ' + @ExpressaoNome + N')))#(lf)        FROM dbo.STURMADISC AS D#(lf)        INNER JOIN dbo.SPROFESSORTURMA AS PT#(lf)            ON PT.CODCOLIGADA = D.CODCOLIGADA AND PT.IDTURMADISC = D.IDTURMADISC#(lf)        INNER JOIN dbo.SPROFESSOR AS PR#(lf)            ON PR.CODCOLIGADA = PT.CODCOLIGADA AND PR.CODPROF = PT.CODPROF '#(lf)        + @JoinPessoa + N'#(lf)        WHERE EXISTS (#(lf)            SELECT 1 FROM dbo.STURMA AS T#(lf)            WHERE T.CODCOLIGADA = D.CODCOLIGADA AND T.CODFILIAL = D.CODFILIAL#(lf)                AND T.IDPERLET = D.IDPERLET AND T.CODTURMA = D.CODTURMA#(lf)                AND T.CODCOLIGADA = 3 AND T.DTFINAL >= @DataMinima#(lf)        );';#(lf)    EXEC sys.sp_executesql @SQLProfessores,#(lf)        N'@DataMinima date', @DataMinima = @FimAPartirDe;#(lf)    SET @StatusEstruturaInstrutor = N'Estrutura reconhecida; vínculos a validar no RM';#(lf)END;#(lf)#(lf)SELECT#(lf)    CAST(NULL AS nvarchar(4000)) AS [Planejamento], -- PENDENTE: não enviar NULL para sobrescrever valores existentes#(lf)    CAST(NULL AS nvarchar(4000)) AS [Unidade], -- PENDENTE: não enviar NULL para sobrescrever valores existentes#(lf)    P.CODPERLET AS [Periodo_Letivo], -- origem presente no SQL fornecido; validar semântica#(lf)    CAST(NULL AS int) AS [Ano_Referencia], -- PENDENTE: não enviar NULL para sobrescrever valores existentes#(lf)    CAST(NULL AS nvarchar(4000)) AS [Identificador_Temporario], -- PENDENTE: não enviar NULL para sobrescrever valores existentes#(lf)    T.CODTURMA AS [Codigo_Turma_SGE], -- origem presente no SQL fornecido; validar semântica#(lf)    CAST(NULL AS nvarchar(4000)) AS [Matriz], -- PENDENTE: não enviar NULL para sobrescrever valores existentes#(lf)    CAST(NULL AS nvarchar(4000)) AS [Status_Turma], -- PENDENTE: não enviar NULL para sobrescrever valores existentes#(lf)    CAST(NULL AS bit) AS [Ativa], -- PENDENTE: não enviar NULL para sobrescrever valores existentes#(lf)    CAST(NULL AS nvarchar(4000)) AS [Codigo_Matriz_Snapshot], -- PENDENTE: não enviar NULL para sobrescrever valores existentes#(lf)    C.NOME AS [Nome_Curso_Snapshot], -- origem presente no SQL fornecido; validar semântica#(lf)    CAST(NULL AS nvarchar(4000)) AS [Area_Snapshot], -- PENDENTE: não enviar NULL para sobrescrever valores existentes#(lf)    CAST(NULL AS nvarchar(4000)) AS [Modalidade_Snapshot], -- PENDENTE: não enviar NULL para sobrescrever valores existentes#(lf)    CAST(NULL AS nvarchar(4000)) AS [Tipo_Mediacao_Snapshot], -- PENDENTE: não enviar NULL para sobrescrever valores existentes#(lf)    CAST(NULL AS decimal(18,4)) AS [Carga_Horaria_Snapshot], -- PENDENTE: não enviar NULL para sobrescrever valores existentes#(lf)    CAST(NULL AS datetime2) AS [Data_Snapshot_Matriz], -- PENDENTE: não enviar NULL para sobrescrever valores existentes#(lf)    T.DTINICIAL AS [Data_Inicio_Prevista], -- origem presente no SQL fornecido; validar semântica#(lf)    T.DTFINAL AS [Data_Fim_Prevista], -- origem presente no SQL fornecido; validar semântica#(lf)    T.MAXALUNOS AS [Quantidade_Vagas], -- origem presente no SQL fornecido; validar semântica#(lf)    T.MAXALUNOS AS [Matriculas_Previstas], -- regra aprovada: previsão de matrículas igual à quantidade de vagas#(lf)    CAST(NULL AS nvarchar(4000)) AS [Campus_Polo], -- PENDENTE: não enviar NULL para sobrescrever valores existentes#(lf)    CAST(NULL AS nvarchar(4000)) AS [Financiamento], -- PENDENTE: não enviar NULL para sobrescrever valores existentes#(lf)    CAST(NULL AS nvarchar(4000)) AS [Tipo_Periodo], -- PENDENTE: não enviar NULL para sobrescrever valores existentes#(lf)    CAST(NULL AS nvarchar(4000)) AS [Pedagogo_Responsavel], -- PENDENTE: não enviar NULL para sobrescrever valores existentes#(lf)    CAST(NULL AS nvarchar(4000)) AS [Mobilizacao], -- PENDENTE: não enviar NULL para sobrescrever valores existentes#(lf)    CAST(NULL AS nvarchar(4000)) AS [Empresa], -- PENDENTE: não enviar NULL para sobrescrever valores existentes#(lf)    CAST(NULL AS nvarchar(4000)) AS [Projeto], -- PENDENTE: não enviar NULL para sobrescrever valores existentes#(lf)    CAST(NULL AS nvarchar(4000)) AS [Sindicato], -- PENDENTE: não enviar NULL para sobrescrever valores existentes#(lf)    CAST(NULL AS nvarchar(4000)) AS [Classe_Valor], -- PENDENTE: não enviar NULL para sobrescrever valores existentes#(lf)    CAST(NULL AS nvarchar(4000)) AS [Item_Contabil_Snapshot], -- PENDENTE: não enviar NULL para sobrescrever valores existentes#(lf)    CAST(NULL AS nvarchar(4000)) AS [Centro_Custo_Snapshot], -- PENDENTE: não enviar NULL para sobrescrever valores existentes#(lf)    CAST(NULL AS nvarchar(4000)) AS [Observacoes], -- PENDENTE: não enviar NULL para sobrescrever valores existentes#(lf)    CAST(NULL AS nvarchar(4000)) AS [Motivo_Cancelamento], -- PENDENTE: não enviar NULL para sobrescrever valores existentes#(lf)    CAST(NULL AS datetime2) AS [Data_Cancelamento], -- PENDENTE: não enviar NULL para sobrescrever valores existentes#(lf)    CAST(NULL AS nvarchar(4000)) AS [Cancelada_Por], -- PENDENTE: não enviar NULL para sobrescrever valores existentes#(lf)    CAST(NULL AS datetime2) AS [Data_Conclusao], -- PENDENTE: não enviar NULL para sobrescrever valores existentes#(lf)    CAST(NULL AS bit) AS [Bloqueada_Para_Edicao], -- PENDENTE: não enviar NULL para sobrescrever valores existentes#(lf)    CAST(NULL AS int) AS [Versao_Planejamento], -- PENDENTE: não enviar NULL para sobrescrever valores existentes#(lf)    CAST(NULL AS nvarchar(4000)) AS [Origem_Registro], -- PENDENTE: não enviar NULL para sobrescrever valores existentes#(lf)    CAST(NULL AS datetime2) AS [Data_Ultima_Revisao], -- PENDENTE: não enviar NULL para sobrescrever valores existentes#(lf)    CAST(NULL AS nvarchar(4000)) AS [Turno], -- PENDENTE: não enviar NULL para sobrescrever valores existentes#(lf)    CAST(NULL AS nvarchar(4000)) AS [Tipo_Calculo_Evasao], -- PENDENTE: não enviar NULL para sobrescrever valores existentes#(lf)    CAST(NULL AS decimal(18,4)) AS [Percentual_Evasao_Previsto], -- PENDENTE: não enviar NULL para sobrescrever valores existentes#(lf)    CAST(NULL AS decimal(18,4)) AS [Quantidade_Evasao_Prevista], -- PENDENTE: não enviar NULL para sobrescrever valores existentes#(lf)    CAST(NULL AS decimal(18,4)) AS [Matriculas_Consideradas], -- PENDENTE: não enviar NULL para sobrescrever valores existentes#(lf)    CAST(NULL AS int) AS [ID], -- PENDENTE: não enviar NULL para sobrescrever valores existentes#(lf)    CAST(NULL AS int) AS [Matriculas_Reais], -- PENDENTE: não enviar NULL para sobrescrever valores existentes#(lf)    CAST(NULL AS bit) AS [Matriculas_Reais_Confirmadas], -- PENDENTE: não enviar NULL para sobrescrever valores existentes#(lf)    CAST(NULL AS nvarchar(4000)) AS [Código da turma SGE], -- PENDENTE: não enviar NULL para sobrescrever valores existentes#(lf)    CAST(NULL AS nvarchar(4000)) AS [Local_realizacao], -- PENDENTE: não enviar NULL para sobrescrever valores existentes#(lf)    PROFESSORES.Instrutor AS [Instrutor], -- nomes distintos vinculados às disciplinas da turma#(lf)    CAST(NULL AS nvarchar(4000)) AS [Codigo_Matriz_Excel], -- PENDENTE: não enviar NULL para sobrescrever valores existentes#(lf)    CAST(NULL AS datetime2) AS [Criado], -- PENDENTE: não enviar NULL para sobrescrever valores existentes#(lf)    CAST(NULL AS nvarchar(4000)) AS [Criado por], -- PENDENTE: não enviar NULL para sobrescrever valores existentes#(lf)    -- Colunas técnicas adicionais: preservar no estágio de integração.#(lf)    T.CODCOLIGADA AS [RM_CODCOLIGADA],#(lf)    T.CODFILIAL AS [RM_CODFILIAL],#(lf)    T.IDPERLET AS [RM_IDPERLET],#(lf)    T.CODTURMA AS [RM_CODTURMA],#(lf)    F.NOME AS [RM_Unidade_Nome],#(lf)    F.NOMEFANTASIA AS [RM_Unidade_Fantasia],#(lf)    H.CODGRADE AS [RM_Codigo_Grade],#(lf)    H.CODCURSO AS [RM_Codigo_Curso],#(lf)    C.CODMODALIDADECURSO AS [RM_Codigo_Modalidade_Curso],#(lf)    T.MODALIDADE AS [RM_Modalidade_Turma],#(lf)    T.CODCAMPUS AS [RM_Codigo_Campus],#(lf)    T.CODCCUSTO AS [RM_Centro_Custo],#(lf)    T.IDITEMCONTABILPROTHEUS AS [RM_Item_Contabil],#(lf)    T.TURMAENCERRADA AS [RM_Turma_Encerrada],#(lf)    CASE#(lf)        WHEN @ExpressaoNome IS NULL THEN @StatusEstruturaInstrutor#(lf)        WHEN PROFESSORES.Instrutor IS NULL THEN N'Sem nome de professor nos vínculos consultados'#(lf)        ELSE @StatusEstruturaInstrutor#(lf)    END AS [RM_Status_Instrutor]#(lf)FROM dbo.STURMA AS T#(lf)LEFT JOIN dbo.SPLETIVO AS P#(lf)    ON P.CODCOLIGADA = T.CODCOLIGADA AND P.IDPERLET = T.IDPERLET#(lf)LEFT JOIN dbo.GFILIAL AS F#(lf)    ON F.CODCOLIGADA = T.CODCOLIGADA AND F.CODFILIAL = T.CODFILIAL#(lf)LEFT JOIN dbo.SHABILITACAOFILIAL AS H#(lf)    ON H.CODCOLIGADA = T.CODCOLIGADA#(lf)    AND H.IDHABILITACAOFILIAL = T.IDHABILITACAOFILIAL#(lf)LEFT JOIN dbo.SCURSO AS C#(lf)    ON C.CODCOLIGADA = H.CODCOLIGADA AND C.CODCURSO = H.CODCURSO#(lf)OUTER APPLY (#(lf)    SELECT STUFF((#(lf)        SELECT N'; ' + NOMES.Instrutor#(lf)        FROM (#(lf)            SELECT DISTINCT I.Instrutor#(lf)            FROM #(#)RM_ProfessoresPorTurma AS I#(lf)            WHERE I.CODCOLIGADA = T.CODCOLIGADA AND I.CODFILIAL = T.CODFILIAL#(lf)                AND I.IDPERLET = T.IDPERLET AND I.CODTURMA = T.CODTURMA#(lf)                AND I.Instrutor IS NOT NULL AND I.Instrutor <> N''#(lf)        ) AS NOMES#(lf)        ORDER BY NOMES.Instrutor#(lf)        FOR XML PATH(''), TYPE#(lf)    ).value('.', 'nvarchar(max)'), 1, 2, N'') AS Instrutor#(lf)) AS PROFESSORES#(lf)WHERE T.CODCOLIGADA = 3 AND T.DTFINAL >= @FimAPartirDe#(lf)ORDER BY T.CODCOLIGADA, T.CODFILIAL, T.IDPERLET, T.CODTURMA;#(lf)#(lf)-- A chave de turma e a cardinalidade dos joins são provisórias.#(lf)-- Resolver descrições/domínios e agregar matrículas e instrutores antes de adicioná-los.#(lf)-- Sem limite de linhas e sem filtro de início. Término no ano atual ou posterior; términos nulos ficam de fora.#(lf)#(lf)DROP TABLE #(#)RM_ProfessoresPorTurma;#(lf)"]),
+				    Tipos = Table.TransformColumnTypes(Fonte, {{"Planejamento", type text}, {"Unidade", type text}, {"Periodo_Letivo", type text}, {"Ano_Referencia", Int64.Type}, {"Identificador_Temporario", type text}, {"Codigo_Turma_SGE", type text}, {"Matriz", type text}, {"Status_Turma", type text}, {"Ativa", type logical}, {"Codigo_Matriz_Snapshot", type text}, {"Nome_Curso_Snapshot", type text}, {"Area_Snapshot", type text}, {"Modalidade_Snapshot", type text}, {"Tipo_Mediacao_Snapshot", type text}, {"Carga_Horaria_Snapshot", type number}, {"Data_Snapshot_Matriz", type datetime}, {"Data_Inicio_Prevista", type datetime}, {"Data_Fim_Prevista", type datetime}, {"Quantidade_Vagas", Int64.Type}, {"Matriculas_Previstas", Int64.Type}, {"Campus_Polo", type text}, {"Financiamento", type text}, {"Tipo_Periodo", type text}, {"Pedagogo_Responsavel", type text}, {"Mobilizacao", type text}, {"Empresa", type text}, {"Projeto", type text}, {"Sindicato", type text}, {"Classe_Valor", type text}, {"Item_Contabil_Snapshot", type text}, {"Centro_Custo_Snapshot", type text}, {"Observacoes", type text}, {"Motivo_Cancelamento", type text}, {"Data_Cancelamento", type datetime}, {"Cancelada_Por", type text}, {"Data_Conclusao", type datetime}, {"Bloqueada_Para_Edicao", type logical}, {"Versao_Planejamento", Int64.Type}, {"Origem_Registro", type text}, {"Data_Ultima_Revisao", type datetime}, {"Turno", type text}, {"Tipo_Calculo_Evasao", type text}, {"Percentual_Evasao_Previsto", type number}, {"Quantidade_Evasao_Prevista", type number}, {"Matriculas_Consideradas", type number}, {"ID", Int64.Type}, {"Matriculas_Reais", Int64.Type}, {"Matriculas_Reais_Confirmadas", type logical}, {"Código da turma SGE", type text}, {"Local_realizacao", type text}, {"Instrutor", type text}, {"Codigo_Matriz_Excel", type text}, {"Criado", type datetime}, {"Criado por", type text}, {"RM_CODCOLIGADA", Int64.Type}, {"RM_CODFILIAL", Int64.Type}, {"RM_IDPERLET", Int64.Type}, {"RM_CODTURMA", type text}, {"RM_Unidade_Nome", type text}, {"RM_Unidade_Fantasia", type text}, {"RM_Codigo_Grade", type text}, {"RM_Codigo_Curso", type text}, {"RM_Codigo_Modalidade_Curso", type text}, {"RM_Modalidade_Turma", Int64.Type}, {"RM_Codigo_Campus", type text}, {"RM_Centro_Custo", type text}, {"RM_Item_Contabil", Int64.Type}, {"RM_Turma_Encerrada", type text}, {"RM_Status_Instrutor", type text}}, "pt-BR"),
+				    IDsCampus=Table.AddColumn(Tipos,"ID_Campus_SharePoint",each null,Int64.Type),
+				    FonteRM=Table.AddColumn(IDsCampus,"Status_Campus",each "Campus preenchido na exportação enriquecida; fonte RM independente",type text)
+				in
+				    FonteRM
+
+	annotation PBI_ResultType = Table

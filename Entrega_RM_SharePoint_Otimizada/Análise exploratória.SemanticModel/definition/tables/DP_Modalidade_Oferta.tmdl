@@ -1,0 +1,34 @@
+table 'DP_Modalidade_Oferta'
+
+	column 'Mediacao_Origem'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Mediacao_Origem
+
+	column 'Modalidade_Destino'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Modalidade_Destino
+
+	column 'Status'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Status
+
+	column 'Valor_App'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Valor_App
+
+	partition 'DP_Modalidade_Oferta' = m
+		mode: import
+		source =
+				let
+				    // Mediação da turma conforme definição SQL de dbo.tmpDashsSGE; TIPOEAD é separado.
+				    Fonte=#table(type table [Mediacao_Origem=text, Modalidade_Destino=text], {{"PRESENCIAL","Presencial"},{"SEMIPRESENCIAL","Semipresencial"},{"A DISTÂNCIA","À distância"}}),
+				    Opcoes=List.Buffer(Table.SelectRows(APP_Opcoes_Escolha,each [Campo_Interno]="Modalidade")[Opcao]),
+				    Validacao=Table.AddColumn(Fonte,"Status",each if List.Contains(Opcoes,[Modalidade_Destino]) then "Opção existente na lista" else "Pendente: opção não existe na lista atual",type text),
+				    Resultado=Table.AddColumn(Validacao,"Valor_App",each if [Status]="Opção existente na lista" then [Modalidade_Destino] else null,type text)
+				in Resultado
+
+	annotation PBI_ResultType = Table

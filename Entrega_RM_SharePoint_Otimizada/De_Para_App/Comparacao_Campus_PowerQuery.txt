@@ -1,0 +1,34 @@
+// CONSULTA: Campus_RM_Exportar
+let
+    Fonte=Table.SelectColumns(RM_Integracao_SharePoint,{"RM_CODCOLIGADA","RM_CODFILIAL","RM_IDPERLET","RM_CODTURMA","RM_Unidade_Nome","RM_Codigo_Campus"}),
+    Codigos=Table.TransformColumns(Fonte,{{"RM_Codigo_Campus",each if _=null then null else let T=Text.Trim(Text.From(_)) in if T="" then null else T,type nullable text}}),
+    Agrupado=Table.Group(Codigos,{"RM_CODCOLIGADA","RM_CODFILIAL","RM_Unidade_Nome","RM_Codigo_Campus"},{
+        {"Quantidade_Turmas",each Table.RowCount(Table.Distinct(Table.SelectColumns(_,{"RM_CODCOLIGADA","RM_CODFILIAL","RM_IDPERLET","RM_CODTURMA"}))),Int64.Type},
+        {"Quantidade_Linhas_Fonte",each Table.RowCount(_),Int64.Type}}),
+    Resultado=Table.Sort(Agrupado,{{"RM_CODCOLIGADA",Order.Ascending},{"RM_CODFILIAL",Order.Ascending},{"RM_Codigo_Campus",Order.Ascending}})
+in Resultado
+
+// CONSULTA: Campus_App_Exportar
+let
+    Fonte=Table.SelectColumns(APP_Cad_Campus_Polo,{"ID","Codigo_Campus_Polo_SGE","Nome_Campus_Polo","Ativa"}),
+    Renomeado=Table.RenameColumns(Fonte,{{"ID","ID_SharePoint"},{"Codigo_Campus_Polo_SGE","Codigo_SGE"},{"Nome_Campus_Polo","Valor_App"}}),
+    Codigos=Table.TransformColumns(Renomeado,{{"Codigo_SGE",each if _=null then null else let T=Text.Trim(Text.From(_)) in if T="" then null else T,type nullable text}}),
+    Contagens=Table.Group(Table.SelectRows(Codigos,each [Codigo_SGE]<>null),{"Codigo_SGE"},{{"N",each Table.RowCount(_),Int64.Type}}),
+    J=Table.NestedJoin(Codigos,{"Codigo_SGE"},Contagens,{"Codigo_SGE"},"Contagem",JoinKind.LeftOuter),
+    E=Table.ExpandTableColumn(J,"Contagem",{"N"},{"Ocorrencias_Codigo"}),
+    Status=Table.AddColumn(E,"Status_Cadastro",each if [Codigo_SGE]=null then "Sem código SGE" else if [Ocorrencias_Codigo]>1 then "Código repetido no cadastro" else if [Ativa]<>true then "Opção não ativa" else "Código único e opção ativa; validar significado",type text),
+    Resultado=Table.Sort(Status,{{"ID_SharePoint",Order.Ascending}})
+in Resultado
+
+// CONSULTA: Campus_Comparacao
+let
+    RM=Campus_RM_Exportar,
+    App=Table.SelectRows(Campus_App_Exportar,each [Codigo_SGE]<>null),
+    J=Table.NestedJoin(RM,{"RM_Codigo_Campus"},App,{"Codigo_SGE"},"Opcoes",JoinKind.LeftOuter),
+    N=Table.AddColumn(J,"Quantidade_Opcoes_App",each Table.RowCount([Opcoes]),Int64.Type),
+    NA=Table.AddColumn(N,"Quantidade_Opcoes_Ativas",each Table.RowCount(Table.SelectRows([Opcoes],each [Ativa]=true)),Int64.Type),
+    IDs=Table.AddColumn(NA,"IDs_Candidatos",each Text.Combine(List.Transform([Opcoes][ID_SharePoint],each Text.From(_)),"; "),type text),
+    Nomes=Table.AddColumn(IDs,"Opcoes_Candidatas",each Text.Combine(List.RemoveNulls([Opcoes][Valor_App]),"; "),type text),
+    Status=Table.AddColumn(Nomes,"Resultado_Comparacao",each if [RM_Codigo_Campus]=null then "RM sem código de campus" else if [Quantidade_Opcoes_App]=0 then "Código RM sem correspondência no app" else if [Quantidade_Opcoes_App]>1 then "Ambíguo: código repetido no app" else if [Quantidade_Opcoes_Ativas]<>1 then "Correspondência apenas com opção não ativa" else "Código igual e opção ativa: confirmar equivalência de negócio",type text),
+    Resultado=Table.RemoveColumns(Status,{"Opcoes"})
+in Resultado

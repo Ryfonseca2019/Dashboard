@@ -1,0 +1,6 @@
+REGRAS APROVADAS — V10
+Matriculas_Previstas = Quantidade_Vagas, ambas vindas de STURMA.MAXALUNOS. A regra vale para RM_Integracao_SharePoint e suas exportações, inclusive Exportacao_App_Enriquecida.
+Pedagogo_Responsavel permanece vazio. Não substituir pelo instrutor.
+Para aceitar esse vazio, no SharePoint alterar a coluna Pedagogo_Responsavel para não obrigatória. No Power Apps, o controle Pedagogo_Responsavel_DataCard1 tem Required=true: alterar para false e publicar o app se as turmas forem posteriormente editadas/salvas sem pedagogo. Atualizar a fonte de dados no Studio após a alteração da lista.
+Essas configurações da lista e do app NÃO foram alteradas nesta entrega. O esquema APP_Contrato_Campos permanece como evidência do msapp recebido, onde o campo ainda é obrigatório.
+A mudança não resolve os demais cruzamentos e campos obrigatórios pendentes. Refazer Atualizar no PBIP; não usar exportações antigas.

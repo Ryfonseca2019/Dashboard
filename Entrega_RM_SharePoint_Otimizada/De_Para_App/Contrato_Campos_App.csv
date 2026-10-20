@@ -1,0 +1,63 @@
+﻿Campo_Interno;Rotulo;Tipo;Obrigatorio;Permissao;Vinculo
+ID;ID;integer;False;read-only;
+Title;Título;string;False;read-write;
+Planejamento;Planejamento;Lookup;True;read-write;Planejamento/Nome_Planejamento
+Unidade;Unidade;Lookup;True;read-write;Unidade/Nome_Unidade
+Periodo_Letivo;Periodo_Letivo;Lookup;True;read-write;Periodo_Letivo/Periodo_Letivo
+Ano_Referencia;Ano_Referencia;number;True;read-write;
+Identificador_Temporario;Identificador_Temporario;string;True;read-write;
+Codigo_Turma_SGE;Codigo_Turma_SGE;string;False;read-write;
+Matriz;Matriz;Lookup;False;read-write;Matriz/Codigo_Matriz
+Status_Turma;Status_Turma;Escolha;True;read-write;
+Ativa;Ativa;boolean;True;read-write;
+Codigo_Matriz_Snapshot;Codigo_Matriz_Snapshot;string;True;read-write;
+Nome_Curso_Snapshot;Nome_Curso_Snapshot;string;True;read-write;
+Area_Snapshot;Area_Snapshot;string;False;read-write;
+Modalidade_Snapshot;Modalidade_Snapshot;string;True;read-write;
+Tipo_Mediacao_Snapshot;Tipo_Mediacao_Snapshot;string;False;read-write;
+Carga_Horaria_Snapshot;Carga_Horaria_Snapshot;number;True;read-write;
+Data_Snapshot_Matriz0;Data_Snapshot_Matriz;string;True;read-write;
+Data_Inicio_Prevista;Data_Inicio_Prevista;string;True;read-write;
+Data_Fim_Prevista;Data_Fim_Prevista;string;True;read-write;
+Quantidade_Vagas;Quantidade_Vagas;number;True;read-write;
+Matriculas_Previstas;Matriculas_Previstas;number;True;read-write;
+Campus_Polo;Campus_Polo;Lookup;False;read-write;Campus_Polo/Nome_Campus_Polo
+Financiamento;Financiamento;Lookup;True;read-write;Financiamento/Nome_Financiamento
+Tipo_Periodo;Tipo_Periodo;string;False;read-write;
+Pedagogo_Responsavel;Pedagogo_Responsavel;Pessoa;True;read-write;
+Mobilizacao;Mobilizacao;Escolha;False;read-write;
+Empresa;Empresa;string;False;read-write;
+Projeto;Projeto;string;False;read-write;
+Sindicato;Sindicato;string;False;read-write;
+Classe_Valor;Classe_Valor;string;False;read-write;
+Item_Contabil_Snapshot;Item_Contabil_Snapshot;string;False;read-write;
+Centro_Custo_Snapshot;Centro_Custo_Snapshot;string;False;read-write;
+Observacoes;Observacoes;string;False;read-write;
+Motivo_Cancelamento;Motivo_Cancelamento;string;False;read-write;
+Data_Cancelamento;Data_Cancelamento;string;False;read-write;
+Cancelada_Por;Cancelada_Por;Pessoa;False;read-write;
+Data_Conclusao;Data_Conclusao;string;False;read-write;
+Bloqueada_Para_Edicao;Bloqueada_Para_Edicao;boolean;True;read-write;
+Versao_Planejamento;Versao_Planejamento;number;True;read-write;
+Origem_Registro;Origem_Registro;Escolha;True;read-write;
+Data_Ultima_Revisao;Data_Ultima_Revisao;string;False;read-write;
+Turno;Turno;Lookup;False;read-write;Turno/Nome_Turno
+Tipo_Calculo_Evasao;Tipo_Calculo_Evasao;Escolha;True;read-write;
+Percentual_Evasao_Previsto;Percentual_Evasao_Previsto;number;False;read-write;
+Quantidade_Evasao_Prevista;Quantidade_Evasao_Prevista;number;False;read-write;
+Matriculas_Consideradas;Matriculas_Consideradas;number;False;read-write;
+Matriculas_Reais;Matriculas_Reais;number;False;read-write;
+Matriculas_Reais_Confirmadas;Matriculas_Reais_Confirmadas;boolean;False;read-write;
+C_x00f3_digodaturmaSGE;Código da turma SGE;string;False;read-write;
+Local_realizacao;Local_realizacao;string;False;read-write;
+Instrutor;Instrutor;string;False;read-write;
+Codigo_Matriz_Excel;Codigo_Matriz_Excel;string;False;read-write;
+Created;Criado;string;False;read-only;
+Author;Criado por;Pessoa;False;read-only;
+Data_Snapshot_Matriz;Data_Snapshot_Matriz;string;True;read-write;
+Modalidade;Modalidade;Escolha;True;read-write;
+OData__ColorTag;Pressione Delete para excluir o ícone.;string;False;read-only;
+ComplianceAssetId;ID de Ativo de Conformidade;string;False;read-only;
+Mobilizacao_;Mobilizacao_;Escolha;False;read-write;
+Modified;Modificado;string;False;read-only;
+Editor;Modificado por;Pessoa;False;read-only;

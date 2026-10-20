@@ -1,0 +1,48 @@
+table 'APP_Planejamentos'
+
+	column 'ID'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: ID
+
+	column 'Nome_Planejamento'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Nome_Planejamento
+
+	column 'Unidade'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Unidade
+
+	column 'Ano_Planejamento'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Ano_Planejamento
+
+	column 'Ativo'
+		dataType: boolean
+		summarizeBy: none
+		sourceColumn: Ativo
+
+	partition 'APP_Planejamentos' = m
+		mode: import
+		source =
+				let
+				    Texto = (v as any) as nullable text =>
+				        if v = null then null
+				        else if Value.Is(v, type record) then
+				            let chaves = {"Value", "lookupValue", "LookupValue", "Title", "Email", "DisplayName"},
+				                chave = List.First(List.Select(chaves, each Record.HasFields(v, _)), null)
+				            in if chave = null then error "Objeto de cadastro sem rótulo reconhecido" else @Texto(Record.Field(v, chave))
+				        else if Value.Is(v, type list) then Text.Combine(List.RemoveNulls(List.Transform(v, each @Texto(_))), "; ")
+				        else Text.From(v, "pt-BR"),
+				    Fonte = SharePoint.Tables("https://sfirjan.sharepoint.com/sites/PlanejamentodeOfertasparaProduo-EP", [Implementation = "2.0", ViewMode = "All"]),
+				    Itens = Fonte{[Id = "0c0f17eb-53c5-47af-a58b-ce9f98816012"]}[Items],
+				    Campos = Table.SelectColumns(Itens, {"ID", "Nome_Planejamento", "Unidade", "Ano_Planejamento", "Ativo"}),
+				    Rotulos = Table.TransformColumns(Campos, {{"Nome_Planejamento", Texto, type text}, {"Unidade", Texto, type text}}),
+				    Tipos = Table.TransformColumnTypes(Rotulos, {{"ID", Int64.Type}, {"Ano_Planejamento", Int64.Type}, {"Ativo", type logical}}, "pt-BR")
+				in
+				    Tipos
+
+	annotation PBI_ResultType = Table

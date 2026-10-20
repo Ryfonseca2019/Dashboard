@@ -1,0 +1,25 @@
+table 'DP_Mobilizacoes_Exportacao'
+
+	column 'Codigo_RM'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Codigo_RM
+
+	column 'Valor_App'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Valor_App
+
+	partition 'DP_Mobilizacoes_Exportacao' = m
+		mode: import
+		source =
+				let
+				    Dom=Table.TransformColumns(RM_Mobilizacao_Dicionario,{{"Codigo_Mobilizacao",each if _=null then null else Text.Trim(Text.From(_)),type nullable text}}),
+				    Grupos=Table.Group(Dom,{"Codigo_Mobilizacao"},{{"Registros",each _,type table}}),
+				    Opcoes=List.Buffer(Table.SelectRows(APP_Opcoes_Escolha,each [Campo_Interno]="Mobilizacao")[Opcao]),
+				    Valor=Table.AddColumn(Grupos,"Valor_App",each let R=[Registros],Descricao=if Table.RowCount(R)=1 then R{0}[Descricao_RM] else null,Correspondencias=if Descricao=null then {} else List.Select(Opcoes,(O)=>Text.Trim(O)=Text.Trim(Descricao)) in if List.Count(Correspondencias)=1 then Correspondencias{0} else null,type nullable text),
+				    Nomes=Table.RenameColumns(Valor,{{"Codigo_Mobilizacao","Codigo_RM"}}),
+				    Resultado=Table.SelectColumns(Nomes,{"Codigo_RM","Valor_App"})
+				in Resultado
+
+	annotation PBI_ResultType = Table

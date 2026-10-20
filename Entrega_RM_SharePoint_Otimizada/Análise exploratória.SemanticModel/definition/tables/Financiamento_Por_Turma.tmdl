@@ -1,0 +1,62 @@
+table 'Financiamento_Por_Turma'
+
+	column 'RM_CODCOLIGADA'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: RM_CODCOLIGADA
+
+	column 'RM_CODFILIAL'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: RM_CODFILIAL
+
+	column 'RM_IDPERLET'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: RM_IDPERLET
+
+	column 'RM_CODTURMA'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: RM_CODTURMA
+
+	column 'Quantidade_Classificacoes'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Quantidade_Classificacoes
+
+	column 'Codigo_Classificacao'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Codigo_Classificacao
+
+	column 'ID_Financiamento_SharePoint'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: ID_Financiamento_SharePoint
+
+	column 'Financiamento'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Financiamento
+
+	column 'Status_Financiamento'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Status_Financiamento
+
+	partition 'Financiamento_Por_Turma' = m
+		mode: import
+		source =
+				let
+				    Fonte=Table.TransformColumns(Table.SelectColumns(RM_Oferta_Diagnostico,{"RM_CODCOLIGADA","RM_CODFILIAL","RM_IDPERLET","RM_CODTURMA","RM_CLASSIFICACAO"}),{{"RM_CLASSIFICACAO",each if _=null then null else let T=Text.Trim(_) in if T="" then null else T,type nullable text}}),
+				    Agrupa=Table.Group(Fonte,{"RM_CODCOLIGADA","RM_CODFILIAL","RM_IDPERLET","RM_CODTURMA"},{{"Codigos",each List.Distinct([RM_CLASSIFICACAO]),type list}}),
+				    N=Table.AddColumn(Agrupa,"Quantidade_Classificacoes",each List.Count([Codigos]),Int64.Type),
+				    Codigo=Table.AddColumn(N,"Codigo_Classificacao",each if [Quantidade_Classificacoes]=1 then [Codigos]{0} else null,type text),
+				    J=Table.NestedJoin(Codigo,{"Codigo_Classificacao"},Table.Buffer(DP_Financiamento_Confirmado),{"Codigo_Classificacao"},"Mapa",JoinKind.LeftOuter),
+				    E=Table.ExpandTableColumn(J,"Mapa",{"ID_Financiamento_SharePoint","Valor_App","Status_DePara"},{"ID_Financiamento_SharePoint","Financiamento","Status_DePara"}),
+				    Status=Table.AddColumn(E,"Status_Financiamento",each if [Quantidade_Classificacoes]<>1 then "Pendente: classificações conflitantes na turma" else if [Codigo_Classificacao]=null then "Pendente: turma sem classificação" else if [Status_DePara]=null then "Pendente: classificação sem regra aprovada" else [Status_DePara],type text),
+				    Resultado=Table.RemoveColumns(Status,{"Codigos","Status_DePara"})
+				in Resultado
+
+	annotation PBI_ResultType = Table

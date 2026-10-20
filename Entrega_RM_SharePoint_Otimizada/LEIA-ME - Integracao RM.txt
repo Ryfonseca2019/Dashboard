@@ -1,0 +1,29 @@
+PROJETO POWER BI - RM / TURMAS 2026 - VERSAO DE DIAGNOSTICO
+
+O ZIP contem o .pbip, o Report e o SemanticModel TMDL.
+
+ALTERACOES EFETUADAS
+- Preservadas as duas consultas SQL existentes, conexao e relatorio original.
+- Acrescentadas 8 medidas DAX a tabela "Consulta das turmas de 2026":
+  Total de Registros RM; Turmas Distintas RM; Registros Duplicados RM;
+  Vagas Previstas RM; Turmas sem Curso RM; Turmas sem Data Inicio RM;
+  Turmas sem Data Fim RM; Turmas com Datas Invertidas RM.
+
+LIMITACOES / PENDENCIAS
+- Consulta SQL tem SELECT TOP (200): todas as medidas cobrem no maximo 200 registros.
+- O arquivo nao comprova consulta ao banco; nao foram testados SQL, credenciais, refresh nem DAX no Desktop.
+- Chave de turma por coligada, filial, periodo e codigo e provisoria.
+- Medida de vagas soma linhas e pode duplicar capacidade se o join multiplicar turmas.
+- Nao foram criados indicadores H/A ou matriculas previstas: bases ainda nao confirmadas.
+- Nao foram alterados visuals existentes e nao foi construida conexao SharePoint.
+- Arquivos .pbi/cache.abf foram mantidos, mas a abertura podera exigir atualizacao.
+
+PROXIMO PASSO
+1. Extraia o ZIP inteiro em uma pasta local.
+2. Abra Análise exploratória.pbip no Power BI Desktop.
+3. Confira se as 8 medidas aparecem e execute 'Atualizar'.
+4. Envie os erros (se houver) ou uma exportacao dos resultados da consulta de turmas.
+5. Valide regras de chaves, filtros de 2026 e planejamento antes de retirar TOP (200).
+
+SEGURANCA
+Nao envie credenciais ou dados pessoais. A conexao usa o ambiente corporativo; consulte a equipe de TI.

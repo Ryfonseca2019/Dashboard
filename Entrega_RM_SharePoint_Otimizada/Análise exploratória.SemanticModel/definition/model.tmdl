@@ -1,0 +1,47 @@
+model Model
+	culture: pt-BR
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: pt-BR
+	valueFilterBehavior: independent
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["APP_Cad_Campus_Polo", "APP_Cad_Financiamentos", "APP_Cad_Matrizes", "APP_Cad_Unidades", "APP_Contrato_Campos", "APP_Opcoes_Escolha", "APP_Planejamentos", "Campus_Cadastro_RM", "Carga_Niteroi_2027_52_Colunas", "Carga_Niteroi_2027_Conferencia", "Carga_Niteroi_2027_Resumo", "DP_Campus_Confirmado", "DP_Financiamento_Confirmado", "DP_Identificadores_Niteroi", "DP_Matrizes_Auditoria", "DP_Matrizes_Validadas", "DP_Mobilizacoes_Exportacao", "DP_Modalidade_Oferta", "DP_Unidade_Planejamento", "Exportacao_App_Enriquecida", "Financiamento_Por_Turma", "Matrizes_Divergencias_Recebidas", "Mediacao_Por_Turma", "Mobilizacao_Por_Turma", "RM_Catalogo_Matrizes_Completo", "RM_Dominios_Direcionados", "RM_Integracao_SharePoint", "RM_Mobilizacao_Dicionario", "RM_Oferta_Diagnostico"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+
+ref cultureInfo pt-BR
+
+ref table 'APP_Cad_Campus_Polo'
+ref table 'APP_Cad_Financiamentos'
+ref table 'APP_Cad_Matrizes'
+ref table 'APP_Cad_Unidades'
+ref table 'APP_Contrato_Campos'
+ref table 'APP_Opcoes_Escolha'
+ref table 'APP_Planejamentos'
+ref table 'Campus_Cadastro_RM'
+ref table 'Carga_Niteroi_2027_52_Colunas'
+ref table 'Carga_Niteroi_2027_Conferencia'
+ref table 'Carga_Niteroi_2027_Resumo'
+ref table 'DP_Campus_Confirmado'
+ref table 'DP_Financiamento_Confirmado'
+ref table 'DP_Identificadores_Niteroi'
+ref table 'DP_Matrizes_Auditoria'
+ref table 'DP_Matrizes_Validadas'
+ref table 'DP_Mobilizacoes_Exportacao'
+ref table 'DP_Modalidade_Oferta'
+ref table 'DP_Unidade_Planejamento'
+ref table 'Exportacao_App_Enriquecida'
+ref table 'Financiamento_Por_Turma'
+ref table 'Matrizes_Divergencias_Recebidas'
+ref table 'Mediacao_Por_Turma'
+ref table 'Mobilizacao_Por_Turma'
+ref table 'RM_Catalogo_Matrizes_Completo'
+ref table 'RM_Dominios_Direcionados'
+ref table 'RM_Integracao_SharePoint'
+ref table 'RM_Mobilizacao_Dicionario'
+ref table 'RM_Oferta_Diagnostico'

@@ -1,0 +1,9 @@
+V42 - Versão enxuta independente, sem substituir a entrega histórica.
+Somente páginas Carga Niterói - 2027 e Carga 2027 - pendências.
+29 consultas/tabelas necessárias; 54 tabelas/consultas históricas removidas.
+Matrizes continuam incorporadas localmente (4733 registros; exclusão de ID 4683 informada pelo usuário).
+RM permanece ao vivo com corte 01/01/2027 e exclusão das 72 turmas já importadas.
+Layout 52 colunas preservado. Não foram alteradas regras de aprovação ou seleção do lote.
+Fontes SharePoint ainda necessárias: APP_Cad_Campus_Polo, APP_Cad_Financiamentos, APP_Cad_Unidades, APP_Opcoes_Escolha, APP_Planejamentos.
+Redução estrutural validada; tempo de atualização precisa ser medido no Power BI Desktop, não há garantia de duração.
+Não executar junto com uma atualização travada de versão anterior.

@@ -1,0 +1,48 @@
+table 'APP_Opcoes_Escolha'
+
+	column 'Campo_Interno'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Campo_Interno
+
+	column 'Rotulo'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Rotulo
+
+	column 'Opcao'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Opcao
+
+	column 'Obrigatorio'
+		dataType: boolean
+		summarizeBy: none
+		sourceColumn: Obrigatorio
+
+	partition 'APP_Opcoes_Escolha' = m
+		mode: import
+		source =
+				let
+				    Site = "https://sfirjan.sharepoint.com/sites/PlanejamentodeOfertasparaProduo-EP",
+				    Pagina = (relativa as text) as record =>
+				        let J = Json.Document(Web.Contents(Site, [RelativePath=relativa, Headers=[Accept="application/json;odata=nometadata"]])),
+				            D = Record.FieldOrDefault(J, "d", J),
+				            Linhas = Record.FieldOrDefault(D, "value", Record.FieldOrDefault(D, "results", {})),
+				            Proxima = Record.FieldOrDefault(D, "@odata.nextLink", Record.FieldOrDefault(D, "odata.nextLink", Record.FieldOrDefault(D, "__next", null)))
+				        in [Linhas=Linhas, Proxima=Proxima],
+				    Inicial = Pagina("_api/web/lists(guid'ec87b29f-d485-465c-9706-384693de3275')/fields?$top=5000"),
+				    Paginas = List.Generate(()=>[P=Inicial], each [P] <> null,
+				        each [P=if [P][Proxima] = null then null else
+				            if Text.StartsWith([P][Proxima], Site & "/") then Pagina(Text.AfterDelimiter([P][Proxima], Site & "/"))
+				            else error "Link de paginação fora do site esperado"], each [P][Linhas]),
+				    Registros = List.Combine(Paginas),
+				    Escolhas = List.Select(Registros, each Record.FieldOrDefault(_, "TypeAsString", "") = "Choice" or Record.FieldOrDefault(_, "TypeAsString", "") = "MultiChoice"),
+				    Linhas = List.Combine(List.Transform(Escolhas, (campo) =>
+				        let Op = Record.FieldOrDefault(campo, "Choices", null),
+				            Lista = if Value.Is(Op, type list) then Op else if Value.Is(Op, type record) then Record.FieldOrDefault(Op, "results", {}) else error "API não retornou Choices; verificar permissões e esquema"
+				        in List.Transform(Lista, each {campo[InternalName], campo[Title], Text.From(_), campo[Required]}))),
+				    Resultado = #table(type table [Campo_Interno=text, Rotulo=text, Opcao=text, Obrigatorio=logical], Linhas)
+				in Resultado
+
+	annotation PBI_ResultType = Table

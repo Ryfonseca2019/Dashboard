@@ -1,0 +1,18 @@
+V16 — REDUÇÃO DE DEPENDÊNCIAS E LEITURAS REPETIDAS
+
+A V15 não apresentou ciclo de consultas na inspeção estática. Porém, a extração principal RM_Integracao_SharePoint dependia do SharePoint por causa do campus; a consulta de diagnóstico de oferta usava subconsultas correlacionadas a cada turma. Sem acesso ao Desktop/servidor não foi possível confirmar qual etapa causava a demora observada.
+
+MUDANÇAS
+- RM_Integracao_SharePoint volta a consultar somente RM. Campus_Polo nessa tabela bruta permanece nulo; o preenchimento validado foi movido para Exportacao_App_Enriquecida.
+- As páginas Exportação | 54 campos e Colagem | sem metadados agora usam Exportacao_App_Enriquecida, mantendo a ordem das colunas, campus confirmado e matrizes aprovadas.
+- RM_Oferta_Diagnostico agrupa grade/turno/modalidade/complemento por suas chaves antes dos joins. Mantém contagens, nulidade de valores ambíguos e filtro SENAI/término atual em diante.
+- Catálogos pequenos de SharePoint são materializados com Table.Buffer dentro das consultas que fazem vários cruzamentos. Isso evita releituras dentro de uma avaliação; não é cache persistente nem compartilhado entre todas as consultas.
+- Nenhum filtro de negócio foi ampliado ou limite de linhas imposto; nenhuma verificação de privacidade foi desativada.
+
+COMO VERIFICAR
+Cancele a atualização anterior se ainda estiver presa. Extraia a V16 em pasta nova e abra o PBIP. Em Transformar dados, atualize primeiro a prévia de RM_Oferta_Diagnostico para verificar o diagnóstico SQL, depois APP_Cad_Matrizes para verificar o SharePoint, e só depois execute a atualização completa.
+Anote o nome da consulta que fica lendo dados e se a contagem aumenta. Verifique se há solicitação de autenticação ou de privacidade pendente. Use níveis de privacidade compatíveis com as políticas da empresa; não ignore essas proteções.
+Se continuar demorando, envie a consulta que está efetivamente lendo dados e o tempo aproximado. Não é necessário enviar senhas ou capturas com dados pessoais.
+
+SQL/M e estrutura foram verificados estaticamente; o desempenho não foi medido contra o banco corporativo. Esta versão é uma correção de estrutura e trabalho repetido, não uma garantia de tempo de atualização.
+As tabelas de diagnóstico e os campos ainda pendentes não representam uma carga pronta para migrar. Preserve alterações locais em sua cópia anterior.
