@@ -1,0 +1,7 @@
+1. Extraia o ZIP.
+2. Abra Análise exploratória.pbip no Power BI Desktop, na rede corporativa.
+3. Clique em Atualizar.
+4. Na página Calendário RM - localizar, exporte a tabela para CSV e envie.
+
+Projeto isolado: somente uma consulta de metadados SQL, sem SharePoint e sem atualização das turmas. Ainda não contém eventos nem carga do calendário.
+Estrutura JSON e referências conferidas; atualização no RM depende da rede corporativa e não foi executada aqui.

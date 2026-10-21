@@ -1,0 +1,93 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "e1234567890abcdef310",
+  "position": {
+    "x": 20,
+    "y": 20,
+    "width": 1880,
+    "height": 1000,
+    "z": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Localizar_Calendario"
+                    }
+                  },
+                  "Property": "Esquema"
+                }
+              },
+              "queryRef": "RM_Localizar_Calendario.Esquema",
+              "nativeQueryRef": "Esquema"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Localizar_Calendario"
+                    }
+                  },
+                  "Property": "Tabela"
+                }
+              },
+              "queryRef": "RM_Localizar_Calendario.Tabela",
+              "nativeQueryRef": "Tabela"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Localizar_Calendario"
+                    }
+                  },
+                  "Property": "Ordem_Coluna"
+                }
+              },
+              "queryRef": "RM_Localizar_Calendario.Ordem_Coluna",
+              "nativeQueryRef": "Ordem_Coluna"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Localizar_Calendario"
+                    }
+                  },
+                  "Property": "Coluna"
+                }
+              },
+              "queryRef": "RM_Localizar_Calendario.Coluna",
+              "nativeQueryRef": "Coluna"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RM_Localizar_Calendario"
+                    }
+                  },
+                  "Property": "Tipo"
+                }
+              },
+              "queryRef": "RM_Localizar_Calendario.Tipo",
+              "nativeQueryRef": "Tipo"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

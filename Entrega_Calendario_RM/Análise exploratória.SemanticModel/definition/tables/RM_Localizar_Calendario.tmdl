@@ -1,0 +1,36 @@
+table 'RM_Localizar_Calendario'
+
+	column 'Esquema'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Esquema
+
+	column 'Tabela'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Tabela
+
+	column 'Ordem_Coluna'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Ordem_Coluna
+
+	column 'Coluna'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Coluna
+
+	column 'Tipo'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Tipo
+
+	partition 'RM_Localizar_Calendario' = m
+		mode: import
+		source =
+				let
+				    Fonte = Sql.Database("SRVSEDE01621PRE", "CorporeRM", [Query="SELECT s.name AS Esquema, t.name AS Tabela, c.column_id AS Ordem_Coluna, c.name AS Coluna, ty.name AS Tipo FROM sys.tables t JOIN sys.schemas s ON s.schema_id=t.schema_id JOIN sys.columns c ON c.object_id=t.object_id JOIN sys.types ty ON ty.user_type_id=c.user_type_id WHERE t.name LIKE '%CALEND%' OR t.name LIKE '%FERIAD%' OR t.name LIKE '%RECESS%' ORDER BY s.name,t.name,c.column_id"])
+				in
+				    Fonte
+
+	annotation PBI_ResultType = Table
