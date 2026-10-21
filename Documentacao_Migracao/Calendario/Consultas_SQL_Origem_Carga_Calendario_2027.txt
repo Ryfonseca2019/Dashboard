@@ -1,0 +1,149 @@
+﻿CONSULTAS SQL E CRITÉRIOS — CARGA DO CALENDÁRIO DO APLICATIVO / 2027
+Data: 21/10/2026
+Servidor: SRVSEDE01621PRE
+Banco de dados: CorporeRM
+Arquivo de referência: Calendario_App_2027_Carga_e_Pendencias.xlsx
+
+OBJETIVO
+Documentar as consultas SQL utilizadas nas extrações que subsidiaram a carga de feriados de 2027 para a lista Cad_Calendario do SharePoint.
+Todas as consultas abaixo são de leitura. Devem ser executadas no banco CorporeRM, com as permissões do setor responsável.
+
+IMPORTANTE SOBRE A ORIGEM DA TABELA FINAL
+A aba Carga 2027 não foi produzida por uma única consulta SQL. Ela foi montada a partir das exportações destas consultas, cruzadas fora do banco com os CSVs Cad_Unidades (3).csv e Cad_Calendario (1).csv, do SharePoint.
+Executar somente o SQL não reproduz a remoção dos eventos já cadastrados nem os nomes das unidades do aplicativo. Os critérios completos estão após as consultas.
+As consultas foram executadas pelo usuário no Power BI e os resultados foram recebidos em CSV. A preparação do arquivo final utilizou esses resultados; não houve acesso direto ao RM durante essa preparação.
+
+CONSULTAS UTILIZADAS
+
+==============================================================================
+01 — Cadastro e quantidade de registros por calendário
+==============================================================================
+SELECT C.CODIGO AS Codigo_Calendario,C.NOME AS Nome_Calendario,CONVERT(varchar(20),C.CODCOLIGADA) AS Coligada_Cadastro,CONVERT(varchar(20),C.VISIVELTODASCOLIGADAS) AS Visivel_Todas_Coligadas,(SELECT COUNT(*)
+FROM dbo.GFERIADO F
+WHERE F.CODCALENDARIO=C.CODIGO) AS Quantidade_Feriados,(SELECT COUNT(*)
+FROM dbo.GCALENDEVENTOSACAD E
+WHERE E.CODCALENDARIO=C.CODIGO) AS Quantidade_Eventos
+FROM dbo.GCALEND C;
+
+==============================================================================
+02 — Feriados e eventos acadêmicos (extração completa)
+==============================================================================
+SELECT 'GFERIADO' AS Origem,F.CODCALENDARIO AS Codigo_Calendario,CONVERT(varchar(40),NULL) AS Codigo_Evento,F.NOME AS Descricao,CONVERT(varchar(10),F.DIAFERIADO,103) AS Data_Inicio,CONVERT(varchar(10),F.DIAFERIADO,103) AS Data_Fim,CONVERT(varchar(40),F.TIPO) AS Codigo_Tipo,CONVERT(varchar(20),F.FERIADO) AS Flag_Feriado,CONVERT(varchar(20),F.HORAINICIO) AS Hora_Inicio_RM,CONVERT(varchar(20),F.HORAFINAL) AS Hora_Fim_RM
+FROM dbo.GFERIADO F
+UNION ALL SELECT 'GCALENDEVENTOSACAD',E.CODCALENDARIO,CONVERT(varchar(40),E.IDEVENTO),E.NOME,CONVERT(varchar(10),E.INICIO,103),CONVERT(varchar(10),E.TERMINO,103),CONVERT(varchar(40),E.TIPO),NULL,NULL,NULL
+FROM dbo.GCALENDEVENTOSACAD E;
+
+==============================================================================
+03 — Domínios dos tipos de feriado e de evento
+==============================================================================
+SELECT 'GTPFERIADO' AS Origem,CONVERT(varchar(40),CODCLIENTE) AS Codigo_Cliente,CONVERT(varchar(40),CODINTERNO) AS Codigo_Interno,DESCRICAO AS Descricao
+FROM dbo.GTPFERIADO
+UNION ALL SELECT 'GTPEVENTOCALEND',CONVERT(varchar(40),CODCLIENTE),CONVERT(varchar(40),CODINTERNO),DESCRICAO
+FROM dbo.GTPEVENTOCALEND;
+
+==============================================================================
+04 — Vínculos de calendário nas turmas do recorte da carga
+==============================================================================
+SELECT CONVERT(varchar(20),T.CODCOLIGADA) AS Coligada,CONVERT(varchar(20),T.CODFILIAL) AS Filial,CONVERT(varchar(20),T.IDPERLET) AS ID_Periodo,T.CODTURMA AS Codigo_Turma,CONVERT(varchar(20),T.IDHABILITACAOFILIAL) AS ID_Habilitacao_Filial,CONVERT(varchar(10),T.DTINICIAL,103) AS Inicio_Turma,CONVERT(varchar(10),T.DTFINAL,103) AS Fim_Turma,P.CODPERLET AS Periodo_Letivo,P.CALENDARIO AS Calendario_Periodo
+FROM dbo.STURMA T
+LEFT JOIN dbo.SPLETIVO P ON P.CODCOLIGADA=T.CODCOLIGADA AND P.IDPERLET=T.IDPERLET
+WHERE T.CODCOLIGADA=3 AND T.DTFINAL>='20270101';
+
+==============================================================================
+05 — Vínculos de calendário por curso e período
+==============================================================================
+SELECT CONVERT(varchar(20),H.CODCOLIGADA) AS Coligada,CONVERT(varchar(20),H.CODFILIAL) AS Filial,CONVERT(varchar(20),H.IDPERLET) AS ID_Periodo,CONVERT(varchar(20),H.IDHABILITACAOFILIAL) AS ID_Habilitacao_Filial,H.CODTURMA AS Codigo_Turma_Vinculo,H.CODCALENDARIO AS Calendario_Curso_Periodo
+FROM dbo.SHABILITACAOFILIALPL H
+WHERE H.CODCOLIGADA=3 AND EXISTS (SELECT 1
+FROM dbo.STURMA T
+WHERE T.CODCOLIGADA=H.CODCOLIGADA AND T.CODFILIAL=H.CODFILIAL AND T.IDPERLET=H.IDPERLET AND T.IDHABILITACAOFILIAL=H.IDHABILITACAOFILIAL AND T.DTFINAL>='20270101');
+
+==============================================================================
+06 — Eventos acadêmicos adicionais (resultado vazio na exportação recebida)
+==============================================================================
+SELECT CODCALENDARIO AS Codigo_Calendario,CONVERT(varchar(20),CODEVTACAD) AS Codigo_Evento,DESCRICAO AS Descricao,COMPLEMENTO AS Complemento,CONVERT(varchar(10),DTINICIO,103) AS Data_Inicio,CONVERT(varchar(10),DTFIM,103) AS Data_Fim
+FROM dbo.SEVENTOACAD
+WHERE DTINICIO<'20290101' AND COALESCE(DTFIM,DTINICIO)>='20260101';
+
+==============================================================================
+07 — Consulta auxiliar: calendário no cadastro da filial
+==============================================================================
+SELECT CONVERT(varchar(20),CODCOLIGADA) AS Coligada,CONVERT(varchar(20),CODFILIAL) AS Filial,NOME AS Nome_Filial,CODCALENDARIO AS Codigo_Calendario
+FROM dbo.GFILIAL
+WHERE CODCOLIGADA=3;
+
+==============================================================================
+08 — Consulta auxiliar: calendários disponíveis por filial/tipo de curso
+==============================================================================
+SELECT CODCALENDARIO AS Codigo_Calendario,CONVERT(varchar(20),CODCOLIGADA) AS Coligada,CONVERT(varchar(20),CODFILIAL) AS Filial,CONVERT(varchar(20),CODTIPOCURSO) AS Tipo_Curso
+FROM dbo.SCALENDUSUARIOFILIAL
+WHERE CODCOLIGADA=3;
+
+==============================================================================
+CRITÉRIOS APLICADOS APÓS A EXTRAÇÃO SQL
+==============================================================================
+
+1. ESCOPO DAS TURMAS
+- CODCOLIGADA = 3.
+- Data final da turma maior ou igual a 01/01/2027.
+- Não foi aplicado filtro de data inicial nem filtro de status da turma nas consultas 04 e 05.
+- Foram recebidas 1.360 turmas nesse recorte.
+
+2. CONCILIAÇÃO DO CALENDÁRIO POR TURMA
+- Cruzamento entre as consultas 04 e 05 por Coligada, Filial, ID_Periodo e ID_Habilitacao_Filial.
+- No vínculo do curso/período, considerar CODTURMA vazio ou igual ao código da turma analisada. Campo nulo exportado para CSV foi tratado como vazio.
+- Reunir os códigos de calendário não vazios desses vínculos.
+- Se houver mais de um calendário de curso/período, separar como divergência.
+- Se o calendário do período letivo estiver preenchido e for diferente do calendário do curso/período, separar como divergência.
+- Havendo um único calendário de curso/período sem conflito, utilizá-lo. Se não houver, utilizar o calendário preenchido no período letivo.
+- Não foi presumida precedência para resolver valores conflitantes.
+- Resultado: 1.304 turmas conciliadas e 56 com divergência.
+
+3. SELEÇÃO DAS UNIDADES PARA A CARGA
+- O nome da unidade foi obtido de Cad_Unidades (3).csv pela correspondência exata entre Codigo_Filial e Filial.
+- Incluir somente filiais presentes nesse cadastro, sem nenhuma turma divergente ou sem calendário e com um único calendário conciliado em todas as suas turmas do recorte.
+- Foram contempladas 27 unidades.
+- Ficaram separadas integralmente: Solda (filial 264, 4 turmas divergentes), Itaperuna (344, 2), Pádua (496, 9) e Benfica (934, 41).
+- O código e o nome do calendário não foram usados para inferir unidade nem situação ativo/inativo.
+- SCALENDUSUARIOFILIAL e GFILIAL foram usados na investigação. Não foram usados como substitutos automáticos dos vínculos das turmas na carga final.
+
+4. SELEÇÃO DOS FERIADOS DE 2027
+- Utilizar os registros da consulta 02 com Origem = GFERIADO, pertencentes ao calendário conciliado da unidade.
+- Flag_Feriado = 'T', conforme o resultado exportado.
+- Data_Inicio com ano igual a 2027.
+- Hora_Inicio_RM e Hora_Fim_RM vazias: registros com horário parcial não entram nessa carga.
+- Deduplicar por nome da unidade e data, mantendo a primeira ocorrência da exportação recebida. Quando houver mais de uma descrição para a mesma unidade/data, apenas uma descrição é mantida. A extração 02 não possui ORDER BY; para auditoria dessa descrição, utilizar a planilha e a exportação original.
+- Não foram incluídos outros eventos acadêmicos, férias ou recessos. Não foram encontrados registros de férias/recesso de 2027 no recorte SENAI examinado, e a consulta 06 retornou vazia.
+- Essa ausência não demonstra inexistência de férias/recessos na instituição; significa apenas que não foram fornecidos por essas extrações.
+
+5. COMPARAÇÃO COM O CALENDÁRIO JÁ CADASTRADO NO APP
+- Usar Cad_Calendario (1).csv como fotografia da lista SharePoint.
+- Excluir da nova carga a unidade/data que já possua registro Ativo=True, Modalidade=Todas e Tipo_Dia=Feriado.
+- Comparação por unidade e dia, independentemente da descrição do evento.
+- Foram excluídas da carga 16 datas já presentes nesse CSV.
+- Inclusões ou alterações posteriores no SharePoint não são contempladas nessa comparação e exigem nova conferência.
+- Não foram excluídos nem alterados registros existentes no aplicativo.
+
+6. TRANSFORMAÇÃO PARA AS COLUNAS DO APP
+Coluna                 Origem / regra
+Unidade                Nome_Unidade do CSV Cad_Unidades, pelo código da filial.
+Descrição              NOME do registro GFERIADO.
+Ano_Referência         Número inteiro 2027, sem separador de milhar.
+Modalidade             Todas: aplicação do feriado geral do calendário consistente da unidade no recorte analisado.
+Tipo_Dia               Feriado.
+Ativo                  True, definido para a inclusão no aplicativo; não é tradução de status de atividade do calendário RM.
+Data_Evento_           DIAFERIADO, como data.
+Data_Fim_Evento        Vazio, por se tratar de evento de dia único.
+Data_unica             True.
+
+Criado por não foi incluído: é campo automático do SharePoint.
+O campo FERIADO do RM foi usado para selecionar feriados; não foi interpretado como situação ativo/inativo.
+
+7. RESULTADO DA PREPARAÇÃO
+- 486 novos registros de feriados de 2027.
+- 27 unidades contempladas.
+- 16 datas já existentes retiradas da nova carga.
+- 4 unidades com divergências separadas para revisão.
+- A carga não abrange 2026 ou 2028 e não completa férias/recessos.
+- As abas Rastreabilidade, Vinculos turmas, Pendencias, Ja existentes e Resumo unidades da planilha permitem conferir as decisões.
+- Preparação de arquivo não equivale à confirmação de importação no SharePoint.
