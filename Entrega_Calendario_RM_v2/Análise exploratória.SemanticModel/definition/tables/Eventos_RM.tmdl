@@ -1,0 +1,61 @@
+table 'Eventos_RM'
+
+	column 'Origem'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Origem
+
+	column 'Codigo_Calendario'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Codigo_Calendario
+
+	column 'Codigo_Evento'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Codigo_Evento
+
+	column 'Descricao'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Descricao
+
+	column 'Data_Inicio'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Data_Inicio
+
+	column 'Data_Fim'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Data_Fim
+
+	column 'Codigo_Tipo'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Codigo_Tipo
+
+	column 'Flag_Feriado'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Flag_Feriado
+
+	column 'Hora_Inicio_RM'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Hora_Inicio_RM
+
+	column 'Hora_Fim_RM'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Hora_Fim_RM
+
+	partition 'Eventos_RM' = m
+		mode: import
+		source =
+				let
+				    Fonte = Sql.Database("SRVSEDE01621PRE", "CorporeRM", [Query="SELECT 'GFERIADO' AS Origem,F.CODCALENDARIO AS Codigo_Calendario,CONVERT(varchar(40),NULL) AS Codigo_Evento,F.NOME AS Descricao,CONVERT(varchar(10),F.DIAFERIADO,103) AS Data_Inicio,CONVERT(varchar(10),F.DIAFERIADO,103) AS Data_Fim,CONVERT(varchar(40),F.TIPO) AS Codigo_Tipo,CONVERT(varchar(20),F.FERIADO) AS Flag_Feriado,CONVERT(varchar(20),F.HORAINICIO) AS Hora_Inicio_RM,CONVERT(varchar(20),F.HORAFINAL) AS Hora_Fim_RM FROM dbo.GFERIADO F UNION ALL SELECT 'GCALENDEVENTOSACAD',E.CODCALENDARIO,CONVERT(varchar(40),E.IDEVENTO),E.NOME,CONVERT(varchar(10),E.INICIO,103),CONVERT(varchar(10),E.TERMINO,103),CONVERT(varchar(40),E.TIPO),NULL,NULL,NULL FROM dbo.GCALENDEVENTOSACAD E"])
+				in
+				    Fonte
+
+	annotation PBI_ResultType = Table

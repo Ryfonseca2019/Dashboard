@@ -1,0 +1,10 @@
+model Model
+	culture: pt-BR
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: pt-BR
+
+ref table 'Calendarios_RM'
+ref table 'Eventos_RM'
+ref table 'Tipos_Evento_RM'
+ref table 'Calendario_Usuario_Filial_RM'
+ref table 'Vinculos_Calendario_Estrutura'

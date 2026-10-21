@@ -1,0 +1,79 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "cb1234567890abcd0002",
+  "position": {
+    "x": 20,
+    "y": 20,
+    "width": 1880,
+    "height": 1000,
+    "z": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Tipos_Evento_RM"
+                    }
+                  },
+                  "Property": "Origem"
+                }
+              },
+              "queryRef": "Tipos_Evento_RM.Origem",
+              "nativeQueryRef": "Origem"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Tipos_Evento_RM"
+                    }
+                  },
+                  "Property": "Codigo_Cliente"
+                }
+              },
+              "queryRef": "Tipos_Evento_RM.Codigo_Cliente",
+              "nativeQueryRef": "Codigo_Cliente"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Tipos_Evento_RM"
+                    }
+                  },
+                  "Property": "Codigo_Interno"
+                }
+              },
+              "queryRef": "Tipos_Evento_RM.Codigo_Interno",
+              "nativeQueryRef": "Codigo_Interno"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Tipos_Evento_RM"
+                    }
+                  },
+                  "Property": "Descricao"
+                }
+              },
+              "queryRef": "Tipos_Evento_RM.Descricao",
+              "nativeQueryRef": "Descricao"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

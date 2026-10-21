@@ -1,0 +1,163 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "cb1234567890abcd0001",
+  "position": {
+    "x": 20,
+    "y": 20,
+    "width": 1880,
+    "height": 1000,
+    "z": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Eventos_RM"
+                    }
+                  },
+                  "Property": "Origem"
+                }
+              },
+              "queryRef": "Eventos_RM.Origem",
+              "nativeQueryRef": "Origem"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Eventos_RM"
+                    }
+                  },
+                  "Property": "Codigo_Calendario"
+                }
+              },
+              "queryRef": "Eventos_RM.Codigo_Calendario",
+              "nativeQueryRef": "Codigo_Calendario"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Eventos_RM"
+                    }
+                  },
+                  "Property": "Codigo_Evento"
+                }
+              },
+              "queryRef": "Eventos_RM.Codigo_Evento",
+              "nativeQueryRef": "Codigo_Evento"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Eventos_RM"
+                    }
+                  },
+                  "Property": "Descricao"
+                }
+              },
+              "queryRef": "Eventos_RM.Descricao",
+              "nativeQueryRef": "Descricao"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Eventos_RM"
+                    }
+                  },
+                  "Property": "Data_Inicio"
+                }
+              },
+              "queryRef": "Eventos_RM.Data_Inicio",
+              "nativeQueryRef": "Data_Inicio"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Eventos_RM"
+                    }
+                  },
+                  "Property": "Data_Fim"
+                }
+              },
+              "queryRef": "Eventos_RM.Data_Fim",
+              "nativeQueryRef": "Data_Fim"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Eventos_RM"
+                    }
+                  },
+                  "Property": "Codigo_Tipo"
+                }
+              },
+              "queryRef": "Eventos_RM.Codigo_Tipo",
+              "nativeQueryRef": "Codigo_Tipo"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Eventos_RM"
+                    }
+                  },
+                  "Property": "Flag_Feriado"
+                }
+              },
+              "queryRef": "Eventos_RM.Flag_Feriado",
+              "nativeQueryRef": "Flag_Feriado"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Eventos_RM"
+                    }
+                  },
+                  "Property": "Hora_Inicio_RM"
+                }
+              },
+              "queryRef": "Eventos_RM.Hora_Inicio_RM",
+              "nativeQueryRef": "Hora_Inicio_RM"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Eventos_RM"
+                    }
+                  },
+                  "Property": "Hora_Fim_RM"
+                }
+              },
+              "queryRef": "Eventos_RM.Hora_Fim_RM",
+              "nativeQueryRef": "Hora_Fim_RM"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

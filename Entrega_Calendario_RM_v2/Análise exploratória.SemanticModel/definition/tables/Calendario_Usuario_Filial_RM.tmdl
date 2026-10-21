@@ -1,0 +1,31 @@
+table 'Calendario_Usuario_Filial_RM'
+
+	column 'Codigo_Calendario'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Codigo_Calendario
+
+	column 'Coligada'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Coligada
+
+	column 'Filial'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Filial
+
+	column 'Tipo_Curso'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Tipo_Curso
+
+	partition 'Calendario_Usuario_Filial_RM' = m
+		mode: import
+		source =
+				let
+				    Fonte = Sql.Database("SRVSEDE01621PRE", "CorporeRM", [Query="SELECT CODCALENDARIO AS Codigo_Calendario,CONVERT(varchar(20),CODCOLIGADA) AS Coligada,CONVERT(varchar(20),CODFILIAL) AS Filial,CONVERT(varchar(20),CODTIPOCURSO) AS Tipo_Curso FROM dbo.SCALENDUSUARIOFILIAL WHERE CODCOLIGADA=3"])
+				in
+				    Fonte
+
+	annotation PBI_ResultType = Table

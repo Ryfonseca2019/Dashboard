@@ -1,0 +1,107 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "cb1234567890abcd0000",
+  "position": {
+    "x": 20,
+    "y": 20,
+    "width": 1880,
+    "height": 1000,
+    "z": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calendarios_RM"
+                    }
+                  },
+                  "Property": "Codigo_Calendario"
+                }
+              },
+              "queryRef": "Calendarios_RM.Codigo_Calendario",
+              "nativeQueryRef": "Codigo_Calendario"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calendarios_RM"
+                    }
+                  },
+                  "Property": "Nome_Calendario"
+                }
+              },
+              "queryRef": "Calendarios_RM.Nome_Calendario",
+              "nativeQueryRef": "Nome_Calendario"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calendarios_RM"
+                    }
+                  },
+                  "Property": "Coligada_Cadastro"
+                }
+              },
+              "queryRef": "Calendarios_RM.Coligada_Cadastro",
+              "nativeQueryRef": "Coligada_Cadastro"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calendarios_RM"
+                    }
+                  },
+                  "Property": "Visivel_Todas_Coligadas"
+                }
+              },
+              "queryRef": "Calendarios_RM.Visivel_Todas_Coligadas",
+              "nativeQueryRef": "Visivel_Todas_Coligadas"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calendarios_RM"
+                    }
+                  },
+                  "Property": "Quantidade_Feriados"
+                }
+              },
+              "queryRef": "Calendarios_RM.Quantidade_Feriados",
+              "nativeQueryRef": "Quantidade_Feriados"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calendarios_RM"
+                    }
+                  },
+                  "Property": "Quantidade_Eventos"
+                }
+              },
+              "queryRef": "Calendarios_RM.Quantidade_Eventos",
+              "nativeQueryRef": "Quantidade_Eventos"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

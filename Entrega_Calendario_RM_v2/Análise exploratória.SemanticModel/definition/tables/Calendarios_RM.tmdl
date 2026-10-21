@@ -1,0 +1,41 @@
+table 'Calendarios_RM'
+
+	column 'Codigo_Calendario'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Codigo_Calendario
+
+	column 'Nome_Calendario'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Nome_Calendario
+
+	column 'Coligada_Cadastro'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Coligada_Cadastro
+
+	column 'Visivel_Todas_Coligadas'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Visivel_Todas_Coligadas
+
+	column 'Quantidade_Feriados'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Quantidade_Feriados
+
+	column 'Quantidade_Eventos'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Quantidade_Eventos
+
+	partition 'Calendarios_RM' = m
+		mode: import
+		source =
+				let
+				    Fonte = Sql.Database("SRVSEDE01621PRE", "CorporeRM", [Query="SELECT C.CODIGO AS Codigo_Calendario,C.NOME AS Nome_Calendario,CONVERT(varchar(20),C.CODCOLIGADA) AS Coligada_Cadastro,CONVERT(varchar(20),C.VISIVELTODASCOLIGADAS) AS Visivel_Todas_Coligadas,(SELECT COUNT(*) FROM dbo.GFERIADO F WHERE F.CODCALENDARIO=C.CODIGO) AS Quantidade_Feriados,(SELECT COUNT(*) FROM dbo.GCALENDEVENTOSACAD E WHERE E.CODCALENDARIO=C.CODIGO) AS Quantidade_Eventos FROM dbo.GCALEND C"])
+				in
+				    Fonte
+
+	annotation PBI_ResultType = Table

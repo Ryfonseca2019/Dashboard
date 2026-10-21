@@ -1,0 +1,26 @@
+table 'Vinculos_Calendario_Estrutura'
+
+	column 'Esquema'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Esquema
+
+	column 'Tabela'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Tabela
+
+	column 'Coluna'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Coluna
+
+	partition 'Vinculos_Calendario_Estrutura' = m
+		mode: import
+		source =
+				let
+				    Fonte = Sql.Database("SRVSEDE01621PRE", "CorporeRM", [Query="SELECT S.name AS Esquema,T.name AS Tabela,C.name AS Coluna FROM sys.tables T JOIN sys.schemas S ON S.schema_id=T.schema_id JOIN sys.columns C ON C.object_id=T.object_id WHERE (T.name LIKE 'S%' OR T.name IN ('GFILIAL','GCOLIGADA')) AND (C.name LIKE '%CALEND%' OR C.name LIKE '%FERIAD%') ORDER BY T.name,C.column_id"])
+				in
+				    Fonte
+
+	annotation PBI_ResultType = Table

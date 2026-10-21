@@ -1,0 +1,7 @@
+Extraia, abra o PBIP e clique Atualizar na rede corporativa. Exporte as cinco páginas para CSV.
+
+Extração diagnóstica sem filtro de ano: preserva calendários de outras coligadas e globais para investigar compartilhamento. Não aplicar todos ao SENAI.
+SCALENDUSUARIOFILIAL é um vínculo candidato; não confirma sozinho o calendário efetivamente usado por uma turma.
+Tipos cliente e interno preservados separadamente, sem tradução presumida. Horários brutos preservados para avaliar eventos parciais. Não converte flag de feriado em Ativo. Não atribui modalidade Todas.
+Ainda não é carga SharePoint. Após confirmar vínculos, tipos, datas e duplicações, será preparada a carga.
+JSON e referências validados estaticamente. Consulta ao RM não executada neste ambiente.
