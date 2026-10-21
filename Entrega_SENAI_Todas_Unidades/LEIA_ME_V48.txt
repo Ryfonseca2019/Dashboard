@@ -1,0 +1,8 @@
+V48 - Cadastro local de Planejamentos renovado com Planejamentos (3).csv.
+76 registros. Os 53 nomes necessários conferidos: únicos, ativos, ano correto e responsável preenchido.
+Sem duplicidade de Angra dos Reis 2026 no arquivo recebido.
+Mantida uma origem externa RM, unidades e matrizes locais, regra anual pelo início e corte de término >=01/01/2027.
+Turmas existentes no CSV Turmas_Planejadas (8) são separadas para não duplicar inclusões.
+16 financiamentos vazios ou não traduzidos na extração anterior continuam sujeitos à crítica; não são preenchidos por suposição.
+Atualizar e exportar as duas tabelas de Todas unidades - conferência antes da inclusão.
+Nenhuma alteração foi realizada no SharePoint. Estrutura verificada localmente; execução no Desktop pendente.
