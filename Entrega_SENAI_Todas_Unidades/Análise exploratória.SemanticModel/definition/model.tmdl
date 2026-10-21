@@ -6,3 +6,5 @@ model Model
 ref table 'Geral_Conferencia'
 ref table 'Geral_52_Colunas'
 ref table 'Geral_Resumo'
+
+ref table 'Planejamentos_Anuais_Necessarios'

@@ -1,0 +1,11 @@
+V47 - 32 unidades atualizadas e planejamentos anuais pelo ano de início.
+Nome esperado: Planejamento + espaço + Nome_Unidade + espaço + ano de início (sem ponto no nome). Exemplo Planejamento Macaé 2026.
+Ano_Referencia na coluna de exportação mantém formato 2.026; é diferente do nome do planejamento.
+Região dos Lagos continua com código legado e sem correspondência CODFILIAL numérica; São Pedro da Aldeia 951 é registro separado.
+Uma única origem externa SQL RM; cadastros locais. Quatro tabelas, três páginas. Sem conexão SharePoint.
+118 registros atuais da lista incorporados para excluir inclusões repetidas por unidade e código da turma. Turmas já incluídas não são movidas nem editadas.
+Página Planejamentos anuais - criar lista os nomes/anos necessários que não existem na cópia local de Planejamentos.
+A lista Planejamentos foi recebida antes da definição anual: após criar/ajustar, exportar novamente para renovar o cadastro local.
+Não criar nem migrar registros de planejamento automaticamente; preservar histórico e vínculos.
+Extração mantém término >=01/01/2027 e não filtra ano de início.
+Estrutura e arquivos conferidos; execução SQL e resultados ainda pendentes no Power BI Desktop.

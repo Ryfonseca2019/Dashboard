@@ -1,0 +1,79 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "e1234567890abcdef310",
+  "position": {
+    "x": 20,
+    "y": 20,
+    "width": 1880,
+    "height": 1000,
+    "z": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Planejamentos_Anuais_Necessarios"
+                    }
+                  },
+                  "Property": "Unidade"
+                }
+              },
+              "queryRef": "Planejamentos_Anuais_Necessarios.Unidade",
+              "nativeQueryRef": "Unidade"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Planejamentos_Anuais_Necessarios"
+                    }
+                  },
+                  "Property": "Planejamento"
+                }
+              },
+              "queryRef": "Planejamentos_Anuais_Necessarios.Planejamento",
+              "nativeQueryRef": "Planejamento"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Planejamentos_Anuais_Necessarios"
+                    }
+                  },
+                  "Property": "Ano_Referencia"
+                }
+              },
+              "queryRef": "Planejamentos_Anuais_Necessarios.Ano_Referencia",
+              "nativeQueryRef": "Ano_Referencia"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Planejamentos_Anuais_Necessarios"
+                    }
+                  },
+                  "Property": "Quantidade_Turmas"
+                }
+              },
+              "queryRef": "Planejamentos_Anuais_Necessarios.Quantidade_Turmas",
+              "nativeQueryRef": "Quantidade_Turmas"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

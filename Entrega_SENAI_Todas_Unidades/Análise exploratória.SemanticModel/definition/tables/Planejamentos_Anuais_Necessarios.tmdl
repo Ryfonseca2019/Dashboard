@@ -1,0 +1,31 @@
+table 'Planejamentos_Anuais_Necessarios'
+
+	column 'Unidade'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Unidade
+
+	column 'Planejamento'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Planejamento
+
+	column 'Ano_Referencia'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Ano_Referencia
+
+	column 'Quantidade_Turmas'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Quantidade_Turmas
+
+	partition 'Planejamentos_Anuais_Necessarios' = m
+		mode: import
+		source =
+				let
+				    Fonte=Table.SelectRows(Geral_Conferencia,each [Situacao_Carga]<>"Já existente na lista enviada" and [Unidade]<>null and [Planejamento]<>null and Text.Contains([Pendencias_Carga],"Planejamento esperado ausente ou ambíguo")),
+				    Resultado=Table.Group(Fonte,{"Unidade","Planejamento","Ano_Referencia"},{{"Quantidade_Turmas",each Table.RowCount(_),Int64.Type}})
+				in Resultado
+
+	annotation PBI_ResultType = Table
