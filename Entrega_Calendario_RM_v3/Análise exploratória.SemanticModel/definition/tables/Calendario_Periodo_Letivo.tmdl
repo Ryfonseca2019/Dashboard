@@ -1,0 +1,31 @@
+table 'Calendario_Periodo_Letivo'
+
+	column 'Coligada'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Coligada
+
+	column 'ID_Periodo'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: ID_Periodo
+
+	column 'Periodo_Letivo'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Periodo_Letivo
+
+	column 'Codigo_Calendario'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Codigo_Calendario
+
+	partition 'Calendario_Periodo_Letivo' = m
+		mode: import
+		source =
+				let
+				    Fonte = Sql.Database("SRVSEDE01621PRE", "CorporeRM", [Query="SELECT CONVERT(varchar(20),CODCOLIGADA) AS Coligada,CONVERT(varchar(20),IDPERLET) AS ID_Periodo,CODPERLET AS Periodo_Letivo,CALENDARIO AS Codigo_Calendario FROM dbo.SPLETIVO WHERE CODCOLIGADA=3"])
+				in
+				    Fonte
+
+	annotation PBI_ResultType = Table

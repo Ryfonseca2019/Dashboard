@@ -1,0 +1,79 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "cb1234567890abcd0001",
+  "position": {
+    "x": 20,
+    "y": 20,
+    "width": 1880,
+    "height": 1000,
+    "z": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calendario_Cadastro_Filial"
+                    }
+                  },
+                  "Property": "Coligada"
+                }
+              },
+              "queryRef": "Calendario_Cadastro_Filial.Coligada",
+              "nativeQueryRef": "Coligada"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calendario_Cadastro_Filial"
+                    }
+                  },
+                  "Property": "Filial"
+                }
+              },
+              "queryRef": "Calendario_Cadastro_Filial.Filial",
+              "nativeQueryRef": "Filial"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calendario_Cadastro_Filial"
+                    }
+                  },
+                  "Property": "Nome_Filial"
+                }
+              },
+              "queryRef": "Calendario_Cadastro_Filial.Nome_Filial",
+              "nativeQueryRef": "Nome_Filial"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calendario_Cadastro_Filial"
+                    }
+                  },
+                  "Property": "Codigo_Calendario"
+                }
+              },
+              "queryRef": "Calendario_Cadastro_Filial.Codigo_Calendario",
+              "nativeQueryRef": "Codigo_Calendario"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

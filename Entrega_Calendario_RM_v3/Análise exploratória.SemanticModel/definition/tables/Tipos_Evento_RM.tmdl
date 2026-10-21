@@ -1,0 +1,31 @@
+table 'Tipos_Evento_RM'
+
+	column 'Origem'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Origem
+
+	column 'Codigo_Cliente'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Codigo_Cliente
+
+	column 'Codigo_Interno'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Codigo_Interno
+
+	column 'Descricao'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Descricao
+
+	partition 'Tipos_Evento_RM' = m
+		mode: import
+		source =
+				let
+				    Fonte = Sql.Database("SRVSEDE01621PRE", "CorporeRM", [Query="SELECT 'GTPFERIADO' AS Origem,CONVERT(varchar(40),CODCLIENTE) AS Codigo_Cliente,CONVERT(varchar(40),CODINTERNO) AS Codigo_Interno,DESCRICAO AS Descricao FROM dbo.GTPFERIADO UNION ALL SELECT 'GTPEVENTOCALEND',CONVERT(varchar(40),CODCLIENTE),CONVERT(varchar(40),CODINTERNO),DESCRICAO FROM dbo.GTPEVENTOCALEND"])
+				in
+				    Fonte
+
+	annotation PBI_ResultType = Table

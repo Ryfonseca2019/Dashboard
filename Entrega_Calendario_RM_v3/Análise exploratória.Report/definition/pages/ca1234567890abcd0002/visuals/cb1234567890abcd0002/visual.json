@@ -1,0 +1,79 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "cb1234567890abcd0002",
+  "position": {
+    "x": 20,
+    "y": 20,
+    "width": 1880,
+    "height": 1000,
+    "z": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calendario_Periodo_Letivo"
+                    }
+                  },
+                  "Property": "Coligada"
+                }
+              },
+              "queryRef": "Calendario_Periodo_Letivo.Coligada",
+              "nativeQueryRef": "Coligada"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calendario_Periodo_Letivo"
+                    }
+                  },
+                  "Property": "ID_Periodo"
+                }
+              },
+              "queryRef": "Calendario_Periodo_Letivo.ID_Periodo",
+              "nativeQueryRef": "ID_Periodo"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calendario_Periodo_Letivo"
+                    }
+                  },
+                  "Property": "Periodo_Letivo"
+                }
+              },
+              "queryRef": "Calendario_Periodo_Letivo.Periodo_Letivo",
+              "nativeQueryRef": "Periodo_Letivo"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calendario_Periodo_Letivo"
+                    }
+                  },
+                  "Property": "Codigo_Calendario"
+                }
+              },
+              "queryRef": "Calendario_Periodo_Letivo.Codigo_Calendario",
+              "nativeQueryRef": "Codigo_Calendario"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}
