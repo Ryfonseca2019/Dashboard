@@ -1,0 +1,41 @@
+table 'Calendarios_Curso_Periodo'
+
+	column 'Coligada'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Coligada
+
+	column 'Filial'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Filial
+
+	column 'ID_Periodo'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: ID_Periodo
+
+	column 'ID_Habilitacao_Filial'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: ID_Habilitacao_Filial
+
+	column 'Codigo_Turma_Vinculo'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Codigo_Turma_Vinculo
+
+	column 'Calendario_Curso_Periodo'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Calendario_Curso_Periodo
+
+	partition 'Calendarios_Curso_Periodo' = m
+		mode: import
+		source =
+				let
+				    Fonte = Sql.Database("SRVSEDE01621PRE", "CorporeRM", [Query="SELECT CONVERT(varchar(20),H.CODCOLIGADA) AS Coligada,CONVERT(varchar(20),H.CODFILIAL) AS Filial,CONVERT(varchar(20),H.IDPERLET) AS ID_Periodo,CONVERT(varchar(20),H.IDHABILITACAOFILIAL) AS ID_Habilitacao_Filial,H.CODTURMA AS Codigo_Turma_Vinculo,H.CODCALENDARIO AS Calendario_Curso_Periodo FROM dbo.SHABILITACAOFILIALPL H WHERE H.CODCOLIGADA=3 AND EXISTS (SELECT 1 FROM dbo.STURMA T WHERE T.CODCOLIGADA=H.CODCOLIGADA AND T.CODFILIAL=H.CODFILIAL AND T.IDPERLET=H.IDPERLET AND T.IDHABILITACAOFILIAL=H.IDHABILITACAOFILIAL AND T.DTFINAL>='20270101')"])
+				in
+				    Fonte
+
+	annotation PBI_ResultType = Table

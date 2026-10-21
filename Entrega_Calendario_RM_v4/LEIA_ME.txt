@@ -1,0 +1,7 @@
+Extraia, abra o PBIP e clique Atualizar na rede corporativa. Exporte as três páginas para CSV. Este projeto identifica o calendário nos períodos e nos cursos das turmas com fim a partir de 2027, sem presumir precedência entre campos. Consulta também SEVENTOACAD entre 2026 e 2028 para localizar eventos adicionais. Não é uma carga.
+
+Extração diagnóstica sem filtro de ano: preserva calendários de outras coligadas e globais para investigar compartilhamento. Não aplicar todos ao SENAI.
+SCALENDUSUARIOFILIAL é um vínculo candidato; não confirma sozinho o calendário efetivamente usado por uma turma.
+Tipos cliente e interno preservados separadamente, sem tradução presumida. Horários brutos preservados para avaliar eventos parciais. Não converte flag de feriado em Ativo. Não atribui modalidade Todas.
+Ainda não é carga SharePoint. Após confirmar vínculos, tipos, datas e duplicações, será preparada a carga.
+JSON e referências validados estaticamente. Consulta ao RM não executada neste ambiente.

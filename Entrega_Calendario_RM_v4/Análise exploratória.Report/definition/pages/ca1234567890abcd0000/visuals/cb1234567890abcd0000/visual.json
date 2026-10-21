@@ -1,0 +1,149 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "cb1234567890abcd0000",
+  "position": {
+    "x": 20,
+    "y": 20,
+    "width": 1880,
+    "height": 1000,
+    "z": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calendarios_das_Turmas"
+                    }
+                  },
+                  "Property": "Coligada"
+                }
+              },
+              "queryRef": "Calendarios_das_Turmas.Coligada",
+              "nativeQueryRef": "Coligada"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calendarios_das_Turmas"
+                    }
+                  },
+                  "Property": "Filial"
+                }
+              },
+              "queryRef": "Calendarios_das_Turmas.Filial",
+              "nativeQueryRef": "Filial"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calendarios_das_Turmas"
+                    }
+                  },
+                  "Property": "ID_Periodo"
+                }
+              },
+              "queryRef": "Calendarios_das_Turmas.ID_Periodo",
+              "nativeQueryRef": "ID_Periodo"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calendarios_das_Turmas"
+                    }
+                  },
+                  "Property": "Codigo_Turma"
+                }
+              },
+              "queryRef": "Calendarios_das_Turmas.Codigo_Turma",
+              "nativeQueryRef": "Codigo_Turma"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calendarios_das_Turmas"
+                    }
+                  },
+                  "Property": "ID_Habilitacao_Filial"
+                }
+              },
+              "queryRef": "Calendarios_das_Turmas.ID_Habilitacao_Filial",
+              "nativeQueryRef": "ID_Habilitacao_Filial"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calendarios_das_Turmas"
+                    }
+                  },
+                  "Property": "Inicio_Turma"
+                }
+              },
+              "queryRef": "Calendarios_das_Turmas.Inicio_Turma",
+              "nativeQueryRef": "Inicio_Turma"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calendarios_das_Turmas"
+                    }
+                  },
+                  "Property": "Fim_Turma"
+                }
+              },
+              "queryRef": "Calendarios_das_Turmas.Fim_Turma",
+              "nativeQueryRef": "Fim_Turma"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calendarios_das_Turmas"
+                    }
+                  },
+                  "Property": "Periodo_Letivo"
+                }
+              },
+              "queryRef": "Calendarios_das_Turmas.Periodo_Letivo",
+              "nativeQueryRef": "Periodo_Letivo"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calendarios_das_Turmas"
+                    }
+                  },
+                  "Property": "Calendario_Periodo"
+                }
+              },
+              "queryRef": "Calendarios_das_Turmas.Calendario_Periodo",
+              "nativeQueryRef": "Calendario_Periodo"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

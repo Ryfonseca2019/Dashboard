@@ -1,0 +1,56 @@
+table 'Calendarios_das_Turmas'
+
+	column 'Coligada'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Coligada
+
+	column 'Filial'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Filial
+
+	column 'ID_Periodo'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: ID_Periodo
+
+	column 'Codigo_Turma'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Codigo_Turma
+
+	column 'ID_Habilitacao_Filial'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: ID_Habilitacao_Filial
+
+	column 'Inicio_Turma'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Inicio_Turma
+
+	column 'Fim_Turma'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Fim_Turma
+
+	column 'Periodo_Letivo'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Periodo_Letivo
+
+	column 'Calendario_Periodo'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Calendario_Periodo
+
+	partition 'Calendarios_das_Turmas' = m
+		mode: import
+		source =
+				let
+				    Fonte = Sql.Database("SRVSEDE01621PRE", "CorporeRM", [Query="SELECT CONVERT(varchar(20),T.CODCOLIGADA) AS Coligada,CONVERT(varchar(20),T.CODFILIAL) AS Filial,CONVERT(varchar(20),T.IDPERLET) AS ID_Periodo,T.CODTURMA AS Codigo_Turma,CONVERT(varchar(20),T.IDHABILITACAOFILIAL) AS ID_Habilitacao_Filial,CONVERT(varchar(10),T.DTINICIAL,103) AS Inicio_Turma,CONVERT(varchar(10),T.DTFINAL,103) AS Fim_Turma,P.CODPERLET AS Periodo_Letivo,P.CALENDARIO AS Calendario_Periodo FROM dbo.STURMA T LEFT JOIN dbo.SPLETIVO P ON P.CODCOLIGADA=T.CODCOLIGADA AND P.IDPERLET=T.IDPERLET WHERE T.CODCOLIGADA=3 AND T.DTFINAL>='20270101'"])
+				in
+				    Fonte
+
+	annotation PBI_ResultType = Table

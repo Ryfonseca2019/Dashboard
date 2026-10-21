@@ -1,0 +1,107 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "cb1234567890abcd0002",
+  "position": {
+    "x": 20,
+    "y": 20,
+    "width": 1880,
+    "height": 1000,
+    "z": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Eventos_Academicos_Adicionais"
+                    }
+                  },
+                  "Property": "Codigo_Calendario"
+                }
+              },
+              "queryRef": "Eventos_Academicos_Adicionais.Codigo_Calendario",
+              "nativeQueryRef": "Codigo_Calendario"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Eventos_Academicos_Adicionais"
+                    }
+                  },
+                  "Property": "Codigo_Evento"
+                }
+              },
+              "queryRef": "Eventos_Academicos_Adicionais.Codigo_Evento",
+              "nativeQueryRef": "Codigo_Evento"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Eventos_Academicos_Adicionais"
+                    }
+                  },
+                  "Property": "Descricao"
+                }
+              },
+              "queryRef": "Eventos_Academicos_Adicionais.Descricao",
+              "nativeQueryRef": "Descricao"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Eventos_Academicos_Adicionais"
+                    }
+                  },
+                  "Property": "Complemento"
+                }
+              },
+              "queryRef": "Eventos_Academicos_Adicionais.Complemento",
+              "nativeQueryRef": "Complemento"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Eventos_Academicos_Adicionais"
+                    }
+                  },
+                  "Property": "Data_Inicio"
+                }
+              },
+              "queryRef": "Eventos_Academicos_Adicionais.Data_Inicio",
+              "nativeQueryRef": "Data_Inicio"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Eventos_Academicos_Adicionais"
+                    }
+                  },
+                  "Property": "Data_Fim"
+                }
+              },
+              "queryRef": "Eventos_Academicos_Adicionais.Data_Fim",
+              "nativeQueryRef": "Data_Fim"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

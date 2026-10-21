@@ -1,0 +1,107 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "cb1234567890abcd0001",
+  "position": {
+    "x": 20,
+    "y": 20,
+    "width": 1880,
+    "height": 1000,
+    "z": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calendarios_Curso_Periodo"
+                    }
+                  },
+                  "Property": "Coligada"
+                }
+              },
+              "queryRef": "Calendarios_Curso_Periodo.Coligada",
+              "nativeQueryRef": "Coligada"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calendarios_Curso_Periodo"
+                    }
+                  },
+                  "Property": "Filial"
+                }
+              },
+              "queryRef": "Calendarios_Curso_Periodo.Filial",
+              "nativeQueryRef": "Filial"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calendarios_Curso_Periodo"
+                    }
+                  },
+                  "Property": "ID_Periodo"
+                }
+              },
+              "queryRef": "Calendarios_Curso_Periodo.ID_Periodo",
+              "nativeQueryRef": "ID_Periodo"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calendarios_Curso_Periodo"
+                    }
+                  },
+                  "Property": "ID_Habilitacao_Filial"
+                }
+              },
+              "queryRef": "Calendarios_Curso_Periodo.ID_Habilitacao_Filial",
+              "nativeQueryRef": "ID_Habilitacao_Filial"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calendarios_Curso_Periodo"
+                    }
+                  },
+                  "Property": "Codigo_Turma_Vinculo"
+                }
+              },
+              "queryRef": "Calendarios_Curso_Periodo.Codigo_Turma_Vinculo",
+              "nativeQueryRef": "Codigo_Turma_Vinculo"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calendarios_Curso_Periodo"
+                    }
+                  },
+                  "Property": "Calendario_Curso_Periodo"
+                }
+              },
+              "queryRef": "Calendarios_Curso_Periodo.Calendario_Curso_Periodo",
+              "nativeQueryRef": "Calendario_Curso_Periodo"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -1,0 +1,41 @@
+table 'Eventos_Academicos_Adicionais'
+
+	column 'Codigo_Calendario'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Codigo_Calendario
+
+	column 'Codigo_Evento'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Codigo_Evento
+
+	column 'Descricao'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Descricao
+
+	column 'Complemento'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Complemento
+
+	column 'Data_Inicio'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Data_Inicio
+
+	column 'Data_Fim'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Data_Fim
+
+	partition 'Eventos_Academicos_Adicionais' = m
+		mode: import
+		source =
+				let
+				    Fonte = Sql.Database("SRVSEDE01621PRE", "CorporeRM", [Query="SELECT CODCALENDARIO AS Codigo_Calendario,CONVERT(varchar(20),CODEVTACAD) AS Codigo_Evento,DESCRICAO AS Descricao,COMPLEMENTO AS Complemento,CONVERT(varchar(10),DTINICIO,103) AS Data_Inicio,CONVERT(varchar(10),DTFIM,103) AS Data_Fim FROM dbo.SEVENTOACAD WHERE DTINICIO<'20290101' AND COALESCE(DTFIM,DTINICIO)>='20260101'"])
+				in
+				    Fonte
+
+	annotation PBI_ResultType = Table
