@@ -1,0 +1,367 @@
+[
+  {
+    "CampoSharePoint": "Mobilizacao",
+    "ColunaModelo": "Mobilizacao",
+    "Tipo": "string",
+    "Aliases": [
+      "Mobilizacao"
+    ],
+    "Obrigatorio": true
+  },
+  {
+    "CampoSharePoint": "Matriz",
+    "ColunaModelo": "MatrizID",
+    "Tipo": "int64",
+    "Aliases": [
+      "Matriz"
+    ],
+    "Obrigatorio": false
+  },
+  {
+    "CampoSharePoint": "Codigo_Matriz_Snapshot",
+    "ColunaModelo": "CodigoMatriz",
+    "Tipo": "string",
+    "Aliases": [
+      "Codigo_Matriz_Snapshot"
+    ],
+    "Obrigatorio": false
+  },
+  {
+    "CampoSharePoint": "Area_Snapshot",
+    "ColunaModelo": "Area",
+    "Tipo": "string",
+    "Aliases": [
+      "Area_Snapshot"
+    ],
+    "Obrigatorio": false
+  },
+  {
+    "CampoSharePoint": "Modalidade",
+    "ColunaModelo": "TipoMediacao",
+    "Tipo": "string",
+    "Aliases": [
+      "Modalidade"
+    ],
+    "Obrigatorio": false
+  },
+  {
+    "CampoSharePoint": "Tipo_Mediacao_Snapshot",
+    "ColunaModelo": "DetalhamentoMediacaoMatriz",
+    "Tipo": "string",
+    "Aliases": [
+      "Tipo_Mediacao_Snapshot"
+    ],
+    "Obrigatorio": false
+  },
+  {
+    "CampoSharePoint": "Data_Snapshot_Matriz",
+    "ColunaModelo": "DataSnapshotMatriz",
+    "Tipo": "dateTime",
+    "Aliases": [
+      "Data_Snapshot_Matriz",
+      "Data_Snapshot_Matriz0"
+    ],
+    "Obrigatorio": false
+  },
+  {
+    "CampoSharePoint": "Campus_Polo",
+    "ColunaModelo": "CampusPolo",
+    "Tipo": "string",
+    "Aliases": [
+      "Campus_Polo"
+    ],
+    "Obrigatorio": false
+  },
+  {
+    "CampoSharePoint": "Periodo_Letivo",
+    "ColunaModelo": "PeriodoLetivo",
+    "Tipo": "string",
+    "Aliases": [
+      "Periodo_Letivo"
+    ],
+    "Obrigatorio": false
+  },
+  {
+    "CampoSharePoint": "Tipo_Periodo",
+    "ColunaModelo": "TipoPeriodo",
+    "Tipo": "string",
+    "Aliases": [
+      "Tipo_Periodo"
+    ],
+    "Obrigatorio": false
+  },
+  {
+    "CampoSharePoint": "Pedagogo_Responsavel",
+    "ColunaModelo": "PedagogoResponsavel",
+    "Tipo": "string",
+    "Aliases": [
+      "Pedagogo_Responsavel"
+    ],
+    "Obrigatorio": false
+  },
+  {
+    "CampoSharePoint": "Empresa",
+    "ColunaModelo": "Empresa",
+    "Tipo": "string",
+    "Aliases": [
+      "Empresa"
+    ],
+    "Obrigatorio": false
+  },
+  {
+    "CampoSharePoint": "Projeto",
+    "ColunaModelo": "Projeto",
+    "Tipo": "string",
+    "Aliases": [
+      "Projeto"
+    ],
+    "Obrigatorio": false
+  },
+  {
+    "CampoSharePoint": "Sindicato",
+    "ColunaModelo": "Sindicato",
+    "Tipo": "string",
+    "Aliases": [
+      "Sindicato"
+    ],
+    "Obrigatorio": false
+  },
+  {
+    "CampoSharePoint": "Classe_Valor",
+    "ColunaModelo": "ClasseValor",
+    "Tipo": "string",
+    "Aliases": [
+      "Classe_Valor"
+    ],
+    "Obrigatorio": false
+  },
+  {
+    "CampoSharePoint": "Item_Contabil_Snapshot",
+    "ColunaModelo": "ItemContabil",
+    "Tipo": "string",
+    "Aliases": [
+      "Item_Contabil_Snapshot"
+    ],
+    "Obrigatorio": true
+  },
+  {
+    "CampoSharePoint": "Centro_Custo_Snapshot",
+    "ColunaModelo": "CentroCusto",
+    "Tipo": "string",
+    "Aliases": [
+      "Centro_Custo_Snapshot"
+    ],
+    "Obrigatorio": false
+  },
+  {
+    "CampoSharePoint": "Observacoes",
+    "ColunaModelo": "Observacoes",
+    "Tipo": "string",
+    "Aliases": [
+      "Observacoes"
+    ],
+    "Obrigatorio": false
+  },
+  {
+    "CampoSharePoint": "Motivo_Cancelamento",
+    "ColunaModelo": "MotivoCancelamento",
+    "Tipo": "string",
+    "Aliases": [
+      "Motivo_Cancelamento"
+    ],
+    "Obrigatorio": false
+  },
+  {
+    "CampoSharePoint": "Data_Cancelamento",
+    "ColunaModelo": "DataCancelamento",
+    "Tipo": "dateTime",
+    "Aliases": [
+      "Data_Cancelamento"
+    ],
+    "Obrigatorio": false
+  },
+  {
+    "CampoSharePoint": "Cancelada_Por",
+    "ColunaModelo": "CanceladaPor",
+    "Tipo": "string",
+    "Aliases": [
+      "Cancelada_Por"
+    ],
+    "Obrigatorio": false
+  },
+  {
+    "CampoSharePoint": "Data_Conclusao",
+    "ColunaModelo": "DataConclusao",
+    "Tipo": "dateTime",
+    "Aliases": [
+      "Data_Conclusao"
+    ],
+    "Obrigatorio": false
+  },
+  {
+    "CampoSharePoint": "Bloqueada_Para_Edicao",
+    "ColunaModelo": "BloqueadaParaEdicao",
+    "Tipo": "boolean",
+    "Aliases": [
+      "Bloqueada_Para_Edicao"
+    ],
+    "Obrigatorio": false
+  },
+  {
+    "CampoSharePoint": "Versao_Planejamento",
+    "ColunaModelo": "VersaoPlanejamento",
+    "Tipo": "int64",
+    "Aliases": [
+      "Versao_Planejamento"
+    ],
+    "Obrigatorio": false
+  },
+  {
+    "CampoSharePoint": "Origem_Registro",
+    "ColunaModelo": "OrigemRegistro",
+    "Tipo": "string",
+    "Aliases": [
+      "Origem_Registro"
+    ],
+    "Obrigatorio": false
+  },
+  {
+    "CampoSharePoint": "Data_Ultima_Revisao",
+    "ColunaModelo": "DataUltimaRevisao",
+    "Tipo": "dateTime",
+    "Aliases": [
+      "Data_Ultima_Revisao"
+    ],
+    "Obrigatorio": false
+  },
+  {
+    "CampoSharePoint": "Turno",
+    "ColunaModelo": "Turno",
+    "Tipo": "string",
+    "Aliases": [
+      "Turno"
+    ],
+    "Obrigatorio": false
+  },
+  {
+    "CampoSharePoint": "Percentual_Evasao_Previsto",
+    "ColunaModelo": "PercentualEvasaoCadastro",
+    "Tipo": "double",
+    "Aliases": [
+      "Percentual_Evasao_Previsto"
+    ],
+    "Obrigatorio": false
+  },
+  {
+    "CampoSharePoint": "Quantidade_Evasao_Prevista",
+    "ColunaModelo": "QuantidadeEvasaoCadastro",
+    "Tipo": "double",
+    "Aliases": [
+      "Quantidade_Evasao_Prevista"
+    ],
+    "Obrigatorio": false
+  },
+  {
+    "CampoSharePoint": "Matriculas_Consideradas",
+    "ColunaModelo": "MatriculasConsideradasCadastro",
+    "Tipo": "double",
+    "Aliases": [
+      "Matriculas_Consideradas"
+    ],
+    "Obrigatorio": false
+  },
+  {
+    "CampoSharePoint": "Matriculas_Reais",
+    "ColunaModelo": "MatriculasReais",
+    "Tipo": "double",
+    "Aliases": [
+      "Matriculas_Reais"
+    ],
+    "Obrigatorio": false
+  },
+  {
+    "CampoSharePoint": "Matriculas_Reais_Confirmadas",
+    "ColunaModelo": "MatriculasReaisConfirmadas",
+    "Tipo": "boolean",
+    "Aliases": [
+      "Matriculas_Reais_Confirmadas"
+    ],
+    "Obrigatorio": false
+  },
+  {
+    "CampoSharePoint": "Código da turma SGE",
+    "ColunaModelo": "CodigoSGELegado",
+    "Tipo": "string",
+    "Aliases": [
+      "Código da turma SGE"
+    ],
+    "Obrigatorio": false
+  },
+  {
+    "CampoSharePoint": "Local_realizacao",
+    "ColunaModelo": "LocalRealizacao",
+    "Tipo": "string",
+    "Aliases": [
+      "Local_realizacao"
+    ],
+    "Obrigatorio": false
+  },
+  {
+    "CampoSharePoint": "Instrutor",
+    "ColunaModelo": "Instrutor",
+    "Tipo": "string",
+    "Aliases": [
+      "Instrutor"
+    ],
+    "Obrigatorio": false
+  },
+  {
+    "CampoSharePoint": "Codigo_Matriz_Excel",
+    "ColunaModelo": "CodigoMatrizExcel",
+    "Tipo": "string",
+    "Aliases": [
+      "Codigo_Matriz_Excel"
+    ],
+    "Obrigatorio": false
+  },
+  {
+    "CampoSharePoint": "Created",
+    "ColunaModelo": "DataCriacao",
+    "Tipo": "dateTime",
+    "Aliases": [
+      "Created",
+      "Criado"
+    ],
+    "Obrigatorio": false
+  },
+  {
+    "CampoSharePoint": "Modified",
+    "ColunaModelo": "DataModificacao",
+    "Tipo": "dateTime",
+    "Aliases": [
+      "Modified",
+      "Modificado"
+    ],
+    "Obrigatorio": false
+  },
+  {
+    "CampoSharePoint": "Author",
+    "ColunaModelo": "CriadoPor",
+    "Tipo": "string",
+    "Aliases": [
+      "Author",
+      "Criado por"
+    ],
+    "Obrigatorio": false
+  },
+  {
+    "CampoSharePoint": "Editor",
+    "ColunaModelo": "ModificadoPor",
+    "Tipo": "string",
+    "Aliases": [
+      "Editor",
+      "Modificado por"
+    ],
+    "Obrigatorio": false
+  }
+]

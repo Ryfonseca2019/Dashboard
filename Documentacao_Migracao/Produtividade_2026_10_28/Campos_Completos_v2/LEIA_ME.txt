@@ -1,0 +1,35 @@
+﻿PRODUTIVIDADE — CAMPOS COMPLETOS DAS TURMAS — V2
+28/10/2026
+
+1. Extraia o ZIP para uma pasta nova, mantendo a estrutura.
+2. Dentro de Produtividade_Campos_Completos_v2, abra Produtividade Planejamento de Turmas.pbip.
+3. Atualize no Power BI Desktop com sua conta de acesso ao SharePoint.
+4. Confira Campos_Adicionais_Diagnostico. Mobilizacao e Item_Contabil_Snapshot são obrigatórias como COLUNAS; registros individuais podem permanecer vazios. As demais colunas adicionais são opcionais e têm disponibilidade auditada.
+5. Acesse Cadastro e classificação contábil para filtrar item contábil, centro de custo e classe de valor. Os demais campos estão em DimTurma, organizados em pastas.
+6. Compare os resultados das páginas originais com o PBIX original, com a mesma fonte e filtros, antes de publicar.
+
+BASE UTILIZADA
+O PBIP anexado nesta solicitação contém somente 315 bytes e aponta para uma pasta .Report que não veio anexada; ele não contém o modelo nem as consultas. A ampliação utiliza o PBIX enviado anteriormente nesta conversa e a evolução v1 preparada a partir dele. O arquivo de abertura foi mantido com o nome e o caminho de relatório enviados. Alterações realizadas depois daquele PBIX só podem ser incorporadas após receber também as pastas .Report e .SemanticModel atuais em ZIP.
+
+COBERTURA
+- 52 campos do cadastro Turmas_Planejadas conforme a estrutura previamente enviada.
+- ID original da lista (TurmaID).
+- Quatro campos de auditoria do SharePoint: criação, modificação, criador e modificador.
+- PeriodoValido calculado pela regra original.
+Total: 58 colunas em DimTurma, sendo 40 adicionadas em relação ao PBIX recebido.
+- Item contábil, centro de custo, classe de valor e códigos permanecem como TEXTO; não são valores financeiros e não são somados.
+- Campos de matrícula e evasão do cadastro estão separados da memória mensal calculada.
+- Nenhum dado vazio foi completado por inferência nem consultado diretamente no RM.
+
+PRESERVAÇÃO
+Mantidas as 25 expressões DAX originais e os arquivos das duas páginas originais. A evolução acrescenta cinco páginas, incluindo Cadastro e classificação contábil. As quatro páginas da proposta v1 também estão presentes. A regra fxProducaoTurma não foi reescrita.
+O tema customizado referenciado no PBIX original não estava incluído no arquivo. A cópia usa o tema base embutido; cores dependentes do tema podem variar.
+
+FONTES E NOMES
+A proposta reconhece os nomes do SharePoint previamente enviados, incluindo a alternativa Data_Snapshot_Matriz0 e nomes de auditoria em português/inglês. Não tenta adivinhar outros nomes. Caso uma coluna obrigatória não seja encontrada, ela interrompe o carregamento com mensagem explícita; consulte o diagnóstico.
+Campos estruturados novos de descrição/pessoa são convertidos para texto legível, com erro explícito se o formato não for reconhecido. Listas descritivas são unidas por ' | '. A regra de Mobilizacao não permite escolher arbitrariamente um valor de uma lista com múltiplas opções.
+
+LIMITES
+Este projeto não contém o cache de dados: requer atualização do SharePoint. Foram verificados arquivos JSON, referências de campos, tipos, colisões de nomes, cobertura do cadastro e preservação das páginas originais. Não foi aberto no Power BI Desktop nem atualizado contra o SharePoint neste ambiente. É uma cópia para homologação, sem alterações no aplicativo, listas ou relatório publicado.
+
+Os arquivos .m em Consultas_M permitem aplicar a ampliação incrementalmente no modelo atual se houver mudanças locais posteriores. Aplicar as dependências stg_Turmas_Campos_v2 e fxTextoDescritivo antes de DimTurma. Adicionar os campos ao modelo e as relações/páginas correspondentes também é necessário; o PBIP completo já contém essas definições.
