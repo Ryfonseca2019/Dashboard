@@ -1,0 +1,38 @@
+﻿ENTREGA — ANÁLISE E PROPOSTA DE EVOLUÇÃO DO PAINEL DE PRODUTIVIDADE
+28/10/2026
+
+COMECE AQUI
+1. Guarde o PBIX original. Ele não foi modificado.
+2. Extraia este ZIP para uma pasta nova. A cópia editável fica em Produtividade_Melhorias_v1.
+3. Abra Produtividade_Melhorias.pbip no Power BI Desktop atualizado, com suporte a projetos PBIP/TMDL.
+4. Entre com a conta que tem acesso ao SharePoint e atualize. Esta proposta usa as fontes SharePoint do arquivo enviado; não adiciona consulta direta ao RM.
+5. A cópia não contém o cache de dados do PBIX. As páginas só receberão dados depois da atualização.
+6. Confira a tabela Campos_Adicionais_Diagnostico. Mobilizacao é obrigatória; se o conector não a retornar, a consulta interrompe com mensagem explícita. Os demais nove campos adicionais são opcionais: ausência vira nulo e aparece no diagnóstico, nunca é apresentada como ausência no RM.
+7. Compare resultados das duas páginas originais com o PBIX original usando a MESMA fotografia das fontes e os MESMOS filtros. Atualizar as fontes entre comparações pode mudar os valores.
+8. Só depois dessa validação, salve uma cópia PBIX e publique como novo relatório de teste, sem sobrescrever o relatório em uso.
+
+O QUE FOI PRESERVADO
+- PBIX original intacto, identificado pelo SHA-256 no manifesto.
+- Duas páginas originais e todos os seus visuais, byte a byte.
+- Onze tabelas originais, colunas originais, 25 expressões DAX e os dez relacionamentos.
+- As funções de cálculo, regras de cancelamento, parâmetros de evasão e calendário não foram reescritas.
+- A seleção de colunas de DimTurma foi ampliada; os nomes e tipos das colunas originais continuam compatíveis.
+
+O QUE FOI PREPARADO
+- Mobilizacao no modelo, DimMobilizacao e relação de filtro unidirecional para DimTurma.
+- Nove outros campos do app em DimTurma: código da matriz, área, mediação da turma, detalhamento de mediação da matriz, turno, campus/polo, origem, matrículas reais e confirmação das matrículas reais.
+- Tabela Campos_Adicionais_Diagnostico para auditar disponibilidade das novas colunas.
+- Treze medidas adicionais e quatro páginas novas, sem excluir as duas existentes.
+- Arquivos .m e medidas DAX separados permitem aplicar as alterações incrementalmente no PBIX original, se preferir, em vez de usar a cópia PBIP.
+
+METAS E NOVOS FILTROS
+A medida original Meta H/A foi preservada. Ela ainda não bloqueia todos os novos recortes. A nova medida Meta H/A no novo recorte retorna vazio ao filtrar mobilização, área, mediação, turno ou campus/polo, pois não há meta com esses escopos no modelo. As páginas novas não exibem metas, atingimento nem GAP. Se levar esses filtros às páginas atuais, adapte também Meta H/A e medidas dependentes, após validação. Não compare uma meta integral com um subconjunto da produção.
+
+TEMA
+O PBIX enviado referencia um tema customizado Tema_FIRJAN que não foi incluído no arquivo. Para evitar uma referência a recurso inexistente, a cópia usa o tema base original embutido. Os JSONs dos visuais originais foram preservados; cores dependentes do tema podem variar. Se disponível, importe o JSON original do tema na cópia.
+
+LIMITES DA VALIDAÇÃO
+Foram verificados estrutura JSON, referências de campos dos visuais, preservação dos arquivos de páginas originais e das 25 expressões DAX, nomes das tabelas/colunas e preservação dos relacionamentos. Não foi possível abrir o Power BI Desktop nem atualizar o SharePoint neste ambiente. O projeto é uma versão para homologação, não um PBIX atualizado e validado em execução. Não houve publicação ou alteração de dados no SharePoint.
+
+ANÁLISE
+Veja Analise_e_Plano_de_Melhorias.xlsx e Analise_Tecnica.md.

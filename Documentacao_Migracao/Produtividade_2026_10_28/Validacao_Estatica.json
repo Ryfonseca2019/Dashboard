@@ -1,0 +1,14 @@
+{
+  "origem_sha256": "32e83cf2299cc7f7fe5de915eb8862f64658fb059405f59add7b0d79e486fd49",
+  "tabelas_originais": 11,
+  "tabelas_proposta": 13,
+  "medidas_originais_preservadas": 25,
+  "medidas_novas": 13,
+  "paginas_originais_preservadas": 2,
+  "paginas_novas": 4,
+  "colunas_adicionadas_DimTurma": 10,
+  "relacionamentos_originais_preservados": 10,
+  "relacionamentos_novos": 1,
+  "validacao": "Estática; sem abertura no Power BI Desktop e sem atualização SharePoint.",
+  "tema": "Arquivo original referenciava tema customizado não incluído no ZIP; cópia editável usa o tema base já embutido. JSON das páginas e visuais originais preservados byte a byte."
+}
