@@ -1,0 +1,184 @@
+{
+  "id": "alfabeto",
+  "titulo": "ABC para Colorir",
+  "subtitulo": "Aprenda as letras pintando, de A a Z",
+  "autor": "Seu Nome Aqui",
+  "faixa_etaria": "3 a 6 anos",
+  "formato": "8.5x11",
+  "papel": "branco",
+  "moldura": false,
+  "paginas": [
+    {
+      "tipo": "letra",
+      "letra": "A",
+      "palavra": "Abelha"
+    },
+    {
+      "tipo": "letra",
+      "letra": "B",
+      "palavra": "Bola"
+    },
+    {
+      "tipo": "letra",
+      "letra": "C",
+      "palavra": "Casa",
+      "desenho": "casa"
+    },
+    {
+      "tipo": "letra",
+      "letra": "D",
+      "palavra": "Dado"
+    },
+    {
+      "tipo": "letra",
+      "letra": "E",
+      "palavra": "Estrela",
+      "desenho": "estrela"
+    },
+    {
+      "tipo": "letra",
+      "letra": "F",
+      "palavra": "Flor",
+      "desenho": "flor"
+    },
+    {
+      "tipo": "letra",
+      "letra": "G",
+      "palavra": "Gato",
+      "desenho": "gato"
+    },
+    {
+      "tipo": "letra",
+      "letra": "H",
+      "palavra": "Hipopótamo"
+    },
+    {
+      "tipo": "letra",
+      "letra": "I",
+      "palavra": "Ilha"
+    },
+    {
+      "tipo": "letra",
+      "letra": "J",
+      "palavra": "Jacaré"
+    },
+    {
+      "tipo": "letra",
+      "letra": "K",
+      "palavra": "Kiwi"
+    },
+    {
+      "tipo": "letra",
+      "letra": "L",
+      "palavra": "Leão"
+    },
+    {
+      "tipo": "letra",
+      "letra": "M",
+      "palavra": "Maçã",
+      "desenho": "maca"
+    },
+    {
+      "tipo": "letra",
+      "letra": "N",
+      "palavra": "Nuvem"
+    },
+    {
+      "tipo": "letra",
+      "letra": "O",
+      "palavra": "Ovo"
+    },
+    {
+      "tipo": "letra",
+      "letra": "P",
+      "palavra": "Peixe",
+      "desenho": "peixe"
+    },
+    {
+      "tipo": "letra",
+      "letra": "Q",
+      "palavra": "Queijo"
+    },
+    {
+      "tipo": "letra",
+      "letra": "R",
+      "palavra": "Rato"
+    },
+    {
+      "tipo": "letra",
+      "letra": "S",
+      "palavra": "Sol",
+      "desenho": "sol"
+    },
+    {
+      "tipo": "letra",
+      "letra": "T",
+      "palavra": "Tartaruga",
+      "desenho": "tartaruga"
+    },
+    {
+      "tipo": "letra",
+      "letra": "U",
+      "palavra": "Uva"
+    },
+    {
+      "tipo": "letra",
+      "letra": "V",
+      "palavra": "Vaca"
+    },
+    {
+      "tipo": "letra",
+      "letra": "W",
+      "palavra": "Wi-fi"
+    },
+    {
+      "tipo": "letra",
+      "letra": "X",
+      "palavra": "Xícara"
+    },
+    {
+      "tipo": "letra",
+      "letra": "Y",
+      "palavra": "Yoga"
+    },
+    {
+      "tipo": "letra",
+      "letra": "Z",
+      "palavra": "Zebra"
+    }
+  ],
+  "capa": {
+    "cor_fundo": "#FF8A65",
+    "desenhos": [
+      "maca",
+      "gato",
+      "sol",
+      "estrela"
+    ],
+    "cores_desenhos": [
+      "#FFFFFF",
+      "#FFF59D",
+      "#C8E6C9",
+      "#B3E5FC"
+    ],
+    "texto_contracapa": "Uma letra por página, de A a Z, para pintar e treinar o traçado.\nCada página traz a letra maiúscula e minúscula, uma palavra e uma linha para cobrir com o lápis."
+  },
+  "anuncio": {
+    "descricao_curta": "Aprenda o alfabeto pintando e cobrindo as letras.",
+    "descricao": "Um livro de colorir para aprender o alfabeto, de A a Z.\n\nCada página traz uma letra grande, maiúscula e minúscula, para pintar, uma palavra que começa com ela e uma linha pontilhada para a criança cobrir com o lápis e treinar o traçado.\n\n• 26 letras, uma por folha, com o verso em branco.\n• Ideal para a pré-escola e para o começo da alfabetização (3 a 6 anos).\n• Formato grande (21,6 x 27,9 cm).",
+    "palavras_chave": [
+      "alfabeto para colorir",
+      "livro abc infantil para pintar",
+      "atividades de alfabetização pré-escola",
+      "letras para cobrir e pintar",
+      "caderno de caligrafia infantil",
+      "aprender o alfabeto crianças 4 anos",
+      "livro educativo letras colorir"
+    ],
+    "categorias": [
+      "Livros > Infantil > Educação > Alfabeto",
+      "Livros > Infantil > Atividades > Colorir"
+    ],
+    "preco_sugerido_usd": 6.99
+  }
+}
