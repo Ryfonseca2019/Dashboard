@@ -1,7 +1,7 @@
 {
   "id": "primeiros_desenhos",
   "titulo": "Meu Primeiro Livro de Colorir",
-  "subtitulo": "Desenhos grandes e fáceis para pintar com giz de cera",
+  "subtitulo": "Desenhos grandes e fáceis para pintar, com labirintos, ligue os pontos e outras atividades",
   "autor": "Seu Nome Aqui",
   "faixa_etaria": "2 a 5 anos",
   "formato": "8.5x11",
@@ -23,19 +23,30 @@
       "legenda": "Casinha"
     },
     {
+      "tipo": "cubra",
+      "desenho": "peixe"
+    },
+    {
       "tipo": "desenho",
       "desenho": "flor",
       "legenda": "Flor"
     },
     {
       "tipo": "desenho",
-      "desenho": "peixe",
-      "legenda": "Peixinho"
+      "desenho": "cachorro",
+      "legenda": "Cachorrinho"
     },
     {
       "tipo": "desenho",
       "desenho": "arvore",
       "legenda": "Árvore"
+    },
+    {
+      "tipo": "labirinto",
+      "semente": 3,
+      "nivel": 1,
+      "inicio": "coelho",
+      "fim": "maca"
     },
     {
       "tipo": "desenho",
@@ -53,6 +64,16 @@
       "legenda": "Tartaruga"
     },
     {
+      "tipo": "ligar_pontos",
+      "figura": "estrela",
+      "nivel": 1
+    },
+    {
+      "tipo": "desenho",
+      "desenho": "coelho",
+      "legenda": "Coelho"
+    },
+    {
       "tipo": "desenho",
       "desenho": "foguete",
       "legenda": "Foguete"
@@ -61,6 +82,17 @@
       "tipo": "desenho",
       "desenho": "passarinho",
       "legenda": "Passarinho"
+    },
+    {
+      "tipo": "diferencas",
+      "desenho": "gato",
+      "semente": 3,
+      "nivel": 1
+    },
+    {
+      "tipo": "desenho",
+      "desenho": "elefante",
+      "legenda": "Elefante"
     },
     {
       "tipo": "desenho",
@@ -73,9 +105,30 @@
       "legenda": "Maçã"
     },
     {
+      "tipo": "complete",
+      "desenho": "borboleta"
+    },
+    {
+      "tipo": "desenho",
+      "desenho": "dinossauro",
+      "legenda": "Dinossauro"
+    },
+    {
       "tipo": "desenho",
       "desenho": "coruja",
       "legenda": "Coruja"
+    },
+    {
+      "tipo": "desenho",
+      "desenho": "pinguim",
+      "legenda": "Pinguim"
+    },
+    {
+      "tipo": "labirinto",
+      "semente": 7,
+      "nivel": 1,
+      "inicio": "cachorro",
+      "fim": "casa"
     },
     {
       "tipo": "desenho",
@@ -84,13 +137,58 @@
     },
     {
       "tipo": "desenho",
+      "desenho": "joaninha",
+      "legenda": "Joaninha"
+    },
+    {
+      "tipo": "desenho",
       "desenho": "sorvete",
       "legenda": "Sorvete"
+    },
+    {
+      "tipo": "ligar_pontos",
+      "figura": "casa",
+      "nivel": 1
+    },
+    {
+      "tipo": "desenho",
+      "desenho": "caracol",
+      "legenda": "Caracol"
+    },
+    {
+      "tipo": "desenho",
+      "desenho": "sapo",
+      "legenda": "Sapo"
     },
     {
       "tipo": "desenho",
       "desenho": "arco_iris",
       "legenda": "Arco-íris"
+    },
+    {
+      "tipo": "cubra",
+      "desenho": "estrela"
+    },
+    {
+      "tipo": "desenho",
+      "desenho": "polvo",
+      "legenda": "Polvo"
+    },
+    {
+      "tipo": "desenho",
+      "desenho": "trem",
+      "legenda": "Trenzinho"
+    },
+    {
+      "tipo": "desenho",
+      "desenho": "peixe",
+      "legenda": "Peixinho"
+    },
+    {
+      "tipo": "diferencas",
+      "desenho": "sapo",
+      "semente": 5,
+      "nivel": 1
     },
     {
       "tipo": "desenho",
@@ -107,28 +205,22 @@
     "cor_fundo": "#4FC3F7",
     "desenhos": [
       "gato",
-      "sol",
-      "flor",
+      "dinossauro",
+      "coelho",
       "peixe"
     ],
-    "cores_desenhos": [
-      "#FFFFFF",
-      "#FFF59D",
-      "#F8BBD0",
-      "#B3E5FC"
-    ],
-    "texto_contracapa": "Desenhos grandes, com contorno grosso, feitos para mãozinhas que estão começando a pintar.\nUm desenho por folha, com o verso em branco: a canetinha não atravessa para o próximo desenho.\nCertificado de \"artista\" no final!"
+    "texto_contracapa": "Feito para mãozinhas que estão começando a pintar: traço grosso, áreas grandes e atividades que ajudam na coordenação motora."
   },
   "anuncio": {
-    "descricao_curta": "Desenhos grandes e fáceis para os pequenos pintarem.",
-    "descricao": "Um primeiro livro de colorir pensado para crianças de 2 a 5 anos!\n\nSão 19 desenhos grandes e simples, com contorno grosso, para a criança pintar sem frustração: sol, gatinho, casinha, foguete, borboleta, coruja e muito mais.\n\n• Cada desenho fica numa folha só, com o verso em branco, para a canetinha não manchar o próximo desenho.\n• Formato grande (21,6 x 27,9 cm).\n• Página \"Este livro pertence a\", página para testar as cores e certificado de artista no final.\n\nAjuda a desenvolver a coordenação motora, a criatividade e a concentração, e é um passatempo longe das telas. Um presente ótimo para aniversários e viagens.",
+    "descricao_curta": "Desenhos grandes e atividades para os pequenos pintarem.",
+    "descricao": "Um primeiro livro de colorir pensado para crianças de 2 a 5 anos!\n\nSão 29 desenhos grandes e simples, com contorno grosso, para a criança pintar sem frustração: gatinho, cachorrinho, dinossauro, foguete, polvo, trenzinho e muito mais. Entre um desenho e outro, 9 atividades para variar a brincadeira: labirintos, ligue os pontos, encontre as diferenças, complete o desenho e cubra o pontilhado.\n\n• Cada página fica numa folha só, com o verso em branco, para a canetinha não manchar a próxima.\n• Formato grande (21,6 x 27,9 cm).\n• Página \"Este livro pertence a\", página para testar as cores e certificado de artista no final.\n\nAjuda a desenvolver a coordenação motora, a criatividade e a concentração, e é um passatempo longe das telas. Um presente ótimo para aniversários e viagens.",
     "palavras_chave": [
       "livro de colorir infantil 2 anos",
       "desenhos para colorir crianças pequenas",
       "livro de pintar menino e menina",
       "atividades pré-escola coordenação motora",
       "presente criança 3 4 5 anos",
-      "colorir animais fáceis",
+      "livro de colorir com atividades labirinto",
       "livro de colorir giz de cera"
     ],
     "tags_etsy": [

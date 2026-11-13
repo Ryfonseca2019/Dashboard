@@ -43,6 +43,7 @@ Cada livro sai em `saida/<id>/`:
 |---|---|
 | `miolo.pdf` | Interior do livro: enviar como *manuscript* no KDP |
 | `capa.pdf` | Capa completa (contracapa + lombada + capa) com sangria: enviar como *cover* |
+| `capa_frente.png` / `capa_miniatura.png` | Prévia da capa e de como ela aparece na busca da Amazon (precisa do `pdftoppm`) |
 | `anuncio.md` | Título, descrição, 7 palavras-chave, categorias e a declaração de IA, prontos para copiar |
 | `anuncio.json` | Os mesmos dados, para integrar com APIs (Etsy, loja própria etc.) |
 
@@ -73,7 +74,12 @@ espessura da lombada por tipo de papel, texto na lombada só a partir de 79 pág
     {"tipo": "desenho", "desenho": "gato", "legenda": "Gatinho"},
     {"tipo": "mandala", "semente": 7, "nivel": 2},
     {"tipo": "letra", "letra": "A", "palavra": "Abelha"},
-    {"tipo": "imagem", "arquivo": "imagens/dino.png", "legenda": "Dinossauro"}
+    {"tipo": "imagem", "arquivo": "imagens/dino.png", "legenda": "Dinossauro"},
+    {"tipo": "labirinto", "semente": 3, "nivel": 1, "inicio": "coelho", "fim": "maca"},
+    {"tipo": "ligar_pontos", "figura": "estrela", "nivel": 1},
+    {"tipo": "diferencas", "desenho": "gato", "semente": 3, "nivel": 1},
+    {"tipo": "complete", "desenho": "borboleta"},
+    {"tipo": "cubra", "desenho": "peixe"}
   ],
   "capa": {"cor_fundo": "#4FC3F7", "desenhos": ["gato", "sol", "flor", "peixe"],
            "texto_contracapa": "..."},
@@ -83,10 +89,38 @@ espessura da lombada por tipo de papel, texto na lombada só a partir de 79 pág
 
 ### Tipos de página
 
-- **desenho**: desenhos em traço da biblioteca (`colorbook/desenhos.py`), escritos em código. Hoje são 19: sol, gato, casa, flor, peixe, árvore, borboleta, carro, tartaruga, foguete, passarinho, barco, maçã, coruja, balões, sorvete, arco-íris, estrela e coração.
+- **desenho**: desenhos em traço da biblioteca (`colorbook/desenhos.py`), escritos em código. Hoje são 29: sol, gato, cachorro, coelho, casa, flor, peixe, árvore, borboleta, carro, tartaruga, foguete, passarinho, barco, maçã, coruja, elefante, dinossauro, pinguim, joaninha, caracol, sapo, polvo, trem, balões, sorvete, arco-íris, estrela e coração.
 - **mandala**: geradas por algoritmo. Cada `semente` dá uma mandala diferente, e `nivel` vai de 1 (fácil) a 3 (detalhada).
 - **letra**: letra vazada, palavra, desenho opcional e linha pontilhada para cobrir.
+- **Atividades** (`colorbook/atividades.py`), para intercalar entre os desenhos:
+  - **labirinto**: gerado por algoritmo, com um desenho na entrada e outro na saída. Tem sempre um único caminho.
+  - **ligar_pontos**: figuras estrela, coração, casa, peixe, foguete e sol.
+  - **diferencas**: duas cenas iguais, com 3, 5 ou 7 diferenças conforme o nível.
+  - **complete**: metade do desenho, para a criança desenhar a outra metade.
+  - **cubra**: desenho em pontilhado cinza para cobrir com o lápis.
+
+  Todas aceitam `nivel` (1 a 3) e `titulo` para trocar a instrução.
 - **imagem**: qualquer PNG ou JPG em traço preto, como os que saem de uma API de geração de imagens (DALL·E, Ideogram, Stability...). É por aqui que entram ilustrações mais elaboradas.
+
+### Capa
+
+A capa é gerada a partir do bloco `capa` do tema:
+
+```json
+"capa": {
+  "cor_fundo": "#4FC3F7",
+  "desenhos": ["gato", "dinossauro", "coelho"],
+  "texto_contracapa": "..."
+}
+```
+
+- **Frente:** título com letras coloridas e contorno grosso, faixa com o subtítulo, desenho principal já colorido, dois "adesivos" e um selo com o número de páginas.
+- **Contracapa:** lista automática do que tem dentro, montada a partir das páginas do tema.
+- **Lombada:** recebe texto só a partir de 79 páginas.
+- O primeiro item de `desenhos` também pode ser uma mandala, como `"mandala:104"`.
+- Opcionais: `cores_titulo`, `paleta` e `cor_selo`.
+
+Sempre confira o `capa_miniatura.png`: é assim que a capa aparece na busca da Amazon.
 
 ### Como criar desenhos novos
 
@@ -131,8 +165,9 @@ livros_colorir/
 │   ├── desenhos.py     # biblioteca de desenhos
 │   ├── mandalas.py     # mandalas por algoritmo
 │   ├── paginas.py      # tipos de página (desenho, mandala, letra, imagem)
+│   ├── atividades.py   # labirinto, ligar os pontos, diferenças, complete, cubra
 │   ├── miolo.py        # monta o PDF do interior
-│   ├── capa.py         # monta a capa com lombada
+│   ├── capa.py         # monta a capa com lombada e as miniaturas
 │   ├── anuncio.py      # textos de venda + limites de cada marketplace
 │   ├── validar.py      # checagem final contra as regras do KDP
 │   ├── claude_tema.py  # cria temas novos com a API do Claude
@@ -147,4 +182,5 @@ livros_colorir/
 - [ ] Exportar para a **Lulu** (a lombada e a capa têm fórmula própria) e criar pedidos pela Lulu Print API.
 - [ ] Publicar o PDF digital no Etsy pela API.
 - [ ] Livro personalizado com o nome da criança (gerado na hora do pedido).
-- [ ] Mais desenhos na biblioteca (dinossauros, fundo do mar, profissões, folclore brasileiro).
+- [ ] Mais desenhos na biblioteca (fundo do mar, profissões, folclore brasileiro).
+- [ ] Checagem automática de traço (espessura mínima, áreas pequenas demais para pintar).

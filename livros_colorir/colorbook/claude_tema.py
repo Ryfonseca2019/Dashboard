@@ -15,6 +15,7 @@ import re
 import unicodedata
 from pathlib import Path
 
+from .atividades import FIGURAS_PONTOS
 from .desenhos import DESENHOS
 
 MODELO = "claude-opus-5-5"
@@ -24,9 +25,15 @@ Mercado Livre, em português do Brasil.
 
 Regras:
 - Use apenas os desenhos da lista permitida; você pode repetir alguns, com legendas diferentes.
-- Monte de 12 a 30 páginas de conteúdo. Pode misturar páginas "desenho" e "mandala".
-  Mandalas usam "semente" (inteiro qualquer, cada uma gera um desenho diferente) e
-  "nivel" (1 = simples, 2 = médio, 3 = detalhado), adequado à faixa etária.
+- Monte de 20 a 40 páginas de conteúdo, na maioria "desenho". Intercale uma atividade a
+  cada 3 ou 4 desenhos, variando os tipos:
+  "labirinto" (use "inicio" e "fim" com dois desenhos da lista, ex.: coelho e maca),
+  "ligar_pontos" (use "figura"), "diferencas" (use "desenho" como cena),
+  "complete" (use um "desenho" simétrico, como borboleta, coruja ou estrela) e
+  "cubra" (use "desenho"). Também pode usar "mandala".
+- "semente" é um inteiro qualquer (muda labirintos, diferenças e mandalas) e "nivel"
+  vai de 1 (2 a 5 anos) a 3 (7 a 10 anos), adequado à faixa etária.
+- Campos que não se aplicam ao tipo da página ficam como texto vazio.
 - Legendas curtas (1 a 3 palavras), positivas e fáceis de ler.
 - Nunca cite personagens, marcas ou franquias registradas.
 - Descrição de venda: 3 a 5 parágrafos curtos, com benefícios para pais e mães
@@ -53,10 +60,16 @@ def _esquema() -> dict:
                 "items": {
                     "type": "object",
                     "additionalProperties": False,
-                    "required": ["tipo", "desenho", "legenda", "semente", "nivel"],
+                    "required": ["tipo", "desenho", "legenda", "semente", "nivel", "inicio",
+                                 "fim", "figura"],
                     "properties": {
-                        "tipo": {"type": "string", "enum": ["desenho", "mandala"]},
+                        "tipo": {"type": "string", "enum": [
+                            "desenho", "mandala", "labirinto", "ligar_pontos", "diferencas",
+                            "complete", "cubra"]},
                         "desenho": {"type": "string", "enum": nomes + [""]},
+                        "inicio": {"type": "string", "enum": nomes + [""]},
+                        "fim": {"type": "string", "enum": nomes + [""]},
+                        "figura": {"type": "string", "enum": sorted(FIGURAS_PONTOS) + [""]},
                         "legenda": {"type": "string"},
                         "semente": {"type": "integer"},
                         "nivel": {"type": "integer", "enum": [1, 2, 3]},
@@ -91,13 +104,26 @@ def _esquema() -> dict:
 
 
 def _limpar_paginas(paginas: list[dict]) -> list[dict]:
+    """Mantém só os campos que cada tipo usa e descarta páginas incompletas."""
     limpas = []
     for p in paginas:
-        if p["tipo"] == "mandala":
-            limpas.append({"tipo": "mandala", "semente": p["semente"], "nivel": p["nivel"],
+        tipo = p["tipo"]
+        nivel = {"nivel": p["nivel"]}
+        if tipo == "mandala":
+            limpas.append({"tipo": "mandala", "semente": p["semente"], **nivel,
                            "legenda": p.get("legenda") or None})
-        elif p.get("desenho"):
+        elif tipo == "desenho" and p.get("desenho"):
             limpas.append({"tipo": "desenho", "desenho": p["desenho"], "legenda": p["legenda"]})
+        elif tipo == "labirinto" and p.get("inicio") and p.get("fim"):
+            limpas.append({"tipo": "labirinto", "semente": p["semente"], **nivel,
+                           "inicio": p["inicio"], "fim": p["fim"]})
+        elif tipo == "ligar_pontos" and p.get("figura"):
+            limpas.append({"tipo": "ligar_pontos", "figura": p["figura"], **nivel})
+        elif tipo == "diferencas" and p.get("desenho"):
+            limpas.append({"tipo": "diferencas", "desenho": p["desenho"],
+                           "semente": p["semente"], **nivel})
+        elif tipo in ("complete", "cubra") and p.get("desenho"):
+            limpas.append({"tipo": tipo, "desenho": p["desenho"]})
     return limpas
 
 

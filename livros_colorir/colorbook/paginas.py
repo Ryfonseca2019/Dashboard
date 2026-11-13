@@ -19,6 +19,7 @@ from reportlab.lib.colors import Color, black
 from reportlab.lib.utils import ImageReader
 from reportlab.pdfgen.canvas import Canvas
 
+from .atividades import TIPOS as ATIVIDADES
 from .caneta import Caneta
 from .desenhos import desenhar
 from .fonts import FONTE, FONTE_NEGRITO
@@ -76,7 +77,10 @@ def _texto_vazado(c: Canvas, cx: float, y: float, texto: str, tam_max: float,
     c.setLineJoin(1)
     t.setTextOrigin(cx - c.stringWidth(texto, FONTE_NEGRITO, tam) / 2, y)
     t.textOut(texto)
+    # Isola o modo de texto (contorno/preenchido): no PDF ele vale até ser trocado.
+    c.saveState()
     c.drawText(t)
+    c.restoreState()
 
 
 def pagina_letra(c: Canvas, area: Area, pag: dict, moldura: bool) -> None:
@@ -113,7 +117,10 @@ def pagina_letra(c: Canvas, area: Area, pag: dict, moldura: bool) -> None:
     t.setTextOrigin(x + (w - qtd * passo) / 2 + passo * 0.15, base)
     t.textOut("  ".join([letra.upper()] * qtd))
     c.setLineWidth(1.2)
+    # Isola o modo de texto (contorno/preenchido): no PDF ele vale até ser trocado.
+    c.saveState()
     c.drawText(t)
+    c.restoreState()
     c.setDash()
 
 
@@ -144,5 +151,7 @@ def desenhar_pagina(c: Canvas, area: Area, pag: dict, moldura: bool, base: Path)
         pagina_letra(c, area, pag, moldura)
     elif tipo == "imagem":
         pagina_imagem(c, area, pag, moldura, base)
+    elif tipo in ATIVIDADES:
+        ATIVIDADES[tipo](c, area, pag)
     else:
         raise ValueError(f"Tipo de página desconhecido: {tipo}")

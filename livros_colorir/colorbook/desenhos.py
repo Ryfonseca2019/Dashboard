@@ -27,6 +27,13 @@ def desenho(nome: str):
 
 
 def desenhar(nome: str, caneta: Caneta) -> None:
+    """Desenha pelo nome. Também aceita "mandala:SEMENTE" (ex.: "mandala:104")."""
+    if nome.startswith("mandala"):
+        from .mandalas import mandala
+
+        _, _, semente = nome.partition(":")
+        mandala(caneta, semente=int(semente or 1), nivel=1)
+        return
     try:
         DESENHOS[nome](caneta)
     except KeyError as exc:
@@ -347,3 +354,208 @@ def coracao(p: Caneta):
                ("C", 57, 63, 68, 56, 69, 47), ("C", 70, 34, 55, 32, 50, 42)])
     for x, y in ((14, 10), (86, 10), (10, 84), (90, 84)):
         p.estrela(x, y, 4)
+
+
+# ----------------------------------------------------------------------------- mais animais
+@desenho("cachorro")
+def cachorro(p: Caneta):
+    p.tubo([("M", 68, 76), ("C", 80, 74, 86, 64, 86, 54)], largura=6)
+    p.elipse(50, 72, 22, 18)
+    p.circulo(60, 70, 6)
+    p.elipse(41, 89, 8, 4)
+    p.elipse(59, 89, 8, 4)
+    p.retangulo(36, 54, 64, 60, raio=3)
+    p.circulo(50, 62, 3)
+    p.circulo(50, 36, 19)
+    p.elipse(50, 45, 10, 7.5)
+    p.elipse(50, 41, 4, 2.8, cheio=p.cor_traco)
+    p.arco(47, 46, 3, 200, 360, espessura=2)
+    p.arco(53, 46, 3, 180, 340, espessura=2)
+    p.ponto(42, 32, 2.4)
+    p.ponto(58, 32, 2.4)
+    p.elipse(30, 38, 7, 15, angulo=18)
+    p.elipse(70, 38, 7, 15, angulo=-18)
+
+
+@desenho("coelho")
+def coelho(p: Caneta):
+    for x, a in ((41, -8), (59, 8)):
+        p.elipse(x, 18, 6.5, 17, angulo=a)
+        p.elipse(x, 19, 3, 11, angulo=a, espessura=2)
+    p.circulo(71, 78, 6)
+    p.elipse(50, 72, 20, 19)
+    p.elipse(50, 75, 11, 12)
+    p.elipse(38, 90, 9, 4)
+    p.elipse(62, 90, 9, 4)
+    p.elipse(39, 64, 4, 7, angulo=25)
+    p.elipse(61, 64, 4, 7, angulo=-25)
+    p.circulo(50, 44, 17)
+    p.circulo(40, 49, 3.5)
+    p.circulo(60, 49, 3.5)
+    p.ponto(44, 41, 2.3)
+    p.ponto(56, 41, 2.3)
+    p.poligono([(47.5, 46), (52.5, 46), (50, 49)])
+    p.arco(48, 50, 2.5, 200, 360, espessura=2)
+    p.arco(52, 50, 2.5, 180, 340, espessura=2)
+
+
+@desenho("elefante")
+def elefante(p: Caneta):
+    for x1 in (32, 46, 62, 76):
+        p.retangulo(x1, 68, x1 + 10, 90, raio=3)
+    p.polilinha([(84, 56), (92, 66)], espessura=2.5)
+    p.elipse(93, 69, 2.5, 4, cheio=True)
+    p.elipse(56, 58, 30, 22)
+    p.tubo([("M", 20, 50), ("C", 8, 60, 8, 74, 16, 80)], largura=7)
+    p.circulo(28, 42, 16)
+    p.elipse(39, 44, 10, 13)
+    p.ponto(22, 38, 2.3)
+    p.arco(24, 50, 4, 200, 320, espessura=2)
+    _grama(p, 90)
+
+
+@desenho("dinossauro")
+def dinossauro(p: Caneta):
+    _grama(p, 90)
+    p.caminho([("M", 32, 62), ("C", 20, 64, 10, 60, 4, 50), ("C", 12, 70, 24, 78, 36, 76)])
+    for x in (38, 46, 54):
+        p.poligono([(x - 4, 58), (x, 46), (x + 4, 58)])
+    p.retangulo(34, 70, 44, 90, raio=3)
+    p.retangulo(56, 70, 66, 90, raio=3)
+    p.caminho([("M", 58, 60), ("C", 62, 42, 64, 32, 70, 26), ("L", 78, 30),
+               ("C", 74, 38, 72, 50, 70, 64)])
+    p.elipse(50, 66, 21, 14)
+    p.elipse(76, 22, 12, 8)
+    p.ponto(79, 19, 2)
+    p.arco(80, 22, 4, 220, 320, espessura=2)
+    p.circulo(42, 64, 3)
+    p.circulo(52, 69, 3.5)
+    p.circulo(60, 62, 2.5)
+
+
+@desenho("pinguim")
+def pinguim(p: Caneta):
+    p.elipse(42, 90, 8, 3.5)
+    p.elipse(58, 90, 8, 3.5)
+    p.elipse(27, 60, 6, 16, angulo=18)
+    p.elipse(73, 60, 6, 16, angulo=-18)
+    p.elipse(50, 58, 24, 32)
+    p.elipse(50, 64, 16, 23)
+    p.ponto(43, 38, 2.4)
+    p.ponto(57, 38, 2.4)
+    p.circulo(38, 46, 3)
+    p.circulo(62, 46, 3)
+    p.poligono([(46, 43), (54, 43), (50, 49)])
+    # gorro com pompom
+    p.caminho([("M", 33, 31), ("C", 34, 14, 66, 14, 67, 31)])
+    p.retangulo(30, 28, 70, 34, raio=3)
+    p.circulo(50, 14, 4.5)
+
+
+@desenho("joaninha")
+def joaninha(p: Caneta):
+    for y in (44, 58, 72):
+        p.linha(22, y, 8, y - 4)
+        p.linha(78, y, 92, y - 4)
+    p.caminho([("M", 46, 18), ("C", 42, 10, 36, 8, 32, 8)], fechar=False)
+    p.caminho([("M", 54, 18), ("C", 58, 10, 64, 8, 68, 8)], fechar=False)
+    p.circulo(32, 8, 2.5)
+    p.circulo(68, 8, 2.5)
+    p.circulo(50, 26, 11)
+    p.circulo(46, 24, 2.5)
+    p.circulo(54, 24, 2.5)
+    p.circulo(50, 58, 30)
+    p.linha(50, 30, 50, 88)
+    for x, y, r in ((38, 44, 5), (62, 44, 5), (33, 62, 6), (67, 62, 6), (42, 77, 5), (58, 77, 5)):
+        p.circulo(x, y, r)
+
+
+@desenho("caracol")
+def caracol(p: Caneta):
+    p.linha(4, 86, 96, 86)
+    p.caminho([("M", 86, 84), ("L", 24, 84), ("C", 14, 84, 12, 74, 16, 68),
+               ("C", 12, 56, 16, 46, 26, 46), ("C", 34, 46, 38, 56, 34, 66),
+               ("L", 84, 74), ("C", 92, 76, 92, 84, 86, 84)])
+    p.linha(22, 48, 16, 32)
+    p.linha(30, 48, 32, 32)
+    p.circulo(16, 30, 3)
+    p.circulo(32, 30, 3)
+    p.ponto(22, 55, 1.8)
+    p.ponto(30, 55, 1.8)
+    p.arco(26, 59, 3.5, 200, 340, espessura=2)
+    p.circulo(60, 52, 22)
+    pts = []
+    for i in range(0, 300):
+        t = i / 300 * 3.2 * math.pi
+        r = 19 - t * 1.7
+        if r < 1:
+            break
+        pts.append((60 + r * math.cos(t + math.pi), 52 + r * math.sin(t + math.pi)))
+    p.polilinha(pts, espessura=2.6)
+
+
+@desenho("sapo")
+def sapo(p: Caneta):
+    p.caminho([("M", 50, 92), ("C", 20, 94, 6, 88, 10, 82), ("C", 14, 76, 40, 74, 50, 76),
+               ("L", 54, 84), ("L", 60, 76), ("C", 76, 74, 94, 78, 90, 84),
+               ("C", 88, 92, 70, 92, 50, 92)])
+    p.elipse(26, 80, 13, 7)
+    p.elipse(74, 80, 13, 7)
+    p.elipse(50, 66, 25, 19)
+    p.elipse(50, 70, 14, 11)
+    p.elipse(40, 85, 7, 3.5)
+    p.elipse(60, 85, 7, 3.5)
+    p.elipse(50, 42, 26, 15)
+    for x in (35, 65):
+        p.circulo(x, 30, 9)
+        p.circulo(x, 30, 4.5)
+        p.ponto(x, 30, 2.2)
+    p.arco(50, 36, 14, 210, 330)
+    p.circulo(32, 46, 3)
+    p.circulo(68, 46, 3)
+
+
+@desenho("polvo")
+def polvo(p: Caneta):
+    for cmd in (
+        [("M", 30, 58), ("C", 22, 72, 14, 80, 22, 88)],
+        [("M", 38, 60), ("C", 36, 76, 28, 84, 34, 92)],
+        [("M", 46, 62), ("C", 46, 78, 42, 86, 46, 94)],
+        [("M", 54, 62), ("C", 54, 78, 58, 86, 54, 94)],
+        [("M", 62, 60), ("C", 64, 76, 72, 84, 66, 92)],
+        [("M", 70, 58), ("C", 78, 72, 86, 80, 78, 88)],
+    ):
+        p.tubo(cmd, largura=7)
+    p.caminho([("M", 20, 60), ("C", 16, 16, 84, 16, 80, 60), ("C", 64, 68, 36, 68, 20, 60)])
+    for x in (40, 60):
+        p.circulo(x, 44, 6)
+        p.ponto(x + 1, 45, 2.5)
+    p.arco(50, 50, 6, 210, 330)
+    p.circulo(32, 52, 3)
+    p.circulo(68, 52, 3)
+    p.circulo(46, 28, 3)
+    p.circulo(58, 26, 2)
+    p.circulo(88, 18, 4)
+    p.circulo(82, 8, 2.5)
+
+
+# ----------------------------------------------------------------------------- mais objetos
+@desenho("trem")
+def trem(p: Caneta):
+    p.linha(4, 88, 96, 88)
+    for x in range(8, 96, 10):
+        p.retangulo(x, 86, x + 5, 90, espessura=2)
+    p.circulo(30, 18, 5)
+    p.circulo(38, 11, 6)
+    p.circulo(48, 7, 4)
+    p.poligono([(24, 46), (22, 30), (34, 30), (32, 46)])
+    p.retangulo(20, 25, 36, 31, raio=1.5)
+    p.retangulo(54, 30, 82, 74, raio=2)
+    p.retangulo(50, 24, 86, 32, raio=2)
+    p.retangulo(16, 46, 56, 74, raio=4)
+    p.retangulo(60, 38, 76, 52, raio=1.5)
+    p.retangulo(10, 62, 16, 74, raio=1.5)
+    p.circulo(22, 54, 3)
+    for x, r in ((28, 8), (48, 8), (70, 9)):
+        p.circulo(x, 78, r)
+        p.circulo(x, 78, 2.5)

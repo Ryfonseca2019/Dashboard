@@ -21,9 +21,16 @@ from .fonts import FONTE_NEGRITO
 
 class Caneta:
     def __init__(self, c: Canvas, x: float, y: float, largura: float, altura: float,
-                 espessura: float = 3.2, preenchimento: Color = white):
+                 espessura: float = 3.2, preenchimento: Color = white,
+                 paleta: list[Color] | None = None, cor_traco: Color = black,
+                 tracejado: tuple[float, float] | None = None):
         """Cria uma caneta que mapeia a grade 100x100 para um quadrado centrado
-        na área (x, y, largura, altura) em pontos PDF."""
+        na área (x, y, largura, altura) em pontos PDF.
+
+        paleta:    se informada, cada forma é pintada com a próxima cor da lista
+                   (usado na capa, para mostrar o desenho "já colorido").
+        cor_traco: cor do contorno (cinza nas páginas de "cubra o pontilhado").
+        tracejado: (traço, espaço) em pontos para contorno pontilhado."""
         self.c = c
         lado = min(largura, altura)
         self.escala = lado / 100.0
@@ -31,6 +38,10 @@ class Caneta:
         self.y_topo = y + (altura - lado) / 2 + lado
         self.espessura_base = espessura
         self.preenchimento = preenchimento
+        self.paleta = paleta or []
+        self._cor_i = 0
+        self.cor_traco = cor_traco
+        self.tracejado = tracejado
         c.setLineCap(1)
         c.setLineJoin(1)
 
@@ -47,10 +58,16 @@ class Caneta:
     # --- estilo -------------------------------------------------------------------
     def _estilo(self, espessura: float | None, cheio: bool | Color):
         c = self.c
-        c.setStrokeColor(black)
+        c.setStrokeColor(self.cor_traco)
         c.setLineWidth(self.espessura_base if espessura is None else espessura)
+        if self.tracejado:
+            c.setDash(*self.tracejado)
         if cheio is True:
-            c.setFillColor(self.preenchimento)
+            if self.paleta:
+                c.setFillColor(self.paleta[self._cor_i % len(self.paleta)])
+                self._cor_i += 1
+            else:
+                c.setFillColor(self.preenchimento)
         elif isinstance(cheio, Color):
             c.setFillColor(cheio)
         return 1 if cheio is not False else 0
@@ -96,8 +113,8 @@ class Caneta:
         self.c.circle(self.X(cx), self.Y(cy), self.s(r), stroke=1, fill=f)
 
     def ponto(self, cx, cy, r=1.6):
-        """Bolinha preta sólida (olhos, narizes...)."""
-        self.c.setFillColor(black)
+        """Bolinha sólida (olhos, narizes...) na cor do traço."""
+        self.c.setFillColor(self.cor_traco)
         self.c.circle(self.X(cx), self.Y(cy), self.s(r), stroke=0, fill=1)
 
     def elipse(self, cx, cy, rx, ry, angulo=0.0, cheio=True, espessura=None):
@@ -161,7 +178,15 @@ class Caneta:
         grosso, arco-íris...). A faixa fica pintável por dentro."""
         externo = self.s(largura) + self.espessura_base
         interno = max(self.s(largura) - self.espessura_base, 0.5)
-        for esp, cor in ((externo, black), (interno, self.preenchimento)):
+        miolo = self.preenchimento
+        if self.paleta:
+            miolo = self.paleta[self._cor_i % len(self.paleta)]
+            self._cor_i += 1
+        for esp, cor in ((externo, self.cor_traco), (interno, miolo)):
+            if self.tracejado and cor is self.cor_traco:
+                self.c.setDash(*self.tracejado)
+            else:
+                self.c.setDash()
             p = self.c.beginPath()
             for cmd in comandos:
                 if cmd[0] == "M":
@@ -175,7 +200,7 @@ class Caneta:
             self.c.setStrokeColor(cor)
             self.c.setLineWidth(esp)
             self.c.drawPath(p, stroke=1, fill=0)
-        self.c.setStrokeColor(black)
+        self.c.setStrokeColor(self.cor_traco)
 
     def estrela(self, cx, cy, r_ext, r_int=None, pontas=5, giro=-90.0, cheio=True,
                 espessura=None):
@@ -202,4 +227,7 @@ class Caneta:
         c.setLineWidth(espessura)
         t.setTextOrigin(self.X(cx) - largura / 2, self.Y(base_y))
         t.textOut(texto)
+        # Isola o modo de texto (contorno/preenchido): no PDF ele vale até ser trocado.
+        c.saveState()
         c.drawText(t)
+        c.restoreState()

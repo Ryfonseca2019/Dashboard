@@ -16,7 +16,7 @@ import sys
 from pathlib import Path
 
 from .anuncio import gerar_anuncio
-from .capa import gerar_capa
+from .capa import gerar_capa, gerar_miniaturas
 from .desenhos import DESENHOS
 from .miolo import gerar_miolo
 from .validar import validar
@@ -33,6 +33,7 @@ def construir(arquivo_tema: Path, saida: Path) -> bool:
 
     paginas = gerar_miolo(tema, miolo, base=arquivo_tema.parent)
     espec = gerar_capa(tema, paginas, capa)
+    miniaturas = gerar_miniaturas(capa, espec)
     anuncio = gerar_anuncio(tema, paginas, espec, pasta)
     problemas = validar(tema, miolo, capa, espec)
 
@@ -41,6 +42,8 @@ def construir(arquivo_tema: Path, saida: Path) -> bool:
     print(f"   Capa:    {capa}  ({espec.largura_total:.3f} × {espec.altura_total:.3f} pol, "
           f"lombada {espec.lombada:.3f} pol)")
     print(f"   Anúncio: {pasta / 'anuncio.md'}")
+    if miniaturas:
+        print(f"   Prévia da capa: {miniaturas[0]} (miniatura da busca: {miniaturas[1].name})")
     for aviso in anuncio["avisos"]:
         print(f"   ⚠️  {aviso}")
     if problemas:

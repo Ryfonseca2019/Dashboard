@@ -111,10 +111,9 @@
   "capa": {
     "cor_fundo": "#BA68C8",
     "desenhos": [
-      "estrela",
+      "mandala:104",
       "flor",
-      "borboleta",
-      "coracao"
+      "borboleta"
     ],
     "cores_desenhos": [
       "#FFFFFF",
