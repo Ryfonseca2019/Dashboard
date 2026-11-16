@@ -29,9 +29,19 @@ Area = tuple[float, float, float, float]
 CINZA_TRACO = Color(0.55, 0.55, 0.55)
 
 
-def _titulo(c: Canvas, area: Area, texto: str, tam: float = 26) -> Area:
-    """Escreve a instrução no topo e devolve a área que sobra."""
+def _titulo(c: Canvas, area: Area, texto: str, tam: float = 26,
+            mascote: str | None = None) -> Area:
+    """Escreve a instrução no topo e devolve a área que sobra. Com mascote, ele
+    aparece à esquerda "falando" a instrução num balão."""
     x, y, w, h = area
+    if mascote:
+        from .colecao import balao
+
+        lado = 74
+        desenhar(mascote, Caneta(c, x, y + h - lado, lado, lado, espessura=2))
+        tam_b = 17
+        alt = balao(c, x + lado + 20, y + h - 4, w - lado - 20, texto, tam=tam_b)
+        return x, y, w, h - max(lado, alt) - 18
     while c.stringWidth(texto, FONTE_NEGRITO, tam) > w and tam > 12:
         tam -= 1
     c.setFillColor(black)
@@ -85,7 +95,8 @@ def _gerar_labirinto(cols: int, lins: int, rnd: random.Random):
 def pagina_labirinto(c: Canvas, area: Area, pag: dict) -> None:
     inicio, fim = pag.get("inicio", "coelho"), pag.get("fim", "maca")
     area = _titulo(c, area, pag.get("titulo",
-                                    f"Ajude {_com_artigo(inicio)} a chegar até {_com_artigo(fim)}!"))
+                                    f"Ajude {_com_artigo(inicio)} a chegar até {_com_artigo(fim)}!"),
+                   mascote=pag.get("_mascote"))
     x, y, w, h = area
     nivel = max(1, min(3, int(pag.get("nivel", 1))))
     cols, lins = {1: (6, 7), 2: (9, 11), 3: (13, 16)}[nivel]
@@ -214,7 +225,8 @@ def pagina_ligar_pontos(c: Canvas, area: Area, pag: dict) -> None:
     gerar, detalhes, _ = FIGURAS_PONTOS[figura]
     n = {1: 10, 2: 20, 3: 32}[nivel]
     pts = gerar(n)
-    area = _titulo(c, area, pag.get("titulo", f"Ligue os pontos de 1 a {len(pts)}!"))
+    area = _titulo(c, area, pag.get("titulo", f"Ligue os pontos de 1 a {len(pts)}!"),
+                   mascote=pag.get("_mascote"))
     x, y, w, h = area
     c.setFont(FONTE, 11)
     c.setFillColor(black)
@@ -241,7 +253,8 @@ ENFEITES = ["estrela", "coracao", "maca", "flor", "sol", "borboleta", "baloes", 
 def pagina_diferencas(c: Canvas, area: Area, pag: dict) -> None:
     nivel = max(1, min(3, int(pag.get("nivel", 1))))
     qtd = {1: 3, 2: 5, 3: 7}[nivel]
-    area = _titulo(c, area, pag.get("titulo", f"Encontre as {qtd} diferenças!"))
+    area = _titulo(c, area, pag.get("titulo", f"Encontre as {qtd} diferenças!"),
+                   mascote=pag.get("_mascote"))
     x, y, w, h = area
     rnd = random.Random(int(pag.get("semente", 1)))
     base = pag.get("desenho", "gato")
@@ -273,7 +286,8 @@ def pagina_diferencas(c: Canvas, area: Area, pag: dict) -> None:
 
 # ----------------------------------------------------------------------------- complete / cubra
 def pagina_complete(c: Canvas, area: Area, pag: dict) -> None:
-    area = _titulo(c, area, pag.get("titulo", "Desenhe a outra metade e depois pinte!"))
+    area = _titulo(c, area, pag.get("titulo", "Desenhe a outra metade e depois pinte!"),
+                   mascote=pag.get("_mascote"))
     x, y, w, h = area
     p = Caneta(c, x, y, w, h)
     meio = p.X(50)
@@ -291,7 +305,8 @@ def pagina_complete(c: Canvas, area: Area, pag: dict) -> None:
 
 
 def pagina_cubra(c: Canvas, area: Area, pag: dict) -> None:
-    area = _titulo(c, area, pag.get("titulo", "Cubra o pontilhado e depois pinte!"))
+    area = _titulo(c, area, pag.get("titulo", "Cubra o pontilhado e depois pinte!"),
+                   mascote=pag.get("_mascote"))
     desenhar(pag.get("desenho", "peixe"),
              Caneta(c, *area, espessura=2.4, cor_traco=CINZA_TRACO, tracejado=(5, 5)))
     c.setDash()

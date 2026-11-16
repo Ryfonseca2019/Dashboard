@@ -58,7 +58,7 @@ def _arcos(p, r_in, r_out, n, giro):
 def mandala(p: Caneta, semente: int = 1, nivel: int = 1) -> None:
     rnd = random.Random(semente)
     nivel = max(1, min(3, nivel))
-    n = rnd.choice({1: [6, 8], 2: [8, 10, 12], 3: [12, 16]}[nivel])
+    n = rnd.choice({1: [6, 8], 2: [8, 10, 12], 3: [10, 12, 14, 16]}[nivel])
     camadas = {1: 3, 2: 4, 3: 5}[nivel]
     r_max, r_min = 40.0, {1: 12.0, 2: 10.0, 3: 8.0}[nivel]
     passo = (r_max - r_min) / camadas
@@ -83,7 +83,7 @@ def mandala(p: Caneta, semente: int = 1, nivel: int = 1) -> None:
         elif estilo == "pontas":
             _pontas(p, r_in, r_out, n, giro)
         elif estilo == "bolinhas":
-            _bolinhas(p, r_in, r_out, n * (2 if nivel == 3 else 1), giro)
+            _bolinhas(p, r_in, r_out, n, giro)
         else:
             _arcos(p, r_in, r_out, n, giro)
 

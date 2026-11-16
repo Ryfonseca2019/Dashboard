@@ -26,6 +26,7 @@ from .fonts import FONTE, FONTE_NEGRITO
 from .mandalas import mandala
 
 CINZA = Color(0.55, 0.55, 0.55)
+PT2_POR_CM2 = (72 / 2.54) ** 2
 CINZA_CLARO = Color(0.75, 0.75, 0.75)
 
 Area = tuple[float, float, float, float]  # x, y, largura, altura (pontos)
@@ -56,7 +57,13 @@ def pagina_desenho(c: Canvas, area: Area, pag: dict, moldura: bool) -> None:
     area = _legenda(c, area, pag.get("legenda"))
     if moldura:
         area = _moldura(c, area)
-    desenhar(pag["desenho"], Caneta(c, *area))
+    area_min_pt2 = pag.get("_area_min_cm2", 0) * PT2_POR_CM2
+    if pag.get("cena"):
+        from .cenas import desenhar_com_cena
+
+        desenhar_com_cena(c, area, pag["desenho"], pag["cena"], area_min_pt2=area_min_pt2)
+    else:
+        desenhar(pag["desenho"], Caneta(c, *area, area_min_pt2=area_min_pt2))
 
 
 def pagina_mandala(c: Canvas, area: Area, pag: dict, moldura: bool) -> None:

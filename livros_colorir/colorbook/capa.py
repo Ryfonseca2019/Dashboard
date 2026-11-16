@@ -20,6 +20,8 @@ from reportlab.pdfgen.canvas import Canvas
 from . import specs
 from .atividades import descrever
 from .caneta import Caneta
+from .colecao import caixa_contracapa, selo_capa
+from .colecao import dados as dados_colecao
 from .desenhos import desenhar
 from .fonts import FONTE, FONTE_NEGRITO
 
@@ -213,7 +215,8 @@ def _o_que_tem(tema: dict) -> list[str]:
     return itens
 
 
-def gerar_capa(tema: dict, num_paginas: int, saida: Path) -> specs.EspecCapa:
+def gerar_capa(tema: dict, num_paginas: int, saida: Path,
+               outros_volumes: list[str] | None = None) -> specs.EspecCapa:
     larg, alt = specs.formato(tema.get("formato", "8.5x11"))
     espec = specs.EspecCapa(larg, alt, num_paginas, tema.get("papel", "branco"))
     conf = tema.get("capa", {})
@@ -244,7 +247,11 @@ def gerar_capa(tema: dict, num_paginas: int, saida: Path) -> specs.EspecCapa:
         if len(linhas) <= 3 or tam <= 34:
             break
         tam -= 2
-    y = base_y + fh - seg - tam * 0.95
+    col = dados_colecao(tema)
+    topo_titulo = base_y + fh - seg
+    if col:
+        topo_titulo -= selo_capa(c, cx, topo_titulo, col, fundo) + 16
+    y = topo_titulo - tam * 0.95
     k = 0
     for linha in linhas:
         k = _titulo_divertido(c, cx, y, linha, tam, cores_titulo, k)
@@ -370,8 +377,15 @@ def gerar_capa(tema: dict, num_paginas: int, saida: Path) -> specs.EspecCapa:
             c.drawCentredString(bx + fw / 2, ty, linha)
             ty -= 19
 
+    base_livre = base_y + 0.25 * P + 1.2 * P
+    if col:
+        quadro_h = 1.25 * P
+        quadro_y = base_y + seg + 46
+        caixa_contracapa(c, bx + seg, quadro_y, fw - 2 * seg - 2.3 * P, quadro_h, col,
+                         outros_volumes or [], paleta)
+        base_livre = quadro_y + quadro_h
     mini = desenhos[:3]
-    espaco_livre = caixa_y - (base_y + 0.25 * P + 1.2 * P) - 30
+    espaco_livre = caixa_y - base_livre - 40
     tam_m = min(fw * 0.26, espaco_livre)
     if tam_m > 60:
         esp = 26

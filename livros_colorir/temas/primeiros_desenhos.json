@@ -240,5 +240,11 @@
       "Livros > Infantil > Artes > Desenho"
     ],
     "preco_sugerido_usd": 6.99
+  },
+  "cenarios": true,
+  "colecao": {
+    "nome": "Coleção Gizinho",
+    "volume": 1,
+    "mascote": "gizinho"
   }
 }

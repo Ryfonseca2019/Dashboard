@@ -60,6 +60,8 @@ def _nuvem(p: Caneta, cx, cy, escala=1.0):
 
 
 def _grama(p: Caneta, y=90):
+    if getattr(p, "sem_chao", False):  # o cenário da página já desenhou o chão
+        return
     p.linha(5, y, 95, y)
     for x in range(10, 95, 12):
         p.polilinha([(x, y), (x + 2, y - 5), (x + 4, y)])
@@ -140,8 +142,6 @@ def gato(p: Caneta):
     p.elipse(58, 88, 7, 4)
     p.poligono([(34, 32), (33, 12), (48, 24)])
     p.poligono([(66, 32), (67, 12), (52, 24)])
-    p.poligono([(36, 27), (36, 18), (43, 24)], cheio=False, espessura=2)
-    p.poligono([(64, 27), (64, 18), (57, 24)], cheio=False, espessura=2)
     p.elipse(50, 40, 20, 17)
     p.ponto(42, 37, 2.4)
     p.ponto(58, 37, 2.4)
@@ -252,10 +252,8 @@ def casa(p: Caneta):
     p.poligono([(16, 50), (50, 18), (84, 50)])
     p.retangulo(43, 62, 57, 88, raio=2)
     p.ponto(54, 76, 1.4)
-    for x in (28, 62):
-        p.retangulo(x, 56, x + 10, 66)
-        p.linha(x + 5, 56, x + 5, 66, espessura=2)
-        p.linha(x, 61, x + 10, 61, espessura=2)
+    for x in (27, 61):
+        p.retangulo(x, 55, x + 12, 67, raio=1.5)
     p.circulo(50, 36, 5)
     _nuvem(p, 22, 14, 0.6)
 
@@ -559,3 +557,25 @@ def trem(p: Caneta):
     for x, r in ((28, 8), (48, 8), (70, 9)):
         p.circulo(x, 78, r)
         p.circulo(x, 78, 2.5)
+
+
+# ----------------------------------------------------------------------------- mascote
+@desenho("gizinho")
+def gizinho(p: Caneta):
+    """Gizinho, o giz de cera mascote da coleção."""
+    p.tubo([("M", 37, 60), ("C", 28, 58, 22, 50, 20, 42)], largura=5)   # braço acenando
+    p.tubo([("M", 63, 60), ("C", 72, 62, 76, 68, 78, 74)], largura=5)   # braço para baixo
+    p.circulo(19, 39, 4.5)
+    p.circulo(79, 77, 4.5)
+    p.elipse(43, 90, 8, 4)
+    p.elipse(57, 90, 8, 4)
+    p.poligono([(44, 14), (50, 3), (56, 14)])                           # ponta
+    p.poligono([(36, 30), (44, 14), (56, 14), (64, 30)])                # cone
+    p.retangulo(36, 30, 64, 87, raio=4)                                  # corpo
+    p.retangulo(36, 38, 64, 45)                                          # faixas do papel
+    p.retangulo(36, 76, 64, 83)
+    p.ponto(44, 55, 2.6)
+    p.ponto(56, 55, 2.6)
+    p.circulo(40, 62, 3.2)
+    p.circulo(60, 62, 3.2)
+    p.sorriso(50, 61, 6)

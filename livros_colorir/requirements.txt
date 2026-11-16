@@ -1,4 +1,8 @@
 reportlab>=4.0
 pypdf>=4.0
+# Auditor de qualidade e limpeza de ilustrações
+numpy
+scipy
+pillow
 # Opcional: só para o comando criar-tema
 anthropic

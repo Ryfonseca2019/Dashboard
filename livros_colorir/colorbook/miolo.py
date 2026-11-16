@@ -21,6 +21,9 @@ from . import specs
 from .caneta import Caneta
 from .desenhos import desenhar
 from .fonts import FONTE, FONTE_NEGRITO
+from .atividades import TIPOS as ATIVIDADES
+from .colecao import balao
+from .colecao import dados as dados_colecao
 from .paginas import CINZA, desenhar_pagina
 
 
@@ -33,7 +36,18 @@ def planejar(tema: dict) -> list[dict]:
         {"tipo": "_teste_cores"},
     ]
     verso = tema.get("verso_em_branco", True)
+    from .estilo import perfil_do_tema
+
+    area_min = perfil_do_tema(tema).area_min_cm2 if tema.get("simplificar_detalhes", True) else 0
     for pag in tema["paginas"]:
+        if area_min and pag.get("tipo", "desenho") == "desenho":
+            pag = {**pag, "_area_min_cm2": area_min}
+        if tema.get("colecao") and pag.get("tipo") in ATIVIDADES:
+            pag = {**pag, "_mascote": tema["colecao"].get("mascote", "gizinho")}
+        if tema.get("cenarios") and pag.get("tipo", "desenho") == "desenho" and "cena" not in pag:
+            from .cenas import CENA_PADRAO
+
+            pag = {**pag, "cena": CENA_PADRAO.get(pag["desenho"], "campo")}
         plano.append(pag)
         if verso:
             plano.append({"tipo": "_verso"})
@@ -97,8 +111,18 @@ def _pagina_especial(c: Canvas, area, pag, tema: dict) -> None:
         _paragrafo(c, x, topo - 90, w, tema["titulo"], FONTE_NEGRITO, 40, 1.2)
         if tema.get("subtitulo"):
             _paragrafo(c, x, topo - 230, w, tema["subtitulo"], FONTE, 18)
-        destaque = (tema.get("capa", {}).get("desenhos") or ["estrela"])[0]
-        desenhar(destaque, Caneta(c, x + w * 0.2, y + h * 0.18, w * 0.6, h * 0.45))
+        col = dados_colecao(tema)
+        if col:
+            lado = w * 0.42
+            desenhar(col["mascote"], Caneta(c, x + w * 0.04, y + h * 0.14, lado, lado))
+            nome = col["mascote"].capitalize()
+            balao(c, x + w * 0.5, y + h * 0.14 + lado * 0.95, w * 0.48,
+                  f"Oi! Eu sou o {nome}. Vamos pintar juntos?", tam=17)
+            rotulo = col["nome"] + (f" · Volume {col['volume']}" if col.get("volume") else "")
+            _centro(c, x, y + 70, w, rotulo, FONTE_NEGRITO, 14)
+        else:
+            destaque = (tema.get("capa", {}).get("desenhos") or ["estrela"])[0]
+            desenhar(destaque, Caneta(c, x + w * 0.2, y + h * 0.18, w * 0.6, h * 0.45))
         _centro(c, x, y + 40, w, tema.get("autor", ""), FONTE, 16)
     elif tipo == "_direitos":
         ano = dt.date.today().year
@@ -134,8 +158,17 @@ def _pagina_especial(c: Canvas, area, pag, tema: dict) -> None:
         c.setLineWidth(2)
         c.line(x + w * 0.15, y + h * 0.32, x + w * 0.85, y + h * 0.32)
         _centro(c, x, y + h * 0.28, w, "Nome do artista", FONTE, 12)
-        p = Caneta(c, x + w * 0.35, y + h * 0.36, w * 0.3, h * 0.2)
-        p.estrela(50, 50, 45)
+        col = dados_colecao(tema)
+        if col:
+            lado = h * 0.17
+            desenhar(col["mascote"], Caneta(c, x + w * 0.22, y + h * 0.36, lado, lado))
+            p = Caneta(c, x + w * 0.55, y + h * 0.36, lado, lado)
+            p.estrela(50, 50, 45)
+            _centro(c, x, y + h * 0.215, w, f"Com carinho, {col['mascote'].capitalize()}",
+                    FONTE_NEGRITO, 13)
+        else:
+            p = Caneta(c, x + w * 0.35, y + h * 0.36, w * 0.3, h * 0.2)
+            p.estrela(50, 50, 45)
     elif tipo == "_anotacoes":
         _centro(c, x, y + h - 60, w, "Desenhe o que quiser!", FONTE_NEGRITO, 28)
         c.setLineWidth(2.5)

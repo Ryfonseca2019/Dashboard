@@ -166,6 +166,7 @@ def criar_tema(ideia: str, autor: str, pasta_temas: Path) -> Path:
         "formato": "8.5x11",
         "papel": "branco",
         "gerado_por": "claude",
+        "cenarios": True,
         "paginas": _limpar_paginas(dados["paginas"]),
         "capa": dados["capa"],
         "anuncio": dados["anuncio"],

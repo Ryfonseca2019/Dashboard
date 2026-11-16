@@ -35,6 +35,16 @@ python -m colorbook desenhos
 # Deixa o Claude criar um tema novo (e já gerar o livro)
 export ANTHROPIC_API_KEY=...        # ou: ant auth login
 python -m colorbook criar-tema "animais do mar para 3 a 5 anos" --autor "Seu Nome" --construir
+
+# Mede a qualidade de cada página e dá nota de 0 a 100
+python -m colorbook auditar
+
+# Folha para testar papel, traço e áreas na impressão (veja PROVA.md)
+python -m colorbook folha-teste
+
+# Ilustrações de uma ferramenta de imagens (veja a seção Ilustrações)
+python -m colorbook pedidos-ilustracao temas/primeiros_desenhos.json
+python -m colorbook importar-ilustracoes minhas_imagens/ temas/primeiros_desenhos.json
 ```
 
 Cada livro sai em `saida/<id>/`:
@@ -46,6 +56,20 @@ Cada livro sai em `saida/<id>/`:
 | `capa_frente.png` / `capa_miniatura.png` | Prévia da capa e de como ela aparece na busca da Amazon (precisa do `pdftoppm`) |
 | `anuncio.md` | Título, descrição, 7 palavras-chave, categorias e a declaração de IA, prontos para copiar |
 | `anuncio.json` | Os mesmos dados, para integrar com APIs (Etsy, loja própria etc.) |
+
+## Qualidade
+
+O processo tem quatro camadas:
+
+1. **Guia de estilo** (`ESTILO.md` e `colorbook/estilo.py`): traço mínimo, menor área para
+   pintar, quantidade de áreas e ocupação da página, por faixa etária.
+2. **Regras aplicadas ao desenhar:** detalhes pequenos demais saem em preto sólido, e
+   com `"cenarios": true` cada desenho ocupa a página inteira, com chão e céu.
+3. **Auditor** (`python -m colorbook auditar`): mede cada página e gera
+   `saida/<id>/qualidade.md` (relatório) e `qualidade.png` (prévia com as notas e as
+   áreas pequenas pintadas de vermelho). Meta: média ≥ 85 e nenhuma página abaixo de 65.
+4. **Cópia de prova** (`PROVA.md`): o roteiro do teste com o livro impresso e uma
+   criança de verdade, e como transformar o que você observar em regra.
 
 ## O que o livro tem
 
@@ -122,6 +146,40 @@ A capa é gerada a partir do bloco `capa` do tema:
 
 Sempre confira o `capa_miniatura.png`: é assim que a capa aparece na busca da Amazon.
 
+### Coleção e mascote
+
+```json
+"colecao": {"nome": "Coleção Gizinho", "volume": 1, "mascote": "gizinho"}
+```
+
+Com isso:
+- o **Gizinho** (um giz de cera simpático) se apresenta na folha de rosto, dá as
+  instruções das atividades num balão e assina o certificado;
+- a capa ganha o selo "COLEÇÃO GIZINHO · VOL. 1";
+- a contracapa lista os outros livros da mesma coleção que estiverem em `temas/`.
+
+Antes de registrar o nome da coleção ou do mascote, confira no INPI se está livre.
+
+### Ilustrações de uma ferramenta de imagens
+
+Para desenhos mais elaborados que os feitos em código:
+
+1. `python -m colorbook pedidos-ilustracao temas/x.json` gera
+   `saida/<id>/pedidos_ilustracao.md`, com um pedido (prompt) em inglês por desenho,
+   no padrão de livro de colorir para a idade.
+2. Gere as imagens em qualquer ferramenta e salve cada uma com o nome do desenho
+   (`gato.png`, `dinossauro.png`...).
+3. `python -m colorbook importar-ilustracoes pasta/ temas/x.json` limpa cada imagem:
+   - preto e branco puro;
+   - remove sombreado e sujeira;
+   - fecha pequenas falhas;
+   - engrossa o traço até o mínimo da idade;
+   - preenche de preto as áreas pequenas demais.
+
+   Depois cria `temas/x_ilustrado.json` usando essas imagens. O tema original não muda.
+4. Gere e audite o livro novo. **Revise as imagens**: onde havia sombreado encostado no
+   contorno, a limpeza pode abrir uma falha na linha.
+
 ### Como criar desenhos novos
 
 Abra `colorbook/desenhos.py` e escreva uma função numa grade de 0 a 100 (Y para baixo):
@@ -168,6 +226,12 @@ livros_colorir/
 │   ├── atividades.py   # labirinto, ligar os pontos, diferenças, complete, cubra
 │   ├── miolo.py        # monta o PDF do interior
 │   ├── capa.py         # monta a capa com lombada e as miniaturas
+│   ├── cenas.py        # cenários de página inteira (campo, mar, neve, espaço...)
+│   ├── colecao.py      # coleção, mascote e balões de fala
+│   ├── estilo.py       # guia de estilo em números (régua do auditor)
+│   ├── auditar.py      # auditor de qualidade
+│   ├── folha_teste.py  # folha de teste de impressão
+│   ├── ilustracoes.py  # pedidos de ilustração e limpeza de imagens
 │   ├── anuncio.py      # textos de venda + limites de cada marketplace
 │   ├── validar.py      # checagem final contra as regras do KDP
 │   ├── claude_tema.py  # cria temas novos com a API do Claude
@@ -178,9 +242,8 @@ livros_colorir/
 
 ## Próximos passos
 
-- [ ] Integrar uma API de geração de imagens (o tipo de página `imagem` já recebe o resultado).
+- [ ] Ligar uma API de imagens direto ao `pedidos-ilustracao` (o fluxo de importação já está pronto).
 - [ ] Exportar para a **Lulu** (a lombada e a capa têm fórmula própria) e criar pedidos pela Lulu Print API.
 - [ ] Publicar o PDF digital no Etsy pela API.
 - [ ] Livro personalizado com o nome da criança (gerado na hora do pedido).
 - [ ] Mais desenhos na biblioteca (fundo do mar, profissões, folclore brasileiro).
-- [ ] Checagem automática de traço (espessura mínima, áreas pequenas demais para pintar).

@@ -32,7 +32,9 @@ def construir(arquivo_tema: Path, saida: Path) -> bool:
     capa = pasta / "capa.pdf"
 
     paginas = gerar_miolo(tema, miolo, base=arquivo_tema.parent)
-    espec = gerar_capa(tema, paginas, capa)
+    from .colecao import outros_volumes
+
+    espec = gerar_capa(tema, paginas, capa, outros_volumes(tema, arquivo_tema.parent))
     miniaturas = gerar_miniaturas(capa, espec)
     anuncio = gerar_anuncio(tema, paginas, espec, pasta)
     problemas = validar(tema, miolo, capa, espec)
@@ -86,6 +88,23 @@ def main(argv: list[str] | None = None) -> None:
 
     sub.add_parser("desenhos", help="lista os desenhos disponíveis")
 
+    pi = sub.add_parser("pedidos-ilustracao",
+                        help="gera os pedidos (prompts) para uma ferramenta de imagens")
+    pi.add_argument("tema", type=Path)
+    pi.add_argument("--saida", type=Path, default=RAIZ / "saida")
+
+    ii = sub.add_parser("importar-ilustracoes",
+                        help="limpa imagens geradas e cria um tema que as usa")
+    ii.add_argument("pasta", type=Path)
+    ii.add_argument("tema", type=Path)
+
+    f = sub.add_parser("folha-teste", help="gera a folha de teste de impressão (PROVA.md)")
+    f.add_argument("--saida", type=Path, default=RAIZ / "saida")
+
+    q = sub.add_parser("auditar", help="mede a qualidade das páginas e dá nota de 0 a 100")
+    q.add_argument("temas", type=Path, nargs="*", help="temas (padrão: todos de temas/)")
+    q.add_argument("--saida", type=Path, default=RAIZ / "saida")
+
     n = sub.add_parser("criar-tema", help="usa a API do Claude para criar um tema novo")
     n.add_argument("ideia")
     n.add_argument("--autor", default="")
@@ -101,6 +120,32 @@ def main(argv: list[str] | None = None) -> None:
         sys.exit(0 if all(resultados) else 1)
     elif a.cmd == "previa":
         previa(a.pasta, a.paginas)
+    elif a.cmd == "auditar":
+        from .auditar import auditar
+
+        for arq in a.temas or sorted((RAIZ / "temas").glob("*.json")):
+            r = auditar(arq, a.saida)
+            print(f"📊 {arq.stem}: nota média {r['media']}/100 · {r['paginas']} páginas · "
+                  f"{r['abaixo_de_65']} abaixo de 65")
+            print(f"   Relatório: {r['relatorio']}")
+            print(f"   Prévia:    {r['prancha']}")
+    elif a.cmd == "pedidos-ilustracao":
+        from .ilustracoes import gerar_pedidos
+
+        print(f"Pedidos: {gerar_pedidos(a.tema, a.saida)}")
+    elif a.cmd == "importar-ilustracoes":
+        from .ilustracoes import importar
+
+        novo, trocadas = importar(a.pasta, a.tema)
+        for t in trocadas:
+            print(f"   🖼️  {t}")
+        print(f"Tema com as ilustrações: {novo}")
+        print(f"Gere o livro com: python -m colorbook construir {novo}")
+    elif a.cmd == "folha-teste":
+        from .folha_teste import gerar_folha_teste
+
+        a.saida.mkdir(parents=True, exist_ok=True)
+        print(f"Folha de teste: {gerar_folha_teste(a.saida / 'folha_teste.pdf')}")
     elif a.cmd == "desenhos":
         print("\n".join(sorted(DESENHOS)))
     elif a.cmd == "criar-tema":

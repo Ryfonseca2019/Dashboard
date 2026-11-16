@@ -23,14 +23,17 @@ class Caneta:
     def __init__(self, c: Canvas, x: float, y: float, largura: float, altura: float,
                  espessura: float = 3.2, preenchimento: Color = white,
                  paleta: list[Color] | None = None, cor_traco: Color = black,
-                 tracejado: tuple[float, float] | None = None):
+                 tracejado: tuple[float, float] | None = None, area_min_pt2: float = 0.0):
         """Cria uma caneta que mapeia a grade 100x100 para um quadrado centrado
         na área (x, y, largura, altura) em pontos PDF.
 
         paleta:    se informada, cada forma é pintada com a próxima cor da lista
                    (usado na capa, para mostrar o desenho "já colorido").
         cor_traco: cor do contorno (cinza nas páginas de "cubra o pontilhado").
-        tracejado: (traço, espaço) em pontos para contorno pontilhado."""
+        tracejado: (traço, espaço) em pontos para contorno pontilhado.
+        area_min_pt2: formas fechadas menores que isso (em pt²) saem pintadas de preto
+                   sólido, como olhos e narizes: áreas pequenas demais para a criança
+                   pintar dentro deixam de existir (regra do guia de estilo)."""
         self.c = c
         lado = min(largura, altura)
         self.escala = lado / 100.0
@@ -42,6 +45,7 @@ class Caneta:
         self._cor_i = 0
         self.cor_traco = cor_traco
         self.tracejado = tracejado
+        self.area_min_pt2 = area_min_pt2
         c.setLineCap(1)
         c.setLineJoin(1)
 
@@ -56,8 +60,11 @@ class Caneta:
         return v * self.escala
 
     # --- estilo -------------------------------------------------------------------
-    def _estilo(self, espessura: float | None, cheio: bool | Color):
+    def _estilo(self, espessura: float | None, cheio: bool | Color, area: float | None = None):
         c = self.c
+        if (cheio is True and area is not None and self.area_min_pt2
+                and area * self.escala ** 2 < self.area_min_pt2):
+            cheio = self.cor_traco  # pequena demais para pintar: vira detalhe sólido
         c.setStrokeColor(self.cor_traco)
         c.setLineWidth(self.espessura_base if espessura is None else espessura)
         if self.tracejado:
@@ -105,11 +112,11 @@ class Caneta:
         for x, y in pontos[1:]:
             p.lineTo(self.X(x), self.Y(y))
         p.close()
-        f = self._estilo(espessura, cheio)
+        f = self._estilo(espessura, cheio, _area_poligono(pontos))
         self.c.drawPath(p, stroke=1, fill=f)
 
     def circulo(self, cx, cy, r, cheio=True, espessura=None):
-        f = self._estilo(espessura, cheio)
+        f = self._estilo(espessura, cheio, math.pi * r * r)
         self.c.circle(self.X(cx), self.Y(cy), self.s(r), stroke=1, fill=f)
 
     def ponto(self, cx, cy, r=1.6):
@@ -119,12 +126,12 @@ class Caneta:
 
     def elipse(self, cx, cy, rx, ry, angulo=0.0, cheio=True, espessura=None):
         with self.girar(cx, cy, angulo):
-            f = self._estilo(espessura, cheio)
+            f = self._estilo(espessura, cheio, math.pi * rx * ry)
             self.c.ellipse(self.X(cx - rx), self.Y(cy - ry), self.X(cx + rx), self.Y(cy + ry),
                            stroke=1, fill=f)
 
     def retangulo(self, x1, y1, x2, y2, raio=0.0, cheio=True, espessura=None):
-        f = self._estilo(espessura, cheio)
+        f = self._estilo(espessura, cheio, abs(x2 - x1) * abs(y2 - y1))
         x, y = self.X(min(x1, x2)), self.Y(max(y1, y2))
         w, h = self.s(abs(x2 - x1)), self.s(abs(y2 - y1))
         if raio:
@@ -146,6 +153,9 @@ class Caneta:
         ("Q", x1, y1, x, y)  curva quadrática (convertida em cúbica)."""
         p = self.c.beginPath()
         atual = (0.0, 0.0)
+        # Inclui os pontos de controle das curvas: só as pontas subestimam a área
+        # (um arco do arco-íris tem só duas pontas, e a área daria zero).
+        vertices = [(cmd[i], cmd[i + 1]) for cmd in comandos for i in range(1, len(cmd), 2)]
         for cmd in comandos:
             tipo = cmd[0]
             if tipo == "M":
@@ -170,7 +180,7 @@ class Caneta:
                 raise ValueError(f"Comando de caminho desconhecido: {tipo}")
         if fechar:
             p.close()
-        f = self._estilo(espessura, cheio if fechar else False)
+        f = self._estilo(espessura, cheio if fechar else False, _area_poligono(vertices))
         self.c.drawPath(p, stroke=1, fill=f)
 
     def tubo(self, comandos, largura=6.0):
@@ -231,3 +241,13 @@ class Caneta:
         c.saveState()
         c.drawText(t)
         c.restoreState()
+
+
+def _area_poligono(pontos) -> float:
+    """Área aproximada (fórmula do laço) de uma forma dada pelos seus vértices."""
+    n = len(pontos)
+    if n < 3:
+        return 0.0
+    soma = sum(pontos[i][0] * pontos[(i + 1) % n][1] - pontos[(i + 1) % n][0] * pontos[i][1]
+               for i in range(n))
+    return abs(soma) / 2

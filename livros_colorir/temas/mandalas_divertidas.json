@@ -139,5 +139,10 @@
       "Livros > Infantil > Atividades > Colorir"
     ],
     "preco_sugerido_usd": 7.99
+  },
+  "colecao": {
+    "nome": "Coleção Gizinho",
+    "volume": 3,
+    "mascote": "gizinho"
   }
 }
