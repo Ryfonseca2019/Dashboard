@@ -23,6 +23,13 @@ O livro é aprovado com **nota média ≥ 85** e **nenhuma página abaixo de 65*
   Isso fica ligado no tema por `"simplificar_detalhes": true` (padrão).
 - **Cenários de página inteira.** Com `"cenarios": true`, cada desenho fica apoiado num
   chão e ganha céu, mar, neve ou espaço com elementos grandes (ver `colorbook/cenas.py`).
+- **Contorno externo grosso** (`"contorno_grosso"`, padrão 2,4×): a silhueta da figura
+  sai mais grossa que os detalhes internos, como no trabalho de ilustradores.
+- **Cenários variados.** Céu e chão mudam de página para página, e figuras largas (galhos,
+  trens, carros) ficam só com pedrinhas no chão, para não picotar flores e cercas.
+- **Coisas para pintar precisam ser grandes.** Frutas, manchas, bolhas e fumaça que ficam
+  pequenas demais viram bolinhas pretas, que parecem buracos. Aumente-as no desenho.
+- **Bochechas em risquinhos** (rubor), e não em círculos pequenos.
 - **Um desenho por folha**, sempre na página da direita, com o verso em branco.
 - **Contornos fechados.** Toda forma para pintar é fechada; linhas soltas só em detalhes
   (bigodes, grama, raios de sol).
@@ -38,6 +45,12 @@ O livro é aprovado com **nota média ≥ 85** e **nenhuma página abaixo de 65*
 6. **Ilustrações importadas** (`importar-ilustracoes`): confira sempre se a limpeza não
    abriu falhas no contorno, o que acontece onde a imagem original tinha sombreado
    encostado na linha.
+
+## Revisão estética
+
+O auditor mede técnica. A beleza é avaliada pelo revisor estético
+(`python -m colorbook revisar`), que usa a visão do Claude para dar a cada página uma nota
+visual de 1 a 10. Meta: **média ≥ 7,5 e nenhuma página abaixo de 6**.
 
 ## Como ajustar a régua
 

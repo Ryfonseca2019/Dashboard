@@ -6,7 +6,7 @@ O Claude escolhe os desenhos entre os que existem na biblioteca, escreve
 legendas, títulos, descrição de venda e palavras-chave. O resultado é um
 JSON comum em temas/, que você pode revisar antes de construir o livro.
 
-Requer o pacote `anthropic` e credenciais (ANTHROPIC_API_KEY ou `ant auth login`).
+Requer o pacote `anthropic` e a chave da API (veja claude_cliente.py).
 """
 from __future__ import annotations
 
@@ -16,9 +16,9 @@ import unicodedata
 from pathlib import Path
 
 from .atividades import FIGURAS_PONTOS
+from .claude_cliente import MODELO, cliente
 from .desenhos import DESENHOS
 
-MODELO = "claude-opus-5-5"
 
 INSTRUCOES = """Você planeja livros de colorir infantis para vender na Amazon KDP, Etsy e \
 Mercado Livre, em português do Brasil.
@@ -133,9 +133,7 @@ def _slug(texto: str) -> str:
 
 
 def criar_tema(ideia: str, autor: str, pasta_temas: Path) -> Path:
-    import anthropic  # import tardio: só é preciso para este comando
-
-    client = anthropic.Anthropic()
+    client = cliente()
     resposta = client.beta.messages.create(
         model=MODELO,
         max_tokens=16000,

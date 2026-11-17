@@ -88,6 +88,12 @@ def main(argv: list[str] | None = None) -> None:
 
     sub.add_parser("desenhos", help="lista os desenhos disponíveis")
 
+    rv = sub.add_parser("revisar", help="revisão estética de cada página com a visão do Claude")
+    rv.add_argument("temas", type=Path, nargs="*", help="temas (padrão: todos de temas/)")
+    rv.add_argument("--saida", type=Path, default=RAIZ / "saida")
+    rv.add_argument("--simular", action="store_true",
+                    help="não chama a API: só conta as páginas e estima o custo")
+
     pi = sub.add_parser("pedidos-ilustracao",
                         help="gera os pedidos (prompts) para uma ferramenta de imagens")
     pi.add_argument("tema", type=Path)
@@ -129,6 +135,21 @@ def main(argv: list[str] | None = None) -> None:
                   f"{r['abaixo_de_65']} abaixo de 65")
             print(f"   Relatório: {r['relatorio']}")
             print(f"   Prévia:    {r['prancha']}")
+    elif a.cmd == "revisar":
+        from .claude_cliente import AJUDA_CHAVE
+        from .revisar import revisar
+
+        for arq in a.temas or sorted((RAIZ / "temas").glob("*.json")):
+            r = revisar(arq, a.saida, simular=a.simular)
+            if r["simulado"]:
+                print(f"🔎 {arq.stem}: {r['paginas']} páginas · custo estimado "
+                      f"US$ {r['custo_estimado_usd']:.2f} (simulação, nada foi enviado)")
+                if r["sem_chave"] and not a.simular:
+                    print(AJUDA_CHAVE)
+            else:
+                print(f"🎨 {arq.stem}: nota visual média {r['media']:.1f}/10 · "
+                      f"{r['abaixo_de_7']} abaixo de 7 · {r['nao_reconhecidas']} não reconhecidas")
+                print(f"   Relatório: {r['relatorio']}")
     elif a.cmd == "pedidos-ilustracao":
         from .ilustracoes import gerar_pedidos
 

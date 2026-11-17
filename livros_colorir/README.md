@@ -39,6 +39,9 @@ python -m colorbook criar-tema "animais do mar para 3 a 5 anos" --autor "Seu Nom
 # Mede a qualidade de cada página e dá nota de 0 a 100
 python -m colorbook auditar
 
+# Revisão estética com a visão do Claude (precisa da chave da API; --simular estima o custo)
+python -m colorbook revisar temas/primeiros_desenhos.json --simular
+
 # Folha para testar papel, traço e áreas na impressão (veja PROVA.md)
 python -m colorbook folha-teste
 
@@ -65,10 +68,14 @@ O processo tem quatro camadas:
    pintar, quantidade de áreas e ocupação da página, por faixa etária.
 2. **Regras aplicadas ao desenhar:** detalhes pequenos demais saem em preto sólido, e
    com `"cenarios": true` cada desenho ocupa a página inteira, com chão e céu.
-3. **Auditor** (`python -m colorbook auditar`): mede cada página e gera
+3. **Auditor técnico** (`python -m colorbook auditar`): mede cada página e gera
    `saida/<id>/qualidade.md` (relatório) e `qualidade.png` (prévia com as notas e as
    áreas pequenas pintadas de vermelho). Meta: média ≥ 85 e nenhuma página abaixo de 65.
-4. **Cópia de prova** (`PROVA.md`): o roteiro do teste com o livro impresso e uma
+4. **Revisor estético** (`python -m colorbook revisar`): envia cada página ao Claude, que
+   responde se a figura é reconhecível, dá uma nota visual de 1 a 10, diz se ela é adequada à
+   idade e sugere melhorias. Gera `saida/<id>/revisao.md`. Custa cerca de US$ 1 a 2 por livro
+   e precisa da chave da API (veja "Chave da API" abaixo).
+5. **Cópia de prova** (`PROVA.md`): o roteiro do teste com o livro impresso e uma
    criança de verdade, e como transformar o que você observar em regra.
 
 ## O que o livro tem
@@ -145,6 +152,42 @@ A capa é gerada a partir do bloco `capa` do tema:
 - Opcionais: `cores_titulo`, `paleta` e `cor_selo`.
 
 Sempre confira o `capa_miniatura.png`: é assim que a capa aparece na busca da Amazon.
+
+### Variações de desenho
+
+No tema, cada página de desenho aceita:
+
+```json
+{"tipo": "desenho", "desenho": "gato", "legenda": "Gatinho",
+ "brinquedo": "bola", "acessorio": "chapeu", "espelhar": true, "variacao": 2}
+```
+
+- `brinquedo`: objeto ao lado da figura (bola, osso, cenoura, balde, pipa ou flor).
+- `acessorio`: algo na cabeça (chapeu, laco ou coroa), para as figuras listadas em
+  `CABECA`, dentro de `colorbook/cenas.py`.
+- `espelhar`: vira a figura para o outro lado.
+- `variacao`: troca o céu e o chão sorteados para a página.
+- `cena`: força um cenário (campo, mar, mar_superficie, lago, neve, espaco, noite ou nenhum).
+
+No tema todo:
+- `"contorno_grosso": 2.4` deixa o contorno externo mais grosso que os detalhes internos
+  (0 desliga);
+- `"cenarios": true` liga os cenários de página inteira.
+
+Poses alternativas também são desenhos, por exemplo `gato_dormindo`.
+
+### Chave da API do Claude
+
+Só é necessária para `revisar` e `criar-tema`. Crie em https://console.anthropic.com
+(**Billing** → créditos pré-pagos; **API Keys** → **Create Key**).
+
+- **No seu computador:** `export ANTHROPIC_API_KEY=sk-ant-...`
+- **No Claude Code na nuvem:** abra o menu do ambiente, clique em **Edit**, depois em
+  **Environment variables**, e crie `COLORBOOK_ANTHROPIC_KEY=sk-ant-...`. Em seguida, abra
+  uma sessão nova. Não use `ANTHROPIC_API_KEY` ali, para não misturar com a conta do
+  próprio Claude Code.
+
+A cobrança é por uso, sem mensalidade. Nunca coloque a chave em arquivos do repositório.
 
 ### Coleção e mascote
 
@@ -229,7 +272,9 @@ livros_colorir/
 │   ├── cenas.py        # cenários de página inteira (campo, mar, neve, espaço...)
 │   ├── colecao.py      # coleção, mascote e balões de fala
 │   ├── estilo.py       # guia de estilo em números (régua do auditor)
-│   ├── auditar.py      # auditor de qualidade
+│   ├── auditar.py      # auditor de qualidade (técnico)
+│   ├── revisar.py      # revisor estético com a visão do Claude
+│   ├── claude_cliente.py # leitura da chave e conexão com a API do Claude
 │   ├── folha_teste.py  # folha de teste de impressão
 │   ├── ilustracoes.py  # pedidos de ilustração e limpeza de imagens
 │   ├── anuncio.py      # textos de venda + limites de cada marketplace

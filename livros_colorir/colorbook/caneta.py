@@ -46,6 +46,12 @@ class Caneta:
         self.cor_traco = cor_traco
         self.tracejado = tracejado
         self.area_min_pt2 = area_min_pt2
+        # Passada de silhueta (contorno externo grosso): quando definida, só as formas
+        # preenchidas são desenhadas, em preto e com traço desta largura.
+        self.silhueta: float | None = None
+        # Com contorno grosso, a borda "come" parte da forma: a área útil fica menor que
+        # a geométrica. desenhos.desenhar() aumenta este fator para compensar.
+        self.fator_area = 1.0
         c.setLineCap(1)
         c.setLineJoin(1)
 
@@ -62,8 +68,15 @@ class Caneta:
     # --- estilo -------------------------------------------------------------------
     def _estilo(self, espessura: float | None, cheio: bool | Color, area: float | None = None):
         c = self.c
+        if self.silhueta:
+            if cheio is False:
+                return None  # linhas soltas não entram na silhueta
+            c.setStrokeColor(self.cor_traco)
+            c.setFillColor(self.cor_traco)
+            c.setLineWidth(self.silhueta)
+            return 1
         if (cheio is True and area is not None and self.area_min_pt2
-                and area * self.escala ** 2 < self.area_min_pt2):
+                and area * self.escala ** 2 < self.area_min_pt2 * self.fator_area):
             cheio = self.cor_traco  # pequena demais para pintar: vira detalhe sólido
         c.setStrokeColor(self.cor_traco)
         c.setLineWidth(self.espessura_base if espessura is None else espessura)
@@ -95,7 +108,8 @@ class Caneta:
 
     # --- primitivas -----------------------------------------------------------------
     def linha(self, x1, y1, x2, y2, espessura=None):
-        self._estilo(espessura, False)
+        if self._estilo(espessura, False) is None:
+            return
         self.c.line(self.X(x1), self.Y(y1), self.X(x2), self.Y(y2))
 
     def polilinha(self, pontos, espessura=None):
@@ -103,7 +117,8 @@ class Caneta:
         p.moveTo(self.X(pontos[0][0]), self.Y(pontos[0][1]))
         for x, y in pontos[1:]:
             p.lineTo(self.X(x), self.Y(y))
-        self._estilo(espessura, False)
+        if self._estilo(espessura, False) is None:
+            return
         self.c.drawPath(p, stroke=1, fill=0)
 
     def poligono(self, pontos, cheio=True, espessura=None):
@@ -113,25 +128,35 @@ class Caneta:
             p.lineTo(self.X(x), self.Y(y))
         p.close()
         f = self._estilo(espessura, cheio, _area_poligono(pontos))
+        if f is None:
+            return
         self.c.drawPath(p, stroke=1, fill=f)
 
     def circulo(self, cx, cy, r, cheio=True, espessura=None):
         f = self._estilo(espessura, cheio, math.pi * r * r)
+        if f is None:
+            return
         self.c.circle(self.X(cx), self.Y(cy), self.s(r), stroke=1, fill=f)
 
     def ponto(self, cx, cy, r=1.6):
         """Bolinha sólida (olhos, narizes...) na cor do traço."""
+        if self.silhueta:
+            return
         self.c.setFillColor(self.cor_traco)
         self.c.circle(self.X(cx), self.Y(cy), self.s(r), stroke=0, fill=1)
 
     def elipse(self, cx, cy, rx, ry, angulo=0.0, cheio=True, espessura=None):
         with self.girar(cx, cy, angulo):
             f = self._estilo(espessura, cheio, math.pi * rx * ry)
+            if f is None:
+                return
             self.c.ellipse(self.X(cx - rx), self.Y(cy - ry), self.X(cx + rx), self.Y(cy + ry),
                            stroke=1, fill=f)
 
     def retangulo(self, x1, y1, x2, y2, raio=0.0, cheio=True, espessura=None):
         f = self._estilo(espessura, cheio, abs(x2 - x1) * abs(y2 - y1))
+        if f is None:
+            return
         x, y = self.X(min(x1, x2)), self.Y(max(y1, y2))
         w, h = self.s(abs(x2 - x1)), self.s(abs(y2 - y1))
         if raio:
@@ -142,7 +167,8 @@ class Caneta:
     def arco(self, cx, cy, r, inicio, fim, espessura=None):
         """Arco aberto. Ângulos em graus, 0 = direita, 90 = para CIMA (como no relógio
         matemático), para ficar natural ao desenhar sorrisos e ondas."""
-        self._estilo(espessura, False)
+        if self._estilo(espessura, False) is None:
+            return
         self.c.arc(self.X(cx - r), self.Y(cy + r), self.X(cx + r), self.Y(cy - r),
                    startAng=inicio, extent=fim - inicio)
 
@@ -181,6 +207,8 @@ class Caneta:
         if fechar:
             p.close()
         f = self._estilo(espessura, cheio if fechar else False, _area_poligono(vertices))
+        if f is None:
+            return
         self.c.drawPath(p, stroke=1, fill=f)
 
     def tubo(self, comandos, largura=6.0):
@@ -188,11 +216,16 @@ class Caneta:
         grosso, arco-íris...). A faixa fica pintável por dentro."""
         externo = self.s(largura) + self.espessura_base
         interno = max(self.s(largura) - self.espessura_base, 0.5)
+        if self.silhueta:
+            externo = self.s(largura) + self.silhueta
         miolo = self.preenchimento
         if self.paleta:
             miolo = self.paleta[self._cor_i % len(self.paleta)]
             self._cor_i += 1
-        for esp, cor in ((externo, self.cor_traco), (interno, miolo)):
+        passadas = ((externo, self.cor_traco), (interno, miolo))
+        if self.silhueta:
+            passadas = passadas[:1]
+        for esp, cor in passadas:
             if self.tracejado and cor is self.cor_traco:
                 self.c.setDash(*self.tracejado)
             else:
@@ -227,6 +260,8 @@ class Caneta:
 
     def texto_contorno(self, texto, cx, base_y, tamanho, espessura=2.5):
         """Texto vazado (só contorno) para pintar — usado nas letras do alfabeto."""
+        if self.silhueta:
+            return
         c = self.c
         tam = self.s(tamanho)
         largura = c.stringWidth(texto, FONTE_NEGRITO, tam)

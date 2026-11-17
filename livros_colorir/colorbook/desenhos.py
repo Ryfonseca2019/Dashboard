@@ -11,6 +11,7 @@ Dicas para desenhos infantis (2 a 6 anos):
 """
 from __future__ import annotations
 
+import copy
 import math
 from typing import Callable
 
@@ -26,8 +27,22 @@ def desenho(nome: str):
     return registrar
 
 
-def desenhar(nome: str, caneta: Caneta) -> None:
-    """Desenha pelo nome. Também aceita "mandala:SEMENTE" (ex.: "mandala:104")."""
+def desenhar(nome: str, caneta: Caneta, contorno: float = 0.0) -> None:
+    """Desenha pelo nome. Também aceita "mandala:SEMENTE" (ex.: "mandala:104").
+
+    contorno: se > 0, desenha antes a silhueta da figura em preto com traço
+    `contorno` vezes mais grosso. O desenho normal por cima deixa à mostra só a
+    borda de fora: contorno externo grosso e detalhes internos finos, como fazem
+    os ilustradores."""
+    if contorno:
+        silhueta = copy.copy(caneta)
+        silhueta.silhueta = caneta.espessura_base * contorno
+        _desenhar(nome, silhueta)
+        caneta.fator_area = max(caneta.fator_area, 1.8)
+    _desenhar(nome, caneta)
+
+
+def _desenhar(nome: str, caneta: Caneta) -> None:
     if nome.startswith("mandala"):
         from .mandalas import mandala
 
@@ -46,6 +61,12 @@ def _rosto(p: Caneta, cx, cy, abertura=7, olho=1.8, sorriso=6, dy_boca=6):
     p.ponto(cx - abertura, cy, olho)
     p.ponto(cx + abertura, cy, olho)
     p.sorriso(cx, cy + dy_boca - sorriso * 0.6, sorriso)
+
+
+def _bochecha(p: Caneta, cx, cy):
+    """Rubor nas bochechas em três risquinhos (não forma área pequena para pintar)."""
+    for i in (-1, 0, 1):
+        p.linha(cx + i * 1.9 - 0.8, cy + 1.3, cx + i * 1.9 + 0.8, cy - 1.3, espessura=1.8)
 
 
 def _nuvem(p: Caneta, cx, cy, escala=1.0):
@@ -94,7 +115,7 @@ def arvore(p: Caneta):
     p.circulo(50, 30, 22)
     p.circulo(50, 50, 16)
     for x, y in ((38, 30), (60, 26), (30, 50), (70, 50), (52, 45)):
-        p.circulo(x, y, 3.5)  # frutinhas
+        p.circulo(x, y, 5.5)  # frutinhas (grandes o bastante para pintar)
 
 
 @desenho("flor")
@@ -126,8 +147,8 @@ def arco_iris(p: Caneta):
 @desenho("estrela")
 def estrela(p: Caneta):
     p.estrela(50, 54, 44, 20)
-    p.circulo(40, 62, 3.5)
-    p.circulo(60, 62, 3.5)
+    _bochecha(p, 40, 62)
+    _bochecha(p, 60, 62)
     _rosto(p, 50, 55, abertura=7, olho=2.4, sorriso=7, dy_boca=9)
     p.estrela(14, 14, 5)
     p.estrela(86, 18, 4)
@@ -164,9 +185,8 @@ def peixe(p: Caneta):
     p.circulo(28, 46, 4.5)
     p.ponto(27, 46, 2)
     p.arco(22, 56, 3, 200, 340, espessura=2)
-    p.circulo(16, 30, 4)
-    p.circulo(10, 18, 2.8)
-    p.circulo(20, 12, 2)
+    p.circulo(16, 30, 6)    # bolhas
+    p.circulo(8, 15, 4.5)
     p.caminho([("M", 5, 92), ("C", 20, 82, 30, 82, 40, 92), ("L", 5, 92)])
     p.caminho([("M", 60, 92), ("C", 70, 78, 78, 78, 84, 92), ("L", 60, 92)])
 
@@ -216,8 +236,7 @@ def passarinho(p: Caneta):
     p.ponto(31, 30, 2.2)
     p.caminho([("M", 46, 46), ("C", 56, 36, 72, 42, 70, 52), ("C", 64, 60, 50, 58, 46, 46)])
     for x in (46, 58):
-        p.linha(x, 69, x, 75, espessura=2.5)
-        p.polilinha([(x - 4, 78), (x, 75), (x + 4, 78)], espessura=2.5)
+        p.linha(x, 69, x, 75, espessura=2.5)  # perninhas (pés em "v" fechavam áreas mínimas)
     p.circulo(80, 16, 6)
     p.circulo(88, 22, 4)
 
@@ -388,8 +407,8 @@ def coelho(p: Caneta):
     p.elipse(39, 64, 4, 7, angulo=25)
     p.elipse(61, 64, 4, 7, angulo=-25)
     p.circulo(50, 44, 17)
-    p.circulo(40, 49, 3.5)
-    p.circulo(60, 49, 3.5)
+    _bochecha(p, 40, 49)
+    _bochecha(p, 60, 49)
     p.ponto(44, 41, 2.3)
     p.ponto(56, 41, 2.3)
     p.poligono([(47.5, 46), (52.5, 46), (50, 49)])
@@ -426,9 +445,8 @@ def dinossauro(p: Caneta):
     p.elipse(76, 22, 12, 8)
     p.ponto(79, 19, 2)
     p.arco(80, 22, 4, 220, 320, espessura=2)
-    p.circulo(42, 64, 3)
-    p.circulo(52, 69, 3.5)
-    p.circulo(60, 62, 2.5)
+    p.circulo(41, 65, 4.8)  # manchas
+    p.circulo(54, 69, 5.2)
 
 
 @desenho("pinguim")
@@ -441,8 +459,8 @@ def pinguim(p: Caneta):
     p.elipse(50, 64, 16, 23)
     p.ponto(43, 38, 2.4)
     p.ponto(57, 38, 2.4)
-    p.circulo(38, 46, 3)
-    p.circulo(62, 46, 3)
+    _bochecha(p, 38, 46)
+    _bochecha(p, 62, 46)
     p.poligono([(46, 43), (54, 43), (50, 49)])
     # gorro com pompom
     p.caminho([("M", 33, 31), ("C", 34, 14, 66, 14, 67, 31)])
@@ -509,8 +527,8 @@ def sapo(p: Caneta):
         p.circulo(x, 30, 4.5)
         p.ponto(x, 30, 2.2)
     p.arco(50, 36, 14, 210, 330)
-    p.circulo(32, 46, 3)
-    p.circulo(68, 46, 3)
+    _bochecha(p, 32, 46)
+    _bochecha(p, 68, 46)
 
 
 @desenho("polvo")
@@ -529,8 +547,8 @@ def polvo(p: Caneta):
         p.circulo(x, 44, 6)
         p.ponto(x + 1, 45, 2.5)
     p.arco(50, 50, 6, 210, 330)
-    p.circulo(32, 52, 3)
-    p.circulo(68, 52, 3)
+    _bochecha(p, 32, 52)
+    _bochecha(p, 68, 52)
     p.circulo(46, 28, 3)
     p.circulo(58, 26, 2)
     p.circulo(88, 18, 4)
@@ -540,12 +558,17 @@ def polvo(p: Caneta):
 # ----------------------------------------------------------------------------- mais objetos
 @desenho("trem")
 def trem(p: Caneta):
-    p.linha(4, 88, 96, 88)
-    for x in range(8, 96, 10):
-        p.retangulo(x, 86, x + 5, 90, espessura=2)
-    p.circulo(30, 18, 5)
-    p.circulo(38, 11, 6)
-    p.circulo(48, 7, 4)
+    if getattr(p, "sem_chao", False):
+        # Com cenário, os dormentes atravessam a linha do chão (sem faixa picotada).
+        for x in range(8, 96, 10):
+            p.retangulo(x, 88, x + 5, 94, espessura=2)
+    else:
+        p.linha(4, 88, 96, 88)
+        for x in range(8, 96, 10):
+            p.retangulo(x, 86, x + 5, 90, espessura=2)
+    p.circulo(28, 19, 6)    # fumaça
+    p.circulo(39, 11, 7.5)
+    p.circulo(51, 6, 5.5)
     p.poligono([(24, 46), (22, 30), (34, 30), (32, 46)])
     p.retangulo(20, 25, 36, 31, raio=1.5)
     p.retangulo(54, 30, 82, 74, raio=2)
@@ -576,6 +599,27 @@ def gizinho(p: Caneta):
     p.retangulo(36, 76, 64, 83)
     p.ponto(44, 55, 2.6)
     p.ponto(56, 55, 2.6)
-    p.circulo(40, 62, 3.2)
-    p.circulo(60, 62, 3.2)
+    _bochecha(p, 40, 62)
+    _bochecha(p, 60, 62)
     p.sorriso(50, 61, 6)
+
+
+# ----------------------------------------------------------------------------- poses
+@desenho("gato_dormindo")
+def gato_dormindo(p: Caneta):
+    """Pose alternativa do gato: dormindo enroladinho numa almofada."""
+    p.elipse(54, 86, 44, 8)                                            # almofada
+    p.tubo([("M", 82, 72), ("C", 96, 80, 88, 92, 62, 88)], largura=6)  # rabo
+    p.elipse(56, 70, 31, 17)                                           # corpo
+    p.poligono([(15, 58), (14, 42), (27, 51)])                          # orelhas
+    p.poligono([(31, 50), (38, 38), (41, 53)])
+    p.circulo(28, 62, 15)                                              # cabeça
+    p.arco(22, 60, 3.2, 200, 340)                                      # olhos fechados
+    p.arco(34, 60, 3.2, 200, 340)
+    p.poligono([(26.5, 65), (29.5, 65), (28, 67.5)], cheio=p.cor_traco)
+    p.arco(26.5, 68, 1.8, 200, 360, espessura=2)
+    p.arco(29.5, 68, 1.8, 180, 340, espessura=2)
+    p.elipse(37, 82, 8, 4)                                             # patinha
+    for x, y, t in ((46, 36, 5), (55, 27, 6.5), (66, 16, 8)):          # Zzz
+        p.polilinha([(x, y), (x + t, y), (x, y + t), (x + t, y + t)],
+                    espessura=p.espessura_base * 0.8)

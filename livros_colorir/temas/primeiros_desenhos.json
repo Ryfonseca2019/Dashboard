@@ -15,7 +15,8 @@
     {
       "tipo": "desenho",
       "desenho": "gato",
-      "legenda": "Gatinho"
+      "legenda": "Gatinho",
+      "brinquedo": "bola"
     },
     {
       "tipo": "desenho",
@@ -34,7 +35,8 @@
     {
       "tipo": "desenho",
       "desenho": "cachorro",
-      "legenda": "Cachorrinho"
+      "legenda": "Cachorrinho",
+      "brinquedo": "osso"
     },
     {
       "tipo": "desenho",
@@ -61,7 +63,8 @@
     {
       "tipo": "desenho",
       "desenho": "tartaruga",
-      "legenda": "Tartaruga"
+      "legenda": "Tartaruga",
+      "brinquedo": "balde"
     },
     {
       "tipo": "ligar_pontos",
@@ -71,7 +74,8 @@
     {
       "tipo": "desenho",
       "desenho": "coelho",
-      "legenda": "Coelho"
+      "legenda": "Coelho",
+      "brinquedo": "cenoura"
     },
     {
       "tipo": "desenho",
@@ -81,7 +85,8 @@
     {
       "tipo": "desenho",
       "desenho": "passarinho",
-      "legenda": "Passarinho"
+      "legenda": "Passarinho",
+      "brinquedo": "pipa"
     },
     {
       "tipo": "diferencas",
@@ -92,7 +97,8 @@
     {
       "tipo": "desenho",
       "desenho": "elefante",
-      "legenda": "Elefante"
+      "legenda": "Elefante",
+      "acessorio": "chapeu"
     },
     {
       "tipo": "desenho",
@@ -111,12 +117,14 @@
     {
       "tipo": "desenho",
       "desenho": "dinossauro",
-      "legenda": "Dinossauro"
+      "legenda": "Dinossauro",
+      "espelhar": true
     },
     {
       "tipo": "desenho",
       "desenho": "coruja",
-      "legenda": "Coruja"
+      "legenda": "Coruja",
+      "acessorio": "laco"
     },
     {
       "tipo": "desenho",
@@ -158,12 +166,18 @@
     {
       "tipo": "desenho",
       "desenho": "sapo",
-      "legenda": "Sapo"
+      "legenda": "Sapo",
+      "acessorio": "coroa"
     },
     {
       "tipo": "desenho",
       "desenho": "arco_iris",
       "legenda": "Arco-íris"
+    },
+    {
+      "tipo": "desenho",
+      "desenho": "gato_dormindo",
+      "legenda": "Hora da soneca"
     },
     {
       "tipo": "cubra",

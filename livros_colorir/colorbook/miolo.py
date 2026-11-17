@@ -42,6 +42,9 @@ def planejar(tema: dict) -> list[dict]:
     for pag in tema["paginas"]:
         if area_min and pag.get("tipo", "desenho") == "desenho":
             pag = {**pag, "_area_min_cm2": area_min}
+        if pag.get("tipo", "desenho") == "desenho":
+            # Contorno externo grosso (0 desliga). Veja desenhos.desenhar().
+            pag = {**pag, "_contorno": tema.get("contorno_grosso", 2.4)}
         if tema.get("colecao") and pag.get("tipo") in ATIVIDADES:
             pag = {**pag, "_mascote": tema["colecao"].get("mascote", "gizinho")}
         if tema.get("cenarios") and pag.get("tipo", "desenho") == "desenho" and "cena" not in pag:
@@ -114,7 +117,7 @@ def _pagina_especial(c: Canvas, area, pag, tema: dict) -> None:
         col = dados_colecao(tema)
         if col:
             lado = w * 0.42
-            desenhar(col["mascote"], Caneta(c, x + w * 0.04, y + h * 0.14, lado, lado))
+            desenhar(col["mascote"], Caneta(c, x + w * 0.04, y + h * 0.14, lado, lado), 2.4)
             nome = col["mascote"].capitalize()
             balao(c, x + w * 0.5, y + h * 0.14 + lado * 0.95, w * 0.48,
                   f"Oi! Eu sou o {nome}. Vamos pintar juntos?", tam=17)
@@ -161,7 +164,7 @@ def _pagina_especial(c: Canvas, area, pag, tema: dict) -> None:
         col = dados_colecao(tema)
         if col:
             lado = h * 0.17
-            desenhar(col["mascote"], Caneta(c, x + w * 0.22, y + h * 0.36, lado, lado))
+            desenhar(col["mascote"], Caneta(c, x + w * 0.22, y + h * 0.36, lado, lado), 2.4)
             p = Caneta(c, x + w * 0.55, y + h * 0.36, lado, lado)
             p.estrela(50, 50, 45)
             _centro(c, x, y + h * 0.215, w, f"Com carinho, {col['mascote'].capitalize()}",

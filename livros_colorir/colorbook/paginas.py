@@ -61,9 +61,11 @@ def pagina_desenho(c: Canvas, area: Area, pag: dict, moldura: bool) -> None:
     if pag.get("cena"):
         from .cenas import desenhar_com_cena
 
-        desenhar_com_cena(c, area, pag["desenho"], pag["cena"], area_min_pt2=area_min_pt2)
+        desenhar_com_cena(c, area, pag["desenho"], pag["cena"], area_min_pt2=area_min_pt2,
+                          pag=pag)
     else:
-        desenhar(pag["desenho"], Caneta(c, *area, area_min_pt2=area_min_pt2))
+        desenhar(pag["desenho"], Caneta(c, *area, area_min_pt2=area_min_pt2),
+                 pag.get("_contorno", 0))
 
 
 def pagina_mandala(c: Canvas, area: Area, pag: dict, moldura: bool) -> None:
