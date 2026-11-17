@@ -27,7 +27,7 @@ from reportlab.pdfgen.canvas import Canvas
 from scipy import ndimage
 
 from . import specs
-from .estilo import Perfil, perfil_do_tema
+from .estilo import FATOR_AREA_IMAGEM, Perfil, perfil_do_tema
 from .fonts import FONTE
 from .miolo import _area_util, planejar
 from .paginas import desenhar_pagina
@@ -115,6 +115,8 @@ def _medir(img: np.ndarray, area_px: tuple[int, int, int, int], perfil: Perfil,
                                               rotulos[:, -1]]))) - {0}
         ruido = 0.02 / CM2_POR_PX           # frestas de anti-serrilhado, não são áreas
         pequena = perfil.area_min_cm2 / CM2_POR_PX
+        if r.tipo == "imagem":
+            pequena *= FATOR_AREA_IMAGEM  # ilustração importada: régua mais suave
         validas = [t for i, t in enumerate(tamanhos, 1) if i not in borda and t >= ruido]
         r.areas = len(validas)
         r.areas_pequenas = sum(1 for t in validas if t < pequena)

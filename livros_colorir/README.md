@@ -46,7 +46,7 @@ python -m colorbook revisar temas/primeiros_desenhos.json --simular
 python -m colorbook folha-teste
 
 # Ilustrações de uma ferramenta de imagens (veja a seção Ilustrações)
-python -m colorbook pedidos-ilustracao temas/primeiros_desenhos.json
+python -m colorbook pedidos-ilustracao temas/primeiros_desenhos.json --pular-pasta ilustracoes_chatgpt --lote 6
 python -m colorbook importar-ilustracoes minhas_imagens/ temas/primeiros_desenhos.json
 ```
 

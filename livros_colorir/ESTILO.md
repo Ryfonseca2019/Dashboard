@@ -44,7 +44,9 @@ O livro é aprovado com **nota média ≥ 85** e **nenhuma página abaixo de 65*
 5. **Legendas curtas.** De 1 a 3 palavras, que a criança consiga ler ou reconhecer.
 6. **Ilustrações importadas** (`importar-ilustracoes`): confira sempre se a limpeza não
    abriu falhas no contorno, o que acontece onde a imagem original tinha sombreado
-   encostado na linha.
+   encostado na linha. Para essas imagens, a área mínima é mais suave (35% da régua,
+   `FATOR_AREA_IMAGEM` em `colorbook/estilo.py`): unhas, ventosas e outros detalhes
+   pequenos fazem parte do estilo do desenho.
 
 ## Revisão estética
 

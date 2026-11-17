@@ -22,7 +22,7 @@ import numpy as np
 from PIL import Image, ImageOps
 from scipy import ndimage
 
-from .estilo import Perfil, perfil_do_tema
+from .estilo import FATOR_AREA_IMAGEM, Perfil, perfil_do_tema
 
 DPI_SAIDA = 300
 PX_POR_PT = DPI_SAIDA / 72
@@ -39,7 +39,12 @@ DESCRICOES_EN = {
     "peixe": "a fish", "polvo": "an octopus", "barco": "a sailboat", "sapo": "a frog",
     "pinguim": "a penguin", "foguete": "a rocket", "estrela": "a smiling star",
     "arco_iris": "a rainbow with clouds", "coracao": "a heart",
+    "gato_dormindo": "a cat sleeping curled up on a cushion, with little Zzz letters",
 }
+BRINQUEDO_EN = {"bola": "playing with a ball", "osso": "with a bone", "cenoura": "holding a carrot",
+                "balde": "next to a little sand bucket", "pipa": "with a kite",
+                "flor": "next to a flower"}
+ACESSORIO_EN = {"chapeu": "wearing a party hat", "laco": "wearing a bow", "coroa": "wearing a crown"}
 CENARIO_EN = {
     "campo": "in a simple grassy meadow, with a cloud and the sun in the sky",
     "mar": "underwater with a few bubbles and seaweed",
@@ -47,12 +52,16 @@ CENARIO_EN = {
     "lago": "on a lily pad in a pond",
     "neve": "on snowy ground with a few snowflakes",
     "espaco": "in space with a planet and a few stars",
+    "noite": "at night, with the moon and a few stars in the sky",
     "nenhum": "",
 }
 
 
-def _prompt(desenho: str, cena: str, perfil: Perfil, idade: str) -> str:
+def _prompt(desenho: str, cena: str, perfil: Perfil, idade: str, pag: dict | None = None) -> str:
+    pag = pag or {}
     assunto = DESCRICOES_EN.get(desenho, desenho.replace("_", " "))
+    extras = [ACESSORIO_EN.get(pag.get("acessorio"), ""), BRINQUEDO_EN.get(pag.get("brinquedo"), "")]
+    assunto = " ".join([assunto, *[e for e in extras if e]])
     detalhe = ("very simple, few large areas, extra thick outlines"
                if perfil.area_min_cm2 >= 0.5 else
                "moderate detail, medium-thick outlines")
@@ -64,7 +73,10 @@ def _prompt(desenho: str, cena: str, perfil: Perfil, idade: str) -> str:
             "full-page composition in portrait orientation.")
 
 
-def gerar_pedidos(arquivo_tema: Path, saida: Path) -> Path:
+def gerar_pedidos(arquivo_tema: Path, saida: Path, pular: set[str] | None = None,
+                  lote: int = 0) -> Path:
+    """Gera os pedidos de ilustração. `pular`: desenhos que já têm imagem.
+    `lote`: agrupa os pedidos em lotes desse tamanho (0 = sem lotes)."""
     from .cenas import CENA_PADRAO
 
     tema = json.loads(arquivo_tema.read_text(encoding="utf-8"))
@@ -80,14 +92,20 @@ def gerar_pedidos(arquivo_tema: Path, saida: Path) -> Path:
         "Dicas: peça formato retrato (proporção 3:4); gere 2 a 4 opções e escolha a mais "
         "simples; descarte imagens com texto, sombras ou cinza.", "",
     ]
+    pular = pular or set()
+    numero = 0
     for pag in tema["paginas"]:
-        if pag.get("tipo", "desenho") != "desenho" or pag["desenho"] in vistos:
+        if (pag.get("tipo", "desenho") != "desenho" or pag["desenho"] in vistos
+                or pag["desenho"] in pular):
             continue
         vistos.add(pag["desenho"])
+        if lote and numero % lote == 0:
+            linhas += [f"# Lote {numero // lote + 1}", ""]
+        numero += 1
         cena = pag.get("cena") or (CENA_PADRAO.get(pag["desenho"], "nenhum")
                                    if tema.get("cenarios") else "nenhum")
-        linhas += [f"## {pag['desenho']}.png — {pag.get('legenda', '')}", "",
-                   "```", _prompt(pag["desenho"], cena, perfil, idade), "```", ""]
+        linhas += [f"## {numero}. {pag['desenho']}.png — {pag.get('legenda', '')}", "",
+                   "```", _prompt(pag["desenho"], cena, perfil, idade, pag), "```", ""]
     destino = pasta / "pedidos_ilustracao.md"
     destino.write_text("\n".join(linhas), encoding="utf-8")
     return destino
@@ -153,7 +171,8 @@ def limpar_imagem(entrada: Path, saida: Path, perfil: Perfil) -> dict:
         tam = np.bincount(fundo.ravel())
         borda = set(np.unique(np.concatenate([fundo[0], fundo[-1], fundo[:, 0], fundo[:, -1]])))
         pequenas = [i for i in range(1, n + 1)
-                    if i not in borda and tam[i] < perfil.area_min_cm2 * PX2_POR_CM2]
+                    if i not in borda
+                    and tam[i] < perfil.area_min_cm2 * FATOR_AREA_IMAGEM * PX2_POR_CM2]
         preenchidas = len(pequenas)
         if pequenas:
             tinta |= np.isin(fundo, pequenas)

@@ -36,3 +36,9 @@ def perfil_do_tema(tema: dict) -> Perfil:
         return PERFIS[tema["perfil"]]
     numeros = [int(n) for n in re.findall(r"\d+", tema.get("faixa_etaria", ""))]
     return PERFIS["pequenos" if not numeros or numeros[0] < 5 else "maiores"]
+
+
+# Ilustrações importadas (ChatGPT, ilustrador...) foram desenhadas com intenção: unhas,
+# ventosas e detalhes pequenos fazem parte do estilo. Para elas, a área mínima vale
+# só esta fração da régua da idade (na limpeza e no auditor).
+FATOR_AREA_IMAGEM = 0.35

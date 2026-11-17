@@ -97,6 +97,9 @@ def main(argv: list[str] | None = None) -> None:
     pi = sub.add_parser("pedidos-ilustracao",
                         help="gera os pedidos (prompts) para uma ferramenta de imagens")
     pi.add_argument("tema", type=Path)
+    pi.add_argument("--pular-pasta", type=Path,
+                    help="pasta com imagens já prontas (esses desenhos ficam de fora)")
+    pi.add_argument("--lote", type=int, default=0, help="agrupa os pedidos em lotes de N")
     pi.add_argument("--saida", type=Path, default=RAIZ / "saida")
 
     ii = sub.add_parser("importar-ilustracoes",
@@ -153,7 +156,9 @@ def main(argv: list[str] | None = None) -> None:
     elif a.cmd == "pedidos-ilustracao":
         from .ilustracoes import gerar_pedidos
 
-        print(f"Pedidos: {gerar_pedidos(a.tema, a.saida)}")
+        prontos = ({f.stem for f in a.pular_pasta.iterdir()}
+                   if a.pular_pasta and a.pular_pasta.is_dir() else set())
+        print(f"Pedidos: {gerar_pedidos(a.tema, a.saida, prontos, a.lote)}")
     elif a.cmd == "importar-ilustracoes":
         from .ilustracoes import importar
 
