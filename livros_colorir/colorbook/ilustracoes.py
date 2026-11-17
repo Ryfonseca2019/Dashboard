@@ -41,7 +41,7 @@ DESCRICOES_EN = {
     "arco_iris": "a rainbow with clouds", "coracao": "a heart",
 }
 CENARIO_EN = {
-    "campo": "standing on grass, simple sky with a cloud and the sun",
+    "campo": "in a simple grassy meadow, with a cloud and the sun in the sky",
     "mar": "underwater with a few bubbles and seaweed",
     "mar_superficie": "on calm waves",
     "lago": "on a lily pad in a pond",
