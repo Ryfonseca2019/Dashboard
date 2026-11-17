@@ -243,7 +243,9 @@
       "imagem:dinossauro",
       "imagem:coelho"
     ],
-    "texto_contracapa": "Feito para mãozinhas que estão começando a pintar: traço grosso, áreas grandes e atividades que ajudam na coordenação motora."
+    "texto_contracapa": "Feito para mãozinhas que estão começando a pintar: traço grosso, áreas grandes e atividades que ajudam na coordenação motora.",
+    "arte": "capas/primeiros_desenhos.png",
+    "subtitulo_capa": "Para 2 a 5 anos\nDesenhos grandes + atividades"
   },
   "anuncio": {
     "descricao_curta": "Desenhos grandes e atividades para os pequenos pintarem.",

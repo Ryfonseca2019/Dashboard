@@ -266,12 +266,52 @@ def _o_que_tem(tema: dict) -> list[str]:
     }
     if "imagem" in cont:  # ilustrações importadas também são desenhos para colorir
         cont["desenho"] = cont.get("desenho", 0) + cont.pop("imagem")
-    itens = [textos[t][0 if n == 1 else 1].format(n=n) for t, n in cont.items() if t in textos]
+    # Na ordem de textos: os desenhos (o principal argumento de venda) vêm primeiro.
+    itens = [textos[t][0 if cont[t] == 1 else 1].format(n=cont[t]) for t in textos if t in cont]
     if cont.get("letra") == 26:
         itens = [i if not i.startswith("26 letras") else "Alfabeto completo de A a Z"
                  for i in itens]
     itens += ["Um desenho por folha, com o verso em branco", "Certificado de artista no final"]
     return itens
+
+
+def _carregar_arte(conf: dict, base: Path | None):
+    """Ilustração de capa (ex.: gerada no ChatGPT), ampliada para ~300 dpi."""
+    from PIL import Image, ImageFilter
+
+    img = Image.open(Path(base or ".") / conf["arte"]).convert("RGB")
+    alvo_altura = round((specs.SANGRIA * 2 + 11) * 300)
+    if img.height < alvo_altura:
+        escala = alvo_altura / img.height
+        img = img.resize((round(img.width * escala), alvo_altura), Image.LANCZOS)
+        img = img.filter(ImageFilter.UnsharpMask(radius=2, percent=60, threshold=3))
+    return img
+
+
+def _cor_do_ceu(img) -> Color:
+    import numpy as np
+
+    faixa = np.asarray(img)[: max(1, img.height // 8)].reshape(-1, 3)
+    r, g, b = np.median(faixa, axis=0) / 255
+    return Color(float(r), float(g), float(b))
+
+
+def _desenhar_arte(c: Canvas, img, x: float, y: float, w: float, h: float) -> None:
+    """Ilustração na frente: ocupa a largura toda e fica ancorada embaixo. O que sobra
+    em cima é completado com a cor do céu (lisa nas ilustrações pedidas), o que abre
+    mais espaço para o título sem cortar os personagens."""
+    from reportlab.lib.utils import ImageReader
+
+    escala = max(w / img.width, h * 0.92 / img.height)
+    dw, dh = img.width * escala, img.height * escala
+    c.saveState()
+    caminho = c.beginPath()
+    caminho.rect(x, y, w, h)
+    c.clipPath(caminho, stroke=0, fill=0)
+    c.setFillColor(_cor_do_ceu(img))
+    c.rect(x, y, w, h, stroke=0, fill=1)
+    c.drawImage(ImageReader(img), x + (w - dw) / 2, y, dw, dh)
+    c.restoreState()
 
 
 def gerar_capa(tema: dict, num_paginas: int, saida: Path,
@@ -282,6 +322,9 @@ def gerar_capa(tema: dict, num_paginas: int, saida: Path,
     espec = specs.EspecCapa(larg, alt, num_paginas, tema.get("papel", "branco"))
     conf = tema.get("capa", {})
     fundo = HexColor(conf.get("cor_fundo", "#4FC3F7"))
+    arte = _carregar_arte(conf, base) if conf.get("arte") else None
+    if arte is not None and not conf.get("cor_fundo_fixa"):
+        fundo = _cor_do_ceu(arte)  # contracapa e lombada combinam com o céu da arte
     escuro = _misturar(fundo, black, 0.25)
     cores_titulo = [HexColor(x) for x in conf.get("cores_titulo", CORES_TITULO)]
     paleta = [HexColor(x) for x in conf.get("paleta", PALETA_DESENHO)]
@@ -299,10 +342,12 @@ def gerar_capa(tema: dict, num_paginas: int, saida: Path,
     fw, fh = larg * P, alt * P
 
     # ---- CAPA (frente) ---------------------------------------------------------------
+    if arte is not None:
+        _desenhar_arte(c, arte, espec.x_capa * P, 0, W - espec.x_capa * P, H)
     fx = espec.x_capa * P
     cx = fx + fw / 2
     titulo = tema["titulo"].upper()
-    tam = conf.get("tamanho_titulo", 66)
+    tam = conf.get("tamanho_titulo", 58 if arte is not None else 66)
     while True:
         linhas = _quebrar(c, titulo, FONTE_NEGRITO, tam, fw - 2 * seg - 20)
         if len(linhas) <= 3 or tam <= 34:
@@ -319,20 +364,24 @@ def gerar_capa(tema: dict, num_paginas: int, saida: Path,
         y -= tam * 1.08
 
     if tema.get("subtitulo"):
-        sub = _quebrar(c, tema["subtitulo"], FONTE_NEGRITO, 17, fw - 2 * seg - 60)
+        # Com arte, a faixa fica mais estreita e à esquerda: o lado direito é do selo.
+        cx_sub = fx + fw * 0.42 if arte is not None else cx
+        larg_max = fw * 0.62 if arte is not None else fw - 2 * seg - 60
+        texto_sub = (conf.get("subtitulo_capa") if arte is not None else None) or tema["subtitulo"]
+        sub = _quebrar(c, texto_sub, FONTE_NEGRITO, 17, larg_max)
         faixa_h = 18 + len(sub) * 21
         faixa_w = max(c.stringWidth(s, FONTE_NEGRITO, 17) for s in sub) + 44
         topo = y + tam * 0.45
         c.setFillColor(white)
         c.setStrokeColor(black)
         c.setLineWidth(3)
-        c.roundRect(cx - faixa_w / 2, topo - faixa_h, faixa_w, faixa_h, faixa_h / 2,
+        c.roundRect(cx_sub - faixa_w / 2, topo - faixa_h, faixa_w, faixa_h, min(faixa_h / 2, 22),
                     stroke=1, fill=1)
         c.setFillColor(black)
         c.setFont(FONTE_NEGRITO, 17)
         ty = topo - 24
         for s in sub:
-            c.drawCentredString(cx, ty, s)
+            c.drawCentredString(cx_sub, ty, s)
             ty -= 21
         y = topo - faixa_h - 10
     else:
@@ -341,46 +390,53 @@ def gerar_capa(tema: dict, num_paginas: int, saida: Path,
     rodape = base_y + seg + 44
     arte_topo, arte_base = y - 8, rodape + 6
     arte_h = arte_topo - arte_base
-    d = min(fw * 0.72, arte_h * 0.95)
-    ccx, ccy = cx, arte_base + arte_h / 2
-    c.setFillColor(escuro)
-    c.circle(ccx + 7, ccy - 9, d / 2, stroke=0, fill=1)
-    c.setFillColor(white)
-    c.setStrokeColor(black)
-    c.setLineWidth(6)
-    c.circle(ccx, ccy, d / 2, stroke=1, fill=1)
-    lado = d * (0.8 if desenhos[0].startswith("imagem:") else 0.74)
-    _figura(c, desenhos[0], ccx - lado / 2, ccy - lado / 2, lado, 5, paleta)
+    if arte is None:  # sem arte: desenho principal num círculo e dois adesivos
+        d = min(fw * 0.72, arte_h * 0.95)
+        ccx, ccy = cx, arte_base + arte_h / 2
+        c.setFillColor(escuro)
+        c.circle(ccx + 7, ccy - 9, d / 2, stroke=0, fill=1)
+        c.setFillColor(white)
+        c.setStrokeColor(black)
+        c.setLineWidth(6)
+        c.circle(ccx, ccy, d / 2, stroke=1, fill=1)
+        lado = d * (0.8 if desenhos[0].startswith("imagem:") else 0.74)
+        _figura(c, desenhos[0], ccx - lado / 2, ccy - lado / 2, lado, 5, paleta)
 
-    tam_ad = fw * 0.21
-    adesivos = desenhos[1:3]
-    lugares = [(fx + seg + tam_ad * 0.55, arte_base + tam_ad * 0.6, -9),
-               (fx + fw - seg - tam_ad * 0.55, arte_base + tam_ad * 0.6, 8)]
-    for i, (nome, (ax, ay, giro)) in enumerate(zip(adesivos, lugares)):
-        _adesivo(c, nome, ax, ay, tam_ad, giro, paleta[i * 3 + 1:] + paleta[: i * 3 + 1])
+        tam_ad = fw * 0.21
+        adesivos = desenhos[1:3]
+        lugares = [(fx + seg + tam_ad * 0.55, arte_base + tam_ad * 0.6, -9),
+                   (fx + fw - seg - tam_ad * 0.55, arte_base + tam_ad * 0.6, 8)]
+        for i, (nome, (ax, ay, giro)) in enumerate(zip(adesivos, lugares)):
+            _adesivo(c, nome, ax, ay, tam_ad, giro, paleta[i * 3 + 1:] + paleta[: i * 3 + 1])
 
     n_paginas = len(tema["paginas"])
     tem_atividade = any(p.get("tipo") not in ("desenho", "mandala", "letra", "imagem")
                         for p in tema["paginas"])
-    r_selo = fw * 0.12
+    r_selo = fw * (0.1 if arte is not None else 0.12)
+    if arte is not None:  # com arte: posição em fração da frente (padrão: sobre o sol)
+        px, py = conf.get("posicao_selo", [0.85, 0.6])
+        sx, sy = fx + fw * px, base_y + fh * py
+    else:
+        sx, sy = fx + fw - seg - r_selo * 0.9, arte_topo - r_selo * 0.75
     _selo_estourado(
-        c, fx + fw - seg - r_selo * 0.9, arte_topo - r_selo * 0.75, r_selo,
+        c, sx, sy, r_selo,
         [(str(n_paginas), r_selo * 0.5),
          ("DESENHOS E" if tem_atividade else "PÁGINAS", r_selo * 0.17),
          ("ATIVIDADES" if tem_atividade else "PARA PINTAR", r_selo * 0.17)],
         HexColor(conf.get("cor_selo", "#FFEB3B")),
     )
 
-    if tema.get("faixa_etaria"):
+    if tema.get("faixa_etaria") and arte is None:  # com arte, a idade vai na faixa do subtítulo
         selo = f"Para {tema['faixa_etaria']}"
         c.setFillColor(white)
         c.setStrokeColor(black)
         c.setLineWidth(3)
         sw = c.stringWidth(selo, FONTE_NEGRITO, 18) + 36
-        c.roundRect(fx + seg, base_y + seg, sw, 36, 18, stroke=1, fill=1)
+        ey = (base_y + fh - seg - 40) if arte is not None else base_y + seg
+        c.roundRect(fx + seg, ey, sw, 36, 18, stroke=1, fill=1)
         c.setFillColor(black)
         c.setFont(FONTE_NEGRITO, 18)
-        c.drawString(fx + seg + 18, base_y + seg + 11, selo)
+        c.drawString(fx + seg + 18, ey + 11, selo)
     if tema.get("autor"):
         aw = c.stringWidth(tema["autor"], FONTE_NEGRITO, 16)
         _texto_com_borda(c, fx + fw - seg - aw / 2, base_y + seg + 12, tema["autor"],
