@@ -1,0 +1,146 @@
+{
+  "comparison": [
+    {
+      "file": "screen.html",
+      "status": "unchanged"
+    },
+    {
+      "file": "popup.html",
+      "status": "changed"
+    },
+    {
+      "file": "screen.js",
+      "status": "unchanged"
+    },
+    {
+      "file": "background.js",
+      "status": "changed"
+    },
+    {
+      "file": "VALIDACAO.json",
+      "status": "added"
+    },
+    {
+      "file": "options.html",
+      "status": "changed"
+    },
+    {
+      "file": "style.css",
+      "status": "unchanged"
+    },
+    {
+      "file": "popup.js",
+      "status": "unchanged"
+    },
+    {
+      "file": "options.js",
+      "status": "changed"
+    },
+    {
+      "file": "selector.js",
+      "status": "unchanged"
+    },
+    {
+      "file": "manifest.json",
+      "status": "changed"
+    },
+    {
+      "file": "LEIA-ME.txt",
+      "status": "added"
+    },
+    {
+      "file": "icons/icon128.png",
+      "status": "unchanged"
+    },
+    {
+      "file": "icons/icon48.png",
+      "status": "unchanged"
+    },
+    {
+      "file": "icons/icon32.png",
+      "status": "unchanged"
+    },
+    {
+      "file": "icons/icon16.png",
+      "status": "unchanged"
+    }
+  ],
+  "icons": [
+    {
+      "file": "icons/icon128.png",
+      "validPNG": true,
+      "trailingBytes": 0,
+      "chunks": [
+        {
+          "type": "IHDR",
+          "bytes": 13
+        },
+        {
+          "type": "IDAT",
+          "bytes": 8178
+        },
+        {
+          "type": "IEND",
+          "bytes": 0
+        }
+      ]
+    },
+    {
+      "file": "icons/icon48.png",
+      "validPNG": true,
+      "trailingBytes": 0,
+      "chunks": [
+        {
+          "type": "IHDR",
+          "bytes": 13
+        },
+        {
+          "type": "IDAT",
+          "bytes": 2851
+        },
+        {
+          "type": "IEND",
+          "bytes": 0
+        }
+      ]
+    },
+    {
+      "file": "icons/icon32.png",
+      "validPNG": true,
+      "trailingBytes": 0,
+      "chunks": [
+        {
+          "type": "IHDR",
+          "bytes": 13
+        },
+        {
+          "type": "IDAT",
+          "bytes": 1687
+        },
+        {
+          "type": "IEND",
+          "bytes": 0
+        }
+      ]
+    },
+    {
+      "file": "icons/icon16.png",
+      "validPNG": true,
+      "trailingBytes": 0,
+      "chunks": [
+        {
+          "type": "IHDR",
+          "bytes": 13
+        },
+        {
+          "type": "IDAT",
+          "bytes": 728
+        },
+        {
+          "type": "IEND",
+          "bytes": 0
+        }
+      ]
+    }
+  ]
+}
