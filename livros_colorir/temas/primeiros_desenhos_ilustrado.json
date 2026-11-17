@@ -8,9 +8,10 @@
   "papel": "branco",
   "paginas": [
     {
-      "tipo": "desenho",
-      "desenho": "sol",
-      "legenda": "Sol"
+      "tipo": "imagem",
+      "arquivo": "imagens/primeiros_desenhos/sol.png",
+      "legenda": "Sol",
+      "origem": "sol"
     },
     {
       "tipo": "imagem",
@@ -19,18 +20,20 @@
       "origem": "gato"
     },
     {
-      "tipo": "desenho",
-      "desenho": "casa",
-      "legenda": "Casinha"
+      "tipo": "imagem",
+      "arquivo": "imagens/primeiros_desenhos/casa.png",
+      "legenda": "Casinha",
+      "origem": "casa"
     },
     {
       "tipo": "cubra",
       "desenho": "peixe"
     },
     {
-      "tipo": "desenho",
-      "desenho": "flor",
-      "legenda": "Flor"
+      "tipo": "imagem",
+      "arquivo": "imagens/primeiros_desenhos/flor.png",
+      "legenda": "Flor",
+      "origem": "flor"
     },
     {
       "tipo": "imagem",
@@ -39,9 +42,10 @@
       "origem": "cachorro"
     },
     {
-      "tipo": "desenho",
-      "desenho": "arvore",
-      "legenda": "Árvore"
+      "tipo": "imagem",
+      "arquivo": "imagens/primeiros_desenhos/arvore.png",
+      "legenda": "Árvore",
+      "origem": "arvore"
     },
     {
       "tipo": "labirinto",
@@ -51,20 +55,22 @@
       "fim": "maca"
     },
     {
-      "tipo": "desenho",
-      "desenho": "borboleta",
-      "legenda": "Borboleta"
+      "tipo": "imagem",
+      "arquivo": "imagens/primeiros_desenhos/borboleta.png",
+      "legenda": "Borboleta",
+      "origem": "borboleta"
     },
     {
-      "tipo": "desenho",
-      "desenho": "carro",
-      "legenda": "Carro"
+      "tipo": "imagem",
+      "arquivo": "imagens/primeiros_desenhos/carro.png",
+      "legenda": "Carro",
+      "origem": "carro"
     },
     {
-      "tipo": "desenho",
-      "desenho": "tartaruga",
+      "tipo": "imagem",
+      "arquivo": "imagens/primeiros_desenhos/tartaruga.png",
       "legenda": "Tartaruga",
-      "brinquedo": "balde"
+      "origem": "tartaruga"
     },
     {
       "tipo": "ligar_pontos",
@@ -72,21 +78,22 @@
       "nivel": 1
     },
     {
-      "tipo": "desenho",
-      "desenho": "coelho",
+      "tipo": "imagem",
+      "arquivo": "imagens/primeiros_desenhos/coelho.png",
       "legenda": "Coelho",
-      "brinquedo": "cenoura"
+      "origem": "coelho"
     },
     {
-      "tipo": "desenho",
-      "desenho": "foguete",
-      "legenda": "Foguete"
+      "tipo": "imagem",
+      "arquivo": "imagens/primeiros_desenhos/foguete.png",
+      "legenda": "Foguete",
+      "origem": "foguete"
     },
     {
-      "tipo": "desenho",
-      "desenho": "passarinho",
+      "tipo": "imagem",
+      "arquivo": "imagens/primeiros_desenhos/passarinho.png",
       "legenda": "Passarinho",
-      "brinquedo": "pipa"
+      "origem": "passarinho"
     },
     {
       "tipo": "diferencas",
@@ -95,20 +102,22 @@
       "nivel": 1
     },
     {
-      "tipo": "desenho",
-      "desenho": "elefante",
+      "tipo": "imagem",
+      "arquivo": "imagens/primeiros_desenhos/elefante.png",
       "legenda": "Elefante",
-      "acessorio": "chapeu"
+      "origem": "elefante"
     },
     {
-      "tipo": "desenho",
-      "desenho": "barco",
-      "legenda": "Barquinho"
+      "tipo": "imagem",
+      "arquivo": "imagens/primeiros_desenhos/barco.png",
+      "legenda": "Barquinho",
+      "origem": "barco"
     },
     {
-      "tipo": "desenho",
-      "desenho": "maca",
-      "legenda": "Maçã"
+      "tipo": "imagem",
+      "arquivo": "imagens/primeiros_desenhos/maca.png",
+      "legenda": "Maçã",
+      "origem": "maca"
     },
     {
       "tipo": "complete",
@@ -127,9 +136,10 @@
       "origem": "coruja"
     },
     {
-      "tipo": "desenho",
-      "desenho": "pinguim",
-      "legenda": "Pinguim"
+      "tipo": "imagem",
+      "arquivo": "imagens/primeiros_desenhos/pinguim.png",
+      "legenda": "Pinguim",
+      "origem": "pinguim"
     },
     {
       "tipo": "labirinto",
@@ -139,19 +149,22 @@
       "fim": "casa"
     },
     {
-      "tipo": "desenho",
-      "desenho": "baloes",
-      "legenda": "Balões"
+      "tipo": "imagem",
+      "arquivo": "imagens/primeiros_desenhos/baloes.png",
+      "legenda": "Balões",
+      "origem": "baloes"
     },
     {
-      "tipo": "desenho",
-      "desenho": "joaninha",
-      "legenda": "Joaninha"
+      "tipo": "imagem",
+      "arquivo": "imagens/primeiros_desenhos/joaninha.png",
+      "legenda": "Joaninha",
+      "origem": "joaninha"
     },
     {
-      "tipo": "desenho",
-      "desenho": "sorvete",
-      "legenda": "Sorvete"
+      "tipo": "imagem",
+      "arquivo": "imagens/primeiros_desenhos/sorvete.png",
+      "legenda": "Sorvete",
+      "origem": "sorvete"
     },
     {
       "tipo": "ligar_pontos",
@@ -159,15 +172,16 @@
       "nivel": 1
     },
     {
-      "tipo": "desenho",
-      "desenho": "caracol",
-      "legenda": "Caracol"
+      "tipo": "imagem",
+      "arquivo": "imagens/primeiros_desenhos/caracol.png",
+      "legenda": "Caracol",
+      "origem": "caracol"
     },
     {
-      "tipo": "desenho",
-      "desenho": "sapo",
+      "tipo": "imagem",
+      "arquivo": "imagens/primeiros_desenhos/sapo.png",
       "legenda": "Sapo",
-      "acessorio": "coroa"
+      "origem": "sapo"
     },
     {
       "tipo": "desenho",
@@ -190,9 +204,10 @@
       "origem": "polvo"
     },
     {
-      "tipo": "desenho",
-      "desenho": "trem",
-      "legenda": "Trenzinho"
+      "tipo": "imagem",
+      "arquivo": "imagens/primeiros_desenhos/trem.png",
+      "legenda": "Trenzinho",
+      "origem": "trem"
     },
     {
       "tipo": "desenho",
@@ -219,10 +234,9 @@
   "capa": {
     "cor_fundo": "#4FC3F7",
     "desenhos": [
-      "gato",
-      "dinossauro",
-      "coelho",
-      "peixe"
+      "imagem:gato",
+      "imagem:dinossauro",
+      "imagem:coelho"
     ],
     "texto_contracapa": "Feito para mãozinhas que estão começando a pintar: traço grosso, áreas grandes e atividades que ajudam na coordenação motora."
   },

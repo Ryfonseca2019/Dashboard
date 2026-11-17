@@ -142,6 +142,64 @@ def _estampa(c: Canvas, largura: float, altura: float, fundo: Color, semente: st
                 c.drawPath(caminho, stroke=0, fill=1)
 
 
+# Tema e pasta do livro sendo gerado (para achar ilustrações importadas na capa).
+_CONTEXTO: dict = {}
+
+
+def _ilustracao_colorida(caminho: Path, paleta: list[Color], semente: str):
+    """Pinta automaticamente uma ilustração em traço: cada área fechada recebe uma cor
+    da paleta (o fundo, que toca a borda, fica branco). Devolve um ImageReader."""
+    import random
+
+    import numpy as np
+    from PIL import Image
+    from reportlab.lib.utils import ImageReader
+    from scipy import ndimage
+
+    cinza = np.asarray(Image.open(caminho).convert("L"))
+    tinta = cinza < 128
+    rotulos, n = ndimage.label(~tinta)
+    tamanhos = np.bincount(rotulos.ravel())
+    borda = set(np.unique(np.concatenate([rotulos[0], rotulos[-1], rotulos[:, 0],
+                                          rotulos[:, -1]])))
+    rgb = np.full(cinza.shape + (3,), 255, dtype=np.uint8)
+    cores = [(round(cor.red * 255), round(cor.green * 255), round(cor.blue * 255))
+             for cor in paleta]
+    rnd = random.Random(semente)
+    rnd.shuffle(cores)
+    mapa = np.zeros((n + 1, 3), dtype=np.uint8) + 255
+    minimo = cinza.size * 0.0004  # áreas minúsculas ficam brancas (brilho dos olhos etc.)
+    k = 0
+    for i in np.argsort(-tamanhos):
+        if i == 0 or i in borda or tamanhos[i] < minimo:
+            continue
+        mapa[i] = cores[k % len(cores)]
+        k += 1
+    rgb = mapa[rotulos]
+    rgb[tinta] = (0, 0, 0)
+    return ImageReader(Image.fromarray(rgb))
+
+
+def _figura(c: Canvas, nome: str, x: float, y: float, lado: float, espessura: float,
+            paleta: list[Color]) -> None:
+    """Desenha a figura da capa: desenho em código colorido ou, com "imagem:NOME",
+    a ilustração importada daquela página, pintada automaticamente."""
+    if nome.startswith("imagem:"):
+        alvo = nome.split(":", 1)[1]
+        tema, base = _CONTEXTO.get("tema", {}), _CONTEXTO.get("base", Path("."))
+        arquivo = next((p["arquivo"] for p in tema.get("paginas", [])
+                        if p.get("tipo") == "imagem" and p.get("origem") == alvo), None)
+        if not arquivo:
+            raise ValueError(f"Capa: não há ilustração importada para '{alvo}'.")
+        img = _ilustracao_colorida(Path(base) / arquivo, paleta, alvo)
+        iw, ih = img.getSize()
+        escala = min(lado / iw, lado / ih)
+        w, h = iw * escala, ih * escala
+        c.drawImage(img, x + (lado - w) / 2, y + (lado - h) / 2, w, h)
+        return
+    desenhar(nome, Caneta(c, x, y, lado, lado, espessura=espessura, paleta=paleta))
+
+
 def _adesivo(c: Canvas, nome: str, cx: float, cy: float, tam: float, giro: float,
              paleta: list[Color]) -> None:
     """Desenho colorido num quadrado branco inclinado, como um adesivo."""
@@ -154,8 +212,7 @@ def _adesivo(c: Canvas, nome: str, cx: float, cy: float, tam: float, giro: float
     c.setStrokeColor(black)
     c.setLineWidth(4)
     c.roundRect(-tam / 2 - 4, -tam / 2 - 4, tam + 8, tam + 8, 18, stroke=1, fill=1)
-    desenhar(nome, Caneta(c, -tam / 2 + 6, -tam / 2 + 6, tam - 12, tam - 12, espessura=3,
-                          paleta=paleta))
+    _figura(c, nome, -tam / 2 + 6, -tam / 2 + 6, tam - 12, 3, paleta)
     c.restoreState()
 
 
@@ -207,6 +264,8 @@ def _o_que_tem(tema: dict) -> list[str]:
         "cubra": ("1 desenho para cobrir o pontilhado", "{n} desenhos para cobrir o pontilhado"),
         "imagem": ("1 ilustração para colorir", "{n} ilustrações para colorir"),
     }
+    if "imagem" in cont:  # ilustrações importadas também são desenhos para colorir
+        cont["desenho"] = cont.get("desenho", 0) + cont.pop("imagem")
     itens = [textos[t][0 if n == 1 else 1].format(n=n) for t, n in cont.items() if t in textos]
     if cont.get("letra") == 26:
         itens = [i if not i.startswith("26 letras") else "Alfabeto completo de A a Z"
@@ -216,7 +275,9 @@ def _o_que_tem(tema: dict) -> list[str]:
 
 
 def gerar_capa(tema: dict, num_paginas: int, saida: Path,
-               outros_volumes: list[str] | None = None) -> specs.EspecCapa:
+               outros_volumes: list[str] | None = None,
+               base: Path | None = None) -> specs.EspecCapa:
+    _CONTEXTO.update(tema=tema, base=base or Path("."))
     larg, alt = specs.formato(tema.get("formato", "8.5x11"))
     espec = specs.EspecCapa(larg, alt, num_paginas, tema.get("papel", "branco"))
     conf = tema.get("capa", {})
@@ -288,9 +349,8 @@ def gerar_capa(tema: dict, num_paginas: int, saida: Path,
     c.setStrokeColor(black)
     c.setLineWidth(6)
     c.circle(ccx, ccy, d / 2, stroke=1, fill=1)
-    lado = d * 0.74
-    desenhar(desenhos[0], Caneta(c, ccx - lado / 2, ccy - lado / 2, lado, lado, espessura=5,
-                                 paleta=paleta))
+    lado = d * (0.8 if desenhos[0].startswith("imagem:") else 0.74)
+    _figura(c, desenhos[0], ccx - lado / 2, ccy - lado / 2, lado, 5, paleta)
 
     tam_ad = fw * 0.21
     adesivos = desenhos[1:3]

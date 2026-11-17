@@ -34,7 +34,8 @@ def construir(arquivo_tema: Path, saida: Path) -> bool:
     paginas = gerar_miolo(tema, miolo, base=arquivo_tema.parent)
     from .colecao import outros_volumes
 
-    espec = gerar_capa(tema, paginas, capa, outros_volumes(tema, arquivo_tema.parent))
+    espec = gerar_capa(tema, paginas, capa, outros_volumes(tema, arquivo_tema.parent),
+                       base=arquivo_tema.parent)
     miniaturas = gerar_miniaturas(capa, espec)
     anuncio = gerar_anuncio(tema, paginas, espec, pasta)
     problemas = validar(tema, miolo, capa, espec)
