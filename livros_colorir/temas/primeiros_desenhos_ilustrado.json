@@ -1,0 +1,265 @@
+{
+  "id": "primeiros_desenhos_ilustrado",
+  "titulo": "Meu Primeiro Livro de Colorir",
+  "subtitulo": "Desenhos grandes e fáceis para pintar, com labirintos, ligue os pontos e outras atividades",
+  "autor": "Seu Nome Aqui",
+  "faixa_etaria": "2 a 5 anos",
+  "formato": "8.5x11",
+  "papel": "branco",
+  "paginas": [
+    {
+      "tipo": "desenho",
+      "desenho": "sol",
+      "legenda": "Sol"
+    },
+    {
+      "tipo": "imagem",
+      "arquivo": "imagens/primeiros_desenhos/gato.png",
+      "legenda": "Gatinho",
+      "origem": "gato"
+    },
+    {
+      "tipo": "desenho",
+      "desenho": "casa",
+      "legenda": "Casinha"
+    },
+    {
+      "tipo": "cubra",
+      "desenho": "peixe"
+    },
+    {
+      "tipo": "desenho",
+      "desenho": "flor",
+      "legenda": "Flor"
+    },
+    {
+      "tipo": "imagem",
+      "arquivo": "imagens/primeiros_desenhos/cachorro.png",
+      "legenda": "Cachorrinho",
+      "origem": "cachorro"
+    },
+    {
+      "tipo": "desenho",
+      "desenho": "arvore",
+      "legenda": "Árvore"
+    },
+    {
+      "tipo": "labirinto",
+      "semente": 3,
+      "nivel": 1,
+      "inicio": "coelho",
+      "fim": "maca"
+    },
+    {
+      "tipo": "desenho",
+      "desenho": "borboleta",
+      "legenda": "Borboleta"
+    },
+    {
+      "tipo": "desenho",
+      "desenho": "carro",
+      "legenda": "Carro"
+    },
+    {
+      "tipo": "desenho",
+      "desenho": "tartaruga",
+      "legenda": "Tartaruga",
+      "brinquedo": "balde"
+    },
+    {
+      "tipo": "ligar_pontos",
+      "figura": "estrela",
+      "nivel": 1
+    },
+    {
+      "tipo": "desenho",
+      "desenho": "coelho",
+      "legenda": "Coelho",
+      "brinquedo": "cenoura"
+    },
+    {
+      "tipo": "desenho",
+      "desenho": "foguete",
+      "legenda": "Foguete"
+    },
+    {
+      "tipo": "desenho",
+      "desenho": "passarinho",
+      "legenda": "Passarinho",
+      "brinquedo": "pipa"
+    },
+    {
+      "tipo": "diferencas",
+      "desenho": "gato",
+      "semente": 3,
+      "nivel": 1
+    },
+    {
+      "tipo": "desenho",
+      "desenho": "elefante",
+      "legenda": "Elefante",
+      "acessorio": "chapeu"
+    },
+    {
+      "tipo": "desenho",
+      "desenho": "barco",
+      "legenda": "Barquinho"
+    },
+    {
+      "tipo": "desenho",
+      "desenho": "maca",
+      "legenda": "Maçã"
+    },
+    {
+      "tipo": "complete",
+      "desenho": "borboleta"
+    },
+    {
+      "tipo": "imagem",
+      "arquivo": "imagens/primeiros_desenhos/dinossauro.png",
+      "legenda": "Dinossauro",
+      "origem": "dinossauro"
+    },
+    {
+      "tipo": "imagem",
+      "arquivo": "imagens/primeiros_desenhos/coruja.png",
+      "legenda": "Coruja",
+      "origem": "coruja"
+    },
+    {
+      "tipo": "desenho",
+      "desenho": "pinguim",
+      "legenda": "Pinguim"
+    },
+    {
+      "tipo": "labirinto",
+      "semente": 7,
+      "nivel": 1,
+      "inicio": "cachorro",
+      "fim": "casa"
+    },
+    {
+      "tipo": "desenho",
+      "desenho": "baloes",
+      "legenda": "Balões"
+    },
+    {
+      "tipo": "desenho",
+      "desenho": "joaninha",
+      "legenda": "Joaninha"
+    },
+    {
+      "tipo": "desenho",
+      "desenho": "sorvete",
+      "legenda": "Sorvete"
+    },
+    {
+      "tipo": "ligar_pontos",
+      "figura": "casa",
+      "nivel": 1
+    },
+    {
+      "tipo": "desenho",
+      "desenho": "caracol",
+      "legenda": "Caracol"
+    },
+    {
+      "tipo": "desenho",
+      "desenho": "sapo",
+      "legenda": "Sapo",
+      "acessorio": "coroa"
+    },
+    {
+      "tipo": "desenho",
+      "desenho": "arco_iris",
+      "legenda": "Arco-íris"
+    },
+    {
+      "tipo": "desenho",
+      "desenho": "gato_dormindo",
+      "legenda": "Hora da soneca"
+    },
+    {
+      "tipo": "cubra",
+      "desenho": "estrela"
+    },
+    {
+      "tipo": "imagem",
+      "arquivo": "imagens/primeiros_desenhos/polvo.png",
+      "legenda": "Polvo",
+      "origem": "polvo"
+    },
+    {
+      "tipo": "desenho",
+      "desenho": "trem",
+      "legenda": "Trenzinho"
+    },
+    {
+      "tipo": "desenho",
+      "desenho": "peixe",
+      "legenda": "Peixinho"
+    },
+    {
+      "tipo": "diferencas",
+      "desenho": "sapo",
+      "semente": 5,
+      "nivel": 1
+    },
+    {
+      "tipo": "desenho",
+      "desenho": "estrela",
+      "legenda": "Estrela"
+    },
+    {
+      "tipo": "desenho",
+      "desenho": "coracao",
+      "legenda": "Coração"
+    }
+  ],
+  "capa": {
+    "cor_fundo": "#4FC3F7",
+    "desenhos": [
+      "gato",
+      "dinossauro",
+      "coelho",
+      "peixe"
+    ],
+    "texto_contracapa": "Feito para mãozinhas que estão começando a pintar: traço grosso, áreas grandes e atividades que ajudam na coordenação motora."
+  },
+  "anuncio": {
+    "descricao_curta": "Desenhos grandes e atividades para os pequenos pintarem.",
+    "descricao": "Um primeiro livro de colorir pensado para crianças de 2 a 5 anos!\n\nSão 29 desenhos grandes e simples, com contorno grosso, para a criança pintar sem frustração: gatinho, cachorrinho, dinossauro, foguete, polvo, trenzinho e muito mais. Entre um desenho e outro, 9 atividades para variar a brincadeira: labirintos, ligue os pontos, encontre as diferenças, complete o desenho e cubra o pontilhado.\n\n• Cada página fica numa folha só, com o verso em branco, para a canetinha não manchar a próxima.\n• Formato grande (21,6 x 27,9 cm).\n• Página \"Este livro pertence a\", página para testar as cores e certificado de artista no final.\n\nAjuda a desenvolver a coordenação motora, a criatividade e a concentração, e é um passatempo longe das telas. Um presente ótimo para aniversários e viagens.",
+    "palavras_chave": [
+      "livro de colorir infantil 2 anos",
+      "desenhos para colorir crianças pequenas",
+      "livro de pintar menino e menina",
+      "atividades pré-escola coordenação motora",
+      "presente criança 3 4 5 anos",
+      "livro de colorir com atividades labirinto",
+      "livro de colorir giz de cera"
+    ],
+    "tags_etsy": [
+      "livro de colorir",
+      "colorir infantil",
+      "desenhos p colorir",
+      "atividade infantil",
+      "pre escola",
+      "pdf para imprimir",
+      "presente infantil",
+      "colorir animais",
+      "giz de cera",
+      "educação infantil"
+    ],
+    "categorias": [
+      "Livros > Infantil > Atividades > Colorir",
+      "Livros > Infantil > Artes > Desenho"
+    ],
+    "preco_sugerido_usd": 6.99
+  },
+  "cenarios": true,
+  "colecao": {
+    "nome": "Coleção Gizinho",
+    "volume": 1,
+    "mascote": "gizinho"
+  }
+}
