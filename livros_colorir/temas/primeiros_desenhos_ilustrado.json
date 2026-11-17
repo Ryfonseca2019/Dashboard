@@ -184,14 +184,16 @@
       "origem": "sapo"
     },
     {
-      "tipo": "desenho",
-      "desenho": "arco_iris",
-      "legenda": "Arco-íris"
+      "tipo": "imagem",
+      "arquivo": "imagens/primeiros_desenhos/arco_iris.png",
+      "legenda": "Arco-íris",
+      "origem": "arco_iris"
     },
     {
-      "tipo": "desenho",
-      "desenho": "gato_dormindo",
-      "legenda": "Hora da soneca"
+      "tipo": "imagem",
+      "arquivo": "imagens/primeiros_desenhos/gato_dormindo.png",
+      "legenda": "Hora da soneca",
+      "origem": "gato_dormindo"
     },
     {
       "tipo": "cubra",
@@ -210,9 +212,10 @@
       "origem": "trem"
     },
     {
-      "tipo": "desenho",
-      "desenho": "peixe",
-      "legenda": "Peixinho"
+      "tipo": "imagem",
+      "arquivo": "imagens/primeiros_desenhos/peixe.png",
+      "legenda": "Peixinho",
+      "origem": "peixe"
     },
     {
       "tipo": "diferencas",
@@ -221,14 +224,16 @@
       "nivel": 1
     },
     {
-      "tipo": "desenho",
-      "desenho": "estrela",
-      "legenda": "Estrela"
+      "tipo": "imagem",
+      "arquivo": "imagens/primeiros_desenhos/estrela.png",
+      "legenda": "Estrela",
+      "origem": "estrela"
     },
     {
-      "tipo": "desenho",
-      "desenho": "coracao",
-      "legenda": "Coração"
+      "tipo": "imagem",
+      "arquivo": "imagens/primeiros_desenhos/coracao.png",
+      "legenda": "Coração",
+      "origem": "coracao"
     }
   ],
   "capa": {

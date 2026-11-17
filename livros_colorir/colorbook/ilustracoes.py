@@ -222,5 +222,11 @@ def importar(pasta: Path, arquivo_tema: Path) -> tuple[Path, list[str]]:
                         f"{info['areas_preenchidas']} área(s) pequena(s) preenchida(s)")
     tema["id"] = f"{tema.get('id', arquivo_tema.stem)}_ilustrado"
     novo = arquivo_tema.with_name(f"{arquivo_tema.stem}_ilustrado.json")
+    if novo.exists():
+        # Preserva ajustes feitos no tema ilustrado (ex.: capa com "imagem:gato").
+        anterior = json.loads(novo.read_text(encoding="utf-8"))
+        for chave in ("capa", "autor", "titulo", "subtitulo", "anuncio", "colecao"):
+            if chave in anterior:
+                tema[chave] = anterior[chave]
     novo.write_text(json.dumps(tema, ensure_ascii=False, indent=2), encoding="utf-8")
     return novo, trocadas
