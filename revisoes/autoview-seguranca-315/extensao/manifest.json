@@ -1,0 +1,62 @@
+{
+  "manifest_version": 3,
+  "name": "Dashboard AutoView - Multimonitor",
+  "short_name": "AutoView",
+  "version": "3.1.6",
+  "description": "Revisão de permissões, validação de origem das mensagens e importação de configurações. Aguardando validação.",
+  "permissions": [
+    "tabs",
+    "alarms",
+    "storage",
+    "system.display"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "Dashboard AutoView",
+    "default_popup": "popup.html"
+  },
+  "options_page": "options.html",
+  "commands": {
+    "open_control": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+1"
+      },
+      "description": "Abrir central de controle"
+    },
+    "institutional": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+3"
+      },
+      "description": "Ativar proteção institucional"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "host_permissions": [
+    "http://*/*",
+    "https://*/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "js": [
+        "selector.js"
+      ],
+      "run_at": "document_idle",
+      "all_frames": false
+    }
+  ],
+  "version_name": "3.1.6-revisao-nao-homologada",
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'none'; base-uri 'none';"
+  }
+}
