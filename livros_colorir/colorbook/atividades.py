@@ -110,9 +110,14 @@ def pagina_labirinto(c: Canvas, area: Area, pag: dict) -> None:
     x0 = x + (w - lw) / 2
     y_topo = y + (h + lh) / 2
 
-    # Figuras de entrada (acima, à esquerda) e saída (abaixo, à direita).
-    desenhar(inicio, Caneta(c, x0 - figura * 0.2, y_topo + 2, figura, alto))
-    desenhar(fim, Caneta(c, x0 + lw - figura * 0.8, y_topo - lh - alto - 2, figura, alto))
+    # Figuras de entrada (acima, à esquerda) e saída (abaixo, à direita): ilustração
+    # importada quando houver, senão o desenho em código.
+    for ponta, nome, ax, ay in (("inicio", inicio, x0 - figura * 0.2, y_topo + 2),
+                                ("fim", fim, x0 + lw - figura * 0.8, y_topo - lh - alto - 2)):
+        if pag.get(f"_arquivo_{ponta}_abs"):
+            _imagem_na_area(c, pag[f"_arquivo_{ponta}_abs"], (ax, ay, figura, alto))
+        else:
+            desenhar(nome, Caneta(c, ax, ay, figura, alto))
 
     c.setStrokeColor(black)
     c.setLineWidth({1: 5, 2: 4, 3: 3}[nivel])
@@ -252,10 +257,20 @@ ENFEITES = ["estrela", "coracao", "maca", "flor", "sol", "borboleta", "baloes", 
 
 def pagina_diferencas(c: Canvas, area: Area, pag: dict) -> None:
     nivel = max(1, min(3, int(pag.get("nivel", 1))))
-    qtd = {1: 3, 2: 5, 3: 7}[nivel]
+    qtd = pag.get("qtd_diferencas") or {1: 3, 2: 5, 3: 7}[nivel]
     area = _titulo(c, area, pag.get("titulo", f"Encontre as {qtd} diferenças!"),
                    mascote=pag.get("_mascote"))
     x, y, w, h = area
+    if pag.get("_arquivo_a_abs") and pag.get("_arquivo_b_abs"):
+        # Ilustrações importadas: cena A em cima e cena B embaixo, cada uma numa moldura.
+        caixa_h = (h - 20) / 2
+        for k, chave in enumerate(("_arquivo_a_abs", "_arquivo_b_abs")):
+            cy = y + caixa_h + 20 if k == 0 else y
+            c.setStrokeColor(black)
+            c.setLineWidth(2.5)
+            c.roundRect(x, cy, w, caixa_h, 16, stroke=1, fill=0)
+            _imagem_na_area(c, pag[chave], (x + 10, cy + 10, w - 20, caixa_h - 20))
+        return
     rnd = random.Random(int(pag.get("semente", 1)))
     base = pag.get("desenho", "gato")
     lugares = 8 if nivel > 1 else 6

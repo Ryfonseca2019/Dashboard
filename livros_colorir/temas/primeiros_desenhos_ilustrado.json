@@ -53,7 +53,8 @@
       "semente": 3,
       "nivel": 1,
       "inicio": "coelho",
-      "fim": "maca"
+      "fim": "maca",
+      "arquivo_inicio": "imagens/primeiros_desenhos/atividades/lab_coelho.png"
     },
     {
       "tipo": "imagem",
@@ -100,7 +101,10 @@
       "tipo": "diferencas",
       "desenho": "gato",
       "semente": 3,
-      "nivel": 1
+      "nivel": 1,
+      "arquivo_a": "imagens/primeiros_desenhos/atividades/dif_gato_a.png",
+      "arquivo_b": "imagens/primeiros_desenhos/atividades/dif_gato_b.png",
+      "qtd_diferencas": 3
     },
     {
       "tipo": "imagem",

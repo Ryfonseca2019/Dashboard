@@ -254,6 +254,73 @@ def gerar_pontilhado(entrada: Path, saida: Path, espaco_mm: float = 2.8,
     return saida
 
 
+def contar_diferencas(a: Path, b: Path, visualizacao: Path | None = None) -> int:
+    """Conta as regiões que mudam entre duas versões da mesma cena (atividade
+    "encontre as diferenças"). Tolera pequenos desalinhamentos do traço."""
+    ia = np.asarray(Image.open(a).convert("L")) < 128
+    ib = np.asarray(Image.open(b).convert("L")) < 128
+    if ia.shape != ib.shape:
+        ib = np.asarray(Image.open(b).convert("L").resize(ia.shape[::-1])) < 128
+    tol = np.ones((9, 9))
+    so_a = ia & ~ndimage.binary_dilation(ib, structure=tol)
+    so_b = ib & ~ndimage.binary_dilation(ia, structure=tol)
+    dif = ndimage.binary_closing(so_a | so_b, structure=np.ones((25, 25)))
+    rotulos, n = ndimage.label(dif)
+    tamanhos = np.bincount(rotulos.ravel())[1:]
+    minimo = ia.size * 0.0004  # ruído de traço não conta como diferença
+    if visualizacao is not None:
+        vis = np.stack([np.where(ia, 0, 255)] * 3, -1).astype(np.uint8)
+        vis[so_a] = (229, 57, 53)
+        vis[so_b] = (30, 136, 229)
+        Image.fromarray(vis).save(visualizacao)
+    return int(sum(1 for t in tamanhos if t > minimo))
+
+
+def _importar_atividades(pasta: Path, tema: dict, destino: Path, base: Path,
+                         perfil: Perfil) -> list[str]:
+    """Imagens de atividades em PASTA/atividades/:
+       dif_NOME_a.png + dif_NOME_b.png  → página "diferencas" com desenho NOME
+       lab_NOME.png                      → figura NOME na entrada/saída dos labirintos"""
+    pasta_at = pasta / "atividades"
+    if not pasta_at.is_dir():
+        return []
+    destino_at = destino / "atividades"
+    destino_at.mkdir(parents=True, exist_ok=True)
+    limpas, originais = {}, {}
+    for arq in sorted(pasta_at.iterdir()):
+        if arq.suffix.lower() in (".png", ".jpg", ".jpeg", ".webp"):
+            limpa = destino_at / f"{arq.stem}.png"
+            limpar_imagem(arq, limpa, perfil)
+            limpas[arq.stem], originais[arq.stem] = limpa, arq
+    rel = lambda p: p.relative_to(base).as_posix()  # noqa: E731
+    msgs = []
+    for pag in tema["paginas"]:
+        if pag.get("tipo") == "diferencas":
+            nome = pag.get("desenho")
+            a, b = limpas.get(f"dif_{nome}_a"), limpas.get(f"dif_{nome}_b")
+            if a and b:
+                esperado = {1: 3, 2: 5, 3: 7}[max(1, min(3, int(pag.get("nivel", 1))))]
+                # Conta nas originais: os retoques da limpeza criariam falsas diferenças.
+                n = contar_diferencas(originais[f"dif_{nome}_a"], originais[f"dif_{nome}_b"],
+                                      destino_at / f"dif_{nome}_conferencia.png")
+                pag["arquivo_a"], pag["arquivo_b"] = rel(a), rel(b)
+                pag["qtd_diferencas"] = n
+                ok = "✅" if n == esperado else "⚠️  REFAZER: esperado " + str(esperado)
+                msgs.append(f"diferenças {nome}: {n} encontradas {ok}")
+            elif a or b:
+                msgs.append(f"diferenças {nome}: falta a imagem {'B' if a else 'A'}; "
+                            "a página continua com o desenho em código")
+        elif pag.get("tipo") == "labirinto":
+            for lado in ("inicio", "fim"):
+                figura = limpas.get(f"lab_{pag.get(lado)}")
+                if figura:
+                    pag[f"arquivo_{lado}"] = rel(figura)
+            faltam = [pag.get(l) for l in ("inicio", "fim") if not pag.get(f"arquivo_{l}")]
+            if faltam:
+                msgs.append(f"labirinto: faltam as figuras {', '.join(faltam)}")
+    return msgs
+
+
 def importar(pasta: Path, arquivo_tema: Path) -> tuple[Path, list[str]]:
     """Limpa as imagens da pasta e cria um tema novo (<tema>_ilustrado.json) em que as
     páginas dos desenhos correspondentes usam as imagens. O tema original fica intacto."""
@@ -286,6 +353,7 @@ def importar(pasta: Path, arquivo_tema: Path) -> tuple[Path, list[str]]:
             limpa = gerar_pontilhado(limpa, destino / f"{nome}_pontilhado.png")
             trocadas.append(f"{nome}: versão pontilhada para a página de cobrir")
         pag["arquivo"] = limpa.relative_to(arquivo_tema.parent).as_posix()
+    trocadas += _importar_atividades(pasta, tema, destino, arquivo_tema.parent, perfil)
     tema["id"] = f"{tema.get('id', arquivo_tema.stem)}_ilustrado"
     novo = arquivo_tema.with_name(f"{arquivo_tema.stem}_ilustrado.json")
     if novo.exists():
