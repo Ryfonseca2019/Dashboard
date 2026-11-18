@@ -4,5 +4,6 @@ pypdf>=4.0
 numpy
 scipy
 pillow
+scikit-image
 # Opcional: só para o comando criar-tema
 anthropic

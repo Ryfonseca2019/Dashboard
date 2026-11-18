@@ -161,6 +161,9 @@ def desenhar_pagina(c: Canvas, area: Area, pag: dict, moldura: bool, base: Path)
     elif tipo == "imagem":
         pagina_imagem(c, area, pag, moldura, base)
     elif tipo in ATIVIDADES:
+        if pag.get("arquivo"):
+            arquivo = Path(pag["arquivo"])
+            pag = {**pag, "_arquivo_abs": str(arquivo if arquivo.is_absolute() else base / arquivo)}
         ATIVIDADES[tipo](c, area, pag)
     else:
         raise ValueError(f"Tipo de página desconhecido: {tipo}")

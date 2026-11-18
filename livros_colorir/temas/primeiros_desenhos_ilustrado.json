@@ -27,7 +27,8 @@
     },
     {
       "tipo": "cubra",
-      "desenho": "peixe"
+      "desenho": "peixe",
+      "arquivo": "imagens/primeiros_desenhos/peixe_pontilhado.png"
     },
     {
       "tipo": "imagem",
@@ -121,7 +122,8 @@
     },
     {
       "tipo": "complete",
-      "desenho": "borboleta"
+      "desenho": "borboleta",
+      "arquivo": "imagens/primeiros_desenhos/borboleta.png"
     },
     {
       "tipo": "imagem",
@@ -197,7 +199,8 @@
     },
     {
       "tipo": "cubra",
-      "desenho": "estrela"
+      "desenho": "estrela",
+      "arquivo": "imagens/primeiros_desenhos/estrela_pontilhado.png"
     },
     {
       "tipo": "imagem",

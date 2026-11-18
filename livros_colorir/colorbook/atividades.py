@@ -285,9 +285,37 @@ def pagina_diferencas(c: Canvas, area: Area, pag: dict) -> None:
 
 
 # ----------------------------------------------------------------------------- complete / cubra
+def _imagem_na_area(c: Canvas, caminho: str, area: Area, so_esquerda: bool = False):
+    """Desenha uma imagem centralizada na área; devolve o retângulo ocupado."""
+    from reportlab.lib.utils import ImageReader
+
+    img = ImageReader(caminho)
+    iw, ih = img.getSize()
+    x, y, w, h = area
+    escala = min(w / iw, h / ih)
+    dw, dh = iw * escala, ih * escala
+    ix, iy = x + (w - dw) / 2, y + (h - dh) / 2
+    c.saveState()
+    if so_esquerda:
+        caminho_recorte = c.beginPath()
+        caminho_recorte.rect(ix - 2, iy - 2, dw / 2 + 2, dh + 4)
+        c.clipPath(caminho_recorte, stroke=0, fill=0)
+    c.drawImage(img, ix, iy, dw, dh, mask="auto")
+    c.restoreState()
+    return ix, iy, dw, dh
+
+
 def pagina_complete(c: Canvas, area: Area, pag: dict) -> None:
     area = _titulo(c, area, pag.get("titulo", "Desenhe a outra metade e depois pinte!"),
                    mascote=pag.get("_mascote"))
+    if pag.get("_arquivo_abs"):  # ilustração importada, cortada ao meio
+        ix, iy, dw, dh = _imagem_na_area(c, pag["_arquivo_abs"], area, so_esquerda=True)
+        c.setStrokeColor(CINZA_TRACO)
+        c.setLineWidth(1.2)
+        c.setDash(6, 6)
+        c.line(ix + dw / 2, iy, ix + dw / 2, iy + dh)
+        c.setDash()
+        return
     x, y, w, h = area
     p = Caneta(c, x, y, w, h)
     meio = p.X(50)
@@ -307,6 +335,9 @@ def pagina_complete(c: Canvas, area: Area, pag: dict) -> None:
 def pagina_cubra(c: Canvas, area: Area, pag: dict) -> None:
     area = _titulo(c, area, pag.get("titulo", "Cubra o pontilhado e depois pinte!"),
                    mascote=pag.get("_mascote"))
+    if pag.get("_arquivo_abs"):  # versão pontilhada da ilustração importada
+        _imagem_na_area(c, pag["_arquivo_abs"], area)
+        return
     desenhar(pag.get("desenho", "peixe"),
              Caneta(c, *area, espessura=2.4, cor_traco=CINZA_TRACO, tracejado=(5, 5)))
     c.setDash()

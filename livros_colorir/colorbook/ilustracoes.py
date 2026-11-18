@@ -199,6 +199,61 @@ def _espessura_mediana(tinta: np.ndarray) -> float:
     return float(np.median(valores) * 2) if valores.size else 0.0
 
 
+def gerar_pontilhado(entrada: Path, saida: Path, espaco_mm: float = 2.8,
+                     raio_mm: float = 0.75, cinza: int = 95) -> Path:
+    """Transforma uma ilustração limpa em versão pontilhada para cobrir com o lápis:
+    pega a linha central de cada traço e espalha pontinhos cinza com espaçamento
+    uniforme ao longo dela (o mesmo em retas e curvas)."""
+    from PIL import ImageDraw
+    from skimage.morphology import skeletonize
+
+    img = Image.open(entrada).convert("L")
+    tinta = np.asarray(img) < 128
+    px_mm = DPI_SAIDA / 25.4
+    espaco, raio = espaco_mm * px_mm, raio_mm * px_mm
+    # Partes sólidas (olhos, nariz...) ficam preenchidas de cinza claro em vez de
+    # virarem poucos pontinhos: assim o rosto continua reconhecível.
+    traco = _espessura_mediana(tinta) or 1.2 * px_mm
+    # Parte sólida = região bem mais grossa que o traço típico (olhos, nariz...).
+    # Feito com distância até a borda (rápido mesmo com traço grosso).
+    dist = ndimage.distance_transform_edt(tinta)
+    raio_solido = traco * 1.3
+    nucleo = dist > raio_solido
+    solidos = (ndimage.distance_transform_edt(~nucleo) <= raio_solido) & tinta
+    esqueleto = skeletonize(tinta & ~(ndimage.distance_transform_edt(~solidos) <= 6))
+
+    # Escolha "gulosa" com grade: aceita um ponto se não houver outro a menos de `espaco`.
+    pontos = np.argwhere(esqueleto)
+    np.random.default_rng(7).shuffle(pontos)
+    grade: dict[tuple[int, int], list[tuple[int, int]]] = {}
+    aceitos = []
+    for yy, xx in pontos:
+        gy, gx = int(yy // espaco), int(xx // espaco)
+        perto = False
+        for dy in (-1, 0, 1):
+            for dx in (-1, 0, 1):
+                for py, px in grade.get((gy + dy, gx + dx), ()):
+                    if (py - yy) ** 2 + (px - xx) ** 2 < espaco ** 2:
+                        perto = True
+                        break
+                if perto:
+                    break
+            if perto:
+                break
+        if not perto:
+            grade.setdefault((gy, gx), []).append((yy, xx))
+            aceitos.append((yy, xx))
+
+    fundo = np.full(tinta.shape, 255, dtype=np.uint8)
+    fundo[solidos] = 185
+    saida_img = Image.fromarray(fundo)
+    d = ImageDraw.Draw(saida_img)
+    for yy, xx in aceitos:
+        d.ellipse([xx - raio, yy - raio, xx + raio, yy + raio], fill=cinza)
+    saida_img.save(saida, dpi=(DPI_SAIDA, DPI_SAIDA))
+    return saida
+
+
 def importar(pasta: Path, arquivo_tema: Path) -> tuple[Path, list[str]]:
     """Limpa as imagens da pasta e cria um tema novo (<tema>_ilustrado.json) em que as
     páginas dos desenhos correspondentes usam as imagens. O tema original fica intacto."""
@@ -220,12 +275,23 @@ def importar(pasta: Path, arquivo_tema: Path) -> tuple[Path, list[str]]:
                                       "legenda": pag.get("legenda"), "origem": nome}
         trocadas.append(f"{nome}: engrossou {info['engrossou_px']} px, "
                         f"{info['areas_preenchidas']} área(s) pequena(s) preenchida(s)")
+    # Atividades que usam um desenho também passam a usar a ilustração importada:
+    # "cubra" ganha a versão pontilhada; "complete" usa a ilustração cortada ao meio.
+    for pag in tema["paginas"]:
+        nome = pag.get("desenho")
+        limpa = destino / f"{nome}.png"
+        if pag.get("tipo") not in ("cubra", "complete") or not nome or not limpa.exists():
+            continue
+        if pag["tipo"] == "cubra":
+            limpa = gerar_pontilhado(limpa, destino / f"{nome}_pontilhado.png")
+            trocadas.append(f"{nome}: versão pontilhada para a página de cobrir")
+        pag["arquivo"] = limpa.relative_to(arquivo_tema.parent).as_posix()
     tema["id"] = f"{tema.get('id', arquivo_tema.stem)}_ilustrado"
     novo = arquivo_tema.with_name(f"{arquivo_tema.stem}_ilustrado.json")
     if novo.exists():
         # Preserva ajustes feitos no tema ilustrado (ex.: capa com "imagem:gato").
         anterior = json.loads(novo.read_text(encoding="utf-8"))
-        for chave in ("capa", "autor", "titulo", "subtitulo", "anuncio", "colecao"):
+        for chave in ("capa", "autor", "titulo", "subtitulo", "anuncio", "colecao", "edicoes"):
             if chave in anterior:
                 tema[chave] = anterior[chave]
     novo.write_text(json.dumps(tema, ensure_ascii=False, indent=2), encoding="utf-8")

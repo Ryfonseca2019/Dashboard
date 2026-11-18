@@ -237,6 +237,11 @@ Para desenhos mais elaborados que os feitos em código:
    - preenche de preto as áreas pequenas demais.
 
    Depois cria `temas/x_ilustrado.json` usando essas imagens. O tema original não muda.
+   As atividades também passam a usar as ilustrações: a página **"cubra o pontilhado"**
+   ganha uma versão pontilhada gerada da própria ilustração (pontos ao longo da linha
+   central do traço, com olhos e partes sólidas em cinza claro), e **"desenhe a outra
+   metade"** usa a ilustração cortada ao meio. Ajustes já feitos no tema ilustrado
+   (capa, anúncio, edições, coleção) são preservados a cada nova importação.
 4. Gere e audite o livro novo. **Revise as imagens**: onde havia sombreado encostado no
    contorno, a limpeza pode abrir uma falha na linha.
 
