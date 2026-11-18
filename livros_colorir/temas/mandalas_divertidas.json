@@ -1,0 +1,162 @@
+{
+  "id": "mandalas_divertidas",
+  "titulo": "Mandalas Divertidas para Crianças",
+  "subtitulo": "20 mandalas do fácil ao desafiador para relaxar e pintar",
+  "autor": "Estúdio Gizinho",
+  "faixa_etaria": "5 a 10 anos",
+  "formato": "8.5x11",
+  "papel": "branco",
+  "paginas": [
+    {
+      "tipo": "mandala",
+      "semente": 101,
+      "nivel": 1
+    },
+    {
+      "tipo": "mandala",
+      "semente": 102,
+      "nivel": 1
+    },
+    {
+      "tipo": "mandala",
+      "semente": 103,
+      "nivel": 1
+    },
+    {
+      "tipo": "mandala",
+      "semente": 104,
+      "nivel": 1
+    },
+    {
+      "tipo": "mandala",
+      "semente": 105,
+      "nivel": 1
+    },
+    {
+      "tipo": "mandala",
+      "semente": 106,
+      "nivel": 1
+    },
+    {
+      "tipo": "mandala",
+      "semente": 107,
+      "nivel": 1
+    },
+    {
+      "tipo": "mandala",
+      "semente": 108,
+      "nivel": 2
+    },
+    {
+      "tipo": "mandala",
+      "semente": 109,
+      "nivel": 2
+    },
+    {
+      "tipo": "mandala",
+      "semente": 110,
+      "nivel": 2
+    },
+    {
+      "tipo": "mandala",
+      "semente": 111,
+      "nivel": 2
+    },
+    {
+      "tipo": "mandala",
+      "semente": 112,
+      "nivel": 2
+    },
+    {
+      "tipo": "mandala",
+      "semente": 113,
+      "nivel": 2
+    },
+    {
+      "tipo": "mandala",
+      "semente": 114,
+      "nivel": 2
+    },
+    {
+      "tipo": "mandala",
+      "semente": 115,
+      "nivel": 3
+    },
+    {
+      "tipo": "mandala",
+      "semente": 116,
+      "nivel": 3
+    },
+    {
+      "tipo": "mandala",
+      "semente": 117,
+      "nivel": 3
+    },
+    {
+      "tipo": "mandala",
+      "semente": 118,
+      "nivel": 3
+    },
+    {
+      "tipo": "mandala",
+      "semente": 119,
+      "nivel": 3
+    },
+    {
+      "tipo": "mandala",
+      "semente": 120,
+      "nivel": 3
+    }
+  ],
+  "capa": {
+    "cor_fundo": "#BA68C8",
+    "desenhos": [
+      "mandala:104",
+      "flor",
+      "borboleta"
+    ],
+    "cores_desenhos": [
+      "#FFFFFF",
+      "#FFF59D",
+      "#B2EBF2",
+      "#F8BBD0"
+    ],
+    "texto_contracapa": "20 mandalas que ficam mais detalhadas a cada página: comece pelas fáceis e vá até as desafiadoras!\nPintar mandalas ajuda a criança a se concentrar e a relaxar.\nUm desenho por folha, com o verso em branco."
+  },
+  "anuncio": {
+    "descricao_curta": "Mandalas do fácil ao desafiador para crianças pintarem.",
+    "descricao": "Mandalas feitas para crianças de 5 a 10 anos, organizadas do nível fácil ao desafiador.\n\nAs primeiras têm áreas grandes; as últimas têm mais detalhes para quem já tem mais prática. Pintar mandalas ajuda na concentração, na paciência e na coordenação motora fina, e é um momento calmo longe das telas.\n\n• 20 mandalas originais, uma por folha, com o verso em branco.\n• Formato grande (21,6 x 27,9 cm).\n• Página para testar as cores e certificado no final.",
+    "palavras_chave": [
+      "mandalas para colorir crianças",
+      "livro de colorir mandala infantil",
+      "atividade relaxante para crianças",
+      "colorir para concentração infantil",
+      "presente criança 6 7 8 anos",
+      "mandalas fáceis para pintar",
+      "livro de pintar antiestresse infantil"
+    ],
+    "categorias": [
+      "Livros > Infantil > Atividades > Colorir"
+    ],
+    "preco_sugerido_usd": 7.99
+  },
+  "colecao": {
+    "nome": "Coleção Gizinho",
+    "volume": 3,
+    "mascote": "gizinho"
+  },
+  "edicoes": {
+    "so_frente": {
+      "verso_em_branco": true
+    },
+    "frente_verso": {
+      "verso_em_branco": false,
+      "anuncio": {
+        "descricao": "Mandalas feitas para crianças de 5 a 10 anos, organizadas do nível fácil ao desafiador.\n\nAs primeiras têm áreas grandes; as últimas têm mais detalhes para quem já tem mais prática. Pintar mandalas ajuda na concentração, na paciência e na coordenação motora fina, e é um momento calmo longe das telas.\n\n• Páginas frente e verso, ideais para lápis de cor e giz de cera.\n• Formato grande (21,6 x 27,9 cm).\n• Página para testar as cores e certificado no final."
+      },
+      "capa": {
+        "texto_contracapa": "20 mandalas que ficam mais detalhadas a cada página: comece pelas fáceis e vá até as desafiadoras!\nPintar mandalas ajuda a criança a se concentrar e a relaxar.\nFrente e verso: ideal para lápis de cor e giz de cera."
+      }
+    }
+  }
+}
