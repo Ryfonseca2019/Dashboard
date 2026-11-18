@@ -25,8 +25,19 @@ RAIZ = Path(__file__).resolve().parent.parent
 
 
 def construir(arquivo_tema: Path, saida: Path) -> bool:
-    tema = json.loads(arquivo_tema.read_text(encoding="utf-8"))
-    pasta = saida / tema.get("id", arquivo_tema.stem)
+    """Gera todas as edições do livro (só na frente e frente e verso)."""
+    from .edicoes import edicoes, nome_legivel
+
+    base = json.loads(arquivo_tema.read_text(encoding="utf-8"))
+    ok = True
+    print(f"\n📘 {base['titulo']}")
+    for nome, tema in edicoes(base).items():
+        pasta = saida / tema.get("id", arquivo_tema.stem) / nome
+        ok &= _construir_edicao(tema, arquivo_tema, pasta, nome_legivel(nome))
+    return ok
+
+
+def _construir_edicao(tema: dict, arquivo_tema: Path, pasta: Path, rotulo: str) -> bool:
     pasta.mkdir(parents=True, exist_ok=True)
     miolo = pasta / "miolo.pdf"
     capa = pasta / "capa.pdf"
@@ -40,7 +51,7 @@ def construir(arquivo_tema: Path, saida: Path) -> bool:
     anuncio = gerar_anuncio(tema, paginas, espec, pasta)
     problemas = validar(tema, miolo, capa, espec)
 
-    print(f"\n📘 {tema['titulo']}")
+    print(f"   ── Edição {rotulo} ({pasta.name}/) ──")
     print(f"   Miolo:   {miolo}  ({paginas} páginas)")
     print(f"   Capa:    {capa}  ({espec.largura_total:.3f} × {espec.altura_total:.3f} pol, "
           f"lombada {espec.lombada:.3f} pol)")
@@ -53,7 +64,7 @@ def construir(arquivo_tema: Path, saida: Path) -> bool:
         for p in problemas:
             print(f"   ❌ {p}")
         return False
-    print("   ✅ Pronto para enviar ao KDP")
+    print("   ✅ Arquivos validados")
     return True
 
 

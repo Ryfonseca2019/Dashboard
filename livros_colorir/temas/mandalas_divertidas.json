@@ -144,5 +144,19 @@
     "nome": "Coleção Gizinho",
     "volume": 3,
     "mascote": "gizinho"
+  },
+  "edicoes": {
+    "so_frente": {
+      "verso_em_branco": true
+    },
+    "frente_verso": {
+      "verso_em_branco": false,
+      "anuncio": {
+        "descricao": "Mandalas feitas para crianças de 5 a 10 anos, organizadas do nível fácil ao desafiador.\n\nAs primeiras têm áreas grandes; as últimas têm mais detalhes para quem já tem mais prática. Pintar mandalas ajuda na concentração, na paciência e na coordenação motora fina, e é um momento calmo longe das telas.\n\n• Páginas frente e verso, ideais para lápis de cor e giz de cera.\n• Formato grande (21,6 x 27,9 cm).\n• Página para testar as cores e certificado no final."
+      },
+      "capa": {
+        "texto_contracapa": "20 mandalas que ficam mais detalhadas a cada página: comece pelas fáceis e vá até as desafiadoras!\nPintar mandalas ajuda a criança a se concentrar e a relaxar.\nFrente e verso: ideal para lápis de cor e giz de cera."
+      }
+    }
   }
 }

@@ -50,7 +50,24 @@ python -m colorbook pedidos-ilustracao temas/primeiros_desenhos.json --pular-pas
 python -m colorbook importar-ilustracoes minhas_imagens/ temas/primeiros_desenhos.json
 ```
 
-Cada livro sai em `saida/<id>/`:
+Cada livro sai em **duas edições**, em `saida/<id>/so_frente/` e `saida/<id>/frente_verso/`:
+
+| Edição | Como é | Para quê |
+|---|---|---|
+| `so_frente` | Um desenho por folha, verso em branco | Amazon KDP (EUA/Europa), canetinha, páginas destacáveis |
+| `frente_verso` | Desenhos dos dois lados (~metade das páginas) | Brasil (Uiclap, UmLivro...), lápis de cor e giz de cera, preço menor |
+
+Cada edição pode ter ajustes próprios no tema (formato, textos do anúncio...):
+
+```json
+"edicoes": {
+  "so_frente":    {"verso_em_branco": true},
+  "frente_verso": {"verso_em_branco": false, "formato": "a4", "anuncio": {"descricao": "..."}}
+}
+```
+
+O anúncio avisa se a descrição falar em "verso em branco" na edição frente e verso, ou o
+contrário. Em cada pasta de edição:
 
 | Arquivo | Para quê |
 |---|---|

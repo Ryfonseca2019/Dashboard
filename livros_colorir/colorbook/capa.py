@@ -271,7 +271,11 @@ def _o_que_tem(tema: dict) -> list[str]:
     if cont.get("letra") == 26:
         itens = [i if not i.startswith("26 letras") else "Alfabeto completo de A a Z"
                  for i in itens]
-    itens += ["Um desenho por folha, com o verso em branco", "Certificado de artista no final"]
+    if tema.get("verso_em_branco", True):
+        itens.append("Um desenho por folha, com o verso em branco")
+    else:
+        itens.append("Frente e verso: ideal para lápis de cor e giz de cera")
+    itens.append("Certificado de artista no final")
     return itens
 
 

@@ -100,8 +100,14 @@ def revisar(arquivo_tema: Path, saida: Path, simular: bool = False,
     if not shutil.which("pdftoppm"):
         raise RuntimeError("A revisão precisa do pdftoppm (instale o poppler).")
     tema = json.loads(arquivo_tema.read_text(encoding="utf-8"))
+    from .edicoes import edicoes
+
     pasta = saida / tema.get("id", arquivo_tema.stem)
-    miolo = pasta / "miolo.pdf"
+    # As páginas de conteúdo são as mesmas nas duas edições: revisa a "só na frente".
+    eds = edicoes(tema)
+    nome_ed = "so_frente" if "so_frente" in eds else next(iter(eds))
+    tema = eds[nome_ed]
+    miolo = pasta / nome_ed / "miolo.pdf"
     if not miolo.exists():
         raise RuntimeError(f"Gere o livro antes: python -m colorbook construir {arquivo_tema}")
     faixa = tema.get("faixa_etaria") or perfil_do_tema(tema).nome

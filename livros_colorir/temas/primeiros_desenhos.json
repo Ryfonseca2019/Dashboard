@@ -260,5 +260,16 @@
     "nome": "Coleção Gizinho",
     "volume": 1,
     "mascote": "gizinho"
+  },
+  "edicoes": {
+    "so_frente": {
+      "verso_em_branco": true
+    },
+    "frente_verso": {
+      "verso_em_branco": false,
+      "anuncio": {
+        "descricao": "Um primeiro livro de colorir pensado para crianças de 2 a 5 anos!\n\nSão 29 desenhos grandes e simples, com contorno grosso, para a criança pintar sem frustração: gatinho, cachorrinho, dinossauro, foguete, polvo, trenzinho e muito mais. Entre um desenho e outro, 9 atividades para variar a brincadeira: labirintos, ligue os pontos, encontre as diferenças, complete o desenho e cubra o pontilhado.\n\n• Páginas frente e verso, ideais para lápis de cor e giz de cera.\n• Formato grande (21,6 x 27,9 cm).\n• Página \"Este livro pertence a\", página para testar as cores e certificado de artista no final.\n\nAjuda a desenvolver a coordenação motora, a criatividade e a concentração, e é um passatempo longe das telas. Um presente ótimo para aniversários e viagens."
+      }
+    }
   }
 }

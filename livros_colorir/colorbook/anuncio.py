@@ -32,6 +32,13 @@ def _avisos(tema: dict, anuncio: dict) -> list[str]:
     for k in chaves:
         if len(k) > LIMITES["tamanho_palavra_chave"]:
             avisos.append(f"Palavra-chave longa demais (máx. 50): '{k}'")
+    descricao = (anuncio.get("descricao", "") + " "
+                 + tema.get("capa", {}).get("texto_contracapa", "")).lower()
+    if not tema.get("verso_em_branco", True) and "verso em branco" in descricao:
+        avisos.append("Edição frente e verso, mas a descrição fala em verso em branco: "
+                      "ajuste o anúncio desta edição em \"edicoes\" no tema.")
+    if tema.get("verso_em_branco", True) is True and "frente e verso" in descricao:
+        avisos.append("Edição só na frente, mas a descrição fala em frente e verso.")
     for marca in ("disney", "pokemon", "pokémon", "marvel", "barbie", "peppa", "patrulha canina"):
         texto = json.dumps(anuncio, ensure_ascii=False).lower() + tema["titulo"].lower()
         if marca in texto:
@@ -65,6 +72,7 @@ def gerar_anuncio(tema: dict, num_paginas: int, espec_capa: specs.EspecCapa, pas
             "sangria": "sem sangria (miolo)",
             "acabamento_capa": anuncio.get("acabamento_capa", "fosco"),
             "num_paginas": num_paginas,
+            "edicao": tema.get("edicao", ""),
             "preco_sugerido_usd": anuncio.get("preco_sugerido_usd"),
         },
         "etsy_pdf_digital": {
@@ -95,7 +103,8 @@ def _markdown(d: dict) -> str:
         f"**Subtítulo:** {k['subtitulo']}  ",
         f"**Autor:** {k['autor']}  ",
         f"**Faixa etária:** {k['faixa_etaria']}  ",
-        f"**Páginas:** {k['num_paginas']} · **Formato:** {k['formato']} pol · "
+        f"**Edição:** {k.get('edicao') or '—'}  ",
+        f"**Páginas:** {k['num_paginas']} · **Formato:** {k['formato']} · "
         f"**Papel:** {k['papel']} · **Capa:** {k['acabamento_capa']}",
         "",
         "## Descrição (copiar no KDP)",

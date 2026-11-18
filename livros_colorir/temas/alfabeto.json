@@ -185,5 +185,16 @@
     "nome": "Coleção Gizinho",
     "volume": 2,
     "mascote": "gizinho"
+  },
+  "edicoes": {
+    "so_frente": {
+      "verso_em_branco": true
+    },
+    "frente_verso": {
+      "verso_em_branco": false,
+      "anuncio": {
+        "descricao": "Um livro de colorir para aprender o alfabeto, de A a Z.\n\nCada página traz uma letra grande, maiúscula e minúscula, para pintar, uma palavra que começa com ela e uma linha pontilhada para a criança cobrir com o lápis e treinar o traçado.\n\n• Páginas frente e verso, ideais para lápis de cor e giz de cera.\n• Ideal para a pré-escola e para o começo da alfabetização (3 a 6 anos).\n• Formato grande (21,6 x 27,9 cm)."
+      }
+    }
   }
 }
