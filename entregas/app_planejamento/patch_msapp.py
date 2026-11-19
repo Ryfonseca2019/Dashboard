@@ -21,31 +21,38 @@ ITEMS_PERIODO = '''With(
             )
     },
     SortByColumns(
-        ForAll(
-            GroupBy(
-                _periodos,
-                Periodo_Letivo,
-                Registros
-            ) As grupo,
-            If(
-                IsBlank(
+        DropColumns(
+            ForAll(
+                GroupBy(
+                    AddColumns(
+                        _periodos,
+                        ChavePeriodo,
+                        Periodo_Letivo
+                    ),
+                    ChavePeriodo,
+                    Registros
+                ) As grupo,
+                If(
+                    IsBlank(
+                        LookUp(
+                            grupo.Registros,
+                            ID = varTurmaSelecionada.Periodo_Letivo.Id
+                        )
+                    ),
+                    First(
+                        SortByColumns(
+                            grupo.Registros,
+                            "ID",
+                            SortOrder.Ascending
+                        )
+                    ),
                     LookUp(
                         grupo.Registros,
                         ID = varTurmaSelecionada.Periodo_Letivo.Id
                     )
-                ),
-                First(
-                    SortByColumns(
-                        grupo.Registros,
-                        "ID",
-                        SortOrder.Ascending
-                    )
-                ),
-                LookUp(
-                    grupo.Registros,
-                    ID = varTurmaSelecionada.Periodo_Letivo.Id
                 )
-            )
+            ),
+            ChavePeriodo
         ),
         "Periodo_Letivo",
         SortOrder.Ascending

@@ -13,6 +13,7 @@ Cad_Periodos_Letivos tem 60 combinações unidade + período cadastradas em dobr
 Na edição, mantém-se o registro ao qual a turma já está ligada, mesmo que seja a cópia.
 
 --- cmbPeriodoLetivo.Items ---
+(Correção de 19/11: GroupBy retira a coluna agrupada dos registros. Agrupa-se por uma cópia, ChavePeriodo, que é removida ao final.)
 =With(
     {
         _periodos:
@@ -29,31 +30,38 @@ Na edição, mantém-se o registro ao qual a turma já está ligada, mesmo que s
             )
     };
     SortByColumns(
-        ForAll(
-            GroupBy(
-                _periodos;
-                Periodo_Letivo;
-                Registros
-            ) As grupo;
-            If(
-                IsBlank(
+        DropColumns(
+            ForAll(
+                GroupBy(
+                    AddColumns(
+                        _periodos;
+                        ChavePeriodo;
+                        Periodo_Letivo
+                    );
+                    ChavePeriodo;
+                    Registros
+                ) As grupo;
+                If(
+                    IsBlank(
+                        LookUp(
+                            grupo.Registros;
+                            ID = varTurmaSelecionada.Periodo_Letivo.Id
+                        )
+                    );
+                    First(
+                        SortByColumns(
+                            grupo.Registros;
+                            "ID";
+                            SortOrder.Ascending
+                        )
+                    );
                     LookUp(
                         grupo.Registros;
                         ID = varTurmaSelecionada.Periodo_Letivo.Id
                     )
-                );
-                First(
-                    SortByColumns(
-                        grupo.Registros;
-                        "ID";
-                        SortOrder.Ascending
-                    )
-                );
-                LookUp(
-                    grupo.Registros;
-                    ID = varTurmaSelecionada.Periodo_Letivo.Id
                 )
-            )
+            );
+            ChavePeriodo
         );
         "Periodo_Letivo";
         SortOrder.Ascending
@@ -74,7 +82,6 @@ Manter sem alteração: cmbPeriodoLetivo.DefaultSelectedItems e Periodo_Letivo_D
 Conferir no Studio:
 - Se aparecer aviso de delegação em Items: o Filter (unidade + ativo) é delegável; o GroupBy
   roda localmente sobre o resultado, que tem poucas dezenas de linhas por unidade.
-- Se GroupBy reclamar do nome da coluna, use a forma com aspas: GroupBy(_periodos; "Periodo_Letivo"; "Registros").
 
 ======================================================================
 AJUSTE 2 | Ano de referência vem do período letivo

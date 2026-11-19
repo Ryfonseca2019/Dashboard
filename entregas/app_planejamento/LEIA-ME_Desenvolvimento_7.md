@@ -1,6 +1,10 @@
-# App Planejamento de Turmas | Desenvolvimento_6
+# App Planejamento de Turmas | Desenvolvimento_7
 
 Gerado em 19/11/2026 a partir de `App_Planejamento_Turmas_Desenvolvimento_5.msapp`, aplicando os ajustes descritos em `Documentacao_Migracao/Planejamento_Unico/Formulas_Ajustes_App_v5.txt`.
+
+## Correção em relação ao Desenvolvimento_6
+
+O Studio acusou `'Periodo_Letivo' não é reconhecido` em `Periodo_Letivo_DataCard1.Update`. O motivo é que `GroupBy` retira a coluna de agrupamento das tabelas aninhadas, então os registros do combo ficavam sem `Periodo_Letivo`. Agora o agrupamento é feito por uma cópia da coluna (`ChavePeriodo`), criada com `AddColumns` e removida no final com `DropColumns`. Os registros voltam a ter o mesmo esquema de `Cad_Periodos_Letivos`.
 
 ## O que mudou
 
