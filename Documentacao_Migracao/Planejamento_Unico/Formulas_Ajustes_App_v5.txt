@@ -1,0 +1,166 @@
+AJUSTES DE FÓRMULA | App Planejamento de Turmas (base: Desenvolvimento_5.msapp, salvo em 19/11/2026)
+Sintaxe para colar no Power Apps Studio pt-BR: ";" separa argumentos e ";;" encadeia ações.
+Aplique numa cópia de desenvolvimento e teste com um perfil de unidade e um de administração.
+
+======================================================================
+AJUSTE 1 | Período letivo pelo ID da unidade e sem itens duplicados
+Tela: scrCadastroTurma | Cartão: Periodo_Letivo_DataCard1 | Controle: cmbPeriodoLetivo
+======================================================================
+
+Motivo: o filtro atual compara a unidade pelo nome (Unidade.Value), e a lista
+Cad_Periodos_Letivos tem 60 combinações unidade + período cadastradas em dobro
+(Niterói: 2027, 2027.1 e 2027.2). Cada período aparece duas vezes no combo.
+Na edição, mantém-se o registro ao qual a turma já está ligada, mesmo que seja a cópia.
+
+--- cmbPeriodoLetivo.Items ---
+=With(
+    {
+        _periodos:
+            Filter(
+                Cad_Periodos_Letivos;
+                Unidade.Id = cmbUnidade.Selected.Id &&
+                (
+                    Ativo = true ||
+                    (
+                        varModoFormulario <> "Novo" &&
+                        ID = varTurmaSelecionada.Periodo_Letivo.Id
+                    )
+                )
+            )
+    };
+    SortByColumns(
+        ForAll(
+            GroupBy(
+                _periodos;
+                Periodo_Letivo;
+                Registros
+            ) As grupo;
+            If(
+                IsBlank(
+                    LookUp(
+                        grupo.Registros;
+                        ID = varTurmaSelecionada.Periodo_Letivo.Id
+                    )
+                );
+                First(
+                    SortByColumns(
+                        grupo.Registros;
+                        "ID";
+                        SortOrder.Ascending
+                    )
+                );
+                LookUp(
+                    grupo.Registros;
+                    ID = varTurmaSelecionada.Periodo_Letivo.Id
+                )
+            )
+        );
+        "Periodo_Letivo";
+        SortOrder.Ascending
+    )
+)
+
+--- cmbPeriodoLetivo.DisplayFields ---   (hoje está ["ComplianceAssetId"])
+=["Periodo_Letivo"]
+
+--- cmbPeriodoLetivo.SearchFields ---    (hoje está ["ComplianceAssetId"])
+=["Periodo_Letivo"]
+
+--- cmbPeriodoLetivo.OnChange ---         (hoje vazio)
+=Reset(txtAnoReferencia)
+
+Manter sem alteração: cmbPeriodoLetivo.DefaultSelectedItems e Periodo_Letivo_DataCard1.Update.
+
+Conferir no Studio:
+- Se aparecer aviso de delegação em Items: o Filter (unidade + ativo) é delegável; o GroupBy
+  roda localmente sobre o resultado, que tem poucas dezenas de linhas por unidade.
+- Se GroupBy reclamar do nome da coluna, use a forma com aspas: GroupBy(_periodos; "Periodo_Letivo"; "Registros").
+
+======================================================================
+AJUSTE 2 | Ano de referência vem do período letivo
+Tela: scrCadastroTurma | Cartão: Ano_Referencia_DataCard1 | Controle: txtAnoReferencia
+======================================================================
+
+Motivo: hoje o ano é digitado livremente e não é conferido com o período. Há turmas
+com período 2026 e ano 2027, e 38 turmas da carga de 21/10 gravadas com ano "2".
+Regra assumida (confirmar com o negócio): Ano_Referencia = Ano_Referencia do período
+letivo escolhido. Turmas que atravessam o ano continuam produzindo nos anos seguintes
+pelas datas, horários e calendário; o ano de referência não limita a produção.
+
+--- txtAnoReferencia.Default ---          (hoje =Parent.Default)
+=If(
+    !IsBlank(cmbPeriodoLetivo.Selected.ID);
+    Text(cmbPeriodoLetivo.Selected.Ano_Referencia; "0");
+    Text(Parent.Default; "0")
+)
+
+--- txtAnoReferencia.DisplayMode ---      (hoje =Parent.DisplayMode)
+=If(
+    IsBlank(cmbPeriodoLetivo.Selected.ID);
+    Parent.DisplayMode;
+    DisplayMode.View
+)
+
+--- Ano_Referencia_DataCard1.Update ---   (hoje =Value(txtAnoReferencia.Text))
+=If(
+    !IsBlank(cmbPeriodoLetivo.Selected.ID);
+    cmbPeriodoLetivo.Selected.Ano_Referencia;
+    Value(txtAnoReferencia.Text)
+)
+
+--- DataCardKey4.Text ---                 (hoje ="Ano do planejamento")
+="Ano de referência"
+
+Efeito na edição: ao abrir uma turma antiga com ano errado (ex.: "2"), o campo mostra o
+ano do período e a correção é gravada no próximo salvamento. A validação de
+btnEtapaProxima ("Informe o ano de referência") continua funcionando.
+
+======================================================================
+AJUSTE 3 | Cartão do planejamento mostra o nome e alerta duplicidade
+Tela: scrPlanejamentos | Galeria: galPlanejamentosHorizontal | Controles: Title2, Subtitle2
+======================================================================
+
+Motivo: Title2 e Subtitle2 exibem Codigo_Planejamento, vazio em todos os 69 registros.
+Enquanto a migração não termina, o subtítulo avisa quando a unidade tem mais de um
+planejamento ativo (o cartão abre só o de maior ID).
+
+--- Title2.Text ---
+=Coalesce(
+    ThisItem.Nome_Planejamento;
+    "Planejamento sem nome"
+)
+
+--- Subtitle2.Text ---
+=With(
+    {
+        _qtdAtivos:
+            CountRows(
+                Filter(
+                    Planejamentos;
+                    Ativo = true &&
+                    Unidade.Id = ThisItem.Unidade.Id
+                )
+            )
+    };
+    If(
+        _qtdAtivos > 1;
+        "⚠ " & Text(_qtdAtivos; "0") & " planejamentos ativos na unidade";
+        "Planejamento único da unidade"
+    )
+)
+
+--- Subtitle2.Color (opcional) ---
+=If(
+    CountRows(
+        Filter(
+            Planejamentos;
+            Ativo = true &&
+            Unidade.Id = ThisItem.Unidade.Id
+        )
+    ) > 1;
+    ColorValue("#B45309");
+    ColorValue("#64748B")
+)
+
+Observação: CountRows sobre o Filter delegado pode gerar aviso de delegação. Com menos
+de 100 planejamentos o resultado é exato. Depois da migração, o alerta deixa de aparecer.
