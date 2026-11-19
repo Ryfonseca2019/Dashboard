@@ -93,6 +93,15 @@ A dificuldade relatada vem dos dados:
   | 2027.1 | 124 e 157 |
   | 2027.2 | 125 e 158 |
 
+### Situação em 19/11
+
+Os passos 1 e 2 foram executados e conferidos na exportação Turmas_Planejadas_13 e Planejamentos_6:
+
+- **Planejamentos de Niterói:** o planejamento 16, "Planejamento Niterói", é o único ativo. Os planejamentos 18 e 63 foram desativados.
+- **Turmas de Niterói:** todas as 120 estão no planejamento 16, sendo 116 ativas e 4 inativas.
+- **Demais unidades:** nenhuma outra turma foi alterada pela migração. O total continua em 1.993.
+- **Ano "2":** a turma 216, de Barra do Piraí, foi corrigida pela unidade no app, ao ser editada e salva. Restam 37 turmas com ano "2", e a turma 216 saiu do CSV de correção.
+
 ### Passo 1 | Mover as turmas para o planejamento único
 
 Arquivo: `Niteroi_DePara_Turmas.csv`.
