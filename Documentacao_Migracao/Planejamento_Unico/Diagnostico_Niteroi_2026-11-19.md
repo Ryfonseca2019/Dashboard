@@ -76,6 +76,70 @@ A dificuldade relatada vem dos dados:
    - conferir a lista de turmas e o BI.
 7. Reversão: guardar a planilha de/para e as exportações originais. Os passos usam apenas atualização de vínculo e de `Ativo`, sem exclusão.
 
+## Execução do piloto de Niterói (com as exportações de IDs de 19/11)
+
+### O que as exportações de IDs trouxeram
+
+- **Cad_Unidades:** Niterói tem ID 15 e sigla NIT.
+- **Turmas_Planejadas:** traz o ID de cada turma. Os vínculos de planejamento e de período continuam só como texto.
+- **Planejamentos:** a exportação ainda veio sem a coluna ID.
+- **Nomes de planejamento:** nenhum se repete dentro da mesma unidade. Por isso o vínculo pelo nome é inequívoco para esta migração.
+- **Períodos duplicados de Niterói:**
+
+  | Período | IDs |
+  | --- | --- |
+  | 2026.2 | 42 e 390 |
+  | 2027 | 123 e 156 |
+  | 2027.1 | 124 e 157 |
+  | 2027.2 | 125 e 158 |
+
+### Passo 1 | Mover as turmas para o planejamento único
+
+Arquivo: `Niteroi_DePara_Turmas.csv`.
+
+As turmas de ID 1917 a 1921 (ativas) e 1979 (a turma de 2027, inativa) passam de "Planejamento Niterói 2026" para "Planejamento Niterói". São 6 itens. Faça a edição em grade (Editar no modo de grade) na lista `Turmas_Planejadas`, filtrada por esses IDs.
+
+Contagem esperada depois do passo 1:
+
+| Planejamento | Turmas ativas | Turmas inativas |
+| --- | --- | --- |
+| Planejamento Niterói | 116 | 4 |
+| Planejamento Niterói 2026 | 0 | 0 |
+| Planejamento Niterói 2027 | 0 | 0 |
+
+### Passo 2 | Desativar os planejamentos extras
+
+Marcar `Ativo = Não` em "Planejamento Niterói 2026" e "Planejamento Niterói 2027". Os registros não devem ser excluídos.
+
+Em seguida, abrir o app e conferir:
+
+- o cartão de Niterói mostra "Planejamento Niterói";
+- a lista de turmas tem 116 turmas;
+- uma turma nova fica vinculada ao planejamento canônico.
+
+### Passo 3 | Períodos duplicados
+
+Mantenha as duas cópias ativas até saber a qual ID cada turma está ligada. O ajuste 1 do app já mostra uma só opção no combo e usa o menor ID (42, 123, 124 e 125) para as turmas novas.
+
+Para desativar as cópias 390, 156, 157 e 158, falta exportar `Turmas_Planejadas` com a coluna `Periodo_Letivo:ID`. Ela é habilitada nas configurações da coluna Periodo_Letivo, em "campos adicionais".
+
+### Passo 4 | Ano de referência gravado como "2"
+
+Arquivo: `Correcao_Ano_Referencia_2.csv`.
+
+São 38 turmas da importação de 21/10: Barra do Piraí (28), Pádua (9) e Niterói (1, inativa, ID 60). Todas estão em períodos 2026, 2026.1 ou 2026.2, então o valor correto é 2026. A correção é feita por edição em grade.
+
+### Reversão
+
+As exportações originais (Turmas_Planejadas_12 e Planejamentos_5) e os CSVs de/para guardam o estado anterior. Para desfazer:
+
+1. Devolver o planejamento das 6 turmas.
+2. Reativar os dois planejamentos.
+
+### Antes de executar
+
+- Confirmar se o Power BI filtra ou agrupa por `Planejamento` ou por `Ano_Planejamento`. Se o relatório separar a produção por planejamento, os totais por planejamento mudam, mas o total da unidade continua o mesmo.
+
 ## Ajustes no app
 
 Fórmulas completas em `Formulas_Ajustes_App_v5.txt`:
