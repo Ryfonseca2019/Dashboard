@@ -33,5 +33,5 @@ As alterações foram feitas em `Controls/*.json`, que é o que o Studio carrega
    - o ano mostra o ano do período;
    - salvar não gera erro.
 5. **Tela de planejamentos:**
-   - Niterói mostra "Planejamento Único da unidade";
+   - Niterói mostra "Planejamento único da unidade";
    - unidades com mais de um planejamento ativo mostram o alerta em laranja.
