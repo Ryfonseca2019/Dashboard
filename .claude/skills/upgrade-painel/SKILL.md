@@ -1,6 +1,6 @@
 ---
 name: upgrade-painel
-description: Faz o upgrade completo de um painel Power BI. Recebe o arquivo (PBIP, ZIP, PBIT ou PBIX), analisa todas as páginas, visuais e o modelo com base no livro Storytelling com Dados e nas melhores práticas de UX/UI (Few, Nielsen, Shneiderman, WCAG, IBCS), devolve melhorias priorizadas e novas visões possíveis e, depois da escolha do usuário, gera a nova versão validada. Use sempre que o usuário enviar ou citar um painel/relatório/dashboard Power BI e pedir upgrade, melhoria, revisão, avaliação, redesign, novas páginas ou novas visões.
+description: Faz o upgrade completo de um painel Power BI (e audita apps Power Apps). Recebe o arquivo (PBIP, ZIP, PBIT, PBIX ou .msapp), analisa todas as páginas, visuais e o modelo com base no livro Storytelling com Dados e nas melhores práticas de UX/UI (Few, Nielsen, Shneiderman, WCAG, IBCS), devolve melhorias priorizadas e novas visões possíveis e, depois da escolha do usuário, gera a nova versão validada. Use sempre que o usuário enviar ou citar um painel/relatório/dashboard Power BI e pedir upgrade, melhoria, revisão, avaliação, redesign, novas páginas ou novas visões.
 ---
 
 # Upgrade de painel Power BI
@@ -11,12 +11,19 @@ Fontes de design (leia antes de escrever o relatório e cite nos achados):
 - `references/catalogo-visoes.md`: padrões de novas visões e como virar página.
 - `references/roadmap-automacao.md`: o que já é automático e o que ainda não é (seja honesto com o usuário).
 
-Scripts (rode com `python3 -I`; `<up>` = `.claude/skills/upgrade-painel`, `<pv>` = `.claude/skills/pbir-paginas-visuais`):
-- `<up>/scripts/analisar_painel.py analisar <arquivo> --saida <pasta>` gera `relatorio.md`, `analise.json`,
-  `inventario.json` e `specs/NVxx.json`.
-- `<up>/scripts/analisar_painel.py comparar <antes> <depois>` faz a regressão (o que foi adicionado/removido).
-- `<pv>/scripts/pbir_tool.py criar | ajustar | validar | campos` e `<pv>/scripts/validar_schema.py`: execução
-  e validação (detalhes na skill `pbir-paginas-visuais`).
+Scripts (rode com `python3 -I`; `<up>` = `.claude/skills/upgrade-painel/scripts`,
+`<pv>` = `.claude/skills/pbir-paginas-visuais/scripts`):
+
+| Script | Para quê |
+|---|---|
+| `<up>/analisar_painel.py analisar <arquivo> --saida <pasta> [--dados perfil.json]` | Inventário, auditoria, novas visões, `relatorio.md`, `analise.json` (com `como_aplicar` por melhoria) e `specs/NVxx.json` |
+| `<up>/analisar_painel.py comparar <antes> <depois>` | Regressão: páginas, visuais e medidas adicionados/removidos |
+| `<up>/perfilar_dados.py <csv/xlsx ou pasta> --saida perfil.json` | Perfil dos dados exportados: cardinalidade, nulos, atípicos e **manchetes com números reais** |
+| `<up>/paginas_pdf.py <painel.pdf>` | PDF exportado → PNG por página, para a revisão visual |
+| `<up>/exportar_service.py --workspace W --relatorio R` | Prints direto do Power BI Service (precisa de token e capacidade Premium/Fabric; não testado aqui) |
+| `<up>/analisar_app.py <app.msapp ou .zip>` | Auditoria de UX de apps Power Apps (acessibilidade, contraste, toque, delegação, erros, nomes, cores) |
+| `<up>/empacotar.py <projeto> --nome N --versao V --base <anterior>` | ZIP `vNN+1` + LEIA_ME com changelog; recusa se a validação falhar |
+| `<pv>/pbir_tool.py …`, `<pv>/validar_schema.py` | Execução e validação (ver skill `pbir-paginas-visuais`) |
 
 ## Etapa 1 — Receber e analisar
 
@@ -26,8 +33,15 @@ Scripts (rode com `python3 -I`; `<up>` = `.claude/skills/upgrade-painel`, `<pv>`
    um sai numa subpasta; pergunte qual é o foco, se não estiver claro.
 3. Se o arquivo for PBIX, avise que o modelo não pôde ser lido e peça PBIP/PBIT para a análise completa, mas
    siga com o que dá para analisar.
-4. Se o usuário enviou prints/PDF, abra cada imagem e avalie o que só se vê renderizado: cores reais, leitura em
-   5 segundos, visuais vazios, rótulos cortados, contraste.
+4. **Dados (opcional, recomendado):** se o usuário enviou CSV/XLSX exportados dos visuais, rode
+   `perfilar_dados.py` e passe `--dados perfil.json` ao `analisar`. Isso ativa verificações de cardinalidade,
+   vazios e segmentações, a visão de slopegraph (anos reais) e a seção de manchetes com números.
+5. **Visual renderizado:** se veio PDF, rode `paginas_pdf.py` e abra cada PNG; se vieram prints, abra-os. Avalie o
+   que só se vê renderizado: cores reais, leitura em 5 segundos, visuais vazios, rótulos cortados, contraste.
+   Com workspace e credencial do Service configurados, `exportar_service.py` busca os prints sozinho.
+6. **App Power Apps** (`.msapp` ou ZIP com ele): rode `analisar_app.py`; aplique o mesmo raciocínio de
+   Storytelling/UX (hierarquia, foco, feedback) e entregue o relatório no mesmo formato (A01…). A edição do
+   app é feita no Power Apps Studio; descreva os passos.
 
 ## Etapa 2 — Revisão qualitativa (o que o script não faz)
 
@@ -70,21 +84,23 @@ compartilhar com a equipe. Não aplique nada antes da escolha, a menos que ele t
 2. **Novas visões:** edite o `specs/NVxx.json` (títulos de ação, manchete, cortar visuais que não sustentam a
    mensagem) e rode `pbir_tool.py criar`. Para uma página resumo que deve abrir o relatório, use
    `"depois_de"`/`"ativa": true` e reordene com cuidado.
-3. **Melhorias automáticas:** `pbir_tool.py ajustar` com `--titulos` (JSON id → título), `--texto-alt` e
-   `--ordem-leitura`. Mudar ordem de páginas, nomes de página e cores: edite o JSON diretamente, preservando IDs.
-4. **Melhorias manuais** (tema, formatação condicional, bookmarks, trocar tipo de visual, reposicionar): faça
-   quando der para editar o JSON com segurança, copiando a estrutura de um visual existente; senão, descreva o
-   passo a passo no Desktop no LEIA_ME.
-5. Medidas novas (títulos dinâmicos, comparações): crie no TMDL com `lineageTag` novo, `formatString` e
-   `displayFolder`, sem duplicar pastas.
+3. **Melhorias:** cada item de `analise.json` traz `como_aplicar` com o comando. Os principais:
+   `trocar-tipo` (pizza/gauge/linha errada), `formatar` (destaque, título dinâmico, subtítulo, linha de meta,
+   legenda/grade, modo de segmentação, dica de página), `ajustar` (títulos, texto alternativo, ordem de leitura),
+   `alinhar`, `layout`, `paginas` (ordem, página inicial, nomes), `tema`, `navegacao`, `medida`.
+   Use os ids de visual listados no achado (`visuais`).
+4. **Ainda manuais** (bookmarks, filtro Top N, formatação por faixas em tabela, mudanças de modelo como tabela de
+   datas): descreva o passo a passo no Desktop no LEIA_ME.
+5. Leia as linhas `NOTA` dos comandos e leve-as para o LEIA_ME como "conferir no Desktop".
 
 ## Etapa 5 — Validar e entregar
 
 1. `pbir_tool.py validar` sem erros, `validar_schema.py` sem falhas e `analisar_painel.py comparar <antes> <depois>`
    sem remoções não intencionais.
 2. Rode `analisar` de novo na versão nova e mostre os índices antes × depois.
-3. Empacote no padrão do repositório: `<Nome>_vNN+1.zip` com a pasta PBIP e um `LEIA_ME.txt` dizendo o que
-   mudou (códigos M/NV), em quais páginas, o que foi validado e o que só se confirma abrindo no Desktop.
+3. Empacote com `empacotar.py <projeto> --nome <Nome> --versao <NN+1> --base <versão anterior>` (gera o
+   changelog). Para um LEIA_ME completo, escreva-o (códigos M/NV aplicados, páginas, o que foi validado, NOTAs
+   a conferir no Desktop) e passe `--leia-me`.
 4. Faça o commit no branch de trabalho e informe o caminho do ZIP.
 
 ## Regras

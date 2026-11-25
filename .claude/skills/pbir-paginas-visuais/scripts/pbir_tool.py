@@ -5,6 +5,14 @@ Comandos:
   campos  <projeto> [--busca TEXTO] [--tabela NOME]   lista tabelas, colunas e medidas do modelo (TMDL)
   criar   <projeto> <spec.json> [--simular]            cria página nova ou adiciona visuais a uma página existente
   validar <projeto>                                    confere estrutura, IDs e referências de campos
+  medida  <projeto> --tabela T --nome N --expressao DAX [--formato F] [--pasta P] [--descricao D]
+  formatar <projeto> <formatos.json>   aplica opções a visuais existentes ({"<id visual>": {opções}})
+  trocar-tipo <projeto> <id visual> <novo tipo>   ex.: pizza → clusteredBarChart, gauge → card
+  alinhar <projeto> [--pagina P] [--tolerancia 8] encaixa bordas quase alinhadas
+  layout  <projeto> <layout.json>      reposiciona ({"<id visual>": {"x":..,"y":..,"largura":..,"altura":..}})
+  paginas <projeto> [--ordem a,b] [--renomear id=Nome] [--ocultar P] [--mostrar P] [--ativa P]
+  tema    <projeto> [--nome N] [--destaque #hex] [--titulo #hex] [--fundo #hex] [--arquivo tema.json]
+  navegacao <projeto> --posicao x,y,larg,alt [--paginas a,b]   navegador de páginas nas páginas indicadas
   ajustar <projeto> [--pagina ID|nome] [--ordem-leitura] [--texto-alt] [--titulos titulos.json] [--simular]
           corrige visuais existentes: z/tabOrder na ordem de leitura, texto alternativo a partir do título,
           e títulos novos ({"<id do visual>": "Título de ação", ...})
@@ -13,11 +21,15 @@ Comandos:
 """
 import argparse
 import json
+import os
 import re
 import secrets
 import sys
 from collections import Counter
 from pathlib import Path
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import pbir_recursos as R  # noqa: E402
 
 SCHEMA_BASE = "https://developer.microsoft.com/json-schemas/fabric/item/report/definition"
 SCHEMA_VISUAL_PADRAO = f"{SCHEMA_BASE}/visualContainer/2.12.0/schema.json"
@@ -40,11 +52,17 @@ PAPEIS = {
     "clusteredColumnChart": ["Category", "Y", "Series", "Tooltips"],
     "lineChart": ["Category", "Y", "Series", "Tooltips"],
     "donutChart": ["Category", "Y", "Tooltips"],
+    "scatterChart": ["Category", "Series", "X", "Y", "Size", "Tooltips"],
+    "lineClusteredColumnComboChart": ["Category", "ColumnY", "Y", "Series", "Tooltips"],
     "textbox": [],
+    "actionButton": [],
+    "pageNavigator": [],
 }
+SEM_CAMPOS = {"textbox", "actionButton", "pageNavigator"}
 APELIDOS = {"cartao": "card", "segmentacao": "slicer", "tabela": "tableEx", "matriz": "pivotTable",
             "barras": "clusteredBarChart", "colunas": "clusteredColumnChart", "linha": "lineChart",
-            "rosca": "donutChart", "texto": "textbox", "titulo": "textbox"}
+            "rosca": "donutChart", "texto": "textbox", "titulo": "textbox", "combo": "lineClusteredColumnComboChart",
+            "dispersao": "scatterChart"}
 
 
 class Erro(Exception):
@@ -102,7 +120,7 @@ def _nome(m):
 
 
 def ler_modelo(modelo: Path):
-    """Retorna {tabela: {"colunas": set, "medidas": set}}."""
+    """Retorna {tabela: {"colunas": {nome: dataType}, "medidas": set}}."""
     tabelas = {}
     if modelo is None:
         return tabelas
@@ -111,7 +129,8 @@ def ler_modelo(modelo: Path):
         for linha in arq.read_text(encoding="utf-8-sig").splitlines():
             m = RE_TABELA.match(linha)
             if m:
-                atual = tabelas.setdefault(_nome(m), {"colunas": set(), "medidas": set()})
+                atual = tabelas.setdefault(_nome(m), {"colunas": {}, "medidas": set()})
+                ultima_coluna = None
                 continue
             if linha and not linha[0].isspace():
                 atual = None  # outro objeto de nível superior (relationship, expression...)
@@ -120,11 +139,19 @@ def ler_modelo(modelo: Path):
                 continue
             m = RE_COLUNA.match(linha)
             if m:
-                atual["colunas"].add(_nome(m))
+                ultima_coluna = _nome(m)
+                atual["colunas"][ultima_coluna] = None
                 continue
             m = RE_MEDIDA.match(linha)
             if m:
+                ultima_coluna = None
                 atual["medidas"].add(_nome(m))
+                continue
+            if re.match(r"^(?:\t|    )\S", linha):
+                ultima_coluna = None
+            md = re.match(r"^(?:\t\t|        )dataType:\s*(\S+)", linha)
+            if md and ultima_coluna:
+                atual["colunas"][ultima_coluna] = md.group(1)
     return tabelas
 
 
@@ -186,7 +213,10 @@ def container_objects(titulo, padding):
     return objs
 
 
-def montar_visual(spec, nome, z, schema, tabelas):
+def montar_visual(spec, nome, z, schema, tabelas, ctx=None):
+    """ctx: {"criar_medida": fn, "paginas": {nome: id}, "avisos": []} para recursos avançados."""
+    ctx = ctx or {"criar_medida": _sem_medida, "paginas": {}, "avisos": []}
+    spec = R.expandir(spec, tabelas, lambda r: resolver_campo(r, tabelas), ctx["criar_medida"])
     tipo = APELIDOS.get(spec["tipo"], spec["tipo"])
     if tipo not in PAPEIS:
         raise Erro(f"Tipo de visual '{spec['tipo']}' não suportado. Use: {', '.join(PAPEIS)}")
@@ -196,8 +226,12 @@ def montar_visual(spec, nome, z, schema, tabelas):
             raise Erro(f"Visual '{spec.get('titulo', tipo)}': posicao.{k} obrigatório")
     visual = {"visualType": tipo}
 
+    if tipo == "actionButton":
+        return _envelope(schema, nome, pos, z, R.montar_botao(spec, ctx["paginas"]))
+    if tipo == "pageNavigator":
+        return _envelope(schema, nome, pos, z, R.montar_navegador())
     campos = spec.get("campos", {})
-    if tipo != "textbox":
+    if tipo not in SEM_CAMPOS:
         if not campos:
             raise Erro(f"Visual '{spec.get('titulo', tipo)}' ({tipo}) sem campos")
         estado = {}
@@ -219,7 +253,8 @@ def montar_visual(spec, nome, z, schema, tabelas):
         objetos = {"data": [{"properties": {"mode": texto(spec.get("modo", "Dropdown"))}}],
                    "header": [{"properties": {"show": lit("false")}}]}
         padding = {"top": 0, "bottom": 0, "left": 0, "right": 0}
-    elif tipo in ("clusteredBarChart", "clusteredColumnChart", "lineChart", "donutChart"):
+    elif tipo in ("clusteredBarChart", "clusteredColumnChart", "lineChart", "donutChart", "scatterChart",
+                  "lineClusteredColumnComboChart"):
         objetos = {"labels": [{"properties": {"show": lit("true"), "labelDisplayUnits": num(1)}}]}
         padding = {"top": 14, "bottom": 16, "left": 16, "right": 16}
     elif tipo == "textbox":
@@ -236,7 +271,13 @@ def montar_visual(spec, nome, z, schema, tabelas):
     titulo = None if tipo == "textbox" else spec.get("titulo")
     visual["visualContainerObjects"] = container_objects(titulo, padding)
     visual["drillFilterOtherVisuals"] = True
+    v = _envelope(schema, nome, pos, z, visual)
+    ctx["avisos"] += R.aplicar_opcoes(v, spec, tabelas, lambda r: resolver_campo(r, tabelas),
+                                      ctx["criar_medida"], ctx["paginas"])
+    return v
 
+
+def _envelope(schema, nome, pos, z, visual):
     return {
         "$schema": schema,
         "name": nome,
@@ -244,6 +285,24 @@ def montar_visual(spec, nome, z, schema, tabelas):
                      "z": z, "tabOrder": z},
         "visual": visual,
     }
+
+
+def _sem_medida(*_a, **_k):
+    raise Erro("Este recurso cria medidas; use pelo comando criar/formatar com o projeto carregado")
+
+
+def contexto(report, modelo, tabelas, simular, criadas):
+    """Callbacks para recursos que criam medidas no TMDL e referenciam páginas por nome."""
+    paginas = {}
+    pdir = report / "definition" / "pages"
+    for pj in pdir.glob("*/page.json"):
+        paginas[ler_json(pj).get("displayName")] = pj.parent.name
+
+    def criar_medida(tab, nome, expr, formato, pasta, descricao):
+        r = R.adicionar_medida(modelo, tab, nome, expr, formato, pasta, descricao, tabelas, simular)
+        if r == "criada":
+            criadas.append(f"{tab}[{nome}]")
+    return {"criar_medida": criar_medida, "paginas": paginas, "avisos": []}
 
 
 # --------------------------------------------------------------------------- utilidades do relatório
@@ -297,6 +356,13 @@ def cmd_criar(args):
     report, modelo = localizar(args.projeto)
     tabelas = ler_modelo(modelo)
     spec = ler_json(Path(args.spec))
+    criadas = []
+    ctx = contexto(report, modelo, tabelas, args.simular, criadas)
+    for m in spec.get("medidas", []):
+        r = R.adicionar_medida(modelo, m["tabela"], m["nome"], m["expressao"], m.get("formato"), m.get("pasta"),
+                               m.get("descricao"), tabelas, args.simular)
+        if r == "criada":
+            criadas.append(f"{m['tabela']}[{m['nome']}]")
     paginas_dir = report / "definition" / "pages"
     pages_json = paginas_dir / "pages.json"
     meta = ler_json(pages_json) if pages_json.exists() else {
@@ -337,6 +403,12 @@ def cmd_criar(args):
         fundo = pspec.get("fundo", COR_FUNDO_PAGINA)
         if fundo:
             pagina["objects"] = {"background": [{"properties": {"color": cor(fundo), "transparency": num(0)}}]}
+        especial = R.configurar_pagina_especial(pagina, pspec, lambda r: resolver_campo(r, tabelas))
+        if especial == "drillthrough" and not pspec.get("sem_voltar"):
+            spec = dict(spec, visuais=list(spec.get("visuais", [])) + [{
+                "tipo": "botao", "acao": "voltar",
+                "posicao": {"x": pagina["width"] - 24 - 140, "y": 22, "largura": 140, "altura": 40}}])
+        ctx["paginas"][nome_exibicao] = pid
         gravacoes.append((pagina_dir / "page.json", pagina))
         z = 0
         ordem = list(meta.get("pageOrder", []))
@@ -353,7 +425,7 @@ def cmd_criar(args):
     largura, altura = pagina.get("width", 1440), pagina.get("height", 1100)
     for vs in spec.get("visuais", []):
         vid = novo_id(usados)
-        v = montar_visual(vs, vid, z, schema_visual, tabelas)
+        v = montar_visual(vs, vid, z, schema_visual, tabelas, ctx)
         p = v["position"]
         if p["x"] < 0 or p["y"] < 0 or p["x"] + p["width"] > largura or p["y"] + p["height"] > altura:
             raise Erro(f"Visual '{vs.get('titulo', vs['tipo'])}' sai da página ({largura}x{altura}): {p}")
@@ -367,7 +439,15 @@ def cmd_criar(args):
         else:
             gravar_json(caminho, dados)
             print(f"gravado {rel}")
-    if not args.simular:
+    finalizar(report, modelo, criadas, ctx["avisos"], args.simular)
+
+
+def finalizar(report, modelo, criadas, avisos, simular):
+    for m in criadas:
+        print(f"{'[simulação] criaria' if simular else 'medida criada'} {m} (DAX: conferir no Desktop)")
+    for a in dict.fromkeys(avisos):
+        print(f"NOTA  {a}")
+    if not simular:
         problemas = validar(report, modelo)
         imprimir_problemas(problemas)
         if any(n == "ERRO" for n, _ in problemas):
@@ -464,6 +544,38 @@ def validar(report: Path, modelo):
                 oy = min(a[2] + a[4], b[2] + b[4]) - max(a[2], b[2])
                 if ox > 4 and oy > 4 and "shape" not in (a[5], b[5]) and "image" not in (a[5], b[5]):
                     aviso(f"[{exib}] visuais {a[0]} ({a[5]}) e {b[0]} ({b[5]}) se sobrepõem")
+    # referências entre páginas, tema e drill-through
+    ids_paginas = set(pastas)
+    rj = report / "definition" / "report.json"
+    if rj.exists():
+        rep = ler_json(rj)
+        ct = (rep.get("themeCollection") or {}).get("customTheme")
+        if ct and ct.get("type") == "RegisteredResources" and \
+                not (report / "StaticResources" / "RegisteredResources" / ct["name"]).exists():
+            erro(f"Tema customizado '{ct['name']}' não está em StaticResources/RegisteredResources")
+    for pid in pastas:
+        pj = paginas_dir / pid / "page.json"
+        if not pj.exists():
+            continue
+        pagina = ler_json(pj)
+        filtros = {f.get("name") for f in (pagina.get("filterConfig") or {}).get("filters", [])}
+        for par in (pagina.get("pageBinding") or {}).get("parameters", []):
+            if par.get("boundFilter") and par["boundFilter"] not in filtros:
+                erro(f"[{pagina.get('displayName')}] drill-through aponta para filtro inexistente {par['boundFilter']}")
+        for tipo, ent, prop in iterar_campos(pagina):
+            if tabelas and (ent not in tabelas or prop not in (tabelas[ent]["medidas"] if tipo == "Measure"
+                                                                 else tabelas[ent]["colunas"])):
+                erro(f"[{pagina.get('displayName')}] filtro/drill-through usa campo inexistente {ent}[{prop}]")
+        for vj in (paginas_dir / pid).glob("visuals/*/visual.json"):
+            vco = ler_json(vj).get("visual", {}).get("visualContainerObjects", {})
+            refs = []
+            for k in ("navigationSection", "drillthroughSection"):
+                refs.append(((vco.get("visualLink") or [{}])[0].get("properties", {}).get(k)))
+            refs.append(((vco.get("visualTooltip") or [{}])[0].get("properties", {}).get("section")))
+            for r in refs:
+                alvo_pid = (r or {}).get("expr", {}).get("Literal", {}).get("Value", "").strip("'")
+                if alvo_pid and alvo_pid not in ids_paginas:
+                    erro(f"[{pagina.get('displayName')}] visual {vj.parent.name} aponta para página inexistente {alvo_pid}")
     for nome, n in nomes_visuais.items():
         if n > 1:
             aviso(f"ID de visual {nome} usado em {n} páginas (aceito pelo Desktop, mas evite em visuais novos)")
@@ -566,6 +678,192 @@ def cmd_ajustar(args):
             sys.exit(1)
 
 
+def _paginas(report, filtro=None):
+    pdir = report / "definition" / "pages"
+    for pj in sorted(pdir.glob("*/page.json")):
+        pagina = ler_json(pj)
+        if filtro and filtro not in (pj.parent.name, pagina.get("displayName")):
+            continue
+        yield pj, pagina, [(f, ler_json(f)) for f in sorted(pj.parent.glob("visuals/*/visual.json"))]
+
+
+def _achar_visual(report, vid):
+    for pj, pagina, visuais in _paginas(report):
+        for f, v in visuais:
+            if v.get("name") == vid or f.parent.name == vid:
+                return pj, pagina, f, v
+    raise Erro(f"Visual '{vid}' não encontrado")
+
+
+def _id_pagina(report, ref):
+    for pj, pagina, _ in _paginas(report):
+        if ref in (pj.parent.name, pagina.get("displayName")):
+            return pj.parent.name
+    raise Erro(f"Página '{ref}' não encontrada")
+
+
+def _fim(report, modelo, simular, n, criadas=None, avisos=None):
+    print(f"{n} arquivo(s) {'seriam alterados' if simular else 'alterados'}")
+    finalizar(report, modelo, criadas or [], avisos or [], simular)
+
+
+def cmd_medida(args):
+    report, modelo = localizar(args.projeto)
+    tabelas = ler_modelo(modelo)
+    expr = Path(args.expressao[1:]).read_text(encoding="utf-8") if args.expressao.startswith("@") else args.expressao
+    r = R.adicionar_medida(modelo, args.tabela, args.nome, expr, args.formato, args.pasta, args.descricao,
+                           tabelas, args.simular)
+    print(f"medida {args.tabela}[{args.nome}]: {r}")
+    finalizar(report, modelo, [], [], args.simular)
+
+
+def cmd_formatar(args):
+    report, modelo = localizar(args.projeto)
+    tabelas = ler_modelo(modelo)
+    criadas = []
+    ctx = contexto(report, modelo, tabelas, args.simular, criadas)
+    n = 0
+    for vid, opcoes in ler_json(Path(args.formatos)).items():
+        _, _, f, v = _achar_visual(report, vid)
+        if "titulo" in opcoes:
+            props = v["visual"].setdefault("visualContainerObjects", {}).setdefault(
+                "title", [{"properties": {}}])[0].setdefault("properties", {})
+            props["text"], props["show"] = texto(opcoes["titulo"]), lit("true")
+        ctx["avisos"] += R.aplicar_opcoes(v, dict(opcoes, _formatar=True), tabelas,
+                                          lambda r: resolver_campo(r, tabelas),
+                                          ctx["criar_medida"], ctx["paginas"], ordem_padrao=False)
+        n += 1
+        if not args.simular:
+            gravar_json(f, v)
+    _fim(report, modelo, args.simular, n, criadas, ctx["avisos"])
+
+
+def cmd_trocar_tipo(args):
+    report, modelo = localizar(args.projeto)
+    tabelas = ler_modelo(modelo)
+    novo = APELIDOS.get(args.novo, args.novo)
+    _, _, f, v = _achar_visual(report, args.visual)
+    antigo, descartados = R.trocar_tipo(v, novo)
+    R.aplicar_opcoes(v, {}, tabelas, lambda r: resolver_campo(r, tabelas), _sem_medida)
+    print(f"{args.visual}: {antigo} → {novo}" + (f" (papéis descartados: {', '.join(descartados)})" if descartados else ""))
+    if not args.simular:
+        gravar_json(f, v)
+    _fim(report, modelo, args.simular, 1)
+
+
+def cmd_alinhar(args):
+    report, modelo = localizar(args.projeto)
+    n = 0
+    for pj, pagina, visuais in _paginas(report, args.pagina):
+        vs = [v for _, v in visuais]
+        m = R.alinhar(vs, pagina.get("width", 1280), pagina.get("height", 720), args.tolerancia)
+        if m:
+            print(f"[{pagina.get('displayName')}] {m} visual(is) alinhados")
+            n += m
+            if not args.simular:
+                for f, v in visuais:
+                    gravar_json(f, v)
+    _fim(report, modelo, args.simular, n)
+
+
+def cmd_layout(args):
+    report, modelo = localizar(args.projeto)
+    n = 0
+    for vid, pos in ler_json(Path(args.layout)).items():
+        pj, pagina, f, v = _achar_visual(report, vid)
+        p = v.setdefault("position", {})
+        for k, kk in (("x", "x"), ("y", "y"), ("largura", "width"), ("altura", "height")):
+            if k in pos:
+                p[kk] = pos[k]
+        W, H = pagina.get("width", 1280), pagina.get("height", 720)
+        if p["x"] < 0 or p["y"] < 0 or p["x"] + p["width"] > W or p["y"] + p["height"] > H:
+            raise Erro(f"{vid} sairia da página {W}x{H}: {p}")
+        n += 1
+        if not args.simular:
+            gravar_json(f, v)
+    _fim(report, modelo, args.simular, n)
+
+
+def cmd_paginas(args):
+    report, modelo = localizar(args.projeto)
+    pj_meta = report / "definition" / "pages" / "pages.json"
+    meta = ler_json(pj_meta)
+    n = 0
+    if args.ordem:
+        primeiros = [_id_pagina(report, x.strip()) for x in args.ordem.split(",") if x.strip()]
+        meta["pageOrder"] = primeiros + [p for p in meta["pageOrder"] if p not in primeiros]
+        n += 1
+    if args.ativa:
+        meta["activePageName"] = _id_pagina(report, args.ativa)
+        n += 1
+    alteracoes = {}
+    for r in args.renomear or []:
+        ref, _, nome = r.partition("=")
+        alteracoes.setdefault(_id_pagina(report, ref), {})["displayName"] = nome
+    for ref in args.ocultar or []:
+        alteracoes.setdefault(_id_pagina(report, ref), {})["visibility"] = "HiddenInViewMode"
+    for ref in args.mostrar or []:
+        alteracoes.setdefault(_id_pagina(report, ref), {})["visibility"] = None
+    for pid, mud in alteracoes.items():
+        f = report / "definition" / "pages" / pid / "page.json"
+        pagina = ler_json(f)
+        for k, val in mud.items():
+            if val is None:
+                pagina.pop(k, None)
+            else:
+                pagina[k] = val
+        n += 1
+        if not args.simular:
+            gravar_json(f, pagina)
+    if not args.simular and (args.ordem or args.ativa):
+        gravar_json(pj_meta, meta)
+    _fim(report, modelo, args.simular, n)
+
+
+def cmd_tema(args):
+    report, modelo = localizar(args.projeto)
+    if args.arquivo:
+        tema = ler_json(Path(args.arquivo))
+    else:
+        tema = R.tema_padrao(args.nome or "Tema Storytelling", args.destaque or R.DESTAQUE,
+                             args.titulo or COR_TITULO, args.fundo or COR_FUNDO_PAGINA)
+    destino = R.aplicar_tema(report, tema, args.simular)
+    print(f"tema '{tema.get('name')}' → {destino.relative_to(report)}")
+    _fim(report, modelo, args.simular, 2)
+
+
+def cmd_navegacao(args):
+    report, modelo = localizar(args.projeto)
+    x, y, w, h = (int(v) for v in args.posicao.split(","))
+    alvo = {_id_pagina(report, p.strip()) for p in args.paginas.split(",")} if args.paginas else None
+    schema = schema_mais_usado(report / "definition" / "pages", "visual.json", SCHEMA_VISUAL_PADRAO)
+    usados = ids_existentes(report / "definition" / "pages")
+    n = 0
+    for pj, pagina, visuais in _paginas(report):
+        pid = pj.parent.name
+        if (alvo and pid not in alvo) or (not alvo and (pagina.get("type") or pagina.get("visibility"))):
+            continue
+        if any(v.get("visual", {}).get("visualType") == "pageNavigator" for _, v in visuais):
+            continue
+        novo = {"x": x, "y": y, "width": w, "height": h}
+        W, H = pagina.get("width", 1280), pagina.get("height", 720)
+        if x < 0 or y < 0 or x + w > W or y + h > H:
+            print(f"PULADA [{pagina.get('displayName')}]: posição fora da página {W}x{H}")
+            continue
+        conflito = [v.get("name") for _, v in visuais if v.get("position") and R._sobrepoe(novo, v["position"])]
+        if conflito:
+            print(f"PULADA [{pagina.get('displayName')}]: sobrepõe {', '.join(conflito[:3])}; "
+                  "libere espaço (layout) ou escolha outra --posicao")
+            continue
+        z = 1 + max([v.get("position", {}).get("z", 0) for _, v in visuais] or [-1])
+        vid = novo_id(usados)
+        v = _envelope(schema, vid, {"x": x, "y": y, "largura": w, "altura": h}, z, R.montar_navegador())
+        n += 1
+        if not args.simular:
+            gravar_json(pj.parent / "visuals" / vid / "visual.json", v)
+    _fim(report, modelo, args.simular, n)
+
+
 def cmd_validar(args):
     report, modelo = localizar(args.projeto)
     print(f"Relatório: {report}\nModelo:    {modelo}")
@@ -588,6 +886,62 @@ def main():
     a.add_argument("spec")
     a.add_argument("--simular", action="store_true")
     a.set_defaults(func=cmd_criar)
+    a = sub.add_parser("medida")
+    a.add_argument("projeto")
+    a.add_argument("--tabela", required=True)
+    a.add_argument("--nome", required=True)
+    a.add_argument("--expressao", required=True, help="DAX ou @arquivo.dax")
+    a.add_argument("--formato")
+    a.add_argument("--pasta")
+    a.add_argument("--descricao")
+    a.add_argument("--simular", action="store_true")
+    a.set_defaults(func=cmd_medida)
+    a = sub.add_parser("formatar")
+    a.add_argument("projeto")
+    a.add_argument("formatos")
+    a.add_argument("--simular", action="store_true")
+    a.set_defaults(func=cmd_formatar)
+    a = sub.add_parser("trocar-tipo")
+    a.add_argument("projeto")
+    a.add_argument("visual")
+    a.add_argument("novo")
+    a.add_argument("--simular", action="store_true")
+    a.set_defaults(func=cmd_trocar_tipo)
+    a = sub.add_parser("alinhar")
+    a.add_argument("projeto")
+    a.add_argument("--pagina")
+    a.add_argument("--tolerancia", type=int, default=8)
+    a.add_argument("--simular", action="store_true")
+    a.set_defaults(func=cmd_alinhar)
+    a = sub.add_parser("layout")
+    a.add_argument("projeto")
+    a.add_argument("layout")
+    a.add_argument("--simular", action="store_true")
+    a.set_defaults(func=cmd_layout)
+    a = sub.add_parser("paginas")
+    a.add_argument("projeto")
+    a.add_argument("--ordem")
+    a.add_argument("--ativa")
+    a.add_argument("--renomear", action="append")
+    a.add_argument("--ocultar", action="append")
+    a.add_argument("--mostrar", action="append")
+    a.add_argument("--simular", action="store_true")
+    a.set_defaults(func=cmd_paginas)
+    a = sub.add_parser("tema")
+    a.add_argument("projeto")
+    a.add_argument("--nome")
+    a.add_argument("--destaque")
+    a.add_argument("--titulo")
+    a.add_argument("--fundo")
+    a.add_argument("--arquivo")
+    a.add_argument("--simular", action="store_true")
+    a.set_defaults(func=cmd_tema)
+    a = sub.add_parser("navegacao")
+    a.add_argument("projeto")
+    a.add_argument("--posicao", required=True)
+    a.add_argument("--paginas")
+    a.add_argument("--simular", action="store_true")
+    a.set_defaults(func=cmd_navegacao)
     a = sub.add_parser("ajustar")
     a.add_argument("projeto")
     a.add_argument("--pagina")
@@ -602,7 +956,7 @@ def main():
     args = ap.parse_args()
     try:
         args.func(args)
-    except Erro as e:
+    except (Erro, R.ErroRecurso) as e:
         print(f"ERRO  {e}", file=sys.stderr)
         sys.exit(2)
 

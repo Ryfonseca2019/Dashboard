@@ -1,42 +1,45 @@
 # Habilidades para o upgrade totalmente automático
 
 Objetivo: você envia o arquivo de um painel Power BI e recebe (1) as melhorias priorizadas, (2) as novas visões
-possíveis e, depois da sua escolha, (3) a nova versão pronta para abrir no Desktop.
+possíveis e, depois da sua escolha, (3) a nova versão validada e empacotada para abrir no Desktop.
 
-Legenda: ✅ pronto · 🟡 parcial · 🔜 a desenvolver
+Legenda: ✅ pronto · 🟡 pronto com ressalva · ⛔ fora do alcance desta sessão
 
 | # | Habilidade | O que faz | Status | Onde está |
 |---|---|---|---|---|
-| 1 | Ingestão multi-formato | Lê pasta PBIP, `.pbip`, `.zip` (inclusive ZIP dentro de ZIP), `.pbit` e `.pbix` | ✅ (no PBIX o modelo é binário: campos inferidos dos visuais) | `upgrade-painel/scripts/analisar_painel.py` |
-| 2 | Inventário completo | Páginas, visuais, posições, campos, cores, fontes, títulos, tabelas, medidas, relacionamentos | ✅ | idem (`inventario.json`) |
-| 3 | Auditoria de design | ~35 verificações de Storytelling com Dados, Few, Nielsen, WCAG e IBCS, com evidência e recomendação | ✅ heurísticas estáticas | idem (`analise.json`, `relatorio.md`) |
-| 4 | Revisão qualitativa | Títulos de ação, grande ideia, lógica horizontal das páginas, adequação ao público | ✅ feita pelo Claude seguindo a skill | `upgrade-painel/SKILL.md` |
-| 5 | Gerador de novas visões | 9 padrões a partir do modelo, com campos reais e layout pronto | ✅ | `analisar_painel.py` (`specs/`) |
-| 6 | Relatório priorizado | Índices por dimensão, melhorias (M) e visões (NV) numeradas para escolha | ✅ | idem |
-| 7 | Criação de páginas | Gera páginas e 9 tipos de visual em PBIR | ✅ | `pbir-paginas-visuais/scripts/pbir_tool.py criar` |
-| 8 | Ajustes em visuais existentes | Títulos, texto alternativo, ordem de leitura/tabulação | ✅ | `pbir_tool.py ajustar` |
-| 9 | Validação e regressão | Estrutura, campos, schema oficial e comparação antes × depois | ✅ | `pbir_tool.py validar`, `validar_schema.py`, `analisar_painel.py comparar` |
-| 10 | Empacotamento da entrega | ZIP `vNN+1` + `LEIA_ME` no padrão do repositório | 🟡 por instruções | `upgrade-painel/SKILL.md` |
-| 11 | Reposicionar e alinhar | Encaixar visuais existentes na grade, mover KPIs para o topo, trocar tipo de visual (pizza → barras) | 🔜 | estender `pbir_tool.py` |
-| 12 | Tema corporativo | Gerar e aplicar tema JSON (cinza + destaque + status, fontes, sem bordas) | 🔜 | nova skill `tema-painel` |
-| 13 | Destaque e contexto | Formatação condicional (cinza + cor de destaque), linhas de meta/média, rótulos diretos, títulos dinâmicos em DAX | 🔜 | `pbir_tool.py` + skill de DAX |
-| 14 | Visuais avançados | Dispersão, bullet (real × meta), slopegraph, mapa de calor, Pareto | 🔜 | estender `pbir_tool.py criar` |
-| 15 | Navegação | Navegador de páginas, botões, bookmarks, drill-through e tooltip configurados no JSON | 🔜 | estender `pbir_tool.py` |
-| 16 | Avaliação do visual renderizado | Analisar prints de cada página (cores reais, legibilidade, dados vazios) | 🟡 hoje com prints/PDF enviados por você; 🔜 automático via exportação do Power BI Service/Fabric (requer workspace e credencial) | — |
-| 17 | Leitura dos dados | Cardinalidade, nulos, atípicos e números reais para escolher visuais e escrever manchetes com valores | 🔜 requer acesso ao modelo publicado (XMLA/Fabric) ou CSVs exportados | — |
-| 18 | Orquestração "um comando" | Arquivo recebido → relatório → escolha → nova versão validada | ✅ | `upgrade-painel/SKILL.md` |
-| 19 | Apps Power Apps (`.msapp`) | Mesma auditoria para os apps | 🔜 fora do escopo atual | nova skill |
+| 1 | Ingestão multi-formato | Pasta PBIP, `.pbip`, `.zip` (inclusive ZIP dentro de ZIP), `.pbit`, `.pbix` | ✅ (PBIX: modelo binário, campos inferidos dos visuais) | `analisar_painel.py` |
+| 2 | Inventário completo | Páginas, visuais, posições, campos, cores, fontes, títulos, modelo, relacionamentos | ✅ | `analisar_painel.py` |
+| 3 | Auditoria de design | ~40 verificações (Storytelling com Dados, Few, Nielsen, WCAG, IBCS) com evidência, princípio e comando | ✅ | `analisar_painel.py` |
+| 4 | Revisão qualitativa | Grande ideia, títulos de ação, lógica horizontal, foco | ✅ feita pelo Claude seguindo a skill | `SKILL.md` |
+| 5 | Novas visões | 11 padrões com campos reais e spec pronta (resumo, real × meta, tendência, recortes, qualidade + Pareto, drill-through, temas, dispersão, dica, mapa de calor, slopegraph) | ✅ | `analisar_painel.py` |
+| 6 | Relatório priorizado | Índices, melhorias M, visões NV, "como aplicar" | ✅ | `relatorio.md` |
+| 7 | Criação de páginas | 15 tipos de visual, drill-through e dica configurados, botões e navegador | ✅ | `pbir_tool.py criar` |
+| 8 | Ajustes em visuais | Títulos, texto alternativo, ordem de leitura | ✅ | `pbir_tool.py ajustar` |
+| 9 | Validação e regressão | Estrutura, campos, links de página, drill-through, tema, schema oficial, antes × depois | ✅ | `validar`, `validar_schema.py`, `comparar` |
+| 10 | Empacotamento | ZIP `vNN+1` + LEIA_ME com changelog, bloqueia se a validação falhar | ✅ | `empacotar.py` |
+| 11 | Reposicionar, alinhar, trocar tipo | `alinhar`, `layout`, `trocar-tipo` (pizza/gauge/linha → barras/cartão/linha) | ✅ | `pbir_tool.py` |
+| 12 | Tema corporativo | Gera e registra tema (cinza + destaque + laranja de alerta, sem bordas/sombras) | ✅ | `pbir_tool.py tema` |
+| 13 | Destaque e contexto | Cor por medida (top N, abaixo da meta, categoria), títulos dinâmicos, linha de meta, subtítulo, legenda/grade, ordenação | 🟡 medidas DAX e linha de meta conferidas no Desktop | `pbir_tool.py formatar` |
+| 14 | Visuais avançados | Dispersão, real × meta, Pareto, slopegraph, mapa de calor | ✅ | `pbir_tool.py criar` |
+| 15 | Navegação | Navegador de páginas, botões (página, drill-through, voltar, limpar filtros, URL), drill-through, dica de página, ordem/página inicial | 🟡 bookmarks continuam manuais | `pbir_tool.py` |
+| 16 | Avaliação do visual renderizado | PDF → imagens por página; prints analisados pelo Claude | ✅ com PDF/prints · 🟡 exportação automática pelo Service escrita, não testada (exige workspace Premium/Fabric e token) | `paginas_pdf.py`, `exportar_service.py` |
+| 17 | Leitura dos dados | Cardinalidade, nulos, atípicos e manchetes com números a partir de CSV/XLSX exportados | ✅ · ⛔ consulta direta ao modelo publicado (XMLA) depende de acesso ao tenant | `perfilar_dados.py` + `--dados` |
+| 18 | Orquestração "um comando" | Arquivo → relatório → escolha → nova versão validada e empacotada | ✅ | `upgrade-painel/SKILL.md` |
+| 19 | Apps Power Apps | Auditoria de UX de `.msapp` (acessibilidade, contraste, toque, delegação, erros, navegação, nomes, cores, desempenho) | ✅ análise · ⛔ edição automática do app (feita no Power Apps Studio) | `analisar_app.py` |
 
-## Ordem sugerida para desenvolver
+## Limites que continuam
 
-1. **#11 Reposicionar e alinhar** e **#14 visuais avançados**: aumentam o que sai pronto sem abrir o Desktop.
-2. **#12 Tema corporativo**: resolve cor, fonte e borda de uma vez em todos os painéis.
-3. **#13 Destaque e contexto**: é o coração do Storytelling com Dados (foco com cor e títulos dinâmicos).
-4. **#10 Empacotamento em script** e **#15 navegação**.
-5. **#16/#17**, quando houver acesso ao Power BI Service/Fabric a partir desta sessão.
+- **Power BI Desktop não roda aqui.** Tudo é validado estaticamente e contra o schema oficial; a renderização e as
+  medidas DAX novas se confirmam ao abrir no Desktop. Os comandos avisam com `NOTA` o que conferir.
+- **Bookmarks** não são gerados: o estado que eles capturam (filtros, visuais visíveis, seleção) é frágil para
+  montar sem o Desktop.
+- **Service/Fabric** (prints automáticos, leitura direta do modelo): o script está pronto, mas precisa de
+  workspace com capacidade Premium/Fabric, token e liberação do host `api.powerbi.com` no ambiente.
+- **Power Apps:** a auditoria é automática; as correções são aplicadas no Studio (o `.msapp` não é editado aqui).
 
-## O que você pode enviar para a análise ficar mais completa
+## O que enviar para a análise ficar completa
 
 - O painel em **PBIP (ZIP da pasta)** ou **PBIT**. O PBIX funciona, mas sem o modelo.
-- **Prints ou PDF** das páginas (Arquivo › Exportar › PDF), para avaliar cores e legibilidade reais.
-- Uma frase sobre **quem usa** e **que decisão toma**: é o ponto de partida do livro (L1).
+- **PDF** do relatório (Arquivo › Exportar › PDF) ou prints.
+- **CSVs exportados** dos visuais principais (Mais opções › Exportar dados), para manchetes com números.
+- Uma frase sobre **quem usa** e **que decisão toma** (L1).

@@ -51,6 +51,7 @@ Ordenadas por severidade. **Auto** = pode ser aplicada pelas skills sem edição
 - **Por quê:** 2 ocorrências. 'H/A prevista parcial' mostra H/A Prevista no Painel sem referência. Medidas candidatas: Meta H/A, H/A Atingimento, H/A GAP; 'H/A prevista parcial' mostra H/A Prevista no Painel sem referência. Medidas candidatas: Meta H/A, H/A Atingimento, H/A GAP
 - **O que fazer:** Mostrar meta, variação ou período anterior junto do valor (cartão novo com valor de referência, ou subtítulo dinâmico).
 - **Princípio:** L1 Contexto · L2 Número com comparação · [Few] · **Esforço:** baixo · **Auto:** sim · `G09`
+- **Como aplicar:** `pbir_tool.py formatar {titulo_dinamico: {medida, meta}} ou nova visão real_meta`
 
 ### M05 🟠 Sem tabela de datas marcada
 - **Por quê:** Há colunas de tempo (Atualizacao[AtualizadoEmUTC], DimAno[Ano], DimCompetencia[Ano], DimCompetencia[AnoMes]) mas nenhuma tabela marcada como tabela de datas.
@@ -61,36 +62,43 @@ Ordenadas por severidade. **Auto** = pode ser aplicada pelas skills sem edição
 - **Por quê:** 83 visual(is) de dados sem texto alternativo.
 - **O que fazer:** Preencher o texto alternativo (Geral › Texto alternativo) com o que o visual mostra e a conclusão.
 - **Princípio:** [WCAG] · [Microsoft] · **Esforço:** baixo · **Auto:** sim · `A03`
+- **Como aplicar:** `pbir_tool.py ajustar <projeto> --texto-alt`
 
 ### M07 🟡 Ordem de camada/tabulação repetida — Mobilização e oferta, Oferta e capacidade, Prontidão e pendências, Evasão e memória de cálculo, Cadastro e classificação contábil
 - **Por quê:** 5 ocorrências. Em 'Mobilização e oferta', 14 visuais compartilham o mesmo z/tabOrder; Em 'Oferta e capacidade', 14 visuais compartilham o mesmo z/tabOrder; Em 'Prontidão e pendências', 14 visuais compartilham o mesmo z/tabOrder; Em 'Evasão e memória de cálculo', 14 visuais compartilham o mesmo z/tabOrder; e mais 1
 - **O que fazer:** Numerar z e tabOrder seguindo a leitura (esquerda→direita, cima→baixo).
 - **Princípio:** [Microsoft] Ordem de tabulação · **Esforço:** baixo · **Auto:** sim · `A04`
+- **Como aplicar:** `pbir_tool.py ajustar <projeto> --ordem-leitura`
 
 ### M08 🟡 Relatório sem tema corporativo
 - **Por quê:** Só o tema base 'Fluent2-CY26SU08' está aplicado; cores e bordas são formatadas visual a visual.
 - **O que fazer:** Criar um tema JSON (paleta: base cinza + cor de destaque + cores de status, Segoe UI, bordas e sombras desligadas) e aplicá-lo ao relatório.
-- **Princípio:** L4 Cor consistente · [Nielsen 4] · **Esforço:** médio · **Auto:** não · `C02`
+- **Princípio:** L4 Cor consistente · [Nielsen 4] · **Esforço:** médio · **Auto:** sim · `C02`
+- **Como aplicar:** `pbir_tool.py tema <projeto> --nome '<Tema>'`
 
 ### M09 🟡 Pequenos desalinhamentos — Mobilização e oferta, Oferta e capacidade, Prontidão e pendências, Evasão e memória de cálculo
 - **Por quê:** 4 ocorrências. 3 bordas quase alinhadas (diferença de 1–8 px) em 'Mobilização e oferta'; 3 bordas quase alinhadas (diferença de 1–8 px) em 'Oferta e capacidade'; 3 bordas quase alinhadas (diferença de 1–8 px) em 'Prontidão e pendências'; 3 bordas quase alinhadas (diferença de 1–8 px) em 'Evasão e memória de cálculo'
 - **O que fazer:** Alinhar à grade (margem 24, espaçamento 16–24).
 - **Princípio:** L3 Ordem visual · Gestalt · **Esforço:** baixo · **Auto:** sim · `D03`
+- **Como aplicar:** `pbir_tool.py alinhar <projeto> --pagina '<página>'`
 
 ### M10 🟡 Tamanhos de página diferentes
-- **Por quê:** 1440×1100 (5 pág.), 1440×1000 (2 pág.)
+- **Por quê:** 1440×1100 (5 pág.), 1440×1000 (1 pág.)
 - **O que fazer:** Padronizar o tamanho das páginas gerenciais (as de conferência podem manter o próprio).
 - **Princípio:** [Nielsen 4] Consistência · **Esforço:** baixo · **Auto:** não · `D08`
+- **Como aplicar:** `edição de page.json (width/height) + pbir_tool.py layout`
 
 ### M11 🟡 Cartão sem comparação — Visão Gerencial, Mobilização e oferta, Oferta e capacidade, Evasão e memória de cálculo, Cadastro e classificação contábil
 - **Por quê:** 14 ocorrências. 'Horas descontadas pelo calendário' mostra Horas Descontadas Calendário sem referência; 'Turmas em execução' mostra Turmas em Execução sem referência; 'Matrículas previstas' mostra Matrículas Previstas sem referência; 'Matrículas previstas' mostra Matrículas Previstas sem referência; e mais 10
 - **O que fazer:** Mostrar meta, variação ou período anterior junto do valor (cartão novo com valor de referência, ou subtítulo dinâmico).
-- **Princípio:** L1 Contexto · L2 Número com comparação · [Few] · **Esforço:** baixo · **Auto:** não · `G09`
+- **Princípio:** L1 Contexto · L2 Número com comparação · [Few] · **Esforço:** baixo · **Auto:** sim · `G09`
+- **Como aplicar:** `pbir_tool.py formatar {titulo_dinamico: {medida, meta}} ou nova visão real_meta`
 
 ### M12 🟡 Agregação implícita — Visão Gerencial
 - **Por quê:** 'Última atualização' agrega Column1 direto da coluna.
 - **O que fazer:** Criar medidas explícitas (formato, nome de negócio, reuso).
-- **Princípio:** Boas práticas DAX · **Esforço:** baixo · **Auto:** não · `G10`
+- **Princípio:** Boas práticas DAX · **Esforço:** baixo · **Auto:** sim · `G10`
+- **Como aplicar:** `pbir_tool.py medida <projeto> --tabela T --nome N --expressao 'SUM(...)' + formatar`
 
 ### M13 🟡 Medidas sem descrição
 - **Por quê:** 38 de 38 medidas.
@@ -123,26 +131,15 @@ Ordenadas por severidade. **Auto** = pode ser aplicada pelas skills sem edição
   - clusteredBarChart — Turmas no período por CampoFonte (Category: Campos_Adicionais_Diagnostico[CampoFonte]; Y: FatoProducao[Turmas no período])
   - tableEx — Detalhe (Values: Campos_Adicionais_Diagnostico[Campo], FatoProducao[Turmas no período], FatoProducao[H/A Prevista no Painel], FatoProducao[Matrículas Previstas])
 
-### NV05 🟠 Qualidade dos dados e pendências
-- **Pergunta que responde:** O que está impedindo o número de ser confiável?
-- **Por quê:** 8 medidas de pendência/validação no modelo; reuni-las orienta a correção na origem.
-- **Princípio:** L4 Foco no que exige ação · [Nielsen 9] · **Auto:** sim · spec: `specs/NV05.json`
-- **Visuais:**
-  - card — Competências com pendência (Values: FatoProducao[Competências com pendência])
-  - card — Turmas com período inválido (Values: FatoProducao[Turmas com período inválido])
-  - card — Pendências de cálculo (Values: FatoProducao[Pendências de cálculo])
-  - card — Turmas distintas com pendência (Values: FatoProducao[Turmas distintas com pendência])
-  - tableEx — Pendências por Unidade (Values: DimUnidade[Unidade], FatoProducao[Competências com pendência], FatoProducao[Turmas com período inválido], FatoProducao[Pendências de cálculo], FatoProducao[Turmas distintas com pendência], FatoProducao[Turmas sem método no período])
-
-### NV06 🟠 Ficha (drill-through) de DimTurma
-- **Pergunta que responde:** Qual é a situação completa de um(a) DimTurma específico(a)?
-- **Por quê:** DimTurma[TurmaID] identifica a entidade; uma página de drill-through tira detalhe das páginas gerenciais. Depois de gerar, configure o drill-through no Desktop (campo em 'Drill-through').
+### NV06 🟠 Ficha — Turma
+- **Pergunta que responde:** Qual é a situação completa de um(a) turma específico(a)?
+- **Por quê:** DimTurma[TurmaID] identifica a entidade; a página de drill-through (com botão Voltar) tira o detalhe das páginas gerenciais. Clique com o botão direito num visual com esse campo › Drill-through.
 - **Princípio:** [Shneiderman] Detalhe sob demanda · **Auto:** sim · spec: `specs/NV06.json`
 - **Visuais:**
   - card — Turmas no período (Values: FatoProducao[Turmas no período])
   - card — H/A Prevista no Painel (Values: FatoProducao[H/A Prevista no Painel])
   - card — Matrículas Previstas (Values: FatoProducao[Matrículas Previstas])
-  - tableEx — Ficha de DimTurma (Values: DimTurma[TurmaID], DimTurma[Curso], DimTurma[MetodoEvasao], DimTurma[Status], FatoProducao[Turmas no período], FatoProducao[H/A Prevista no Painel], FatoProducao[Matrículas Previstas])
+  - tableEx — Detalhe — Turma (Values: DimTurma[TurmaID], DimTurma[Curso], DimTurma[MetodoEvasao], DimTurma[Status], FatoProducao[Turmas no período], FatoProducao[H/A Prevista no Painel], FatoProducao[Matrículas Previstas])
 
 ### NV07a 🟡 Tema não explorado: Melhorias\Metas
 - **Pergunta que responde:** O que as medidas de 'Melhorias\Metas' mostram?
@@ -154,19 +151,26 @@ Ordenadas por severidade. **Auto** = pode ser aplicada pelas skills sem edição
 
 ### NV08 🟡 Relação entre Turmas no período e H/A Prevista no Painel
 - **Pergunta que responde:** Unidades com mais Turmas no período também têm mais H/A Prevista no Painel?
-- **Por quê:** Gráfico de dispersão revela atípicos; exige habilidade de dispersão no gerador (ver roadmap).
-- **Princípio:** L2 Dispersão para relação · **Auto:** parcial
+- **Por quê:** A dispersão mostra se as duas medidas andam juntas e revela unidades atípicas.
+- **Princípio:** L2 Dispersão para relação · **Auto:** sim · spec: `specs/NV08.json`
 - **Visuais:**
-  - scatterChart — Turmas no período × H/A Prevista no Painel por Unidade (Category: DimUnidade[Unidade]; X: FatoProducao[Turmas no período]; Y: FatoProducao[H/A Prevista no Painel])
+  - dispersao — Turmas no período × H/A Prevista no Painel por Unidade (Category: DimUnidade[Unidade]; X: FatoProducao[Turmas no período]; Y: FatoProducao[H/A Prevista no Painel])
 
 ### NV09 🟡 Página de dica de ferramenta
 - **Pergunta que responde:** Que contexto o usuário quer ao passar o mouse?
-- **Por quê:** Tooltip de página dá contexto sem ocupar espaço; configurar como Dica de ferramenta no Desktop.
+- **Por quê:** A dica de página dá contexto sem ocupar espaço. Vincule-a aos gráficos com formatar {"tooltip_pagina": "Página de dica de ferramenta"}.
 - **Princípio:** L3 Menos desordem · [Shneiderman] · **Auto:** sim · spec: `specs/NV09.json`
 - **Visuais:**
   - card — Turmas no período (Values: FatoProducao[Turmas no período])
   - card — H/A Prevista no Painel (Values: FatoProducao[H/A Prevista no Painel])
   - card — Matrículas Previstas (Values: FatoProducao[Matrículas Previstas])
+
+### NV10 🟡 Mapa de calor: Turmas no período por Unidade e AnoMes
+- **Pergunta que responde:** Em que Unidade e em que período Turmas no período foge do padrão?
+- **Por quê:** A intensidade da cor mostra concentrações e lacunas sem precisar ler cada número.
+- **Princípio:** L2 Mapa de calor · L4 intensidade · **Auto:** sim · spec: `specs/NV10.json`
+- **Visuais:**
+  - mapa_calor — Turmas no período por Unidade e AnoMes (Rows: DimUnidade[Unidade]; Columns: DimCompetencia[AnoMes]; Values: FatoProducao[Turmas no período])
 
 ## Títulos atuais (para reescrever como títulos de ação)
 

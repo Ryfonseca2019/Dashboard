@@ -127,7 +127,8 @@ TIPOS_COMBO = {"lineClusteredColumnComboChart", "lineStackedColumnComboChart"}
 TIPOS_EMPILHADO = {"stackedBarChart", "columnChart", "hundredPercentStackedBarChart",
                    "hundredPercentStackedColumnChart", "stackedAreaChart"}
 TIPOS_BARRA = {"clusteredBarChart", "clusteredColumnChart", "barChart", "columnChart", "stackedBarChart"}
-SUPORTADOS_GERADOR = {"card", "slicer", "tableEx", "pivotTable", "clusteredBarChart", "clusteredColumnChart",
+SUPORTADOS_GERADOR = {"scatterChart", "lineClusteredColumnComboChart", "real_meta", "pareto", "mapa_calor", "slope",
+                      "dispersao", "card", "slicer", "tableEx", "pivotTable", "clusteredBarChart", "clusteredColumnChart",
                       "lineChart", "donutChart", "textbox"}
 
 RE_TEMPO = re.compile(r"(^|[^a-z])(data|date|dt|ano|mes|anomes|competencia|periodo|semana|dia|trimestre|"
@@ -423,6 +424,9 @@ def montar_visual(vid, tipo, pos, objs, vco, campos, bruto, filtros=0, grupo=Fal
         "borda": prop(vco, "border", "show") is True,
         "sombra": prop(vco, "dropShadow", "show") is True,
         "alt_text": bool(alt),
+        "modo": prop(objs, "data", "mode"),
+        "eixo_secundario": prop(objs, "valueAxis", "secShow"),
+        "destaque": "Measure" in json.dumps((objs.get("dataPoint") or [{}])[0].get("properties", {}).get("fill", {})),
         "filtros": filtros,
         "grupo": grupo,
     }
@@ -727,7 +731,7 @@ def auditar(rel, modelo):
               f"Só o tema base '{rel.get('tema_base')}' está aplicado; cores e bordas são formatadas visual a visual.",
               "Criar um tema JSON (paleta: base cinza + cor de destaque + cores de status, Segoe UI, bordas e "
               "sombras desligadas) e aplicá-lo ao relatório.", "médio")
-    tamanhos = Counter((p["largura"], p["altura"]) for p in visiveis)
+    tamanhos = Counter((p["largura"], p["altura"]) for p in visiveis if not eh_operacional(p))
     if len(tamanhos) > 1 and not all(eh_operacional(p) for p in visiveis):
         a.add("D08", "Desordem e layout", "baixa", "[Nielsen 4] Consistência",
               "Tamanhos de página diferentes",
@@ -906,7 +910,8 @@ def auditar(rel, modelo):
                       "Medidor (gauge)", f"'{tit}' em '{nome}'.",
                       "Trocar por cartão com valor, meta e variação, ou barra com marcador de meta (bullet).",
                       "baixo", True, nome, [v["id"]])
-            elif t in TIPOS_COMBO:
+            elif t in TIPOS_COMBO and v.get("eixo_secundario") is not False and \
+                    not any("acumulad" in sem_acento(c["campo"]) for c in ys):
                 a.add("G07", "Escolha do visual", "baixa", "L2 Eixo secundário confunde",
                       "Gráfico com dois eixos", f"'{tit}' em '{nome}'.",
                       "Dividir em dois gráficos alinhados ou mostrar a variação diretamente.", "médio", False,
@@ -931,7 +936,8 @@ def auditar(rel, modelo):
                           + (" (página operacional, densidade esperada)" if oper else "") + ".",
                           "Manter as colunas essenciais, aplicar destaque condicional só ao que exige ação e levar o "
                           "restante para drill-through/tooltip.", "médio", False, nome, [v["id"]])
-            if t == "lineChart" and (len(ys) > 4 or series):
+            slope = series and v["filtros"] and cat and all(eh_tempo(c["campo"]) for c in cat)
+            if t == "lineChart" and (len(ys) > 4 or series) and not slope:
                 a.add("G06", "Escolha do visual", "baixa", "L4 Foco · evitar espaguete",
                       "Muitas séries na linha", f"'{tit}' tem {len(ys)} medida(s){' e legenda' if series else ''}.",
                       "Destacar a série principal e acinzentar as demais, ou usar múltiplos pequenos.",
@@ -946,7 +952,7 @@ def auditar(rel, modelo):
                 a.add("G10", "Modelo e desempenho", "baixa", "Boas práticas DAX",
                       "Agregação implícita", f"'{tit}' agrega {', '.join(c['campo'] for c in implicitas)} direto da coluna.",
                       "Criar medidas explícitas (formato, nome de negócio, reuso).", "baixo", False, nome, [v["id"]])
-            if t in TIPOS_CARTAO and ys and ys[0]["tipo"] == "Measure":
+            if t in TIPOS_CARTAO and ys and ys[0]["tipo"] == "Measure" and p["tipo"] not in ("Drillthrough", "Tooltip"):
                 med = ys[0]["campo"]
                 fmt = (modelo["tabelas"].get(ys[0]["tabela"], {}).get("medidas", {}).get(med, {}) or {}).get("formato")
                 texto_ou_data = re.search(r"status|situac|atualiz|data|texto|titulo|rotulo|label|nome",
@@ -968,7 +974,8 @@ def auditar(rel, modelo):
 
     # ---------------------------------------------------------------- modelo
     if modelo["lido"]:
-        sem_fmt = [m for t in modelo["tabelas"].values() for m, d in t["medidas"].items() if not d["formato"]]
+        sem_fmt = [m for t in modelo["tabelas"].values() for m, d in t["medidas"].items()
+                   if not d["formato"] and not str(d.get("pasta") or "").startswith("Storytelling")]
         if sem_fmt:
             a.add("M01", "Modelo e desempenho", "média" if len(sem_fmt) > 5 else "baixa", "[Nielsen 2] · L3",
                   "Medidas sem formato", f"{len(sem_fmt)} medida(s): {', '.join(sem_fmt[:6])}.",
@@ -1015,6 +1022,78 @@ def auditar(rel, modelo):
     return a.achados
 
 
+COMO_APLICAR = {
+    "G01": "pbir_tool.py trocar-tipo <projeto> <id> barras",
+    "G02": "pbir_tool.py trocar-tipo <projeto> <id> card + formatar {titulo_dinamico: {medida, meta}}",
+    "G03": "pbir_tool.py trocar-tipo <projeto> <id> barras",
+    "G04": "pbir_tool.py trocar-tipo <projeto> <id> linha",
+    "G06": "pbir_tool.py formatar {destaque: {categoria: ...}} na série principal",
+    "G09": "pbir_tool.py formatar {titulo_dinamico: {medida, meta}} ou nova visão real_meta",
+    "G11": "pbir_tool.py formatar {destaque: {top: 5}, ordenar: desc} + filtro Top N no Desktop",
+    "G12": "pbir_tool.py formatar {\"<id>\": {\"modo\": \"Basic\"}}",
+    "D03": "pbir_tool.py alinhar <projeto> --pagina '<página>'",
+    "D04": "pbir_tool.py layout <projeto> layout.json",
+    "D05": "pbir_tool.py layout <projeto> layout.json",
+    "D07": "pbir_tool.py tema <projeto> (tema desliga bordas e sombras)",
+    "D08": "edição de page.json (width/height) + pbir_tool.py layout",
+    "H01": "pbir_tool.py criar com pagina.existente (textbox de manchete no topo)",
+    "H02": "pbir_tool.py ajustar --titulos titulos.json ou formatar {titulo_dinamico}",
+    "H03": "pbir_tool.py paginas --renomear '<id>=<Nome>'",
+    "H05": "pbir_tool.py paginas --ordem '<resumo>,<...>' --ativa '<resumo>'",
+    "H06": "pbir_tool.py paginas --renomear '<id>=<Nome>'",
+    "H07": "pbir_tool.py layout <projeto> layout.json (KPIs na primeira faixa)",
+    "C01": "pbir_tool.py tema + formatar {destaque: ...}",
+    "C02": "pbir_tool.py tema <projeto> --nome '<Tema>'",
+    "C03": "pbir_tool.py formatar {destaque: {abaixo_de: ...}} (laranja/cinza no lugar de vermelho/verde)",
+    "A01": "pbir_tool.py tema <projeto> (cores de texto do tema) ou edição das cores",
+    "A02": "pbir_tool.py tema <projeto> (tamanhos mínimos nas classes de texto)",
+    "A03": "pbir_tool.py ajustar <projeto> --texto-alt",
+    "A04": "pbir_tool.py ajustar <projeto> --ordem-leitura",
+    "N01": "pbir_tool.py navegacao <projeto> --posicao x,y,larg,alt",
+    "G10": "pbir_tool.py medida <projeto> --tabela T --nome N --expressao 'SUM(...)' + formatar",
+    "M01": "edição do TMDL (formatString) — skill especialista-dax",
+    "M02": "edição do TMDL (displayFolder) — skill especialista-modelagem",
+}
+
+
+def auditar_dados(rel, perfil):
+    """Verificações que dependem dos dados exportados (perfilar_dados.py)."""
+    a = Auditoria()
+    if not perfil:
+        return a.achados
+    cols = {}
+    for tb in perfil:
+        for c in tb["colunas"]:
+            cols.setdefault(sem_acento(c["coluna"]), c)
+    for p in rel["paginas"]:
+        for v in p["visuais"]:
+            for c in v["campos"]:
+                info = cols.get(sem_acento(c["campo"]))
+                if not info:
+                    continue
+                papel = c["papel"]
+                if papel in ("Category", "Axis") and v["tipo"] in TIPOS_BARRA | TIPOS_PIZZA | {"lineChart"} \
+                        and info["distintos"] > 15 and not eh_tempo(c["campo"]) and not v.get("destaque"):
+                    a.add("G11", "Escolha do visual", "média", "L3 Carga cognitiva · L4 Foco",
+                          "Categorias demais no gráfico",
+                          f"'{v['titulo'] or v['id']}' tem {info['distintos']} valores de {c['campo']}.",
+                          "Mostrar as 5–10 maiores (filtro Top N), agrupar o restante em 'Outros' e destacar o que importa.",
+                          "baixo", True, p["nome"], [v["id"]])
+                if v["tipo"] in TIPOS_SEGMENTACAO and info["distintos"] <= 5 and v.get("modo") != "Basic":
+                    a.add("G12", "Navegação", "baixa", "[Nielsen 6] Reconhecer em vez de lembrar",
+                          "Segmentação com poucas opções escondida em lista suspensa",
+                          f"{c['campo']} tem só {info['distintos']} valores.",
+                          "Usar segmentação em botões/blocos para deixar as opções visíveis.", "baixo", True,
+                          p["nome"], [v["id"]])
+                if info["nulos_pct"] >= 20:
+                    a.add("Q01", "Contexto e narrativa", "média", "[Nielsen 5/9] Prevenir e explicar erros",
+                          "Campo com muitos valores em branco",
+                          f"{c['campo']} tem {info['nulos_pct']:.0f}% de valores vazios nos dados exportados.",
+                          "Sinalizar '(sem valor)' no visual, explicar no subtítulo e tratar na origem.", "médio",
+                          False, p["nome"], [v["id"]])
+    return a.achados
+
+
 def agrupar(achados):
     """Junta achados iguais (mesmo código/título/severidade) de páginas diferentes."""
     grupos = {}
@@ -1050,11 +1129,16 @@ def notas(achados):
 
 
 # ============================================================================ novas visões
+def humano(nome):
+    n = re.sub(r"^(Dim|dim|D_|d_|Fato|fato|F_|f_|Tb_?|tb_?)", "", nome)
+    return re.sub(r"([a-z\u00e0-\u00ff])([A-Z])", r"\1 \2", n).replace("_", " ").strip() or nome
+
+
 def nome_campo(t, c):
     return f"{t}[{c}]"
 
 
-def sugerir_visoes(rel, modelo):
+def sugerir_visoes(rel, modelo, perfil=None):
     cont, por_visual = usos(rel)
     dims = tabelas_dimensao(modelo)
     tabs = modelo["tabelas"]
@@ -1081,13 +1165,23 @@ def sugerir_visoes(rel, modelo):
                    for c in v["campos"] if c["tipo"] == "Measure"}
     visoes = []
 
-    def add(codigo, titulo, pergunta, principio, prioridade, visuais, motivo):
+    def add(codigo, titulo, pergunta, principio, prioridade, visuais, motivo, pagina=None):
         visoes.append({"codigo": codigo, "titulo": titulo, "pergunta": pergunta, "principio": principio,
-                       "prioridade": prioridade, "motivo": motivo, "visuais": visuais,
+                       "prioridade": prioridade, "motivo": motivo, "visuais": visuais, "pagina": pagina or {},
                        "automatizavel": all(v["tipo"] in SUPORTADOS_GERADOR for v in visuais)})
 
     t0 = tempo[0] if tempo else None
     d0 = categorias[0] if categorias else None
+
+    def existe(tipo, **papeis):
+        """Há visual do tipo com os campos nos papéis indicados? papeis: Papel=(tabela, campo)."""
+        for _, v in por_visual:
+            if v["tipo"] != tipo:
+                continue
+            if all(any(c["papel"] == papel and (c["tabela"], c["campo"]) == ref for c in v["campos"])
+                   for papel, ref in papeis.items() if ref):
+                return True
+        return False
 
     # NV01 resumo executivo
     tem_resumo = any(sum(1 for v in p["visuais"] if v["tipo"] in TIPOS_CARTAO and v["y"] < 0.35 * p["altura"]) >= 2
@@ -1100,7 +1194,9 @@ def sugerir_visoes(rel, modelo):
                         "campos": {"Category": nome_campo(*t0), "Y": nome_campo(*kpis[0])}})
         if d0:
             vis.append({"tipo": "clusteredBarChart", "titulo": f"{kpis[0][1]} por {d0[1]}",
-                        "campos": {"Category": nome_campo(*d0), "Y": nome_campo(*kpis[0])}})
+                        "campos": {"Category": nome_campo(*d0), "Y": nome_campo(*kpis[0])},
+                        "destaque": {"top": 3}, "grade": False,
+                        "subtitulo": "Em destaque: as 3 maiores"})
         add("NV01", "Resumo executivo", "Como estamos e onde agir, em 5 segundos?",
             "L1 História de 3 minutos · L6 · [Pirâmide]", "alta", vis,
             "O relatório não tem página inicial com KPIs; as medidas mais usadas viram os cartões.")
@@ -1123,12 +1219,14 @@ def sugerir_visoes(rel, modelo):
                                               and classe_medida(x[1]) == "base") for cp in campos_pagina):
             continue  # meta já aparece ao lado de uma medida do mesmo tema
         varis = [(tt, mm) for tt, mm in medidas if classe_medida(mm) in ("variacao", "razao") and tk & tokens(mm)]
-        vis = [{"tipo": "card", "titulo": m, "campos": {"Values": nome_campo(t, m)}},
+        vis = [{"tipo": "card", "titulo": m, "campos": {"Values": nome_campo(t, m)},
+                "titulo_dinamico": {"medida": nome_campo(t, m), "meta": nome_campo(*metas[0]), "texto": m}},
                {"tipo": "card", "titulo": metas[0][1], "campos": {"Values": nome_campo(*metas[0])}}]
         vis += [{"tipo": "card", "titulo": mm, "campos": {"Values": nome_campo(tt, mm)}} for tt, mm in varis[:2]]
         if d0:
-            vis.append({"tipo": "clusteredBarChart", "titulo": f"{m} × {metas[0][1]} por {d0[1]}",
-                        "campos": {"Category": nome_campo(*d0), "Y": [nome_campo(t, m), nome_campo(*metas[0])]}})
+            vis.append({"tipo": "real_meta", "titulo": f"{m} × {metas[0][1]} por {d0[1]}",
+                        "subtitulo": "Laranja = abaixo da meta; marcador = meta",
+                        "campos": {"Category": nome_campo(*d0), "Y": nome_campo(t, m), "Meta": nome_campo(*metas[0])}})
         if t0:
             vis.append({"tipo": "lineChart", "titulo": f"{m} × {metas[0][1]} no tempo",
                         "campos": {"Category": nome_campo(*t0), "Y": [nome_campo(t, m), nome_campo(*metas[0])]}})
@@ -1151,7 +1249,8 @@ def sugerir_visoes(rel, modelo):
     # NV04 dimensões não exploradas
     nao_usadas = [x for x in categorias if x not in cont][:3]
     if nao_usadas and base:
-        vis = [{"tipo": "clusteredBarChart", "titulo": f"{base[0][1]} por {c}",
+        vis = [{"tipo": "clusteredBarChart", "titulo": f"{base[0][1]} por {c}", "destaque": {"top": 3},
+                "subtitulo": "Em destaque: as 3 maiores", "grade": False,
                 "campos": {"Category": nome_campo(t, c), "Y": nome_campo(*base[0])}} for t, c in nao_usadas]
         vis.append({"tipo": "tableEx", "titulo": "Detalhe",
                     "campos": {"Values": [nome_campo(*nao_usadas[0])] + [nome_campo(*b) for b in base[:3]]}})
@@ -1161,9 +1260,13 @@ def sugerir_visoes(rel, modelo):
 
     # NV05 qualidade
     qual = [(t, m) for t, m in medidas if classe_medida(m) == "qualidade"]
-    if qual:
+    pagina_qualidade = any(len({(c["tabela"], c["campo"]) for v in p["visuais"] for c in v["campos"]} & set(qual)) >= 3
+                           for p in paginas)
+    if qual and not pagina_qualidade:
         vis = [{"tipo": "card", "titulo": m, "campos": {"Values": nome_campo(t, m)}} for t, m in qual[:4]]
         if d0:
+            vis.append({"tipo": "pareto", "titulo": f"Onde se concentram {qual[0][1]} (Pareto)",
+                        "campos": {"Category": nome_campo(*d0), "Y": nome_campo(*qual[0])}})
             vis.append({"tipo": "tableEx", "titulo": f"Pendências por {d0[1]}",
                         "campos": {"Values": [nome_campo(*d0)] + [nome_campo(t, m) for t, m in qual[:5]]}})
         add("NV05", "Qualidade dos dados e pendências", "O que está impedindo o número de ser confiável?",
@@ -1176,19 +1279,20 @@ def sugerir_visoes(rel, modelo):
         t, c = ids[0]
         desc_cols = [x for x in categorias if x[0] == t][:3]
         vis = [{"tipo": "card", "titulo": m, "campos": {"Values": nome_campo(tt, m)}} for tt, m in base[:3]]
-        vis.append({"tipo": "tableEx", "titulo": f"Ficha de {t}",
+        vis.append({"tipo": "tableEx", "titulo": f"Detalhe — {humano(t)}",
                     "campos": {"Values": [nome_campo(t, c)] + [nome_campo(*x) for x in desc_cols]
                                + [nome_campo(*b) for b in base[:3]]}})
-        add("NV06", f"Ficha (drill-through) de {t}", f"Qual é a situação completa de um(a) {t} específico(a)?",
+        add("NV06", f"Ficha — {humano(t)}", f"Qual é a situação completa de um(a) {humano(t).lower()} específico(a)?",
             "[Shneiderman] Detalhe sob demanda", "média", vis,
-            f"{t}[{c}] identifica a entidade; uma página de drill-through tira detalhe das páginas gerenciais. "
-            "Depois de gerar, configure o drill-through no Desktop (campo em 'Drill-through').")
+            f"{t}[{c}] identifica a entidade; a página de drill-through (com botão Voltar) tira o detalhe das "
+            "páginas gerenciais. Clique com o botão direito num visual com esse campo › Drill-through.",
+            {"tipo": "drillthrough", "campo_drill": nome_campo(t, c)})
 
     # NV07 pastas não exploradas
     por_pasta = defaultdict(list)
     for t, tab in tabs.items():
         for m, d in tab["medidas"].items():
-            if d.get("pasta") and not d.get("oculta"):
+            if d.get("pasta") and not d.get("oculta") and not str(d["pasta"]).startswith("Storytelling"):
                 por_pasta[d["pasta"]].append((t, m))
     n = 0
     for pasta, ms in sorted(por_pasta.items()):
@@ -1196,42 +1300,75 @@ def sugerir_visoes(rel, modelo):
             continue
         vis = [{"tipo": "card", "titulo": m, "campos": {"Values": nome_campo(t, m)}} for t, m in ms[:4]]
         if d0:
-            vis.append({"tipo": "clusteredBarChart", "titulo": f"{ms[0][1]} por {d0[1]}",
+            vis.append({"tipo": "clusteredBarChart", "titulo": f"{ms[0][1]} por {d0[1]}", "destaque": {"top": 3},
+                        "subtitulo": "Em destaque: as 3 maiores", "grade": False,
                         "campos": {"Category": nome_campo(*d0), "Y": nome_campo(*ms[0])}})
         add(f"NV07{chr(97 + n)}", f"Tema não explorado: {pasta}", f"O que as medidas de '{pasta}' mostram?",
             "L1 Contexto", "baixa", vis, f"Nenhuma das {len(ms)} medidas da pasta '{pasta}' está no relatório.")
         n += 1
 
     # NV08 relação entre medidas
-    if len(base) >= 2 and d0:
+    if len(base) >= 2 and d0 and not any(v["tipo"] == "scatterChart" for _, v in por_visual):
         add("NV08", f"Relação entre {base[0][1]} e {base[1][1]}",
             f"Unidades com mais {base[0][1]} também têm mais {base[1][1]}?",
             "L2 Dispersão para relação", "baixa",
-            [{"tipo": "scatterChart", "titulo": f"{base[0][1]} × {base[1][1]} por {d0[1]}",
+            [{"tipo": "dispersao", "titulo": f"{base[0][1]} × {base[1][1]} por {d0[1]}",
+              "subtitulo": "Pontos afastados da diagonal são atípicos",
               "campos": {"Category": nome_campo(*d0), "X": nome_campo(*base[0]), "Y": nome_campo(*base[1])}}],
-            "Gráfico de dispersão revela atípicos; exige habilidade de dispersão no gerador (ver roadmap).")
+            "A dispersão mostra se as duas medidas andam juntas e revela unidades atípicas.")
 
     # NV09 tooltip
     if not any(p["tipo"] == "Tooltip" for p in paginas) and len(base) >= 2:
         add("NV09", "Página de dica de ferramenta", "Que contexto o usuário quer ao passar o mouse?",
             "L3 Menos desordem · [Shneiderman]", "baixa",
             [{"tipo": "card", "titulo": m, "campos": {"Values": nome_campo(t, m)}} for t, m in base[:3]],
-            "Tooltip de página dá contexto sem ocupar espaço; configurar como Dica de ferramenta no Desktop.")
+            "A dica de página dá contexto sem ocupar espaço. Vincule-a aos gráficos com "
+            "formatar {\"tooltip_pagina\": \"Página de dica de ferramenta\"}.", {"tipo": "tooltip"})
+
+    # NV10 mapa de calor dimensão × tempo
+    if d0 and t0 and base and not existe("pivotTable", Rows=d0, Columns=t0):
+        add("NV10", f"Mapa de calor: {base[0][1]} por {d0[1]} e {t0[1]}",
+            f"Em que {d0[1]} e em que período {base[0][1]} foge do padrão?", "L2 Mapa de calor · L4 intensidade",
+            "baixa", [{"tipo": "mapa_calor", "titulo": f"{base[0][1]} por {d0[1]} e {t0[1]}",
+                       "campos": {"Rows": nome_campo(*d0), "Columns": nome_campo(*t0), "Values": nome_campo(*base[0])}}],
+            "A intensidade da cor mostra concentrações e lacunas sem precisar ler cada número.")
+
+    # NV11 slopegraph (precisa saber os dois últimos períodos: vem do perfil de dados)
+    anos = None
+    for tb in perfil or []:
+        for col in tb["colunas"]:
+            if re.fullmatch(r"(?i)ano(_?referencia)?|year", col["coluna"]) and col["tipo"] == "numero" and \
+                    col.get("max") and col.get("min") is not None and col["max"] > col["min"]:
+                anos = [int(col["max"]) - 1, int(col["max"])]
+    tano = next((x for x in tempo if re.fullmatch(r"(?i)ano|year", x[1])), None)
+    if anos and tano and d0 and base and not existe("lineChart", Category=tano, Series=d0):
+        add("NV11", f"{base[0][1]}: {anos[0]} × {anos[1]} por {d0[1]}", f"Quais {d0[1]} cresceram ou caíram?",
+            "L2 Slopegraph para mudança entre dois pontos", "média",
+            [{"tipo": "slope", "titulo": f"{base[0][1]}: {anos[0]} × {anos[1]}", "valores": anos,
+              "campos": {"Category": nome_campo(*tano), "Series": nome_campo(*d0), "Y": nome_campo(*base[0])}}],
+            "Os dados mostram dois anos; a inclinação de cada linha conta a mudança sem precisar de legenda.")
     return visoes
 
 
 # ============================================================================ layout de specs
-def layout_spec(visao, largura=1440):
+def layout_spec(visao, largura=1440, altura_padrao=1100):
     M, G = 24, 24
-    cw = largura - 2 * M
     vis = [v for v in visao["visuais"] if v["tipo"] in SUPORTADOS_GERADOR]
     if not vis:
         return None
-    out = [{"tipo": "textbox", "texto": visao["titulo"], "posicao": {"x": M, "y": 14, "largura": cw, "altura": 55}}]
+    pag = dict(visao.get("pagina") or {})
+    if pag.get("tipo") == "tooltip":
+        n = len(vis)
+        h = (240 - 16 - 8 * (n - 1)) // n
+        out = [dict(v, posicao={"x": 8, "y": 8 + i * (h + 8), "largura": 304, "altura": h}) for i, v in enumerate(vis)]
+        return {"pagina": dict(pag, nome=visao["titulo"][:100]), "visuais": out}
+    cw = largura - 2 * M
+    larg_titulo = cw - 164 if pag.get("tipo") == "drillthrough" else cw
+    out = [{"tipo": "textbox", "texto": visao["titulo"], "posicao": {"x": M, "y": 14, "largura": larg_titulo, "altura": 55}}]
     y = 84
     cards = [v for v in vis if v["tipo"] == "card"]
-    graf = [v for v in vis if v["tipo"] not in ("card", "tableEx", "pivotTable", "slicer")]
-    tabs = [v for v in vis if v["tipo"] in ("tableEx", "pivotTable")]
+    tabs = [v for v in vis if v["tipo"] in ("tableEx", "pivotTable", "mapa_calor")]
+    graf = [v for v in vis if v not in cards and v not in tabs and v["tipo"] != "slicer"]
     for i in range(0, len(cards), 4):
         linha = cards[i:i + 4]
         w = (cw - (len(linha) - 1) * G) // len(linha)
@@ -1247,16 +1384,15 @@ def layout_spec(visao, largura=1440):
     for v in tabs:
         out.append(dict(v, posicao={"x": M, "y": y, "largura": cw, "altura": 360}))
         y += 360 + G
-    altura = max(720, y)
-    return {"pagina": {"nome": visao["titulo"][:100], "largura": largura, "altura": altura},
-            "visuais": out}
+    altura = max(altura_padrao, y)
+    return {"pagina": dict(pag, nome=visao["titulo"][:100], largura=largura, altura=altura), "visuais": out}
 
 
 # ============================================================================ relatório markdown
 ICONE = {"alta": "🔴", "média": "🟠", "baixa": "🟡"}
 
 
-def gerar_md(nome, formato, rel, modelo, achados, visoes, nts):
+def gerar_md(nome, formato, rel, modelo, achados, visoes, nts, perfil=None):
     L = []
     pags = rel["paginas"]
     nvis = sum(len(p["visuais"]) for p in pags)
@@ -1290,8 +1426,12 @@ def gerar_md(nome, formato, rel, modelo, achados, visoes, nts):
                  + (f" — {a['pagina']}" if a["pagina"] else ""))
         L.append(f"- **Por quê:** {a['evidencia']}")
         L.append(f"- **O que fazer:** {a['recomendacao']}")
+        auto = a["codigo"] in COMO_APLICAR and not COMO_APLICAR[a["codigo"]].startswith("edição")
         L.append(f"- **Princípio:** {a['principio']} · **Esforço:** {a['esforco']} · "
-                 f"**Auto:** {'sim' if a['automatizavel'] else 'não'} · `{a['codigo']}`\n")
+                 f"**Auto:** {'sim' if auto else 'não'} · `{a['codigo']}`")
+        if a["codigo"] in COMO_APLICAR:
+            L.append(f"- **Como aplicar:** `{COMO_APLICAR[a['codigo']]}`")
+        L.append("")
 
     L.append("## Novas visões sugeridas\n")
     for v in visoes:
@@ -1306,6 +1446,13 @@ def gerar_md(nome, formato, rel, modelo, achados, visoes, nts):
             L.append(f"  - {x['tipo']} — {x['titulo']} ({campos})")
         L.append("")
 
+    manchetes = [i for tb in (perfil or []) for i in tb.get("insights", [])]
+    if manchetes:
+        L.append("## Manchetes com dados reais (perfil dos dados exportados)\n")
+        L.append("Use como títulos de ação ou na manchete da página; confira o filtro/período dos dados exportados.\n")
+        for i in manchetes[:12]:
+            L.append(f"- {i['manchete']}")
+        L.append("")
     L.append("## Títulos atuais (para reescrever como títulos de ação)\n")
     for p in pags:
         tits = [v["titulo"] or v["texto"] for v in p["visuais"] if (v["titulo"] or v["texto"])]
@@ -1320,32 +1467,39 @@ def gerar_md(nome, formato, rel, modelo, achados, visoes, nts):
 
 
 # ============================================================================ comandos
-def analisar(entrada, saida=None):
+def analisar(entrada, saida=None, dados=None):
     itens = carregar(entrada)
+    perfil = json.loads(Path(dados).read_text(encoding="utf-8")) if dados else None
     resultados = []
     for nome, formato, rel, modelo in itens:
         destino = Path(saida or f"analise_{re.sub(r'[^A-Za-z0-9_-]+', '_', nome)}")
         if len(itens) > 1:
             destino = destino / re.sub(r"[^A-Za-z0-9_-]+", "_", nome)
         destino.mkdir(parents=True, exist_ok=True)
-        achados = agrupar(auditar(rel, modelo))
-        visoes = sugerir_visoes(rel, modelo)
+        achados = agrupar(auditar(rel, modelo) + auditar_dados(rel, perfil))
+        visoes = sugerir_visoes(rel, modelo, perfil)
         larguras = Counter(p["largura"] for p in rel["paginas"] if not eh_operacional(p))
+        alturas = Counter(p["altura"] for p in rel["paginas"]
+                          if not eh_operacional(p) and p["tipo"] not in ("Tooltip", "Drillthrough"))
+        altura_padrao = alturas.most_common(1)[0][0] if alturas else 1100
         largura = larguras.most_common(1)[0][0] if larguras else 1440
         largura = largura if 1280 <= largura <= 1920 else 1440
         specs = destino / "specs"
         if specs.exists():
             shutil.rmtree(specs)
+        for x in achados:
+            x["automatizavel"] = x["codigo"] in COMO_APLICAR and not COMO_APLICAR[x["codigo"]].startswith("edição")
+            x["como_aplicar"] = COMO_APLICAR.get(x["codigo"])
         for v in visoes:
             if modelo["lido"] and v["automatizavel"]:
-                sp = layout_spec(v, largura)
+                sp = layout_spec(v, largura, altura_padrao)
                 if sp:
                     specs.mkdir(exist_ok=True)
                     (specs / f"{v['codigo']}.json").write_text(json.dumps(sp, ensure_ascii=False, indent=2) + "\n",
                                                                encoding="utf-8")
                     v["spec"] = True
         nts = notas(achados)
-        md = gerar_md(nome, formato, rel, modelo, achados, visoes, nts)
+        md = gerar_md(nome, formato, rel, modelo, achados, visoes, nts, perfil)
         inventario = {"nome": nome, "formato": formato, "origem": str(entrada), "relatorio": rel,
                       "modelo": {**modelo, "tabelas": {k: {**t} for k, t in modelo["tabelas"].items()}}}
         (destino / "inventario.json").write_text(json.dumps(inventario, ensure_ascii=False, indent=1, default=list),
@@ -1393,13 +1547,14 @@ def main():
     a = sub.add_parser("analisar")
     a.add_argument("entrada")
     a.add_argument("--saida")
+    a.add_argument("--dados", help="perfil.json gerado por perfilar_dados.py")
     a = sub.add_parser("comparar")
     a.add_argument("antes")
     a.add_argument("depois")
     args = ap.parse_args()
     try:
         if args.cmd == "analisar":
-            analisar(args.entrada, args.saida)
+            analisar(args.entrada, args.saida, args.dados)
         else:
             comparar(args.antes, args.depois)
     except (ValueError, zipfile.BadZipFile, OSError) as e:
