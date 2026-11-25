@@ -16,6 +16,7 @@ Ferramentas (rode com `python3 -I`; `<skill>` = `.claude/skills/pbir-paginas-vis
 |---|---|
 | `<skill>/scripts/pbir_tool.py campos <projeto> [--busca txt] [--tabela Nome]` | Lista tabelas, colunas e medidas reais do TMDL |
 | `<skill>/scripts/pbir_tool.py criar <projeto> <spec.json> [--simular]` | Cria página nova ou adiciona visuais a uma existente, e já valida |
+| `<skill>/scripts/pbir_tool.py ajustar <projeto> [--pagina P] [--titulos t.json] [--texto-alt] [--ordem-leitura] [--simular]` | Em visuais existentes: troca títulos (`{"<id visual>": "Título"}`), preenche texto alternativo com o título e renumera z/tabOrder na ordem de leitura |
 | `<skill>/scripts/pbir_tool.py validar <projeto>` | Estrutura, IDs, `pageOrder`, limites, sobreposição e campos inexistentes |
 | `<skill>/scripts/validar_schema.py <projeto> [id_pagina ...]` | Confere os JSON com os schemas oficiais da Microsoft (precisa de `jsonschema` e rede) |
 
@@ -83,8 +84,11 @@ Ferramentas (rode com `python3 -I`; `<skill>` = `.claude/skills/pbir-paginas-vis
   - Tabela/visual largo: `x 24`, largura 1392
 - Páginas de conferência/exportação do RM (`Entrega_RM_*`) usam outro padrão: `FitToWidth`, 4200 × 1400,
   tabelas `tableEx` de largura total. Mantenha esse padrão nelas.
-- Para escolher o visual, a hierarquia e o texto, aplique as skills `especialista-ux-ui` e
-  `especialista-storytelling` se estiverem disponíveis. Esta skill cuida da execução no PBIR.
+- Para escolher o visual, a hierarquia, as cores e o texto, siga as referências da skill `upgrade-painel`:
+  `.claude/skills/upgrade-painel/references/storytelling-com-dados.md` (lições L1–L6 do livro *Storytelling com
+  Dados*) e `.../ux-ui-dashboards.md`. Em resumo: manchete com a conclusão, KPIs com comparação no topo, um
+  visual por pergunta, barras ordenadas para categorias e linha para tempo, base neutra com uma cor de destaque,
+  títulos de ação. Para um upgrade completo de painel (análise + sugestões), use a skill `upgrade-painel`.
 
 ## O que o script não faz (edite o JSON à mão, copiando de um visual existente)
 

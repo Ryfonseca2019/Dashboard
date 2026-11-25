@@ -5,6 +5,9 @@ Comandos:
   campos  <projeto> [--busca TEXTO] [--tabela NOME]   lista tabelas, colunas e medidas do modelo (TMDL)
   criar   <projeto> <spec.json> [--simular]            cria página nova ou adiciona visuais a uma página existente
   validar <projeto>                                    confere estrutura, IDs e referências de campos
+  ajustar <projeto> [--pagina ID|nome] [--ordem-leitura] [--texto-alt] [--titulos titulos.json] [--simular]
+          corrige visuais existentes: z/tabOrder na ordem de leitura, texto alternativo a partir do título,
+          e títulos novos ({"<id do visual>": "Título de ação", ...})
 
 <projeto> pode ser a pasta que contém o .pbip, a pasta *.Report ou o próprio arquivo .pbip.
 """
@@ -496,6 +499,73 @@ def imprimir_problemas(problemas):
     print(f"\nValidação: {len(erros)} erro(s), {len(avisos)} aviso(s)")
 
 
+def _titulo_atual(v):
+    try:
+        val = v["visual"]["visualContainerObjects"]["title"][0]["properties"]["text"]["expr"]["Literal"]["Value"]
+        return val[1:-1].replace("''", "'")
+    except (KeyError, IndexError, TypeError):
+        return None
+
+
+def cmd_ajustar(args):
+    report, modelo = localizar(args.projeto)
+    paginas_dir = report / "definition" / "pages"
+    titulos = ler_json(Path(args.titulos)) if args.titulos else {}
+    alvo = args.pagina
+    mudou = 0
+    usados_titulos = set()
+    for pj in sorted(paginas_dir.glob("*/page.json")):
+        pagina = ler_json(pj)
+        if alvo and alvo not in (pj.parent.name, pagina.get("displayName")):
+            continue
+        arquivos = sorted(pj.parent.glob("visuals/*/visual.json"))
+        visuais = [(f, ler_json(f)) for f in arquivos]
+        alterados = set()
+        if args.ordem_leitura:
+            ordem = sorted(visuais, key=lambda fv: (round(fv[1].get("position", {}).get("y", 0) / 20),
+                                                    fv[1].get("position", {}).get("x", 0)))
+            for i, (f, v) in enumerate(ordem):
+                pos = v.setdefault("position", {})
+                if pos.get("z") != i or pos.get("tabOrder") != i:
+                    pos["z"], pos["tabOrder"] = i, i
+                    alterados.add(f)
+        for f, v in visuais:
+            vid = v.get("name")
+            vis = v.get("visual")
+            if vis is None:
+                continue
+            vco = vis.setdefault("visualContainerObjects", {})
+            if vid in titulos:
+                usados_titulos.add(vid)
+                props = vco.setdefault("title", [{"properties": {}}])[0].setdefault("properties", {})
+                props["text"] = texto(titulos[vid])
+                props["show"] = lit("true")
+                alterados.add(f)
+            if args.texto_alt and vis.get("visualType") not in ("textbox", "shape", "image", "actionButton"):
+                geral = vco.setdefault("general", [{"properties": {}}])[0].setdefault("properties", {})
+                if "altText" not in geral:
+                    base = titulos.get(vid) or _titulo_atual(v)
+                    if base:
+                        geral["altText"] = texto(base)
+                        alterados.add(f)
+        for f, v in visuais:
+            if f in alterados:
+                mudou += 1
+                if args.simular:
+                    print(f"[simulação] alteraria {f.relative_to(report)}")
+                else:
+                    gravar_json(f, v)
+    faltando = set(titulos) - usados_titulos
+    if faltando:
+        print("AVISO títulos para visuais não encontrados: " + ", ".join(sorted(faltando)))
+    print(f"{mudou} visual(is) {'seriam alterados' if args.simular else 'alterados'}")
+    if not args.simular:
+        problemas = validar(report, modelo)
+        imprimir_problemas(problemas)
+        if any(n == "ERRO" for n, _ in problemas):
+            sys.exit(1)
+
+
 def cmd_validar(args):
     report, modelo = localizar(args.projeto)
     print(f"Relatório: {report}\nModelo:    {modelo}")
@@ -518,6 +588,14 @@ def main():
     a.add_argument("spec")
     a.add_argument("--simular", action="store_true")
     a.set_defaults(func=cmd_criar)
+    a = sub.add_parser("ajustar")
+    a.add_argument("projeto")
+    a.add_argument("--pagina")
+    a.add_argument("--ordem-leitura", action="store_true")
+    a.add_argument("--texto-alt", action="store_true")
+    a.add_argument("--titulos")
+    a.add_argument("--simular", action="store_true")
+    a.set_defaults(func=cmd_ajustar)
     a = sub.add_parser("validar")
     a.add_argument("projeto")
     a.set_defaults(func=cmd_validar)
