@@ -1,0 +1,101 @@
+{
+  "status": "isolated-only-not-antivirus",
+  "passed": 22,
+  "cases": [
+    {
+      "name": "options may read",
+      "passed": true
+    },
+    {
+      "name": "options may save",
+      "passed": true
+    },
+    {
+      "name": "popup cannot save",
+      "passed": true
+    },
+    {
+      "name": "content cannot save",
+      "passed": true
+    },
+    {
+      "name": "content cannot inspect stored configuration",
+      "passed": true
+    },
+    {
+      "name": "content cannot run tab diagnosis",
+      "passed": true
+    },
+    {
+      "name": "own top frame may select",
+      "passed": true
+    },
+    {
+      "name": "foreign window cannot select",
+      "passed": true
+    },
+    {
+      "name": "iframe cannot select",
+      "passed": true
+    },
+    {
+      "name": "foreign extension blocked",
+      "passed": true
+    },
+    {
+      "name": "spoofed page suffix blocked",
+      "passed": true
+    },
+    {
+      "name": "empty message blocked",
+      "passed": true
+    },
+    {
+      "name": "valid configuration retained",
+      "passed": true
+    },
+    {
+      "name": "remote institutional image rejected",
+      "passed": true
+    },
+    {
+      "name": "SVG or HTML image rejected",
+      "passed": true
+    },
+    {
+      "name": "attribute injection rejected",
+      "passed": true
+    },
+    {
+      "name": "duplicate profiles rejected",
+      "passed": true
+    },
+    {
+      "name": "duplicate item IDs rejected",
+      "passed": true
+    },
+    {
+      "name": "non-web dashboard rejected",
+      "passed": true
+    },
+    {
+      "name": "URL credentials rejected",
+      "passed": true
+    },
+    {
+      "name": "invalid interval rejected",
+      "passed": true
+    },
+    {
+      "name": "configuration validator does not modify profiles or assets",
+      "passed": true
+    }
+  ],
+  "limitations": [
+    "Chrome sender metadata simulated",
+    "Native URL parser not tested here",
+    "Full extension not executed",
+    "No antivirus scanner available",
+    "No Power BI/Edge or four-monitor integration test"
+  ]
+}
