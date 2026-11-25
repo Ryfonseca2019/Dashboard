@@ -1,0 +1,6 @@
+{"pagina": {"nome": "Ficha da turma", "tipo": "drillthrough", "campo_drill": "DimTurma[TurmaID]"},
+ "visuais": [
+  {"tipo": "texto", "texto": "Ficha da turma", "posicao": {"x": 24, "y": 14, "largura": 1200, "altura": 55}},
+  {"tipo": "card", "titulo": "H/A prevista", "campos": {"Values": "FatoProducao[H/A Prevista]"}, "posicao": {"x": 24, "y": 84, "largura": 330, "altura": 120}},
+  {"tipo": "tabela", "titulo": "Competências da turma", "campos": {"Values": ["DimCompetencia[AnoMes]", "FatoProducao[H/A Prevista]", "FatoProducao[Matrículas Previstas]"]}, "posicao": {"x": 24, "y": 228, "largura": 1392, "altura": 500}}
+ ]}

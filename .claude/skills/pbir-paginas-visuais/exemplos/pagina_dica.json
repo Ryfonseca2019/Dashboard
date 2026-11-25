@@ -1,0 +1,5 @@
+{"pagina": {"nome": "Dica - unidade", "tipo": "tooltip"},
+ "visuais": [
+  {"tipo": "card", "titulo": "H/A prevista", "campos": {"Values": "FatoProducao[H/A Prevista]"}, "posicao": {"x": 8, "y": 8, "largura": 148, "altura": 110}},
+  {"tipo": "card", "titulo": "Meta", "campos": {"Values": "FatoProducao[Meta H/A]"}, "posicao": {"x": 164, "y": 8, "largura": 148, "altura": 110}}
+ ]}
